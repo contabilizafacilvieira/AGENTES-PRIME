@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Aberta do disco: somente visualização, sem rede. Servida pela API local (127.0.0.1), a API troca
+       connect-src para 'self' e entrega o token de sessão; só então o modo operação (js/operacao.js) é ativado. -->
+  <meta http-equiv="Content-Security-Policy" content="connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'">
+  <title>AGENTES PRIME · Escritório Virtual</title>
+  <link rel="stylesheet" href="css/escritorio.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="marca">
+      <span class="marca-logo" aria-hidden="true">P</span>
+      <strong class="marca-nome">AGENTES PRIME</strong>
+      <span class="marca-sep" aria-hidden="true"></span>
+      <span class="marca-sub">Escritório Virtual</span>
+    </div>
+
+    <div class="menu">
+      <button type="button" class="botao-sim" id="botao-sim" data-menu aria-expanded="false" aria-controls="pop-sim">
+        <span class="botao-sim-rotulo">SIMULAÇÃO</span>
+        <span class="botao-sim-detalhe">dados fictícios · <span id="cenario-atual"></span></span>
+        <span class="seta-menu" aria-hidden="true">▾</span>
+      </button>
+      <div class="popover pop-sim" id="pop-sim" hidden>
+        <p class="pop-aviso">Todos os dados são fictícios. Nenhum agente real é acionado.</p>
+        <h2 class="pop-titulo">Cenário de demonstração</h2>
+        <div class="cenarios" id="cenarios" role="radiogroup" aria-label="Cenários de demonstração"></div>
+        <p class="cenario-desc" id="cenario-desc"></p>
+      </div>
+    </div>
+
+    <div class="menu">
+      <button type="button" class="botao-topo" id="botao-legenda" data-menu aria-expanded="false" aria-controls="pop-legenda">Legenda <span class="seta-menu" aria-hidden="true">▾</span></button>
+      <div class="popover pop-legenda" id="pop-legenda" hidden>
+        <h2 class="pop-titulo">Estados dos agentes</h2>
+        <ul class="legenda" id="legenda"></ul>
+      </div>
+    </div>
+
+    <div class="resumo" id="resumo" aria-label="Resumo dos estados dos agentes"></div>
+    <div class="relogio" id="relogio" aria-label="Horário local"></div>
+  </header>
+
+  <p class="aviso-dados" id="aviso-dados" role="alert" hidden></p>
+
+  <main class="area" id="area">
+    <section class="palco" aria-label="Planta do escritório virtual">
+      <div class="cena">
+        <canvas id="tela" aria-hidden="true"></canvas>
+        <div class="camada" id="camada"></div>
+      </div>
+      <p class="dica">Clique em um agente ou no quadro da Contabilidade (ou Tab e Enter) para abrir o painel · Esc fecha</p>
+    </section>
+
+    <aside class="gaveta" id="gaveta" aria-label="Painel do Supervisor">
+      <div class="gaveta-conteudo">
+        <div class="gaveta-topo">
+          <span class="gaveta-titulo">Painel do Supervisor</span>
+          <button type="button" class="fechar" id="fechar-gaveta" aria-label="Fechar painel">✕</button>
+        </div>
+        <section class="ficha" id="ficha" aria-live="polite" aria-label="Agente selecionado"></section>
+        <details class="dev">
+          <summary>Simulação · alterar status</summary>
+          <label class="dev-linha" for="dev-status">
+            Status de <strong id="dev-agente">—</strong>
+            <select id="dev-status"></select>
+          </label>
+          <button type="button" class="botao-sec" id="dev-restaurar">Restaurar cenário</button>
+          <p class="dev-nota" id="dev-nota"></p>
+        </details>
+      </div>
+    </aside>
+  </main>
+
+  <noscript><p class="aviso-dados">O Escritório Virtual precisa de JavaScript habilitado.</p></noscript>
+
+  <script src="dados/estado-simulado.js"></script>
+  <script src="js/estados.js"></script>
+  <script src="js/mapa.js"></script>
+  <script src="js/cena.js"></script>
+  <script src="js/painel.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/operacao.js"></script>
+  <script src="js/gestao.js"></script>
+</body>
+</html>

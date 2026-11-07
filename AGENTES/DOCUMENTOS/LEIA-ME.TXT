@@ -1,0 +1,26 @@
+AGENTE DE DOCUMENTOS - AGENTES PRIME
+
+STATUS: HOMOLOGADO EM AMBIENTE FICTÍCIO (30/10/2026)
+NÃO LIBERADO PARA PRODUÇÃO COM DADOS REAIS (exige "LIBERADO PRODUÇÃO AGENTE-DOCUMENTOS" do Supervisor Contábil).
+Testes: TESTES/RELATORIO-TESTES.md (T-002, D-0 a D-2, R-1, ISO-1 a ISO-3, T-003).
+
+Implementação:
+- Subagente: .claude/agents/agente-documentos.md (somente leitura: Read, Glob, Grep, Bash restrito)
+- Guarda: ferramentas/guarda_agente.py, hook PreToolUse em .claude/settings.json (somente para agent_type agente-documentos)
+- Vínculo com a empresa: controle/ordem-ativa.json, registrado pelo Coordenador antes de cada delegação
+- Extração somente leitura: ferramentas/extrair_documentos.py (Python do .venv do projeto)
+- Modelo do relatório: MODELO-RELATORIO.md
+
+Responsabilidades:
+1. Receber e organizar documentos contábeis.
+2. Identificar notas fiscais, comprovantes e extratos.
+3. Classificar documentos por empresa e competência.
+4. Identificar documentos ausentes ou duplicados.
+5. Encaminhar informações aos agentes especializados.
+6. Comunicar pendências ao Coordenador Geral.
+
+REGRAS:
+Não alterar documentos originais.
+Não inventar informações ausentes.
+Não gerar lançamentos definitivos sem aprovação.
+Manter os documentos de cada cliente separados.

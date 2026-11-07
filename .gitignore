@@ -1,0 +1,65 @@
+# AGENTES PRIME - itens que NUNCA vão para o Git
+
+# Ambiente Python e temporários
+.venv/
+__pycache__/
+*.pyc
+*.tmp
+*.temp
+~$*
+*.bak
+*.log
+Thumbs.db
+desktop.ini
+
+# Credenciais e configurações pessoais
+.env
+.env.*
+*.key
+*.pem
+*.pfx
+*.p12
+credenciais*
+senhas*
+.claude/settings.local.json
+
+# Arquivos liberados para importação no Domínio
+LIBERADOS/
+
+# Ordem de serviço ativa (controle operacional do guarda, não versionar)
+AGENTES/DOCUMENTOS/controle/
+COORDENADOR-GERAL/controle/
+
+# Documentos recebidos pelo Escritório Virtual (inclusive em empresas fictícias versionadas)
+CLIENTES/**/RECEBIDOS/
+
+# Dados de clientes: tudo em CLIENTES/ é ignorado, exceto o modelo. As empresas FICTÍCIAS de teste ficam em
+# TESTES/FIXTURES-FICTICIAS/ e são copiadas para um CLIENTES temporário pelos testes (TESTES/ambiente_isolado.py).
+CLIENTES/*
+!CLIENTES/_MODELO/
+
+# Documentos contábeis fora das pastas permitidas acima (proteção extra)
+*.pdf
+*.xlsx
+*.xlsm
+*.xls
+*.csv
+*.xml
+*.ofx
+*.zip
+# fixtures FICTÍCIAS dos testes do extrator, guarda e Coordenador (T004)
+!TESTES/FIXTURES-FICTICIAS/**/*.pdf
+!TESTES/FIXTURES-FICTICIAS/**/*.xlsx
+!TESTES/FIXTURES-FICTICIAS/**/*.xlsm
+!TESTES/FIXTURES-FICTICIAS/**/*.csv
+!TESTES/FIXTURES-FICTICIAS/**/*.xml
+# fixtures FICTÍCIAS do plano do Domínio (testes LOCAL)
+!TESTES/LOCAL/fixtures/*.csv
+!TESTES/LOCAL/fixtures/*.xls
+# amostra FICTÍCIA do fluxo Financeiro → Contabilidade/Bancos (teste pela interface)
+!TESTES/FINANCEIRO/AMOSTRA-INTERFACE/*.csv
+!TESTES/FINANCEIRO/AMOSTRA-INTERFACE/*.ofx
+!TESTES/FINANCEIRO/AMOSTRA-INTERFACE/*.xml
+# amostra FICTÍCIA permanente do percurso completo (TESTES/AMOSTRA-COMPLETA/LEIA-ME.md)
+!TESTES/AMOSTRA-COMPLETA/**/*.csv
+!TESTES/AMOSTRA-COMPLETA/**/*.pdf

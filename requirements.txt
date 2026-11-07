@@ -1,0 +1,21 @@
+# Dependências Python do AGENTES PRIME (instalar somente no ambiente virtual .venv)
+#   python -m venv .venv
+#   .venv\Scripts\python.exe -m pip install -r requirements.txt
+openpyxl==3.1.5    # leitura de planilhas .xlsx/.xlsm (Agente de Documentos)
+python-calamine==0.9.0  # leitura local da Relação de Contas do Domínio em .xls (cadastro)
+pypdf==6.21.4      # texto de PDF digital por página e detecção de PDF escaneado (sem OCR); Python puro, sem dependências obrigatórias (T-004)
+
+# Renderização e OCR locais: Documentos (geral) e Importação (regras de negócio somente VGROW).
+pypdfium2==5.14.0
+rapidocr-onnxruntime==1.2.3
+onnxruntime==1.31.1
+opencv-python==5.0.0.93
+numpy==2.5.4
+pillow==13.0.0
+shapely==2.2.0
+pyclipper==1.4.0
+PyYAML==6.0.3
+six==1.17.0
+protobuf==7.36.2
+flatbuffers==25.12.19
+packaging==26.3
