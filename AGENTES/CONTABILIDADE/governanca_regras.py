@@ -200,6 +200,8 @@ def definicoes_necessarias(empresa: str, dados_por_area: dict = None) -> list:
                               "pergunta": f"Qual a data dos lançamentos de {area} desta empresa (competência ≠ data do lançamento)?",
                               "frase": frase(area, empresa, chave)})
                 continue
+            if isinstance(regra, dict) and regra.get("nao_aplicavel") is True and regra.get("justificativa"):
+                continue
             politica = str(regra.get("politica") or "").upper() if chave == "DATA_LANCAMENTO" else ""
             if politica in POLITICAS_NAO_SUPORTADAS:
                 itens.append({"area": area, "chave": chave, "situacao": "NAO_SUPORTADA", "arquivo": arquivo, "frase": None,

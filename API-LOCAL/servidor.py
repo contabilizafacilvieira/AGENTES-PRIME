@@ -51,6 +51,7 @@ import exportacao_dominio  # noqa: E402
 import metodo_empresa  # noqa: E402
 import importacao_vgrow  # noqa: E402  (somente agrupamento de processos para a tela; o fechamento roda em processo separado)
 import governanca_regras  # noqa: E402  (definições necessárias por empresa; somente leitura)
+import regras_areas  # noqa: E402  (sugestões e confirmação guiada das referências por área)
 
 HOST = "127.0.0.1"
 PORTA = int(os.environ.get("AGENTES_PRIME_PORTA", "8765"))
@@ -1396,6 +1397,15 @@ class Manipulador(BaseHTTPRequestHandler):
     def api_empresas(self, metodo, partes):
         gestor = empresas_local.Empresas(RAIZ, RUNTIME)
         if metodo == 'GET':
+            if len(partes) == 2 and partes[1] == 'regras-area':
+                e = gestor.obter(partes[0])
+                if e.get('legado'):
+                    return self.erro(409, 'Cadastro legado não pode receber referências por esta tela.')
+                comp = (parse_qs(urlsplit(self.path).query).get('competencia') or [dt.datetime.now().strftime('%Y-%m')])[0]
+                sugestao = regras_areas.sugerir(partes[0], e.get('plano') or [], comp)
+                sugestao['plano'] = e.get('plano') or []
+                sugestao['arquivos'] = {a: arquivo for a, (_, arquivo) in regras_areas.AREAS.items()}
+                return self.json(200, sugestao)
             if len(partes) == 2 and partes[1] == 'exclusao':
                 e = gestor.obter(partes[0])
                 imp = impedimentos_exclusao_empresa(partes[0])
@@ -1447,6 +1457,15 @@ class Manipulador(BaseHTTPRequestHandler):
             if acao == 'parametros-bancos':
                 return self.erro(410, 'A classificação automática em adiantamentos foi removida. Movimentos sem suporte ficam pendentes de classificação.')
             if acao == 'regras-area':
+                if 'decisoes' in d:
+                    e = gestor.obter(ident)
+                    if e.get('legado') or not isinstance(d.get('area'), str):
+                        raise ValueError('Empresa ou área inválida.')
+                    comp = str(d.get('competencia') or dt.datetime.now().strftime('%Y-%m'))
+                    sugestao = regras_areas.sugerir(ident, e.get('plano') or [], comp)
+                    sugestao['plano'] = e.get('plano') or []
+                    regras_areas.confirmar(gestor.base(ident), sugestao, d['area'], d['decisoes'], comp)
+                    return self.json(200, {'resultado': 'REGRAS_AREA_CONFIRMADAS', 'empresa': ident, 'area': d['area'], 'competencia': comp})
                 if set(d) != {'area', 'chave', 'frase', 'confirmado'} or d['confirmado'] is not True:
                     raise ValueError('Informe área, chave, frase e confirme.')
                 codigo, r = coordenador_cli('aprovar-regra-area', '--empresa', ident, '--area', str(d['area']), '--chave', str(d['chave']),

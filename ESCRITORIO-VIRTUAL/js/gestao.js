@@ -520,12 +520,32 @@
   d.append(el('p','Regras ainda não confirmadas não são usadas pelas áreas. Confirme digitando a frase indicada; depois, retome na solicitação as etapas que usaram a versão anterior.','gestao-nota'));
   itens.forEach(x=>{const art=el('div',null,'gestao-definicao');art.dataset.definicao=`${x.area}/${x.chave||''}`;
    art.append(el('strong',`${AREA_NOME[x.area]||x.area}${x.chave?' · '+x.chave:''}`),el('p',x.pergunta));
-   if(x.frase){const f=campo(art,`Para confirmar, digite: ${x.frase}`);f.setAttribute('aria-label',`Frase para confirmar ${x.area} ${x.chave||''}`);
+   if(x.situacao==='AUSENTE' || x.situacao==='INVALIDO'){
+    art.replaceChildren(el('strong',`${AREA_NOME[x.area]||x.area}`),el('p','Referências ainda não configuradas.','gestao-nota'));
+    const bt=botao('Preparar referências',()=>prepararReferencias(e));bt.dataset.acao='preparar-referencias';art.append(bt);
+   } else if(x.frase){const f=campo(art,`Para confirmar, digite: ${x.frase}`);f.setAttribute('aria-label',`Frase para confirmar ${x.area} ${x.chave||''}`);
     art.append(botao('Confirmar esta regra',async()=>{await api('POST',`/empresas/${e.id}/regras-area`,{area:x.area,chave:x.chave,frase:f.value,confirmado:true});await abrirEmpresa(e.id,null,'regras');}));}
-   else art.append(el('p','Ainda não é possível confirmar por esta tela; fale com o responsável pelas regras da área.','gestao-nota'));
+   else art.append(el('p','Esta referência precisa de revisão antes da confirmação. Abra os detalhes técnicos se necessário.','gestao-nota'));
    tecnico(art,{area:x.area,chave:x.chave,situacao:x.situacao});
    d.append(art);});
   return d;
+ }
+
+ async function prepararReferencias(e){
+  const atual=document.querySelector('[data-regras-area]');if(atual){atual.scrollIntoView({block:'start'});return;}
+  const comp=competenciaEmpresa[e.id]||competenciaPadrao();const s=await api('GET',`/empresas/${e.id}/regras-area?competencia=${encodeURIComponent(comp)}`);
+  const p=el('section',null,'gestao-card');p.dataset.regrasArea='true';p.append(el('h2','Preparar referências das áreas'),el('p','As sugestões abaixo foram encontradas no plano contábil desta empresa. Elas não viram regras até a confirmação do Supervisor.','gestao-nota'));
+  const escolhas={};
+  Object.entries(s.areas).forEach(([area,dados])=>{
+   const sec=el('details',null,'gestao-definicao');sec.open=false;sec.dataset.area=area;const resumo=el('summary',`${dados.nome} · ${dados.itens.filter(x=>x.conta).length} referências sugeridas`);sec.append(resumo);
+   dados.itens.forEach(item=>{const art=el('div',null,'gestao-definicao');art.dataset.referencia=item.chave;art.append(el('strong',item.rotulo));
+    const linha=el('div',null,'gestao-linha');const select=document.createElement('select');select.dataset.contaReferencia=item.chave;select.append(new Option(item.conta?`${item.conta.codigo||item.conta.classificacao} — ${item.conta.descricao}`:'Nenhuma conta encontrada',''));
+    (s.plano||[]).filter(c=>String(c.tipo||'').toUpperCase().includes('ANAL')||!c.tipo).forEach(c=>select.append(new Option(`${c.codigo||c.classificacao} — ${c.descricao}`,c.codigo||'')));
+    if(item.conta)select.value=item.conta.codigo||'';linha.append(select);art.append(linha,el('p',`Confiança: ${item.confianca}`,item.confianca==='ALTA CONFIANÇA'?'gestao-ok':'gestao-nota'));
+    const na=el('label');const cb=document.createElement('input');cb.type='checkbox';cb.dataset.naoAplica=item.chave;na.append(cb,' Não se aplica');art.append(na);const just=campo(art,'Justificativa (quando não se aplica)');just.dataset.justificativa=item.chave;just.hidden=true;cb.addEventListener('change',()=>{just.hidden=!cb.checked;select.disabled=cb.checked;});sec.append(art);});
+   const confirmar=botao('Confirmar referências',async()=>{const decisoes=[...sec.querySelectorAll('[data-referencia]')].map(a=>{const chave=a.dataset.referencia,cb=a.querySelector('[data-nao-aplica]'),just=a.querySelector('[data-justificativa]'),sel=a.querySelector('[data-conta-referencia]');return cb.checked?{chave,acao:'NAO_APLICA',justificativa:just.value}:{chave,acao:'CONFIRMAR',codigo:sel.value};});await api('POST',`/empresas/${e.id}/regras-area`,{area,competencia:comp,decisoes});informar(`${dados.nome}: referências confirmadas.`);await abrirEmpresa(e.id,comp,'regras');});confirmar.dataset.acao=`confirmar-referencias-${area}`;sec.append(confirmar);p.append(sec);
+  });
+  const cancelar=secundario('Fechar preparação',()=>p.remove());p.append(cancelar);corpo.append(p);p.scrollIntoView({block:'start'});
  }
 
  // Amostra FICTÍCIA do percurso completo (cenários A e B): situação, preparação e correção do caso B. Só atua nas duas empresas
