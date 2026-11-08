@@ -241,8 +241,8 @@
   corpo.append(fluxo);
   // regras das áreas a confirmar (configuração das áreas; fechadas, abertas só quando o usuário vem confirmar)
   const regras=definicoes(e,foco==='regras');corpo.append(regras);
-  const nRegras=(e.definicoes_necessarias||[]).length;
-  if(nRegras){const li=el('li',`⚠ Regras das áreas a confirmar: ${nRegras} `,'atencao');li.dataset.regrasPendentes=String(nRegras);li.append(secundario('Ver regras',()=>{regras.open=true;regras.scrollIntoView({block:'start'});}));ul.append(li);}
+  const nRegras=e.referencias_sugeridas||0;
+  if(nRegras){const li=el('li',`${nRegras} referências sugeridas`,'gestao-nota');li.dataset.regrasSugeridas=String(nRegras);li.append(' ',secundario('Revisar referências',()=>{prepararReferencias(e);}));ul.append(li);}
   if(foco==='regras'&&nRegras)regras.scrollIntoView({block:'start'});
   if(foco==='base'||foco==='balancete'||foco==='book'||foco==='conferencia'||foco==='confirmacao')abrirFluxo(foco==='base'?null:foco);
   // ---- CONFIGURAÇÃO DA EMPRESA (administrativo, separado da operação)
@@ -515,9 +515,9 @@
  const AREA_NOME={BANCOS:'Bancos',DP:'Departamento Pessoal',FISCAL:'Fiscal',CONCILIACAO:'Conciliação'};
  function definicoes(e,aberto){
   const itens=e.definicoes_necessarias||[];const d=el('details',null,'gestao-definicoes');d.dataset.definicoes='true';d.open=!!aberto&&itens.length>0;
-  d.append(el('summary',`Regras das áreas a confirmar (${itens.length})`));
+  d.append(el('summary',`Referências que podem precisar de confirmação (${itens.length})`));
   if(!itens.length){d.append(el('p','Nenhuma definição pendente: as regras desta empresa estão confirmadas (ou são regras de teste da amostra fictícia).','gestao-nota'));d.hidden=true;return d;}
-  d.append(el('p','Regras ainda não confirmadas não são usadas pelas áreas. Confirme digitando a frase indicada; depois, retome na solicitação as etapas que usaram a versão anterior.','gestao-nota'));
+  d.append(el('p','Referências sugeridas não bloqueiam a Base Inicial. A confirmação só será solicitada quando uma etapa precisar desta informação e não houver resolução segura.','gestao-nota'));
   itens.forEach(x=>{const art=el('div',null,'gestao-definicao');art.dataset.definicao=`${x.area}/${x.chave||''}`;
    art.append(el('strong',`${AREA_NOME[x.area]||x.area}${x.chave?' · '+x.chave:''}`),el('p',x.pergunta));
    if(x.situacao==='AUSENTE' || x.situacao==='INVALIDO'){

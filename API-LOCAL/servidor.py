@@ -1426,6 +1426,9 @@ class Manipulador(BaseHTTPRequestHandler):
                 d = gestor.obter(partes[0])
                 d['metodo_fechamento'] = metodo_empresa.carregar(coordenador.CLIENTES / partes[0], partes[0], [d.get('cnpj')])
                 d['definicoes_necessarias'] = governanca_regras.definicoes_necessarias(partes[0])
+                plano = d.get('plano') or []
+                sugestoes = regras_areas.sugerir(partes[0], plano, dt.datetime.now().strftime('%Y-%m'))
+                d['referencias_sugeridas'] = sum(1 for area in sugestoes['areas'].values() for item in area['itens'] if item.get('conta'))
                 return self.json(200, d)
             excluidas = (parse_qs(urlsplit(self.path).query).get('excluidas') or ['0'])[0] == '1'
             lista = gestor.listar(incluir_excluidas=excluidas)

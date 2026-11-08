@@ -44,4 +44,31 @@ class RegrasAreas(unittest.TestCase):
             with self.assertRaises(ValueError): regras_areas.confirmar(b,s,"DP",[{"chave":"RETENCAO_INSS","acao":"CONFIRMAR","codigo":"9999"}],"2026-10")
             self.assertFalse((b/"REGRAS-DP.json").exists())
 
+    def test_regra_opt_01_base_confirmada_com_sugestoes_nao_bloqueia(self):
+        s=self.sugestoes(); self.assertEqual(s["areas"]["DP"]["status"],"PENDENTE"); self.assertFalse((s["areas"]["DP"]["itens"][0].get("status")=="CONFIRMADA"))
+    def test_regra_opt_02_referencia_nao_usada_nao_e_exigida(self):
+        s=regras_areas.sugerir("E",[conta("1000","1","CAIXA","ATIVO")],"2026-10"); self.assertIsNone(next(x for x in s["areas"]["FISCAL"]["itens"] if x["chave"]=="IPI")["conta"])
+    def test_regra_opt_03_fiscal_ambiguo_pede_confirmacao(self):
+        p=[conta("2201","2.1","ICMS A RECOLHER","PASSIVO"),conta("2202","2.2","ICMS A RECOLHER","PASSIVO")]; i=next(x for x in regras_areas.sugerir("E",p,"2026-10")["areas"]["FISCAL"]["itens"] if x["chave"]=="ICMS_RECOLHER"); self.assertEqual(i["status"],"PRECISA_CONFIRMACAO")
+    def test_regra_opt_04_dp_inexistente_nao_bloqueia_sugestao(self):
+        s=regras_areas.sugerir("E",[conta("1000","1","CAIXA","ATIVO")],"2026-10"); self.assertTrue(all(x["status"]!="CONFIRMADA" for x in s["areas"]["DP"]["itens"]))
+    def test_regra_opt_05_conc_deterministica(self):
+        i=next(x for x in self.sugestoes()["areas"]["CONCILIACAO"]["itens"] if x["chave"]=="BANCOS"); self.assertEqual(i["conta"]["codigo"],"1101")
+    def test_regra_opt_06_duas_contas_nao_escolhe_silenciosamente(self):
+        p=[conta("1101","1.1","BANCO ALFA","ATIVO"),conta("1102","1.2","BANCO BETA","ATIVO")]; i=next(x for x in regras_areas.sugerir("E",p,"2026-10")["areas"]["CONCILIACAO"]["itens"] if x["chave"]=="BANCOS"); self.assertIsNone(i["conta"])
+    def test_regra_opt_07_sugerida_diferente_de_confirmada(self):
+        i=next(x for x in self.sugestoes()["areas"]["DP"]["itens"] if x["chave"]=="RETENCAO_INSS"); self.assertEqual(i["origem"],"AUTOMATICO"); self.assertNotEqual(i["status"],"CONFIRMADA")
+    def test_regra_opt_08_confirmacao_reutilizavel(self):
+        s=self.sugestoes();
+        with tempfile.TemporaryDirectory() as td:
+            b=Path(td); regras_areas.confirmar(b,s,"DP",[{"chave":"RETENCAO_INSS","acao":"CONFIRMAR","codigo":"2101"}],"2026-10"); d=json.loads((b/"REGRAS-DP.json").read_text()); self.assertEqual(d["referencias"]["RETENCAO_INSS"]["situacao"],"APROVADA")
+    def test_regra_opt_09_vigencia_registrada(self):
+        s=self.sugestoes();
+        with tempfile.TemporaryDirectory() as td:
+            b=Path(td); regras_areas.confirmar(b,s,"FISCAL",[{"chave":"ICMS_RECOLHER","acao":"CONFIRMAR","codigo":"2201"}],"2026-10"); d=json.loads((b/"REGRAS-FISCAIS.json").read_text()); self.assertEqual(d["competencia_desde"],"2026-10")
+    def test_regra_opt_10_mudanca_preserva_so_historico_afetado(self):
+        s=self.sugestoes();
+        with tempfile.TemporaryDirectory() as td:
+            b=Path(td); regras_areas.confirmar(b,s,"DP",[{"chave":"RETENCAO_INSS","acao":"CONFIRMAR","codigo":"2101"}],"2026-10"); regras_areas.confirmar(b,s,"DP",[{"chave":"RETENCAO_INSS","acao":"CONFIRMAR","codigo":"2102"}],"2026-11"); self.assertEqual(len(list((b/"VERSOES").glob("REGRAS-DP.json-*.json"))),1)
+
 if __name__ == "__main__": unittest.main(verbosity=2)

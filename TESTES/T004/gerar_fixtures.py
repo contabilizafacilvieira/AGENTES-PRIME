@@ -189,6 +189,23 @@ def montar_xlsx(preparar, extras: dict = None) -> bytes:
     return zip_normalizado(buf.getvalue(), extras)
 
 
+def xlsx_estilo_invalido(dados: bytes) -> bytes:
+    """Fixture válida de ZIP/worksheet com `styles.xml` de fill estruturalmente inválido."""
+    saida = io.BytesIO()
+    with zipfile.ZipFile(io.BytesIO(dados)) as origem, zipfile.ZipFile(saida, "w", zipfile.ZIP_DEFLATED) as destino:
+        for nome in origem.namelist():
+            conteudo = origem.read(nome)
+            if nome == "xl/styles.xml":
+                conteudo = (b'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+                            b'<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'
+                            b'<fonts count="1"><font><sz val="11"/><name val="Calibri"/></font></fonts>'
+                            b'<fills count="1"><fill /></fills><borders count="1"><border/></borders>'
+                            b'<cellStyleXfs count="1"><xf/></cellStyleXfs><cellXfs count="1"><xf/></cellXfs>'
+                            b'</styleSheet>')
+            destino.writestr(zipfile.ZipInfo(nome, DATA_FIXA), conteudo, zipfile.ZIP_DEFLATED)
+    return saida.getvalue()
+
+
 def xlsx_extrato(wb):
     ws = wb.active
     ws.title = "Extrato"
@@ -380,6 +397,7 @@ def gerar() -> None:
             b'<?xml version="1.0" encoding="UTF-8"?><externalLink xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"/>'}))
     gravar(xlsx_d, "XLSX-09_zip_desproporcional.xlsx", xlsx_bomba())
     gravar(xlsx_d, "XLSX-10_aba_protegida.xlsx", montar_xlsx(xlsx_protegida))
+    gravar(xlsx_d, "XLSX-11_estilo_invalido.xlsx", xlsx_estilo_invalido(montar_xlsx(xlsx_extrato)))
 
     # ---------------- XML NF-e / NFC-e
     ch01 = chave_nfe("55", 123)

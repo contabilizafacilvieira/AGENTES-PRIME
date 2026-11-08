@@ -340,19 +340,22 @@ def _inspecionar_pacote(arquivo: Path) -> dict:
             caminho = alvo if alvo.startswith("xl/") else f"xl/{alvo}"
             info = {"oculta": aba.get("state", "visible") != "visible", "protegida": False, "mescladas": [], "formulas_sem_valor": []}
             if caminho in nomes:
-                with z.open(caminho) as fluxo:
-                    for _evento, el in ElementTree.iterparse(fluxo):
-                        tag = el.tag.rsplit("}", 1)[-1]
-                        if tag == "sheetProtection":
-                            info["protegida"] = el.get("sheet") in ("1", "true")   # padrão da especificação: falso
-                        elif tag == "mergeCell" and len(info["mescladas"]) < 200:
-                            info["mescladas"].append(el.get("ref"))
-                        elif tag == "c":
-                            f = el.find(f"{{{NS_PLANILHA}}}f")
-                            v = el.find(f"{{{NS_PLANILHA}}}v")
-                            if f is not None and (v is None or not (v.text or "").strip()) and len(info["formulas_sem_valor"]) < 200:
-                                info["formulas_sem_valor"].append(el.get("r"))
-                            el.clear()
+                try:
+                    with z.open(caminho) as fluxo:
+                        for _evento, el in ElementTree.iterparse(fluxo):
+                            tag = el.tag.rsplit("}", 1)[-1]
+                            if tag == "sheetProtection":
+                                info["protegida"] = el.get("sheet") in ("1", "true")
+                            elif tag == "mergeCell" and len(info["mescladas"]) < 200:
+                                info["mescladas"].append(el.get("ref"))
+                            elif tag == "c":
+                                f = el.find(f"{{{NS_PLANILHA}}}f")
+                                v = el.find(f"{{{NS_PLANILHA}}}v")
+                                if f is not None and (v is None or not (v.text or "").strip()) and len(info["formulas_sem_valor"]) < 200:
+                                    info["formulas_sem_valor"].append(el.get("r"))
+                                el.clear()
+                except (ElementTree.ParseError, UnicodeDecodeError) as e:
+                    raise Resultado("ARQUIVO_CORROMPIDO", f"Worksheet ilegível ({type(e).__name__}).") from e
             meta["abas"][aba.get("name")] = info
         return meta
 
@@ -367,6 +370,44 @@ def _valor_celula(v):
     return str(v)
 
 
+def _ler_planilha_calamine(arquivo: Path, meta: dict, marcacoes: set) -> dict:
+    """Leitura alternativa somente de valores quando o pacote é íntegro e o openpyxl falha em estilos."""
+    from python_calamine import CalamineWorkbook
+    wb = CalamineWorkbook.from_path(str(arquivo))
+    try:
+        abas = []
+        nomes = list(wb.sheet_names)
+        if len(nomes) > LIMITES["planilha_abas"]:
+            marcacoes.add("LIMITE_EXCEDIDO")
+        for nome in nomes[:LIMITES["planilha_abas"]]:
+            ws = wb.get_sheet_by_name(nome)
+            info = meta["abas"].get(nome, {"oculta": False, "protegida": False, "mescladas": [], "formulas_sem_valor": []})
+            linhas, truncado = [], False
+            for i, linha in enumerate(ws.to_python()):
+                if i >= LIMITES["planilha_linhas"]:
+                    truncado = True
+                    break
+                linha = list(linha)
+                valores = [_valor_celula(v) for v in linha[:LIMITES["planilha_colunas"]]]
+                if len(linha) > LIMITES["planilha_colunas"] and any(v is not None for v in linha[LIMITES["planilha_colunas"]:]):
+                    truncado = True
+                if any(v is not None for v in valores):
+                    linhas.append({"linha": i + 1, "valores": valores})
+            if truncado: marcacoes.add("LIMITE_EXCEDIDO")
+            if info["oculta"]: marcacoes.add("ABA_OCULTA")
+            if info["protegida"]: marcacoes.add("PROTEGIDO")
+            if info["mescladas"]: marcacoes.add("CELULAS_MESCLADAS")
+            if info["formulas_sem_valor"]: marcacoes.add("FORMULA_SEM_VALOR")
+            abas.append({"aba": nome, "oculta": info["oculta"], "protegida": info["protegida"], "truncado": truncado,
+                         "celulas_mescladas": info["mescladas"], "formulas_sem_valor": info["formulas_sem_valor"], "linhas": linhas})
+        marcacoes.update(("ESTILO_XLSX_INVALIDO", "LEITOR_CALAMINE_FALLBACK"))
+        return {"leitura": "EXTRAIDO_PLANILHA", "marcacoes": sorted(marcacoes),
+                "observacao": "Planilha lida com método alternativo devido a uma inconsistência de formatação do arquivo.",
+                "conteudo": {"abas": abas, "links_externos": meta["links_externos"], "contem_macros": meta["macros"]}}
+    finally:
+        wb.close()
+
+
 def ler_planilha(arquivo: Path) -> dict:
     import openpyxl
 
@@ -379,6 +420,11 @@ def ler_planilha(arquivo: Path) -> dict:
     try:
         wb = openpyxl.load_workbook(arquivo, read_only=True, data_only=True, keep_links=False, keep_vba=False)
     except Exception as e:
+        if type(e).__name__ in {"TypeError", "KeyError", "IndexError", "ValueError", "AttributeError"}:
+            try:
+                return _ler_planilha_calamine(arquivo, meta, set())
+            except Exception:
+                pass
         raise Resultado("ARQUIVO_CORROMPIDO", f"Planilha ilegível ({type(e).__name__}).")
     marcacoes = set()
     if meta["macros"]:
