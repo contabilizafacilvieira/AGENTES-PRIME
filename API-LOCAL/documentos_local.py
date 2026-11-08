@@ -159,6 +159,8 @@ CAB_EXTRATO = {'CONTA', 'DATA', 'TIPO', 'HISTORICO', 'VALOR', 'SALDO'}
 CAB_POSICAO = {'TIPO', 'POSICAO', 'DATA_BASE', 'CONTRAPARTE', 'TITULO', 'VALOR'}
 CAB_SALDOS_ABERTURA = {'CONTA', 'DESCRICAO', 'SALDO', 'NATUREZA', 'DATA_BASE'}
 CAB_RELACAO = {'FAVORECIDO', 'VALOR'}
+CAB_RELATORIO_FINANCEIRO = ({'DATA_DE_VENCIMENTO', 'VALOR_PAGO', 'PLANO_DE_CONTAS', 'BANCO', 'EMPRESA.CNPJ'},
+                            {'DATA_DE_VENCIMENTO', 'VALOR_PAGO', 'PLANO_DE_CONTAS', 'BANCO', 'EMPRESA_CNPJ'})
 # Layouts tabulares em que os CNPJs são de contrapartes (não identificam a titularidade do arquivo).
 SEM_VERIFICACAO_CNPJ = ('Posição de títulos', 'Saldos de abertura', 'Possível relação de pagamentos',
                         'Posição de investimentos', 'Contrato de câmbio')
@@ -214,9 +216,13 @@ def classificar(a):
     # O histórico bancário pode mencionar folha ou notas: o cabeçalho do extrato tem precedência.
     if 'SANTANDER EMPRESAS' in t and re.search(r'AGENCIA:\s*\d+\s+CONTA:', t):
         return 'Extrato PDF Santander Empresas (leitura pelo Financeiro)'
+    if a.get('extensao') == '.pdf' and 'SANTANDER' in sem_acento(a.get('arquivo', '')):
+        return 'Extrato PDF Santander Empresas (leitura pelo Financeiro)'
     cabs = cabecalhos(a, texto)
     if any(CAB_EXTRATO <= c for c in cabs):
         return 'Extrato CSV (classificação por cabeçalho)'
+    if any(chave <= c for chave in CAB_RELATORIO_FINANCEIRO for c in cabs):
+        return 'Relatório financeiro de lançamentos'
     # Layouts tabulares documentados: o cabeçalho define o tipo (o conteúdo das colunas não troca o destino).
     if any(CAB_POSICAO <= c for c in cabs):
         return 'Posição de títulos'
@@ -314,6 +320,9 @@ def encaminhamento(a, cnpjs_empresa=None):
         return {'area': 'FINANCEIRO', 'situacao': 'DISPONIVEL_PARA_ENCAMINHAMENTO', 'copias_suporte': ['CONCILIACAO'],
                 'tipo': tipo, 'observacao': 'Conferência dos movimentos é responsabilidade do Financeiro; '
                                             'cópia à Conciliação (saldos do extrato, evidência de terceiro).'}
+    if tipo == 'Relatório financeiro de lançamentos':
+        return {'area': 'FINANCEIRO', 'situacao': 'DISPONIVEL_PARA_ENCAMINHAMENTO', 'copias_suporte': ['CONCILIACAO'],
+                'tipo': tipo, 'observacao': 'Relatório estruturado de lançamentos; Financeiro confere movimentos e a cópia apoia a Conciliação.'}
     if tipo in ('Posição de investimentos', 'Contrato de câmbio', 'Possível relação de pagamentos', 'Possível comprovante', 'Possível boleto', 'Possível recibo'):
         return {'area': 'FINANCEIRO', 'situacao': 'DISPONIVEL_PARA_ENCAMINHAMENTO', 'copias_suporte': [],
                 'tipo': tipo, 'observacao': 'Conferência dos movimentos e suportes é responsabilidade do Financeiro.'}

@@ -351,6 +351,24 @@
       dl.append(el("dt", null, k), el("dd", null, v || "—"));
     });
     visao.append(dl);
+    const tentativas = d.tentativas || [];
+    const hist = el("section", "op-tentativas");
+    hist.append(el("h4", null, "Tentativas auditadas"));
+    if (tentativas.length) hist.append(lista(tentativas.map(t => `Tentativa ${t.numero} · ${t.status || "registrada"} · ${hora(t.criada_em)}${t.motivo ? ` · ${t.motivo}` : ""}`)));
+    const pode = d.execucao.status !== "EM_EXECUCAO" && !(tentativas.length && ["PREPARADA", "EM_EXECUCAO"].includes(tentativas[tentativas.length - 1].status));
+    if (pode) {
+      const b = el("button", "op-acao", "Reprocessar solicitação");
+      b.type = "button";
+      b.addEventListener("click", async () => {
+        const motivo = window.prompt("Motivo do reprocessamento auditado:", "Atualização do leitor de documentos.");
+        if (motivo === null) return;
+        if (!window.confirm("Uma nova tentativa será criada. O resultado anterior será preservado.")) return;
+        try { await api("POST", `/solicitacoes/${d.sol}/reprocessar`, { confirmado: true, motivo, solicitante: "Supervisor" }); await atualizar(); }
+        catch (err) { window.alert(err.message); }
+      });
+      hist.append(b);
+    }
+    visao.append(hist);
     if (d.documentos_local) visao.append(detalhes('Evidências da execução local e limitações', false,
       lista(d.documentos_local.itens.map(i => `${i.arquivo}: ${i.tipo} · ${i.leitura} · ${i.conteudo_utilizavel ? 'conteúdo extraído para conferência' : 'conteúdo não utilizável'}`)),
       lista(d.documentos_local.limitacoes)));

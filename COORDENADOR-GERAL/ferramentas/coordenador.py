@@ -1444,6 +1444,42 @@ def revisar_piloto(sol, acao, justificativa):
     return saida({'resultado': 'REVISAO_PILOTO_REGISTRADA', 'estado': s['estado'], 'sol': sol, 'escopo': evento['escopo']})
 
 
+def retomar_rota_financeira(sol: str, justificativa: str, tipos_rota=None, manifesto_sha256=None) -> int:
+    """Retoma uma SOL quando a triagem determinística identificou Financeiro."""
+    registro = ler_registro(); s = registro['solicitacoes'].get(sol)
+    if not s:
+        return recusar('SOL_DESCONHECIDA', f'{sol} não consta no registro.')
+    if s.get('estado') != 'AGUARDANDO_SUPERVISOR':
+        return recusar('ESTADO_INVALIDO', 'A SOL não está aguardando retomada de rota.')
+    if not isinstance(justificativa, str) or not 5 <= len(justificativa.strip()) <= 500:
+        return recusar('PARAMETROS_INVALIDOS', 'Informe justificativa de 5 a 500 caracteres.')
+    triagem = s.get('triagem_documentos') or []
+    if tipos_rota:
+        anterior = list(triagem)
+        triagem = [dict(x, tipo=tipos_rota.get(x.get('arquivo'), x.get('tipo')), area='FINANCEIRO') for x in triagem]
+        s['triagem_documentos_anterior'] = anterior
+        s['triagem_documentos'] = triagem
+        s.setdefault('reavaliacoes_rota', []).append({'em': agora().isoformat(), 'origem': 'CLASSIFICADOR_ATUAL', 'itens': triagem})
+    tipos = {x.get('tipo') for x in triagem}
+    areas = {x.get('area') for x in triagem}
+    if 'FINANCEIRO' not in areas or not ({'Extrato PDF Santander Empresas (leitura pelo Financeiro)', 'Relatório financeiro de lançamentos'} & tipos):
+        return recusar('ROTA_NAO_DETERMINADA', 'A triagem não identificou uma rota Financeiro determinística.')
+    momento = agora().isoformat()
+    s['fluxo_origem'] = s.get('fluxo', 'DOCUMENTOS')
+    s['fluxo'] = 'FINANCEIRO_BANCOS'
+    s['plano_etapas'] = novo_plano(['FINANCEIRO', 'BANCOS', 'CONCILIACAO'])
+    if manifesto_sha256:
+        s['ancora_documentos'] = dict(s.get('ancora_documentos') or {}, manifesto_sha256=manifesto_sha256,
+                                      reancorada_em=momento if 'momento' in locals() else agora().isoformat())
+    s['estado'] = 'FINANCEIRO_EM_ANDAMENTO'
+    s.setdefault('retomadas', []).append({'em': momento, 'motivo': justificativa.strip(),
+        'estado_anterior': 'AGUARDANDO_SUPERVISOR', 'estado_novo': s['estado'],
+        'decisao': 'FINANCEIRO + CONCILIACAO', 'origem': 'ROTA_DETERMINISTICA'})
+    s['eventos'].append({'em': momento, 'evento': 'Retomada após classificação automática dos documentos financeiros; rota Financeiro + Conciliação.'})
+    gravar_json(REGISTRO, registro)
+    return saida({'resultado': 'ROTA_FINANCEIRA_RETOMADA', 'sol': sol, 'estado': s['estado'], 'reexecuta': ['FINANCEIRO', 'BANCOS', 'CONCILIACAO']})
+
+
 def registrar_falha_etapa(sol: str, etapa: str, motivo: str) -> int:
     """Falha de uma etapa: registrada e preservada, sem repetição automática; as áreas independentes seguem."""
     registro = ler_registro()
@@ -1835,7 +1871,7 @@ def main() -> int:
     for nome in ("encerrar-local", "encerrar", "cancelar", "consultar", "registrar-importacao", "registrar-aceite", "registrar-decisao-pendencia",
                  "registrar-financeiro", "registrar-bancos", "registrar-falha-etapa", "registrar-decisao-movimento",
                  "propor-regra-bancos", "aprovar-regra-bancos", "revisar-piloto", "aprovar-fechamento", "registrar-liberacao", "registrar-fiscal", "registrar-contabilidade-fiscal",
-                 "registrar-dp", "registrar-contabilidade-dp", "registrar-conciliacao", "retomar-area"):
+                 "registrar-dp", "registrar-contabilidade-dp", "registrar-conciliacao", "retomar-area", "retomar-rota-financeira"):
         s = sub.add_parser(nome)
         s.add_argument("--sol", required=True)
         if nome == 'registrar-liberacao':
@@ -1859,6 +1895,10 @@ def main() -> int:
         if nome == "retomar-area":
             s.add_argument("--etapa", required=True, choices=list(ETAPAS))
             s.add_argument("--justificativa", required=True)
+        if nome == "retomar-rota-financeira":
+            s.add_argument("--justificativa", required=True)
+            s.add_argument("--tipos", default='{}')
+            s.add_argument("--manifesto-sha256", default='')
         if nome == "registrar-decisao-movimento":
             s.add_argument("--movimento", required=True)
             s.add_argument("--tipo", required=True)
@@ -1931,6 +1971,12 @@ def executar_comando(args) -> int:
         return registrar_conciliacao(args.sol, args.resultado)
     if args.comando == 'retomar-area':
         return retomar_area(args.sol, args.etapa, args.justificativa)
+    if args.comando == 'retomar-rota-financeira':
+        try:
+            tipos = json.loads(args.tipos)
+        except (TypeError, ValueError):
+            return recusar('PARAMETROS_INVALIDOS', 'Classificação de rota inválida.')
+        return retomar_rota_financeira(args.sol, args.justificativa, tipos, args.manifesto_sha256 or None)
     if args.comando == 'registrar-liberacao':
         return registrar_liberacao(args.sol, args.situacao, args.arquivo, args.sha256, args.linhas or '0', args.total or '0', args.motivo,
                                    args.movimentacao, args.auditoria, args.anexos)

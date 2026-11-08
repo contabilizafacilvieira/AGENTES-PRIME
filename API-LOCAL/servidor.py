@@ -52,6 +52,7 @@ import metodo_empresa  # noqa: E402
 import importacao_vgrow  # noqa: E402  (somente agrupamento de processos para a tela; o fechamento roda em processo separado)
 import governanca_regras  # noqa: E402  (definições necessárias por empresa; somente leitura)
 import regras_areas  # noqa: E402  (sugestões e confirmação guiada das referências por área)
+import reprocessamento  # noqa: E402  (tentativas auditadas; somente metadados no runtime)
 
 HOST = "127.0.0.1"
 PORTA = int(os.environ.get("AGENTES_PRIME_PORTA", "8765"))
@@ -104,6 +105,10 @@ def proxima_tentativa(pasta: Path, prefixo: str) -> int:
 def pasta_runtime() -> Path:
     base = os.environ.get("AGENTES_PRIME_RUNTIME") or str(Path(os.environ.get("LOCALAPPDATA", "")) / "AgentesPrime" / "runtime")
     p = Path(base).resolve()
+    modo_teste = os.environ.get("AGENTES_PRIME_MODO_TESTE") == "1" or bool(os.environ.get("AGENTES_PRIME_REGISTRO_SOL"))
+    temporario = str(p).startswith(("/tmp/", "/private/tmp/")) or "/T/" in str(p)
+    if temporario and not modo_teste:
+        raise SystemExit("Runtime operacional temporário recusado. Configure um diretório persistente fora do projeto.")
     if not p.is_absolute() or "onedrive" in str(p).lower() or str(p).lower().startswith(str(RAIZ).lower()):
         raise SystemExit(f"Runtime recusado (dentro do projeto ou de pasta sincronizada): {p}")
     for sub in ("lotes", "execucoes"):
@@ -1007,6 +1012,7 @@ def detalhe_solicitacao(sol: str) -> dict:
         "revisao_parcial_encerrada": registro.get('revisao_parcial_encerrada', False),
         "pendencias": tabela(relatorio, 5)[1:] if relatorio else [],
         "relatorio": relatorio,
+        "tentativas": reprocessamento.comparar(reprocessamento.listar(RUNTIME, sol)),
     }
 
 
@@ -1328,10 +1334,14 @@ class Manipulador(BaseHTTPRequestHandler):
             if metodo == "GET" and len(partes) == 2 and partes[0] == "solicitacoes" and RE_SOL.fullmatch(partes[1]):
                 d = detalhe_solicitacao(partes[1])
                 return self.json(200, d) if d else self.erro(404, "Solicitação não encontrada.")
+            if metodo == "POST" and len(partes) == 3 and partes[0] == "solicitacoes" and RE_SOL.fullmatch(partes[1]) and partes[2] == "reprocessar":
+                return self.api_reprocessar(partes[1])
             if metodo == "POST" and len(partes) == 3 and partes[0] == "solicitacoes" and RE_SOL.fullmatch(partes[1]) and partes[2] == "pendencias":
                 return self.api_pendencia_decisao(partes[1])
             if metodo == 'POST' and len(partes) == 3 and partes[0] == 'solicitacoes' and RE_SOL.fullmatch(partes[1]) and partes[2] == 'revisao-piloto':
                 return self.api_revisao_piloto(partes[1])
+            if metodo == 'POST' and len(partes) == 3 and partes[0] == 'solicitacoes' and RE_SOL.fullmatch(partes[1]) and partes[2] == 'retomar-rota-financeira':
+                return self.api_retomar_rota_financeira(partes[1])
             if metodo == 'POST' and len(partes) == 3 and partes[0] == 'solicitacoes' and RE_SOL.fullmatch(partes[1]) and partes[2] == 'aprovacao':
                 return self.api_aprovacao(partes[1])
             if metodo == 'GET' and len(partes) == 3 and partes[0] == 'solicitacoes' and RE_SOL.fullmatch(partes[1]) and partes[2] == 'txt-dominio':
@@ -1599,6 +1609,36 @@ class Manipulador(BaseHTTPRequestHandler):
                          for _, m in sorted(minimos.items(), reverse=True)] if lixeira else []
         return self.json(200, {'solicitacoes': lista, 'excluidas_definitivamente': excluidas_def, 'na_lixeira': sum(bool(v.get('excluida')) for k,v in lixo.items() if k in coordenador.ler_registro()['solicitacoes']), 'contagem': {k: sum(s['categoria']==k for s in lista) for k in ('processando','decisoes','documentos','prontos','falhas','historico')},
                                'criterio': 'Uma categoria por solicitação: processamento, falha, documento pendente, propostas prontas, decisão ou histórico. Os detalhes podem conter outras pendências.'})
+
+    def api_reprocessar(self, sol: str) -> None:
+        """Cria somente o registro de uma nova tentativa; a execução é iniciada por ordem explícita posterior."""
+        dados = self.corpo_json()
+        if not dados.get("confirmado"):
+            return self.erro(400, "Confirme a criação da nova tentativa.")
+        motivo = str(dados.get("motivo") or "").strip()
+        registro = coordenador.ler_registro()["solicitacoes"].get(sol)
+        execucao = ler_json(RUNTIME / "execucoes" / sol / "execucao.json") or {}
+        if registro and (ler_json(coordenador.CLIENTES / registro["empresa"] / "empresa-local.json") or {}).get("excluida"):
+            registro = dict(registro, empresa_excluida=True)
+        lote = ler_json(pasta_lote(execucao.get("lote", "")) / "lote.json") if execucao.get("lote") else None
+        if lote and registro:
+            destino = coordenador.CLIENTES / registro["empresa"] / lote.get("pasta", "")
+            arquivos = [dict(a, caminho=str(destino / a.get("nome_interno", ""))) for a in lote.get("arquivos", [])]
+            eleg = reprocessamento.elegibilidade(RUNTIME, sol, registro, execucao,
+                                                 ordem_ativa=coordenador.ler_ordem() is not None,
+                                                 em_execucao=bool(EM_EXECUCAO["sol"]), raiz=RAIZ,
+                                                 documentos_override=arquivos)
+        else:
+            eleg = {"elegivel": False, "motivos": ["Execução original ou documentos não encontrados."], "documentos": []}
+        if not eleg["elegivel"]:
+            return self.json(409, {"mensagem": "Reprocessamento bloqueado.", "motivos": eleg["motivos"]})
+        atual = reprocessamento.listar(RUNTIME, sol)
+        if atual and atual[-1].get("status") in {"PREPARADA", "EM_EXECUCAO"}:
+            return self.erro(409, "Já existe uma tentativa de reprocessamento em andamento.")
+        nova = reprocessamento.criar(RUNTIME, sol, origem=(atual[-1] if atual else {"numero": 1}),
+                                     motivo=motivo, solicitante=str(dados.get("solicitante") or "Supervisor"),
+                                     documentos=eleg["documentos"], raiz=RAIZ)
+        return self.json(201, {"mensagem": "Nova tentativa criada e registrada para execução auditada.", "tentativa": nova})
 
     def do_GET(self):
         self.despachar("GET")
@@ -1965,6 +2005,53 @@ class Manipulador(BaseHTTPRequestHandler):
                 return self.erro(409, 'Há processamento ativo; aguarde o término.')
             codigo, r = coordenador_cli('revisar-piloto', '--sol', sol, '--acao', str(corpo['acao']), '--justificativa', str(corpo['justificativa']))
         return self.json(200, r) if codigo == 0 else self.erro(409, r.get('motivo') or 'Ação recusada.')
+
+    def api_retomar_rota_financeira(self, sol):
+        corpo = self.corpo_json()
+        if set(corpo) != {'justificativa', 'confirmado'} or corpo['confirmado'] is not True:
+            raise ValueError('Confirme a retomada e informe a justificativa.')
+        with TRAVA:
+            if EM_EXECUCAO['sol'] or coordenador.ORDEM_ATIVA.exists():
+                return self.erro(409, 'Há processamento ativo; aguarde o término.')
+            tipos = {}
+            extracao = ler_json(RUNTIME / 'execucoes' / sol / 'extracao-local.json') or {}
+            manifesto_path = RUNTIME / 'execucoes' / sol / 'documentos-local.json'
+            manifesto = ler_json(manifesto_path) or {}
+            por_arquivo = {x.get('arquivo'): x for x in extracao.get('arquivos', [])}
+            alterados = []
+            financeiros = []
+            conciliacoes = []
+            for item in manifesto.get('itens', []):
+                origem = por_arquivo.get(item.get('arquivo'))
+                if not origem:
+                    continue
+                tipo = documentos_local.classificar(origem)
+                novo = documentos_local.encaminhamento(origem)
+                item['roteamento_anterior'] = {'tipo': item.get('tipo'), 'encaminhamento': item.get('encaminhamento')}
+                item['tipo'] = tipo
+                item['encaminhamento'] = novo
+                alterados.append(item.get('arquivo'))
+                tipos[item.get('arquivo')] = tipo
+                registro_doc = {'id': 'TD-' + str(item.get('sha256', ''))[:12].upper() + '-FINANCEIRO',
+                                'arquivo': item.get('arquivo'), 'sha256': item.get('sha256'), 'papel': 'PRINCIPAL',
+                                'situacao': 'DISPONIVEL_PARA_ENCAMINHAMENTO', 'leitura': item.get('leitura')}
+                financeiros.append(registro_doc)
+                if 'CONCILIACAO' in (novo.get('copias_suporte') or []):
+                    conciliacoes.append(dict(registro_doc, id=registro_doc['id'].replace('-FINANCEIRO', '-CONCILIACAO'), papel='SUPORTE'))
+            if alterados:
+                manifesto['reavaliacao_rota'] = {'em': agora(), 'motivo': str(corpo['justificativa']), 'arquivos': alterados}
+                manifesto['tarefas_areas'] = {'TRIAGEM': {'area': 'TRIAGEM', 'estado': 'ENCAMINHADO', 'documentos': financeiros},
+                                              'FINANCEIRO': {'area': 'FINANCEIRO', 'estado': 'DISPONIVEL_PARA_ENCAMINHAMENTO', 'documentos': financeiros},
+                                              'CONCILIACAO': {'area': 'CONCILIACAO', 'estado': 'DISPONIVEL_PARA_ENCAMINHAMENTO', 'documentos': conciliacoes}}
+                manifesto['pendencias'] = [p for p in manifesto.get('pendencias', []) if 'marcação' in p or 'marcação' in p]
+                gravar_json(manifesto_path, manifesto)
+            manifesto_sha = hashlib.sha256(manifesto_path.read_bytes()).hexdigest() if manifesto_path.is_file() else ''
+            codigo, r = coordenador_cli('retomar-rota-financeira', '--sol', sol, '--justificativa', str(corpo['justificativa']),
+                                        '--tipos', json.dumps(tipos, ensure_ascii=False), '--manifesto-sha256', manifesto_sha)
+        if codigo != 0:
+            return self.erro(409, r.get('motivo') or 'Retomada recusada.')
+        iniciar_execucao(sol)
+        self.json(202, dict(r, mensagem='Rota determinada automaticamente. Financeiro e Conciliação interna iniciados.'))
 
     def api_aprovacao(self, sol):
         corpo = self.corpo_json()
