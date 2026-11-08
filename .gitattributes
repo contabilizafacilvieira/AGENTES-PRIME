@@ -1,3 +1,4 @@
 # Fins de linha: LF em todos os arquivos de texto, em qualquer sistema.
 # Mantém estáveis os hashes das fixtures e dos documentos de teste.
 * text=auto eol=lf
+*.pdf binary -diff

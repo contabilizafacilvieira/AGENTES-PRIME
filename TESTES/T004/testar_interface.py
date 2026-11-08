@@ -102,6 +102,8 @@ def reconstruir(partes):
 
 def completo(empresa, pasta):
     p = subprocess.run([PY, "-I", str(EXTRATOR), "--empresa", empresa, "--pasta", pasta, "--completo"], cwd=RAIZ, capture_output=True, encoding="utf-8")
+    if p.returncode != 0 or not p.stdout.strip():
+        raise RuntimeError(f"extrator falhou ({p.returncode}) em {empresa}/{pasta}: {(p.stderr or p.stdout).strip()[:400]}")
     return {a["arquivo"]: a for a in json.loads(p.stdout)["arquivos"]}
 
 

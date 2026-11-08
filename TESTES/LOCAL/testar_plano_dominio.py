@@ -13,7 +13,7 @@ from empresas_local import Empresas
 from plano_dominio import reconhecer
 from python_calamine import CalamineWorkbook
 
-FIXTURE = Path(__file__).parent / 'fixtures/plano-dominio-ficticio.xls'
+FIXTURE = Path(__file__).parent / 'fixtures/plano-dominio-ficticio.xlsx'
 
 
 class Dominio(unittest.TestCase):
@@ -73,7 +73,7 @@ class Dominio(unittest.TestCase):
             reconhecer(dados, self.empresa)
 
     def test_cabecalhos_repetidos(self):
-        dados = copy.deepcopy(self.rows);dados.insert(9, self.rows[6])
+        dados = copy.deepcopy(self.rows);dados.insert(9, self.rows[6]);dados[-1][5] = 3
         self.assertEqual(len(reconhecer(dados, self.empresa)[0]), 4)
 
     def test_sem_titulo_nao_e_dominio(self):

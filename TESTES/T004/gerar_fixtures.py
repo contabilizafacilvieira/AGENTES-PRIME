@@ -18,6 +18,7 @@ Fixtures "maliciosas" são as menores possíveis para provar a proteção (nada 
 
 import datetime as dt
 import io
+import os
 import re
 import shutil
 import struct
@@ -27,7 +28,7 @@ import zlib
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[2]
-PASTA_CLIENTES = (RAIZ / "CLIENTES").resolve()
+PASTA_CLIENTES = Path(os.environ.get("AGENTES_PRIME_FIXTURES_DESTINO", str(RAIZ / "CLIENTES"))).resolve()
 DESTINO_TESTE = PASTA_CLIENTES / "EMPRESA-TESTE" / "T004"
 DESTINO_ISOLAMENTO = PASTA_CLIENTES / "EMPRESA-ISOLAMENTO" / "T004"
 DATA_FIXA = (2026, 1, 1, 0, 0, 0)

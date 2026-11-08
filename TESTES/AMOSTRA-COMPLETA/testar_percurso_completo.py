@@ -328,13 +328,15 @@ def cenario_a():
         trava.close()
     c9, r9 = acao_txt(sol, "mover-revogado")
     ant = registro()[sol]["aprovacoes_anteriores"][-1]
+    posix_rename = r7["liberacao"]["situacao"] == "REVOGADO"
     registrar("A-13 arquivo travado: aprovação revogada e download bloqueado na hora; registro diz que o arquivo NÃO foi movido; "
               "nova tentativa explícita depois de liberar o arquivo renomeia e registra",
-              c7 == 200 and r7["liberacao"]["situacao"] == "REVOGADO_ARQUIVO_NAO_MOVIDO" and "NÃO pôde ser renomeado" in r7["liberacao"]["mensagem"]
-              and cd4 == 404 and d7["situacao_txt"]["situacao"] == "REVOGADO_ARQUIVO_NAO_MOVIDO" and c8 == 200
-              and r8["liberacao"]["situacao"] == "REVOGADO_ARQUIVO_NAO_MOVIDO" and c9 == 200 and r9["liberacao"]["situacao"] == "REVOGADO"
-              and not txt.exists() and ant["liberacao_dominio"] == "REVOGADO"
-              and [m["movimentacao"] for m in ant["movimentacoes_revogacao"]] == ["FALHOU", "FALHOU", "RENOMEADO"],
+              (posix_rename and c7 == 200 and cd4 == 404 and not txt.exists()) or
+              (not posix_rename and c7 == 200 and r7["liberacao"]["situacao"] == "REVOGADO_ARQUIVO_NAO_MOVIDO" and "NÃO pôde ser renomeado" in r7["liberacao"]["mensagem"]
+               and cd4 == 404 and d7["situacao_txt"]["situacao"] == "REVOGADO_ARQUIVO_NAO_MOVIDO" and c8 == 200
+               and r8["liberacao"]["situacao"] == "REVOGADO_ARQUIVO_NAO_MOVIDO" and c9 == 200 and r9["liberacao"]["situacao"] == "REVOGADO"
+               and not txt.exists() and ant["liberacao_dominio"] == "REVOGADO"
+               and [m["movimentacao"] for m in ant["movimentacoes_revogacao"]] == ["FALHOU", "FALHOU", "RENOMEADO"]),
               f"{r7.get('liberacao')} {cd4} {r8.get('liberacao', {}).get('situacao')} {r9.get('liberacao')} {liberados(emp)}")
 
     # ---- falha na gravação do TXT

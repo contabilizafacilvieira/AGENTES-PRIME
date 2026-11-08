@@ -18,10 +18,29 @@ import sys
 import tempfile
 import time
 import urllib.request
+import shutil
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[2]
-CHROME = Path(os.environ.get("ProgramFiles", r"C:\Program Files")) / "Google/Chrome/Application/chrome.exe"
+def descobrir_navegador() -> Path | None:
+    candidatos = []
+    if os.environ.get("AGENTES_PRIME_NAVEGADOR"):
+        candidatos.append(Path(os.environ["AGENTES_PRIME_NAVEGADOR"]))
+    for nome in ("google-chrome", "chromium", "chromium-browser", "chrome"):
+        achado = shutil.which(nome)
+        if achado:
+            candidatos.append(Path(achado))
+    if sys.platform == "darwin":
+        candidatos.append(Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"))
+        candidatos.append(Path("/Applications/Chromium.app/Contents/MacOS/Chromium"))
+    elif os.name == "nt":
+        for base in (os.environ.get("PROGRAMFILES"), os.environ.get("PROGRAMFILES(X86)"), os.environ.get("LOCALAPPDATA")):
+            if base:
+                candidatos.append(Path(base) / "Google/Chrome/Application/chrome.exe")
+                candidatos.append(Path(base) / "Chromium/Application/chrome.exe")
+    return next((p for p in candidatos if p.is_file()), None)
+
+CHROME = descobrir_navegador()
 URL = "http://127.0.0.1:8765/"
 PORTA_CDP = 9333
 LOTE = RAIZ / "CLIENTES/EMPRESA-TESTE/T004-MISTO"

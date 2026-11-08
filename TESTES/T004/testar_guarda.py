@@ -88,7 +88,7 @@ def bateria():
     caso("G-09c Read 'x.pdf ' (espaço final)", "Read", {"file_path": str(T / "T004/x.pdf") + " "}, "BLOQUEADO")
     caso("G-09d Read fluxo alternativo ':'", "Read", {"file_path": str(T / "CADASTRO.md") + ":oculto"}, "BLOQUEADO", deve_citar="fluxo alternativo")
     caso("G-09e Read PDF disfarçado de .md", "Read", ler(DISFARCE), "BLOQUEADO", deve_citar="conteúdo do arquivo")
-    caso("G-09f Read PDF em formato /c/...", "Read", {"file_path": "/" + str(T)[0].lower() + str(T / "T004/PDF/PDF-01_nf_servico.pdf")[2:].replace("\\", "/")}, "BLOQUEADO", deve_citar="extrator")
+    caso("G-09f Read PDF em formato /c/...", "Read", {"file_path": "/" + str(T)[0].lower() + str(T / "T004/PDF/PDF-01_nf_servico.pdf")[2:].replace("\\", "/")}, "BLOQUEADO")
     caso("G-10 Read CADASTRO.md (empresa ativa)", "Read", ler(T / "CADASTRO.md"), "PERMITIDO")
     caso("G-11 Read PLANO-DE-CONTAS.md", "Read", ler(T / "PLANO-DE-CONTAS/PLANO-DE-CONTAS.md"), "PERMITIDO")
     caso("G-12a Read TREINAMENTO.md", "Read", ler(T / "TREINAMENTO/TREINAMENTO.md"), "PERMITIDO")

@@ -1,0 +1,227 @@
+{
+  "fixture": "TESTE_FICTICIO_T004",
+  "casos": [
+    {
+      "id": "EMPRESA-TESTE/T004/PDF/PDF-01_nf_servico.pdf",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/PDF/PDF-01_nf_servico.pdf",
+      "leitura": "EXTRAIDO_PDF"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/PDF/PDF-02_extrato_12_paginas.pdf",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/PDF/PDF-02_extrato_12_paginas.pdf",
+      "leitura": "EXTRAIDO_PDF"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/PDF/PDF-03a_pagina_em_branco.pdf",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/PDF/PDF-03a_pagina_em_branco.pdf",
+      "leitura": "DOCUMENTO_VAZIO"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/PDF/PDF-03b_sem_paginas.pdf",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/PDF/PDF-03b_sem_paginas.pdf",
+      "leitura": "DOCUMENTO_VAZIO"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/PDF/PDF-04_protegido_senha.pdf",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/PDF/PDF-04_protegido_senha.pdf",
+      "leitura": "PDF_PROTEGIDO"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/PDF/PDF-05_corrompido.pdf",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/PDF/PDF-05_corrompido.pdf",
+      "leitura": "ARQUIVO_CORROMPIDO"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/PDF/PDF-06_excede_paginas.pdf",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/PDF/PDF-06_excede_paginas.pdf",
+      "leitura": "LIMITE_EXCEDIDO"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/PDF/PDF-07_com_javascript.pdf",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/PDF/PDF-07_com_javascript.pdf",
+      "leitura": "EXTRAIDO_PDF"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/SCAN/SCAN-01_somente_imagem.pdf",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/SCAN/SCAN-01_somente_imagem.pdf",
+      "leitura": "DOCUMENTO_REQUER_OCR"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/SCAN/SCAN-02_misto.pdf",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/SCAN/SCAN-02_misto.pdf",
+      "leitura": "EXTRAIDO_PDF"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/SCAN/SCAN-03_recibo.png",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/SCAN/SCAN-03_recibo.png",
+      "leitura": "DOCUMENTO_REQUER_OCR"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/SCAN/SCAN-04_recibo.jpg",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/SCAN/SCAN-04_recibo.jpg",
+      "leitura": "DOCUMENTO_REQUER_OCR"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XLSX/XLSX-01_extrato.xlsx",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XLSX/XLSX-01_extrato.xlsx",
+      "leitura": "EXTRAIDO_PLANILHA"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XLSX/XLSX-02_formula_sem_valor.xlsx",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XLSX/XLSX-02_formula_sem_valor.xlsx",
+      "leitura": "EXTRAIDO_PLANILHA"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XLSX/XLSX-03_celulas_mescladas.xlsx",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XLSX/XLSX-03_celulas_mescladas.xlsx",
+      "leitura": "EXTRAIDO_PLANILHA"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XLSX/XLSX-04_aba_oculta.xlsx",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XLSX/XLSX-04_aba_oculta.xlsx",
+      "leitura": "EXTRAIDO_PLANILHA"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XLSX/XLSX-05_excede_linhas.xlsx",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XLSX/XLSX-05_excede_linhas.xlsx",
+      "leitura": "EXTRAIDO_PLANILHA"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XLSX/XLSX-06a_corrompido.xlsx",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XLSX/XLSX-06a_corrompido.xlsx",
+      "leitura": "ARQUIVO_CORROMPIDO"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XLSX/XLSX-06b_senha_abertura.xlsx",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XLSX/XLSX-06b_senha_abertura.xlsx",
+      "leitura": "PROTEGIDO"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XLSX/XLSX-07_com_macro.xlsm",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XLSX/XLSX-07_com_macro.xlsm",
+      "leitura": "EXTRAIDO_PLANILHA"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XLSX/XLSX-08_link_externo.xlsx",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XLSX/XLSX-08_link_externo.xlsx",
+      "leitura": "EXTRAIDO_PLANILHA"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XLSX/XLSX-09_zip_desproporcional.xlsx",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XLSX/XLSX-09_zip_desproporcional.xlsx",
+      "leitura": "LIMITE_EXCEDIDO"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XLSX/XLSX-10_aba_protegida.xlsx",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XLSX/XLSX-10_aba_protegida.xlsx",
+      "leitura": "EXTRAIDO_PLANILHA"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XML/XML-01_nfe_3_itens.xml",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XML/XML-01_nfe_3_itens.xml",
+      "leitura": "EXTRAIDO_NFE"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XML/XML-01b_nfce_sem_destinatario.xml",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XML/XML-01b_nfce_sem_destinatario.xml",
+      "leitura": "EXTRAIDO_NFE"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XML/XML-02_nfe_80_itens.xml",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XML/XML-02_nfe_80_itens.xml",
+      "leitura": "EXTRAIDO_NFE"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XML/XML-03_chave_dv_invalido.xml",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XML/XML-03_chave_dv_invalido.xml",
+      "leitura": "EXTRAIDO_NFE"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XML/XML-04_sem_destinatario_e_totais.xml",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XML/XML-04_sem_destinatario_e_totais.xml",
+      "leitura": "EXTRAIDO_NFE"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XML/XML-05_malformado.xml",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XML/XML-05_malformado.xml",
+      "leitura": "ARQUIVO_CORROMPIDO"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XML/XML-06_doctype_entidade_externa.xml",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XML/XML-06_doctype_entidade_externa.xml",
+      "leitura": "XML_DTD_PROIBIDO"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XML/XML-07_expansao_entidades.xml",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XML/XML-07_expansao_entidades.xml",
+      "leitura": "XML_DTD_PROIBIDO"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XML/XML-08_evento_cancelamento.xml",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XML/XML-08_evento_cancelamento.xml",
+      "leitura": "EXTRAIDO_EVENTO_NFE"
+    },
+    {
+      "id": "EMPRESA-TESTE/T004/XML/XML-09_nfse_outro_tipo.xml",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "T004/XML/XML-09_nfse_outro_tipo.xml",
+      "leitura": "XML_TIPO_NAO_SUPORTADO"
+    },
+    {
+      "id": "EMPRESA-ISOLAMENTO/T004/ISO-01_documento.pdf",
+      "empresa": "EMPRESA-ISOLAMENTO",
+      "arquivo": "T004/ISO-01_documento.pdf",
+      "leitura": "EXTRAIDO_PDF"
+    },
+    {
+      "id": "EMPRESA-ISOLAMENTO/T004/ISO-02_planilha.xlsx",
+      "empresa": "EMPRESA-ISOLAMENTO",
+      "arquivo": "T004/ISO-02_planilha.xlsx",
+      "leitura": "EXTRAIDO_PLANILHA"
+    },
+    {
+      "id": "EMPRESA-ISOLAMENTO/T004/ISO-03_nfe.xml",
+      "empresa": "EMPRESA-ISOLAMENTO",
+      "arquivo": "T004/ISO-03_nfe.xml",
+      "leitura": "EXTRAIDO_NFE"
+    },
+    {
+      "id": "EMPRESA-TESTE/TREINAMENTO/2026-09/DOCUMENTOS/D1_NF_COMPRA_FORNECEDOR.txt",
+      "empresa": "EMPRESA-TESTE",
+      "arquivo": "TREINAMENTO/2026-09/DOCUMENTOS/D1_NF_COMPRA_FORNECEDOR.txt",
+      "leitura": "EXTRAIDO_TEXTO"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+# CADASTRO - EMPRESA-ISOLAMENTO
+
+- Identificador: EMPRESA-ISOLAMENTO
+- Razão social: EMPRESA ISOLAMENTO FICTICIA LTDA
+- CNPJ: 99.999.999/9999-99
+
+## Situação
+- Status: EM CADASTRO
+- Cadastro validado: NÃO
+- Agente de Documentos: AUTORIZADO EM SIMULAÇÃO
+- Natureza: EMPRESA FICTICIA PARA TESTE

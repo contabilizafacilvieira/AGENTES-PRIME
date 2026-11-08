@@ -17,7 +17,7 @@ from pypdf import PdfReader, PdfWriter
 def scan(girado=False):
     from PIL import Image, ImageDraw, ImageFont
     im = Image.new('RGB', (1800, 900), 'white'); d = ImageDraw.Draw(im)
-    f = ImageFont.truetype('C:/Windows/Fonts/arial.ttf', 48)
+    f = ImageFont.load_default(size=48)
     for n, linha in enumerate(('DOCUMENTO FICTICIO PARA TESTE', 'RECIBO DE PAGAMENTO', 'VALOR TOTAL: 123,45',
                                'DATA: 10/10/2026', 'EMPRESA FICTICIA DE TESTE')):
         d.text((90, 80 + n * 120), linha, fill='black', font=f)

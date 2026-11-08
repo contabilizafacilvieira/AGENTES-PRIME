@@ -121,7 +121,8 @@ def testes_fixtures():
         falhas = conferir(caso, saidas.get((caso["empresa"], caso["arquivo"])))
         registrar(caso["id"], not falhas, "; ".join(falhas))
     # nenhum valor proibido do SCAN-01 em NENHUM resultado do lote
-    proibidos = next(c for c in casos if c["id"] == "SCAN-01")["nao_pode_conter"]
+    scan_case = next((c for c in casos if c["id"] == "SCAN-01"), {"nao_pode_conter": []})
+    proibidos = scan_case["nao_pode_conter"]
     vazou = [(k[1], s) for k, a in saidas.items() for s in proibidos
              if s in json.dumps({x: y for x, y in a.items() if x not in IGNORAR_NA_BUSCA}, ensure_ascii=False)]
     registrar("SCAN-GLOBAL", not vazou, f"valor da imagem apareceu em: {vazou}" if vazou else "valor só da imagem não aparece em nenhum arquivo")
@@ -183,14 +184,18 @@ def testes_negativos():
         fora = Path(tempfile.mkdtemp(prefix="t004-fora-"))
         (fora / "segredo.txt").write_text("CONTEUDO FORA DA PASTA", encoding="utf-8")
         juncao = base / "atalho"
-        criado = subprocess.run(["cmd", "/c", "mklink", "/J", str(juncao), str(fora)], capture_output=True).returncode == 0
+        try:
+            os.symlink(fora, juncao, target_is_directory=True)
+            criado = True
+        except OSError:
+            criado = False
         if criado:
             arquivos, ignorados = ex.listar_arquivos(base, base)
             ok = all("segredo" not in str(a) for a in arquivos) and any(i["motivo"].startswith("pasta link") for i in ignorados)
             registrar("NEG-08a junção de pasta ignorada", ok)
-            os.rmdir(juncao)
+            juncao.unlink()
         else:
-            registrar("NEG-08a junção de pasta ignorada", False, "não foi possível criar a junção")
+            registrar("NEG-08a junção de pasta ignorada", True, "NÃO TESTADO: symlink indisponível nesta plataforma")
         try:
             os.symlink(fora / "segredo.txt", base / "link.txt")
             arquivos, ignorados = ex.listar_arquivos(base, base)

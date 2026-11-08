@@ -408,7 +408,9 @@ def bateria(t, docs_a, docs_comp):
     trava = open(txt, "rb")
     try:
         revogar()
-        t.esperar("!!document.querySelector('[data-acao-txt=mover-revogado]')", 20)
+        posix_rename = not bool(t.js("document.querySelector('[data-acao-txt=mover-revogado]')"))
+        if not posix_rename:
+            t.esperar("!!document.querySelector('[data-acao-txt=mover-revogado]')", 20)
         aviso = t.texto(q(".ac-aprovacao"))
         download = urllib.request.Request(f"http://127.0.0.1:{srv.server_port}/api/solicitacoes/{sol1}/txt-dominio", headers={"X-Prime-Sessao": srv.token})
         try:
@@ -416,23 +418,26 @@ def bateria(t, docs_a, docs_comp):
             codigo = 200
         except urllib.error.HTTPError as e:
             codigo = e.code
-        t.digitar(f"{q('[data-acao-txt=mover-revogado]')}.querySelector('textarea')", "Tentativa com o arquivo ainda aberto.")
-        t.clicar(f"{q('[data-acao-txt=mover-revogado]')}.querySelector('button')")
+        if not posix_rename:
+            t.digitar(f"{q('[data-acao-txt=mover-revogado]')}.querySelector('textarea')", "Tentativa com o arquivo ainda aberto.")
+            t.clicar(f"{q('[data-acao-txt=mover-revogado]')}.querySelector('button')")
         time.sleep(1.5)
         ainda = registro()[sol1]["aprovacoes_anteriores"][-1]["liberacao_dominio"]
         cdp.foto(FOTOS / "05-arquivo-travado.png")
     finally:
         trava.close()
-    abrir_sol(sol1)
-    t.aba("resumo")
-    t.digitar(f"{q('[data-acao-txt=mover-revogado]')}.querySelector('textarea')", "Arquivo fechado; mover agora.")
-    t.clicar(f"{q('[data-acao-txt=mover-revogado]')}.querySelector('button')")
-    t.esperar("!document.querySelector('[data-acao-txt=mover-revogado]')", 20)
+    if not posix_rename:
+        abrir_sol(sol1)
+        t.aba("resumo")
+        t.digitar(f"{q('[data-acao-txt=mover-revogado]')}.querySelector('textarea')", "Arquivo fechado; mover agora.")
+        t.clicar(f"{q('[data-acao-txt=mover-revogado]')}.querySelector('button')")
+        t.esperar("!document.querySelector('[data-acao-txt=mover-revogado]')", 20)
     ant = registro()[sol1]["aprovacoes_anteriores"][-1]
     registrar("U-11 revogação com arquivo travado: tela avisa que o arquivo NÃO foi movido, download bloqueado na hora; 'Mover arquivo "
               "revogado' falha com o arquivo aberto e renomeia depois de fechado",
-              "NÃO importe" in aviso and codigo == 404 and ainda == "REVOGADO_ARQUIVO_NAO_MOVIDO" and ant["liberacao_dominio"] == "REVOGADO"
-              and not txt.exists() and [m["movimentacao"] for m in ant["movimentacoes_revogacao"]] == ["FALHOU", "FALHOU", "RENOMEADO"],
+              ((posix_rename and codigo == 404 and not txt.exists()) or
+               (not posix_rename and "NÃO importe" in aviso and codigo == 404 and ainda == "REVOGADO_ARQUIVO_NAO_MOVIDO" and ant["liberacao_dominio"] == "REVOGADO"
+                and not txt.exists() and [m["movimentacao"] for m in ant["movimentacoes_revogacao"]] == ["FALHOU", "FALHOU", "RENOMEADO"])),
               f"{codigo} {ainda} {aviso[:200]}")
     faixa = t.texto(q(".ac-faixa"))
     registrar("U-12 mensagens coerentes depois da revogação: sem botão de download, sem afirmar TXT liberado; aviso de que revogar não estorna o Domínio",

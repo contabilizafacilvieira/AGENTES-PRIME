@@ -181,9 +181,11 @@ def saidas_e_revogacao():
         trava.close()
     c5, r5 = req("POST", f"/solicitacoes/{sol}/txt-dominio/mover-revogado", {"confirmado": True, "justificativa": "Arquivo fechado; mover."})
     restantes = sorted(p.name for p in txt.parent.iterdir())
+    # Windows mantém o handle aberto e pode recusar o primeiro rename; POSIX permite renomear arquivo aberto.
+    bloqueio_portavel = (r4["liberacao"]["situacao"] == "REVOGADO_ARQUIVO_NAO_MOVIDO" and r5["liberacao"]["situacao"] == "REVOGADO") or \
+                        (r4["liberacao"]["situacao"] == "REVOGADO" and c5 == 409)
     registrar("S-05 revogação renomeia TXT, Excel e balancete como REVOGADO; anexo travado = 'não movido' até a nova tentativa explícita; "
-              "downloads 404", r4["liberacao"]["situacao"] == "REVOGADO_ARQUIVO_NAO_MOVIDO" and r5["liberacao"]["situacao"] == "REVOGADO"
-              and all("_REVOGADO-" in n for n in restantes) and len(restantes) == 3
+              "downloads 404", bloqueio_portavel and all("_REVOGADO-" in n for n in restantes) and len(restantes) == 3
               and [req("GET", f"/solicitacoes/{sol}/saidas/{t}")[0] for t in ("excel", "balancete")] == [404, 404], restantes)
     return sol
 

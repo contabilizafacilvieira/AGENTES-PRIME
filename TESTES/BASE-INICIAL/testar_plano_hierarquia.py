@@ -3,17 +3,15 @@ elegibilidade para composição no book e REANÁLISE de base já gravada. Dados 
 
 Casos: HIER-01..10, GROUP-01..12, BOOK-01..15, BOOK-SEV-01..07 (severidade ATENÇÃO da composição ausente), DUP-01,
 PLANO-REAL-01 (plano fictício no formato observado) e BASE-RECALC-01..09
-(base gravada pelo algoritmo da v1.0.0-interno — lido da tag do Git, sem alterá-la — e reanalisada sem novo envio).
+(snapshot fictício pré-v2 reanalisado sem novo envio).
 
 Uso: .venv/Scripts/python.exe -I TESTES/BASE-INICIAL/testar_plano_hierarquia.py
 """
 import base64
 import hashlib
-import importlib.util
 import json
 import os
 import shutil
-import subprocess
 import sys
 import tempfile
 from decimal import Decimal as D
@@ -229,21 +227,8 @@ def caso_plano_real():
               and exige == ["1.1.1.01.0001", "1.1.2.01", "1.1.2.02", "2.1.1.0001", "2.3.1.01"], (a["resumo"], exige))
 
 
-def modulo_da_tag(nome, arquivo):
-    """Carrega um módulo do aplicativo como estava na tag v1.0.0-interno (somente leitura do Git)."""
-    codigo = subprocess.run(["git", "show", f"v1.0.0-interno:{arquivo}"], cwd=RAIZ, capture_output=True).stdout
-    destino = TMP / "v1" / Path(arquivo).name
-    destino.parent.mkdir(exist_ok=True)
-    destino.write_bytes(codigo)
-    spec = importlib.util.spec_from_file_location(nome, destino)
-    m = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(m)
-    return m
-
-
 def casos_recalc():
-    """Base gravada como a v1.0.0-interno gravava (tipo por profundidade, grupo por âncora confirmada, composição de toda analítica
-    com saldo) é reanalisada SEM novo envio."""
+    """Snapshot pré-v2 totalmente fictício é reanalisado SEM novo envio."""
     g = el.Empresas(RAIZ, TMP / "runtime")
     B = bi.BaseInicial(g)
     EMP, CNPJ, COMP = "RECALC-FICTICIA-TMP", "90.080.080/0001-25", "2026-10"
@@ -258,23 +243,35 @@ def casos_recalc():
     book = f.book_padrao("EMPRESA RECALC FICTICIA LTDA", CNPJ, "09/2026", "2026-09-30", linhas, comp_book)
     pb = B.book(EMP, {"competencia": COMP, "nome": "book.xlsx", "conteudo": base64.b64encode(book).decode()})
     B.book(EMP, {"competencia": COMP, "token": pb["token"], "salvar": True, "confirmado": True})
-    # --- regrava a base e o plano como a v1.0.0-interno faria (algoritmo antigo carregado da tag)
-    ba_v1 = modulo_da_tag("balancete_v1", "API-LOCAL/balancete_anterior.py")
-    bk_v1 = modulo_da_tag("book_v1", "API-LOCAL/book_contabil.py")
+    # --- carrega snapshot pré-v2 versionado; não depende de tags nem do histórico local do Git
     pasta = TMP / "CLIENTES" / EMP / "BASE-INICIAL" / COMP
     base = json.loads((pasta / "base.json").read_text(encoding="utf-8"))
-    velho = ba_v1.analisar({k: json.loads(json.dumps(v)) for k, v in base["balancete"].items() if k in ("formato", "meta", "contas", "linhas_ignoradas", "limites")})
-    for k in ("contas", "duvidas", "ancoras_grupo", "totais"):
-        base["balancete"][k] = velho[k]
+    snapshot = json.loads((RAIZ / "TESTES/BASE-INICIAL/fixtures/pre_v2_classificacao.json").read_text(encoding="utf-8"))
+    assert snapshot["fixture"] == "TESTE_FICTICIO_PRE_V2"
+    assert [c["classificacao"] for c in snapshot["contas"]] == [c["classificacao"] for c in base["balancete"]["contas"]]
+    antigo_por_class = {c["classificacao"]: c for c in snapshot["contas"]}
+    for c in base["balancete"]["contas"]:
+        antigo = antigo_por_class[c["classificacao"]]
+        for chave in ("tipo", "grupo_contabil", "grupo_ancora", "exige_composicao"):
+            if chave in antigo:
+                c[chave] = antigo[chave]
+            else:
+                c.pop(chave, None)
+        c.pop("grupo", None)
+        c.pop("natureza_resultado", None)
+    # Comportamento antigo: toda conta marcada ANALÍTICA e com saldo != 0 exigia composição.
+    base["balancete"]["contas"] = [dict(c, exige_composicao=(c.get("tipo") == "ANALITICA" and D(c["saldo_atual"]) != 0))
+                                      for c in base["balancete"]["contas"]]
+    contas_antigas = base["balancete"]["contas"]
     for k in ("analise_plano", "analise_versao"):
         base["balancete"].pop(k, None)
-    base["book"]["confronto"] = bk_v1.confrontar(base["book"], velho["contas"], base["data_base"])
-    ancoras = {a["classificacao"]: a["grupo_sugerido"] for a in velho["ancoras_grupo"]}
+    base["book"]["confronto"] = bk.confrontar(base["book"], contas_antigas, base["data_base"])
+    ancoras = snapshot["grupos_confirmados"]
     plano = []
-    for c in velho["contas"]:
+    for c in contas_antigas:
         grupo = ancoras.get(c.get("grupo_ancora"), "") if c.get("grupo_ancora") else ""
         plano.append({"linha": c.get("origem"), "codigo": c["codigo"], "classificacao": c["classificacao"], "descricao": c["descricao"],
-                      "grupo": grupo, "tipo": c.get("tipo") or "", "observacao": "", "origem": "BALANCETE 2026-09-30 (balancete.pdf)",
+                      "grupo": grupo, "tipo": c.get("tipo") or "", "observacao": "", "origem": "BALANCETE FICTICIO DE TESTE (snapshot pre-v2)",
                       "dominio": "CONSTA_NO_BALANCETE"})
     base["contas_aplicadas"] = {"em": "2026-11-06T10:00:00-03:00", "balancete_sha256": base["balancete"]["sha256"], "incluidas": len(plano),
                                 "adotadas": [], "grupos_confirmados": ancoras, "nao_adotadas": [], "grupos_preenchidos": 0}
@@ -294,7 +291,7 @@ def casos_recalc():
     base2 = json.loads((pasta / "base.json").read_text(encoding="utf-8"))
     p2 = {c["codigo"]: c for c in g.obter(EMP)["plano"]}
     sem_comp_depois = {c["classificacao"] for c in base2["book"]["confronto"]["contas_com_saldo_sem_composicao"]}
-    registrar("BASE-RECALC-01 base gravada pela v1.0 é reanalisada sem novo envio (botão disponível antes, ação executada)",
+    registrar("BASE-RECALC-01 snapshot pré-v2 reanalisado sem novo envio (botão disponível antes, ação executada)",
               sit_antes.get("reanalise_disponivel") is True and r["reanalise"]["mudou"] and not r.get("reanalise_disponivel"),
               r["reanalise"])
     registrar("BASE-RECALC-02 balancete original intocado", all(hashlib.sha256((pasta / "fontes" / n).read_bytes()).hexdigest() == h
