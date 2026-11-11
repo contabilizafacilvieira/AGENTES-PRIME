@@ -59,6 +59,12 @@ bancos e piloto. As rotas de estudo por razão e parametros-bancos foram removid
 | `POST /api/solicitacoes/<SOL>/txt-dominio/gerar` | `{confirmado, justificativa}`: gera o TXT de novo por ação EXPLÍCITA depois de uma falha (nunca automático; nunca sobrescreve) |
 | `POST /api/solicitacoes/<SOL>/txt-dominio/mover-revogado` | `{confirmado, justificativa}`: tenta de novo renomear o TXT de aprovação revogada que estava travado |
 | `POST /api/empresas/<id>/regras-area` | `{area, chave, frase, confirmado}`: confirmação do Supervisor de UMA regra (DP, FISCAL, CONCILIACAO) com a frase `VALIDADO REGRA <AREA> <EMPRESA> <CHAVE>` |
+| `GET /api/solicitacoes/<SOL>/conciliacao-financeira` | Central de Revisão: cards, lista e bloqueios restantes da conciliação banco × relatório da última conferência concluída do Financeiro |
+| `GET /api/solicitacoes/<SOL>/conciliacao-financeira/<CF-…>` | Detalhe banco × relatório, motivos da sugestão, candidatos (ambíguo), ações permitidas |
+| `POST /api/solicitacoes/<SOL>/conciliacao-financeira/<CF-…>/decisao` | `{decisao: APROVADO/REJEITADO/REVOGADO/OBSERVACAO, justificativa, revisao_conciliacao, revisao_decisoes[, candidato]}`; estado obsoleto → 409 |
+| `POST /api/solicitacoes/<SOL>/conciliacao-financeira/decisoes-lote` | `{associacoes, justificativa, revisao_conciliacao, revisao_decisoes}`: aprova SOMENTE prováveis; item inválido recusa o lote inteiro |
+| `GET /api/solicitacoes/<SOL>/conciliacao-financeira/historico` | Histórico das decisões (lote agrupado; detalhes por decisão) |
+| `/api/demonstracao/conciliacao-financeira…` | Mesmas rotas para a DEMONSTRAÇÃO fictícia (motor real, dados inventados), gravada numa pasta própria irmã do runtime (`demonstracao-conciliacao`, ou `AGENTES_PRIME_DEMO_CONCILIACAO`); `POST …/reiniciar` `{confirmado: true}` apaga só essa pasta |
 
 Não existe rota para executar comando, ler arquivo por caminho, escolher agente ou alterar estado.
 

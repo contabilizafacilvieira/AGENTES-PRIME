@@ -18,23 +18,27 @@ Para rodar só algumas áreas: `... executar_gate.py FISCAL LOCAL`.
 - Nenhuma regra de negócio foi afrouxada para um teste passar: fixtures antigas foram atualizadas para o contrato vigente.
 - Leituras de referências reais (STATE-BANK) ficam desligadas por padrão; só com `AGENTES_PRIME_TESTE_REFERENCIAS_REAIS=1`.
 
-## Baterias ATIVAS (57)
+## Validação manual (v1.7.0-interno)
+
+A Central de Revisão do Supervisor foi validada por teste manual do fluxo de demonstração, além das baterias automatizadas.
+
+## Baterias ATIVAS (60)
 
 | Área | Baterias |
 |---|---|
 | Governança / Registro | `GOVERNANCA/testar_governanca_regras.py`, `REGISTRO/testar_concorrencia_registro.py` (C-01..06, REG-ATOMIC-01..06) |
 | Extrator, interface do extrator e Guarda | `T004/testar_extrator.py`, `T004/testar_interface.py`, `T004/testar_guarda.py` |
 | Coordenador | `COORD/testar_coordenador.py` |
-| API local / Segurança | `API/testar_api.py` (127.0.0.1, token, Host, origem, upload, limites) |
+| API local / Segurança | `API/testar_api.py` (127.0.0.1, token, Host, origem, upload, limites), `API/testar_central_revisao_api.py` (Central de Revisão: rotas, segurança, estado obsoleto, lote, isolamento por SOL, demonstração isolada, CR-API-01..20) |
 | Reprocessamento auditado | `API/testar_ciclo_reprocessamento.py` (ciclo de vida da tentativa: PREPARADA → EM_EXECUCAO → CONCLUIDA/BLOQUEADA/FALHOU, vínculo explícito das execuções, idempotência) |
 | Documentos | `LOCAL/testar_pdf_local.py`, `testar_triagem_documentos.py`, `testar_salvaguardas_documentos.py`, `testar_pacotes_areas.py`, `testar_encaminhamento_automatico.py`, `testar_classificacao_extrato.py` (extrato pelo conteúdo; nome do arquivo não decide) |
 | Cadastro | `LOCAL/testar_local.py`, `testar_plano_dominio.py`, `testar_metodo_empresa.py`, `testar_lixeira.py`, `testar_revisao_piloto.py` |
-| Financeiro | `LOCAL/testar_extrato_santander.py`, `testar_confronto_suportes.py`, `testar_adiantamentos.py`, `testar_financeiro_percurso.py`, `FINANCEIRO/testar_correcoes_fluxo.py`, `FINANCEIRO/testar_financeiro.py`, `FINANCEIRO/testar_normalizador_financeiro.py` (Normalizador Financeiro: planilha → contrato comum), `FINANCEIRO/testar_integracao_normalizador.py` (relatório financeiro como fonte AUXILIAR do Financeiro), `FINANCEIRO/testar_normalizador_bancario.py` (Normalizador Bancário: contrato comum, adaptador Santander Extrato Consolidado PJ, aritmética e saldos diários), `FINANCEIRO/testar_integracao_bancaria.py` (extrato pelo contrato comum no Financeiro; fonte bancária × auxiliar; conciliação no Financeiro e fail-closed), `FINANCEIRO/testar_conciliador_financeiro.py` (motor de conciliação banco × relatório, MATCH-01..40) |
+| Financeiro | `LOCAL/testar_extrato_santander.py`, `testar_confronto_suportes.py`, `testar_adiantamentos.py`, `testar_financeiro_percurso.py`, `FINANCEIRO/testar_correcoes_fluxo.py`, `FINANCEIRO/testar_financeiro.py`, `FINANCEIRO/testar_normalizador_financeiro.py` (Normalizador Financeiro: planilha → contrato comum), `FINANCEIRO/testar_integracao_normalizador.py` (relatório financeiro como fonte AUXILIAR do Financeiro), `FINANCEIRO/testar_normalizador_bancario.py` (Normalizador Bancário: contrato comum, adaptador Santander Extrato Consolidado PJ, aritmética e saldos diários), `FINANCEIRO/testar_integracao_bancaria.py` (extrato pelo contrato comum no Financeiro; fonte bancária × auxiliar; conciliação no Financeiro e fail-closed), `FINANCEIRO/testar_conciliador_financeiro.py` (motor de conciliação banco × relatório, MATCH-01..40), `FINANCEIRO/testar_decisoes_supervisor.py` (decisões do Supervisor em camada separada, SUP-01..30, e regressão da POLÍTICA V1 publicada em v1.6.0-interno) |
 | Fiscal | `FISCAL/testar_fiscal.py`, `testar_salvaguardas_fiscais.py`, `testar_coordenador_fiscal.py`, `testar_fluxo_fiscal.py` |
 | DP / Conciliação / Exportação | `DP/testar_dp.py`, `CONCILIACAO/testar_conciliacao.py`, `EXPORTACAO/testar_exportacao_dominio.py` |
 | Base inicial e árvore do plano | `BASE-INICIAL/testar_base_inicial.py`, `BASE-INICIAL/testar_percurso_base_inicial.py`, `BASE-INICIAL/testar_plano_hierarquia.py` (HIER, GROUP, BOOK, BOOK-SEV, DUP, reanálise) |
 | Saídas e percursos | `AMOSTRA-COMPLETA/testar_saidas_exclusao.py`, `AMOSTRA-COMPLETA/testar_percurso_completo.py`, `LOCAL/testar_fluxo_local.py` |
-| Escritório Virtual | `ESCRITORIO/testar_mapa.js`, `testar_percurso_mapa.js`, `testar_aprovacao_mapa.js`, `testar_auditoria_mapa.js`, `testar_ciclo_solicitacao.js`, `testar_estado_recentes.py`, `testar_escritorio.py`, `testar_operacao_escritorio.py`, `testar_acompanhamento_navegador.py`, `testar_auditoria_navegador.py`, `testar_percurso_navegador.py`, `testar_interface_api_real.py` |
+| Escritório Virtual | `ESCRITORIO/testar_mapa.js`, `testar_percurso_mapa.js`, `testar_aprovacao_mapa.js`, `testar_auditoria_mapa.js`, `testar_ciclo_solicitacao.js`, `testar_estado_recentes.py`, `testar_escritorio.py`, `testar_central_revisao_navegador.py` (Central de Revisão pela tela, UI-CR-01..18), `testar_operacao_escritorio.py`, `testar_acompanhamento_navegador.py`, `testar_auditoria_navegador.py`, `testar_percurso_navegador.py`, `testar_interface_api_real.py` |
 | Empresas / Base inicial (tela) / Isolamento | `ESCRITORIO/testar_interface_base_inicial.py`, `ESCRITORIO/testar_simplificacao_empresas.py` (exclusão lógica, isolamento entre empresas) |
 
 ## Baterias restauradas ou atualizadas nesta versão

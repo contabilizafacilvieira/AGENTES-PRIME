@@ -102,6 +102,29 @@ sistema e não gera lançamento, conta contábil ou aprovação.
   estado operacional, e não foram identificados falsos positivos entre as associações automáticas revisadas. Calibrações
   futuras serão uma nova versão de política (V2), com testes próprios, sem alterar a V1 em silêncio.
 
+## Decisões do Supervisor sobre a conciliação (Central de Revisão)
+Camada SEPARADA do motor: `ferramentas/decisoes_conciliacao.py`, contrato `DECISOES_SUPERVISOR_CONCILIACAO_V1`. A política V1
+do motor não muda e a classificação do motor nunca é sobrescrita (PROVÁVEL aprovado continua PROVÁVEL; o que muda é o estado
+operacional, calculado numa única função).
+- **Quem decide o quê:** CONCILIADO não precisa de decisão. PROVÁVEL: aprovar ou rejeitar (individual ou em lote). AMBÍGUO:
+  aprovar só escolhendo explicitamente UM candidato (os demais ficam registrados como não escolhidos) ou rejeitar todos; nunca
+  em lote. NÃO CONCILIADO: nenhuma associação é criada; só observação. Decisão vigente pode ser desfeita (REVOGADO).
+- **Estados operacionais:** `ASSOCIACAO_CONFIRMADA_AUTOMATICAMENTE`, `AGUARDANDO_SUPERVISOR`, `ASSOCIACAO_CONFIRMADA_PELO_SUPERVISOR`,
+  `ASSOCIACAO_REJEITADA`, `SEM_ASSOCIACAO`.
+- **Bloqueio:** o movimento bancário deixa de bloquear com CONCILIADO automático, associação aprovada pelo Supervisor ou suporte
+  independente já aceito. PROVÁVEL/AMBÍGUO sem decisão, REJEITADO e NÃO CONCILIADO sem suporte continuam bloqueando. O
+  Financeiro aplica as decisões na execução seguinte (cópia fiel em `financeiro-N/decisoes-conciliacao.json`).
+- **Não é suporte:** a decisão confirma só BANCO ↔ FONTE AUXILIAR; nunca marca nota/guia/documento conferido nem cria ou aprova
+  lançamento contábil.
+- **Auditoria e persistência:** um evento por decisão (quem, quando, SOL, empresa, competência, tentativa, associação,
+  classificação do motor, ids envolvidos, decisão, justificativa obrigatória, política, estado anterior/posterior), encadeado
+  por hash e imutável, em `<runtime>/execucoes/<SOL>/supervisor-conciliacao/decisoes.json` (fora do Git), gravação atômica.
+  CPF/CNPJ digitados na justificativa são mascarados.
+- **Concorrência e fail-closed:** a decisão leva a revisão da conciliação e a revisão das decisões vistas na tela; se algo mudou,
+  é recusada (atualizar e decidir de novo). Conflito (movimento confirmado em duas associações), lote com item inválido,
+  registro corrompido ou de outra SOL/empresa/competência: nada é gravado nem aplicado. Decisão feita sobre uma associação que
+  mudou numa nova execução fica desatualizada (não vale).
+
 ## Extrato bancário pelo contrato comum (Normalizador Bancário) — v1.4
 - Todo PDF extraído passa primeiro por `ferramentas/normalizador_bancario.py`, que devolve
   `MOVIMENTOS_BANCARIOS_NORMALIZADOS_V1`. O Financeiro consome o contrato; não há leitor por banco no Financeiro.

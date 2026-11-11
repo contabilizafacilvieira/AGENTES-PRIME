@@ -53,6 +53,8 @@ import importacao_vgrow  # noqa: E402  (somente agrupamento de processos para a 
 import governanca_regras  # noqa: E402  (definições necessárias por empresa; somente leitura)
 import regras_areas  # noqa: E402  (sugestões e confirmação guiada das referências por área)
 import reprocessamento  # noqa: E402  (tentativas auditadas; somente metadados no runtime)
+import central_conciliacao as central  # noqa: E402  (Central de Revisão: decisões do Supervisor em camada separada)
+import decisoes_conciliacao as dcs  # noqa: E402
 
 HOST = "127.0.0.1"
 PORTA = int(os.environ.get("AGENTES_PRIME_PORTA", "8765"))
@@ -92,6 +94,8 @@ TRAVA = threading.Lock()
 EM_EXECUCAO = {"sol": None}
 EM_IMPORTACAO = {"sol": None}   # só para exibição no Escritório Virtual (a Importação roda dentro da requisição, com a TRAVA)
 EM_FINANCEIRO = {"sol": None, "etapa": None}   # etapa do fluxo Financeiro → Bancos em execução (exibição)
+TRAVA_CENTRAL = threading.Lock()               # decisões da Central: ler → revalidar → gravar, uma por vez
+RE_ASSOC = re.compile(r"CF-[0-9A-F]{12}")
 
 
 def proxima_tentativa(pasta: Path, prefixo: str) -> int:
@@ -117,6 +121,14 @@ def pasta_runtime() -> Path:
 
 
 RUNTIME = None
+
+
+def pasta_demonstracao() -> Path:
+    """Pasta PRÓPRIA da demonstração da Central (decisões fictícias): irmã do runtime, nunca dentro dele nem do projeto."""
+    p = Path(os.environ.get("AGENTES_PRIME_DEMO_CONCILIACAO") or (RUNTIME.parent / "demonstracao-conciliacao")).resolve()
+    if p.name != "demonstracao-conciliacao" or str(p).lower().startswith(str(RAIZ).lower()) or p == RUNTIME or RUNTIME in p.parents:
+        raise RuntimeError("Pasta da demonstração recusada.")
+    return p
 
 
 def agora() -> str:
@@ -436,6 +448,11 @@ def executar_financeiro(sol: str) -> None:
     gravar_json(fin / "ja-tratados.json", coordenador.movimentos_tratados(registro, sol))
     gravar_json(fin / "decisoes.json", s.get("decisoes_movimentos", {}))
     gravar_json(fin / "ressalvas.json", s.get("pendencias_documentos", []))       # ressalvas da etapa de Documentos
+    decisoes_central = central.pasta_decisoes_sol(RUNTIME, sol)                    # cópia fiel das decisões do Supervisor (se houver)
+    extra_decisoes = []
+    if decisoes_central.is_file():
+        shutil.copy2(decisoes_central, fin / "decisoes-conciliacao.json")
+        extra_decisoes = ["--decisoes-conciliacao", str(fin / "decisoes-conciliacao.json")]
     comuns = ["--empresa", s["empresa"], "--sol", sol, "--competencia", s["competencia"]]
     try:
         EM_FINANCEIRO.update(sol=sol, etapa="FINANCEIRO")
@@ -450,7 +467,7 @@ def executar_financeiro(sol: str) -> None:
                       '--exigir-ancora']
         p = subprocess.run([PY, "-I", str(FERRAMENTA_FINANCEIRO), *comuns, "--pasta", s["pasta"], "--saida", str(fin),
                             "--ja-tratados", str(fin / "ja-tratados.json"), "--decisoes", str(fin / "decisoes.json"),
-                            "--ressalvas", str(fin / "ressalvas.json"), *pacote],
+                            "--ressalvas", str(fin / "ressalvas.json"), *pacote, *extra_decisoes],
                            cwd=RAIZ, capture_output=True, encoding="utf-8", timeout=900)
         if p.returncode != 0 or not (fin / "resultado.json").exists():
             coordenador_cli("registrar-falha-etapa", "--sol", sol, "--etapa", "FINANCEIRO", "--motivo",
@@ -1354,6 +1371,8 @@ class Manipulador(BaseHTTPRequestHandler):
                 return self.api_empresas(metodo, partes[1:])
             if partes and partes[0] == 'amostra':
                 return self.api_amostra(metodo, partes[1:])
+            if partes[:2] == ['demonstracao', 'conciliacao-financeira']:
+                return self.api_central(metodo, None, partes[2:])
             if metodo == 'GET' and partes == ['solicitacoes']:
                 return self.api_solicitacoes()
             if metodo == 'GET' and partes == ['solicitacoes', 'lixeira']:
@@ -1404,6 +1423,8 @@ class Manipulador(BaseHTTPRequestHandler):
             if (metodo == 'POST' and len(partes) == 5 and partes[0] == 'solicitacoes' and RE_SOL.fullmatch(partes[1]) and partes[2] == 'areas'
                     and partes[3] in coordenador.ETAPAS and partes[4] == 'retomar'):
                 return self.api_retomar_area(partes[1], partes[3])
+            if len(partes) >= 3 and partes[0] == "solicitacoes" and RE_SOL.fullmatch(partes[1]) and partes[2] == "conciliacao-financeira":
+                return self.api_central(metodo, partes[1], partes[3:])
             if len(partes) >= 3 and partes[0] == "solicitacoes" and RE_SOL.fullmatch(partes[1]) and partes[2] == "financeiro":
                 if metodo == "GET" and len(partes) == 3:
                     return self.api_financeiro_estado(partes[1])
@@ -2273,6 +2294,72 @@ class Manipulador(BaseHTTPRequestHandler):
             return self.erro(409, r.get("motivo") or "Aprovação recusada.")
         iniciar_cadeia_financeira(sol)
         self.json(202, dict(r, mensagem=f"{r['regra']} aprovada. Nova tentativa Financeiro → Bancos iniciada para aplicá-la."))
+
+    # ---------------------------------------------------------------- Central de Revisão (conciliação financeira)
+    def fonte_central(self, sol):
+        """(fonte, motivo). sol None = DEMONSTRAÇÃO fictícia isolada. SOL sem conciliação → (None, motivo)."""
+        if sol is None:
+            return central.fonte_demo(pasta_demonstracao()), None
+        registro = coordenador.ler_registro()["solicitacoes"].get(sol)
+        if not registro:
+            return None, "Solicitação não encontrada."
+        fonte = central.fonte_sol(RUNTIME, sol, registro, ultimo_concluido(sol, "financeiro"))
+        if not fonte:
+            return None, ("Esta solicitação ainda não tem conciliação financeira banco × relatório (é preciso um extrato reconhecido "
+                          "e um relatório financeiro na última conferência concluída do Financeiro).")
+        return fonte, None
+
+    def api_central(self, metodo, sol, resto):
+        fonte, motivo = self.fonte_central(sol)
+        if metodo == "GET":
+            if not fonte:
+                return self.json(200 if motivo.startswith("Esta") else 404, {"disponivel": False, "motivo": motivo})
+            if resto == []:
+                return self.json(200, central.visao(fonte))
+            if resto == ["historico"]:
+                return self.json(200, central.historico(fonte))
+            if len(resto) == 1 and RE_ASSOC.fullmatch(resto[0]):
+                d = central.detalhe(fonte, resto[0])
+                return self.json(200, d) if d else self.erro(404, "Associação inexistente nesta conciliação. Atualize a tela.")
+            return self.erro(404, "Rota inexistente.")
+        if metodo != "POST":
+            return self.erro(405, "Método não permitido.")
+        corpo = self.corpo_json()
+        if sol is None and resto == ["reiniciar"]:
+            if set(corpo) != {"confirmado"} or corpo["confirmado"] is not True:
+                raise ValueError("Confirme o reinício da demonstração.")
+            with TRAVA_CENTRAL:
+                central.reiniciar_demo(pasta_demonstracao())
+            return self.json(200, {"mensagem": "Demonstração reiniciada: decisões fictícias apagadas. Nada real foi tocado.",
+                                   "visao": central.visao(central.fonte_demo(pasta_demonstracao()))})
+        if not fonte:
+            return self.erro(409, motivo)
+        if sol and (EM_EXECUCAO["sol"] == sol or EM_FINANCEIRO["sol"] == sol):
+            return self.erro(409, "O Financeiro está processando esta solicitação. Aguarde e atualize a tela.")
+        revisoes = {"revisao_conciliacao", "revisao_decisoes", "justificativa"}
+        if len(resto) == 2 and RE_ASSOC.fullmatch(resto[0]) and resto[1] == "decisao":
+            if not (revisoes | {"decisao"}) <= set(corpo) <= (revisoes | {"decisao", "candidato"}):
+                raise ValueError("Envie {decisao, justificativa, revisao_conciliacao, revisao_decisoes[, candidato]}.")
+            pedidos, origem = [{"associacao": resto[0], "decisao": corpo["decisao"], "candidato": corpo.get("candidato")}], "INDIVIDUAL"
+        elif resto == ["decisoes-lote"]:
+            if set(corpo) != revisoes | {"associacoes"} or not isinstance(corpo["associacoes"], list):
+                raise ValueError("Envie {associacoes, justificativa, revisao_conciliacao, revisao_decisoes}.")
+            pedidos, origem = [{"associacao": a, "decisao": dcs.APROVADO} for a in corpo["associacoes"]], "LOTE"
+        else:
+            return self.erro(404, "Rota inexistente.")
+        try:
+            with TRAVA_CENTRAL:
+                eventos = central.decidir(fonte, pedidos, corpo, origem)
+        except dcs.DecisaoRecusada as exc:
+            return self.json(409, {"erro": exc.mensagem, "codigo": exc.codigo})
+        except dcs.EstadoCorrompido:
+            return self.json(409, {"erro": "O registro de decisões desta conciliação está inconsistente; nenhuma decisão foi aceita. "
+                                           "Avise o responsável técnico.", "codigo": "ESTADO_CORROMPIDO"})
+        n = len(eventos)
+        texto = {dcs.APROVADO: "confirmada(s)", dcs.REJEITADO: "rejeitada(s)", dcs.REVOGADO: "desfeita(s)", dcs.OBSERVACAO: "registrada(s)"}
+        return self.json(201, {"registradas": n, "mensagem": f"{n} decisão(ões) {texto[eventos[0]['decisao']]}. A classificação do motor "
+                                                              "foi preservada; isto não é aprovação fiscal nem contábil.",
+                               "visao": central.visao(fonte)})
 
     def api_bancos_csv(self, sol: str, n: int) -> None:
         registro, problema = self.contexto_financeiro(sol)

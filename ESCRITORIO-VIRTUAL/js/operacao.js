@@ -2289,6 +2289,20 @@
     etapas.append(stepper(passo, tipo, !!d.fiscal || d.estado === 'FISCAL_EM_ANDAMENTO', situacao, d), el("p", "ac-etapa ac-" + tipo, `Etapa atual: ${textoEtapa}`));
     R.append(etapas);
     R.append(el("p", "ac-proxima", `Próxima ação: ${proximaCurta(d, tipo, { agora: agora.length, regras: regrasPropostas.length, documento: documento.length, loteBloqueado })}`));
+    const cfin = f && f.conciliacao_financeira;
+    if (cfin && cfin.situacao === "EXECUTADA" && window.EV.central) {
+      // Central de Revisão: os números e as decisões vêm do servidor; aqui só o acesso
+      const bc = cfin.resumo && cfin.resumo.bancarios ? cfin.resumo.bancarios : {};
+      const bloco = el("div", "ac-bloco ac-conc-fin");
+      bloco.dataset.centralRevisao = "true";
+      bloco.append(el("h3", "ac-titulo-bloco", "Conciliação financeira banco × relatório"),
+        el("p", null, `Sistema: ${bc.conciliado || 0} conciliada(s), ${bc.provavel || 0} provável(is), ${bc.ambiguo || 0} ambígua(s), ${bc.nao_conciliado || 0} não conciliada(s). Abra a revisão para confirmar ou rejeitar as sugestões.`));
+      const abrirC = el("button", "botao-sec", "Abrir revisão da conciliação financeira");
+      abrirC.type = "button";
+      abrirC.addEventListener("click", () => window.EV.central.abrirSolicitacao(d.sol));
+      bloco.append(abrirC);
+      R.append(bloco);
+    }
     if (["AGUARDANDO_SUPERVISOR", "FECHAMENTO_APROVADO"].includes(d.estado) && tipo !== "andamento" && !encerrada) R.append(blocoAprovacao(d));
     if (situacao.itens.length) {
       const caixa = el("div", "ac-pend-areas");

@@ -44,6 +44,10 @@ cadastrada), fonte bloqueada vira `EXTRATO_BANCARIO_RECUSADO`; sem adaptador, se
 CONCILIADO, PROVÁVEL, AMBÍGUO ou NÃO CONCILIADO por regras explícitas (ver PROCEDIMENTO.md); movimento do extrato normalizado
 sem CONCILIADO nem suporte independente bloqueia o lote para a proposta contábil. Conciliar não é suporte fiscal.
 Testes: `TESTES/FINANCEIRO/testar_conciliador_financeiro.py` (somente fictícios).
+**Decisões do Supervisor (Central de Revisão):** `ferramentas/decisoes_conciliacao.py` (`DECISOES_SUPERVISOR_CONCILIACAO_V1`),
+camada separada do motor: aprovar/rejeitar PROVÁVEL (também em lote), escolher UM candidato de AMBÍGUO, desfazer decisão.
+Associação aprovada deixa de bloquear; nunca é suporte fiscal nem lançamento. Ver PROCEDIMENTO.md.
+Testes: `TESTES/FINANCEIRO/testar_decisoes_supervisor.py` (SUP-01..30 e regressão da política V1; somente fictícios).
 **Limitação da v1.4 (tratada pela regra fail-closed acima):** Enquanto não houver mecanismo aprovado de associação entre movimentos bancários e fontes auxiliares, a existência de um extrato bancário normalizado não constitui suporte documental/contábil para os movimentos.
 Testes: `TESTES/FINANCEIRO/testar_normalizador_bancario.py` (somente fictícios).
 

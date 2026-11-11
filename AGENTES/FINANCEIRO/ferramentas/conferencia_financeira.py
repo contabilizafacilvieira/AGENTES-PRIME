@@ -40,6 +40,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import normalizador_financeiro as nf
 import normalizador_bancario as nb
 import conciliador_financeiro as cf
+import decisoes_conciliacao as dcs
 EXTRATOR = RAIZ / "AGENTES" / "DOCUMENTOS" / "ferramentas" / "extrair_documentos.py"
 VERSAO = "1.5"
 PROCEDIMENTO = "AGENTES/FINANCEIRO/PROCEDIMENTO.md v1.5"
@@ -763,6 +764,9 @@ class Conferencia:
             return []
         self.conciliacao = cf.conciliar(fontes, self.contratos_auxiliares)
         por_id = {i: x for x in self.conciliacao["associacoes"] for i in x["bancarios"]}
+        efetivas = self.decisoes_supervisor_efetivas()
+        liberados_supervisor = {i for x in self.conciliacao["associacoes"] if x["id"] in efetivas
+                                for i in dcs.ids_confirmados(x, efetivas[x["id"]])[0]}      # só aprovação vigente e válida
         pendentes = Counter()
         for m in self.movimentos:
             rid = (m.get("rastreio_bancario") or {}).get("id")
@@ -773,8 +777,13 @@ class Conferencia:
                                            "associacao": x["id"] if x else None, "auxiliares": x["auxiliares"] if x else [],
                                            "libera_associacao_financeira": bool(x and x["libera_associacao_financeira"]),
                                            "suporte_documental": False}
+            if x and x["id"] in efetivas:                 # camada separada: a classificação do motor fica como veio
+                ev = efetivas[x["id"]]
+                m["conciliacao_financeira"]["decisao_supervisor"] = {"decisao": ev["decisao"], "evento": ev["id"], "em": ev["em"],
+                                                                     "estado_operacional": dcs.estado_operacional(x, ev)}
             suporte_independente = m.get("situacao") in ("COM_SUPORTE", "TRANSFERENCIA_PROPRIA")
-            if m["conciliacao_financeira"]["classificacao"] != "CONCILIADO" and not suporte_independente:
+            confirmada_supervisor = rid in liberados_supervisor
+            if m["conciliacao_financeira"]["classificacao"] != "CONCILIADO" and not suporte_independente and not confirmada_supervisor:
                 pendentes[m["conciliacao_financeira"]["classificacao"]] += 1
         if not pendentes:
             return []
@@ -789,6 +798,21 @@ class Conferencia:
         return [f"Existem {total} movimentação(ões) bancária(s) sem associação financeira confirmada nem suporte independente "
                 f"({detalhe}); o lote não segue automaticamente para a proposta contábil. Revisar as associações sugeridas "
                 "ou fornecer documentação/suporte adicional."]
+
+    def decisoes_supervisor_efetivas(self) -> dict:
+        """Decisões do Supervisor (DECISOES_SUPERVISOR_CONCILIACAO_V1) que ainda valem para esta conciliação. Registro ausente
+        → nenhuma; registro inválido/de outro contexto → nenhuma + pendência (fail-closed: nada é liberado)."""
+        dados = getattr(self, "decisoes_conciliacao", None)
+        if dados is None:
+            return {}
+        try:
+            dcs.validar(dados, {"sol": self.sol, "empresa": self.empresa, "competencia": self.competencia})
+        except dcs.EstadoCorrompido as exc:
+            self.pendencia("DECISOES_SUPERVISOR_INVALIDAS", f"Problema: o registro de decisões do Supervisor sobre a conciliação "
+                           f"financeira não pôde ser usado ({exc}). Impacto: nenhuma decisão foi aplicada; as associações seguem "
+                           "pendentes. O que fazer: avisar o responsável técnico; as decisões não foram presumidas.")
+            return {}
+        return dcs.decisoes_efetivas(dados, self.conciliacao)[0]
 
     # ---- extratos: conta, titular, período, saldos, duplicidades
     def preparar_movimentos(self):
@@ -1482,6 +1506,7 @@ def main() -> int:
     p.add_argument("--ja-tratados")
     p.add_argument("--decisoes")
     p.add_argument("--ressalvas")
+    p.add_argument("--decisoes-conciliacao", help="registro DECISOES_SUPERVISOR_CONCILIACAO_V1 (camada separada; opcional)")
     p.add_argument('--documentos-local')
     p.add_argument('--extracao-local')
     p.add_argument('--exigir-ancora', action='store_true', help='pacote novo: hash da extração obrigatório')
@@ -1495,6 +1520,11 @@ def main() -> int:
     ressalvas = json.loads(Path(args.ressalvas).read_text(encoding="utf-8")) if args.ressalvas else []
     c = Conferencia(args.empresa, args.competencia, args.sol)
     c.ressalvas = [str(r) for r in ressalvas]
+    if args.decisoes_conciliacao:
+        try:
+            c.decisoes_conciliacao = json.loads(Path(args.decisoes_conciliacao).read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            c.decisoes_conciliacao = {"contrato": "ILEGIVEL"}      # fail-closed: vira pendência, nada é liberado
     if bool(args.documentos_local) != bool(args.extracao_local):
         print(json.dumps({'erro': 'PACOTE_INCOMPLETO'})); return 2
     if args.documentos_local:
