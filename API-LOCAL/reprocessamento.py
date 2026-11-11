@@ -106,15 +106,119 @@ def criar(base: Path, sol: str, *, origem: dict, motivo: str, solicitante: str,
     anteriores = listar(base, sol)
     numero = (anteriores[-1]["numero"] if anteriores else 0) + 1
     commit, tag = _codigo_atual(raiz or Path.cwd())
+    criada = agora()
     registro = {"numero": numero, "sol": sol, "tentativa_origem": origem.get("numero", 1),
-                "criada_em": agora(), "motivo": motivo.strip(), "solicitante": solicitante or "Supervisor",
+                "criada_em": criada, "motivo": motivo.strip(), "solicitante": solicitante or "Supervisor",
                 "versao_codigo": commit, "tag": tag, "documentos": documentos,
-                "status": "PREPARADA", "pendencias": [], "auditoria": {"origem": "REPROCESSAMENTO_AUDITADO"}}
+                "status": "PREPARADA", "pendencias": [], "auditoria": {"origem": "REPROCESSAMENTO_AUDITADO"},
+                "ciclo_vida": CICLO_VIDA, "execucoes": [],
+                "eventos": [{"em": criada, "evento": "Tentativa criada (PREPARADA)."}]}
     gravar(pasta / f"{numero:04d}" / "tentativa.json", registro)
     return registro
+
+
+# ---------------------------------------------------------------- ciclo de vida (v2)
+# PREPARADA → EM_EXECUCAO → CONCLUIDA | BLOQUEADA | FALHOU
+#   BLOQUEADA = execução correta cujo resultado impede prosseguir (ex.: falta de extrato) — NÃO é falha técnica.
+#   FALHOU    = erro técnico (exceção, etapa sem resultado, registro recusado).
+# Tentativas antigas (sem "ciclo_vida") nunca são assumidas automaticamente por uma execução nova: a reconciliação delas é
+# uma ação explícita, para não atribuir execuções à tentativa errada.
+CICLO_VIDA = "V2"
+ATIVOS = ("PREPARADA", "EM_EXECUCAO")
+FINAIS = ("CONCLUIDA", "BLOQUEADA", "FALHOU")
+
+
+def _arquivo(base: Path, sol: str, numero: int) -> Path:
+    return _pasta(base, sol) / "tentativas" / f"{int(numero):04d}" / "tentativa.json"
+
+
+def ativa(base: Path, sol: str) -> dict | None:
+    """Última tentativa em estado ativo (PREPARADA ou EM_EXECUCAO); finais nunca impedem uma nova tentativa."""
+    lista = listar(base, sol)
+    return lista[-1] if lista and lista[-1].get("status") in ATIVOS else None
+
+
+def iniciar(base: Path, sol: str) -> dict | None:
+    """Início efetivo da execução: PREPARADA → EM_EXECUCAO (somente tentativas do ciclo V2). Idempotente."""
+    t = ativa(base, sol)
+    if not t or t.get("ciclo_vida") != CICLO_VIDA:
+        return None
+    if t["status"] == "PREPARADA":
+        momento = agora()
+        t.update(status="EM_EXECUCAO", iniciada_em=momento)
+        t.setdefault("eventos", []).append({"em": momento, "evento": "Execução iniciada (EM_EXECUCAO)."})
+        gravar(_arquivo(base, sol, t["numero"]), t)
+    return t
+
+
+def vincular_execucao(base: Path, sol: str, execucao: str) -> dict | None:
+    """Vínculo EXPLÍCITO entre a tentativa em execução e a pasta de etapa criada para ela (ex.: financeiro-5)."""
+    t = ativa(base, sol)
+    if not t or t.get("status") != "EM_EXECUCAO" or t.get("ciclo_vida") != CICLO_VIDA:
+        return None
+    if execucao not in [e["execucao"] for e in t.get("execucoes", [])]:
+        momento = agora()
+        t.setdefault("execucoes", []).append({"execucao": execucao, "etapa": execucao.rsplit("-", 1)[0], "vinculada_em": momento})
+        t.setdefault("eventos", []).append({"em": momento, "evento": f"Execução vinculada: {execucao}."})
+        gravar(_arquivo(base, sol, t["numero"]), t)
+    return t
+
+
+def resumir_execucoes(base: Path, sol: str, execucoes: list[dict]) -> list[dict]:
+    """Resumo de cada execução vinculada, referenciando o resultado imutável pelo caminho relativo e SHA-256 (sem cópia)."""
+    saida = []
+    for item in execucoes:
+        pasta = _pasta(base, sol) / item["execucao"]
+        resultado, falha = pasta / "resultado.json", pasta / "falha.json"
+        r = ler(resultado, {}) or {}
+        resumo = {"execucao": item["execucao"], "etapa": item.get("etapa"),
+                  "resultado": f"{item['execucao']}/resultado.json" if resultado.is_file() else None,
+                  "resultado_sha256": sha256(resultado) if resultado.is_file() else None,
+                  "resumo": r.get("resumo"), "bloqueio_lote": r.get("bloqueio_lote") or []}
+        if "fonte_auxiliar_financeira" in r:
+            resumo["fonte_bancaria"] = r.get("fonte_bancaria")
+            resumo["fonte_auxiliar_resumo"] = (r.get("fonte_auxiliar_financeira") or {}).get("resumo")
+        if falha.is_file():
+            resumo["falha"] = str((ler(falha, {}) or {}).get("motivo", "falha registrada"))[:300]
+        saida.append(resumo)
+    return saida
+
+
+def status_final(execucoes: list[dict], plano: list[dict], erro: bool = False) -> str:
+    """FALHOU (erro técnico) > BLOQUEADA (bloqueio funcional) > CONCLUIDA."""
+    situacoes = {e.get("situacao") for e in plano or []}
+    if erro or not execucoes or "FALHOU" in situacoes or any(e.get("falha") or not e.get("resultado") for e in execucoes):
+        return "FALHOU"
+    if any(e.get("bloqueio_lote") for e in execucoes) or situacoes & {"BLOQUEADA", "BLOQUEADA_POR_DEPENDENCIA"}:
+        return "BLOQUEADA"
+    return "CONCLUIDA"
+
+
+def finalizar(base: Path, sol: str, numero: int, status: str, *, resultado: dict, estado_sol: str | None,
+              erro: dict | None = None) -> dict:
+    """EM_EXECUCAO → estado final. Segunda finalização não altera nada (devolve o registro com finalizacao_repetida)."""
+    if status not in FINAIS:
+        raise ValueError(f"Estado final inválido: {status}.")
+    caminho = _arquivo(base, sol, numero)
+    t = ler(caminho)
+    if not t:
+        raise ValueError("Tentativa não encontrada.")
+    if t.get("status") in FINAIS:
+        return dict(t, finalizacao_repetida=True)
+    if t.get("status") != "EM_EXECUCAO":
+        raise ValueError("Somente uma tentativa EM_EXECUCAO pode ser finalizada.")
+    momento = agora()
+    t.update(status=status, finalizada_em=momento, resultado=resultado, estado_sol_final=estado_sol)
+    if erro:
+        t["erro"] = erro
+    t.setdefault("eventos", []).append({"em": momento, "evento": f"Tentativa finalizada ({status})."})
+    gravar(caminho, t)
+    return t
 
 
 def comparar(tentativas: list[dict]) -> list[dict]:
     return [{"numero": x.get("numero"), "status": x.get("status"), "motivo": x.get("motivo"),
              "criada_em": x.get("criada_em"), "resultado": x.get("resultado"),
-             "documentos": x.get("documentos", [])} for x in tentativas]
+             "documentos": x.get("documentos", []), "execucoes": x.get("execucoes", []),
+             "iniciada_em": x.get("iniciada_em"), "finalizada_em": x.get("finalizada_em"),
+             "estado_sol_final": x.get("estado_sol_final")} for x in tentativas]

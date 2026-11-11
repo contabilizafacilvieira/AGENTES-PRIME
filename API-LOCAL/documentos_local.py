@@ -171,6 +171,44 @@ def sem_acento(texto):
     return unicodedata.normalize('NFKD', str(texto or '')).encode('ascii', 'ignore').decode().upper()
 
 
+# ---- extrato bancário: decisão por EVIDÊNCIAS ESTRUTURAIS do conteúdo (genérica, qualquer banco e qualquer empresa).
+# O nome do arquivo é só sinal auxiliar registrado: nunca decide sozinho e nunca vence conteúdo incompatível.
+TIPO_EXTRATO_PDF = 'Extrato bancário PDF (leitura pelo Financeiro)'
+TIPO_EXTRATO_SANTANDER = 'Extrato PDF Santander Empresas (leitura pelo Financeiro)'   # rótulo do leiaute (leitor específico)
+_DINHEIRO = r'[-+]?(?:\d{1,3}(?:\.\d{3})+|\d+),\d{2}'
+RE_MOVIMENTO = re.compile(rf'^\s*\d{{2}}/\d{{2}}(?:/\d{{2,4}})?\s+\S.*?\s{_DINHEIRO}\s*[-+DC]?(?:\s+{_DINHEIRO}\s*[-+DC]?)?\s*$', re.M)
+RE_AGENCIA = re.compile(r'\bAG(?:ENCIA|\.)?\s*(?:N[O.]?\s*)?:?\s*\d{3,5}\b')
+RE_CONTA = re.compile(r'\bC(?:ONTA(?: CORRENTE)?|/C|C)\s*(?:N[O.]?\s*)?:?\s*\d[\d.\-]{2,}')
+RE_PERIODO = re.compile(r'\bPERIODOS?\b\s*:?\s*(?:DE\s+)?\d{2}/\d{2}/\d{4}\s+(?:A|ATE)\s+\d{2}/\d{2}/\d{4}')
+RE_SALDO = re.compile(r'\bSALDO\s+(?:ANTERIOR|INICIAL|FINAL|DO DIA|ATUAL|EM \d)|\bSALDO\s*\(R\$\)|\bSALDO\s*$', re.M)
+# Indícios de comprovante/boleto/relatório de pagamentos (ex.: PagFor): contra-evidência de extrato.
+MARCAS_PAGAMENTO = ('BENEFICIARIO', 'PAGADOR', 'VALOR NOMINAL', 'LINHA DIGITAVEL', 'CODIGO DE BARRAS', 'COMPROVANTE',
+                    'AUTENTICACAO', 'NOSSO NUMERO', 'BLQ OUTROS', 'PAGFOR', 'SACADO', 'CEDENTE', 'DATA DO PAGAMENTO')
+MIN_MOVIMENTOS_EXTRATO = 2
+
+
+def avaliar_extrato(a, texto=None):
+    """Evidências de EXTRATO BANCÁRIO no conteúdo. decisao: EXTRATO | AMBIGUO | NAO_EXTRATO.
+
+    Estrutura mínima: agência + conta, pelo menos 2 linhas de movimentação datadas com valor, e período OU saldo.
+    Contra-evidência forte (2+ marcas de comprovante/boleto) impede a decisão automática (AMBIGUO)."""
+    c = a.get('conteudo') or {}
+    t = sem_acento(texto if texto is not None else c.get('texto', '') + '\n'.join(x.get('texto', '') for x in c.get('paginas', [])))
+    movimentos = len(RE_MOVIMENTO.findall(t))
+    evidencias = [nome for nome, ok in (('AGENCIA', bool(RE_AGENCIA.search(t))), ('CONTA', bool(RE_CONTA.search(t))),
+                                        ('PERIODO', bool(RE_PERIODO.search(t))), ('SALDO', bool(RE_SALDO.search(t))),
+                                        (f'MOVIMENTACAO_DATADA:{movimentos}', movimentos >= MIN_MOVIMENTOS_EXTRATO)) if ok]
+    contra = [m for m in MARCAS_PAGAMENTO if re.search(r'\b' + m + r'\b', t)]
+    nome = sem_acento(a.get('arquivo', '')).rsplit('/', 1)[-1]
+    sinal_nome = bool(re.search(r'EXTRATO|BANCO|SANTANDER|BRADESCO|ITAU|CAIXA|\bCC\b', nome))
+    estrutura = ({'AGENCIA', 'CONTA'} <= set(evidencias) and movimentos >= MIN_MOVIMENTOS_EXTRATO
+                 and ('PERIODO' in evidencias or 'SALDO' in evidencias))
+    decisao = ('AMBIGUO' if estrutura and len(contra) >= 2 else 'EXTRATO' if estrutura else 'NAO_EXTRATO')
+    return {'decisao': decisao, 'evidencias': evidencias, 'contra_evidencias': contra,
+            'nome_arquivo': 'SINAL_AUXILIAR_COMPATIVEL' if sinal_nome else 'SEM_SINAL',
+            'criterio': 'agência + conta + 2 movimentos datados com valor + (período ou saldo); nome do arquivo não decide'}
+
+
 def cabecalhos(a, texto):
     """Primeiras linhas tabulares (CSV ';' ou abas visíveis da planilha) como conjuntos de nomes normalizados."""
     linhas = [l.split(';') for l in texto.splitlines()[:10]]
@@ -213,11 +251,14 @@ def classificar(a):
         return 'Posição de investimentos'
     if 'CONTRATO DE CAMBIO' in t or ('NOTA DE NEGOCIACAO' in t and 'TAXA CAMBIAL' in t):
         return 'Contrato de câmbio'
-    # O histórico bancário pode mencionar folha ou notas: o cabeçalho do extrato tem precedência.
-    if 'SANTANDER EMPRESAS' in t and re.search(r'AGENCIA:\s*\d+\s+CONTA:', t):
-        return 'Extrato PDF Santander Empresas (leitura pelo Financeiro)'
-    if a.get('extensao') == '.pdf' and 'SANTANDER' in sem_acento(a.get('arquivo', '')):
-        return 'Extrato PDF Santander Empresas (leitura pelo Financeiro)'
+    # O histórico bancário pode mencionar folha ou notas: a estrutura do extrato tem precedência.
+    # Decisão SOMENTE pelo conteúdo (avaliar_extrato); o nome do arquivo nunca classifica um extrato.
+    avaliacao = avaliar_extrato(a, texto)
+    if avaliacao['decisao'] == 'EXTRATO':
+        # O rótulo do leiaute só escolhe o leitor do Financeiro; a decisão de ser extrato já foi tomada pela estrutura.
+        return TIPO_EXTRATO_SANTANDER if 'SANTANDER EMPRESAS' in t else TIPO_EXTRATO_PDF
+    if avaliacao['decisao'] == 'AMBIGUO':
+        return AMBIGUO + 'estrutura de extrato bancário e marcas de comprovante/boleto (' + ', '.join(avaliacao['contra_evidencias']) + ')'
     cabs = cabecalhos(a, texto)
     if any(CAB_EXTRATO <= c for c in cabs):
         return 'Extrato CSV (classificação por cabeçalho)'
@@ -275,6 +316,16 @@ def nao_identifica_empresa(a, tipo, cnpjs_empresa):
 
 
 def encaminhamento(a, cnpjs_empresa=None):
+    """Rota técnica (ver _rota) + evidências usadas quando a natureza de extrato foi avaliada ou sugerida pelo nome."""
+    rota = _rota(a, cnpjs_empresa)
+    if a.get('leitura') in ('EXTRAIDO_PDF', 'EXTRAIDO_TEXTO') or a.get('extensao') == '.pdf':
+        avaliacao = avaliar_extrato(a)
+        if rota.get('tipo', '').startswith('Extrato ') or avaliacao['decisao'] != 'NAO_EXTRATO' or avaliacao['nome_arquivo'] != 'SEM_SINAL':
+            rota = dict(rota, evidencias_extrato=avaliacao)
+    return rota
+
+
+def _rota(a, cnpjs_empresa=None):
     """Triagem técnica; não valida natureza, competência contábil ou regularidade fiscal.
 
     cnpjs_empresa (CNPJs do CADASTRO.md da empresa da SOL): quando informado, documento cujo texto identifica CNPJs e

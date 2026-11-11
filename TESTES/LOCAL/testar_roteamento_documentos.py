@@ -10,7 +10,12 @@ import servidor
 
 
 def main():
-    pdf = {"arquivo": "RECEBIDOS/2026-09/extrato-SANTANDER.pdf", "extensao": ".pdf", "leitura": "EXTRAIDO_PDF", "conteudo": {"paginas": [{"texto": "Movimentação bancária"}]}}
+    # Extrato reconhecido pela ESTRUTURA do conteúdo (nome genérico); o nome do arquivo sozinho não classifica (v1.4.1).
+    pdf = {"arquivo": "RECEBIDOS/2026-09/documento.pdf", "extensao": ".pdf", "leitura": "EXTRAIDO_PDF", "conteudo": {"paginas": [{"texto":
+           "Santander Empresas\nEMPRESA FICTICIA Agência: 1234 Conta: 11111-1\nPeríodos: 01/09/2026 a 30/09/2026\n"
+           "20/09/2026 PIX RECEBIDO FICTICIO 50,00 950,00\n10/09/2026 PAGAMENTO FICTICIO -20,00 900,00"}]}}
+    so_nome = {"arquivo": "RECEBIDOS/2026-09/extrato-SANTANDER.pdf", "extensao": ".pdf", "leitura": "EXTRAIDO_PDF", "conteudo": {"paginas": [{"texto": "Movimentação bancária"}]}}
+    assert not documentos_local.classificar(so_nome).startswith('Extrato')
     xlsx = {"arquivo": "relatorio.xlsx", "extensao": ".xlsx", "leitura": "EXTRAIDO_PLANILHA", "conteudo": {"abas": [{"oculta": False, "linhas": [{"valores": ["Data de Vencimento", "Valor Pago", "Plano de Contas", "Banco", "Empresa CNPJ"]}]}]}}
     folha = {"arquivo": "folha.pdf", "extensao": ".pdf", "conteudo": {"paginas": [{"texto": "HOLERITE SALARIO"}]}}
     nota = {"arquivo": "nf.xml", "extensao": ".xml", "leitura": "EXTRAIDO_NFE", "conteudo": {}}

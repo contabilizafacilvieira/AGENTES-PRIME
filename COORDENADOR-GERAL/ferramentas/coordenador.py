@@ -1462,7 +1462,8 @@ def retomar_rota_financeira(sol: str, justificativa: str, tipos_rota=None, manif
         s.setdefault('reavaliacoes_rota', []).append({'em': agora().isoformat(), 'origem': 'CLASSIFICADOR_ATUAL', 'itens': triagem})
     tipos = {x.get('tipo') for x in triagem}
     areas = {x.get('area') for x in triagem}
-    if 'FINANCEIRO' not in areas or not ({'Extrato PDF Santander Empresas (leitura pelo Financeiro)', 'Relatório financeiro de lançamentos'} & tipos):
+    if 'FINANCEIRO' not in areas or not ({'Extrato PDF Santander Empresas (leitura pelo Financeiro)', 'Extrato bancário PDF (leitura pelo Financeiro)',
+                                                     'Relatório financeiro de lançamentos'} & tipos):
         return recusar('ROTA_NAO_DETERMINADA', 'A triagem não identificou uma rota Financeiro determinística.')
     momento = agora().isoformat()
     s['fluxo_origem'] = s.get('fluxo', 'DOCUMENTOS')

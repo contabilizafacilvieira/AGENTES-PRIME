@@ -30,7 +30,7 @@ class Triagem(unittest.TestCase):
             self.assertEqual(e['situacao'], 'DISPONIVEL_PARA_ENCAMINHAMENTO')
 
     def test_historico_do_extrato_nao_troca_destino_para_dp(self):
-        a = texto('Santander Empresas\nAgência: 1234 Conta: 111111\nPAGAMENTO FOLHA DE PAGAMENTO NOTA FISCAL DE SERVICOS')
+        a = texto('Santander Empresas\nAgência: 1234 Conta: 111111\nPeríodo: 01/10/2026 a 31/10/2026\n05/10/2026 PIX RECEBIDO FICTICIO 50,00 950,00\n06/10/2026 TARIFA FICTICIA -5,00 945,00\nPAGAMENTO FOLHA DE PAGAMENTO NOTA FISCAL DE SERVICOS')
         self.assertEqual(docs.encaminhamento(a)['area'], 'FINANCEIRO')
 
     def test_folha_dp_nao_confunde_com_comprovante(self):
@@ -127,7 +127,7 @@ class Triagem(unittest.TestCase):
 
     def test_extratos_ganham_copia_a_conciliacao(self):
         for a in (dict(texto(''), extensao='.ofx'), texto('CONTA;DATA;TIPO;HISTORICO;VALOR;SALDO;IDENTIFICADOR'),
-                  texto('Santander Empresas\nAgência: 1234 Conta: 111111')):
+                  texto('Santander Empresas\nAgência: 1234 Conta: 111111\nPeríodo: 01/10/2026 a 31/10/2026\n05/10/2026 PIX RECEBIDO FICTICIO 50,00 950,00\n06/10/2026 TARIFA FICTICIA -5,00 945,00')):  # extrato pela estrutura do conteúdo
             e = docs.encaminhamento(a)
             self.assertEqual((e['area'], e['copias_suporte']), ('FINANCEIRO', ['CONCILIACAO']))
 

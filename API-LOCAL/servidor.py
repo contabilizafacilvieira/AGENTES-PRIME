@@ -333,6 +333,47 @@ ETAPAS_DOCUMENTAIS = {
 }
 
 
+def nova_execucao(sol: str, prefixo: str) -> Path:
+    """Cria a pasta da próxima execução da etapa (<prefixo>-N, nunca reaproveitada) e a VINCULA explicitamente à tentativa
+    auditada em execução, quando houver (ciclo de vida do reprocessamento)."""
+    pasta = RUNTIME / "execucoes" / sol
+    saida = pasta / f"{prefixo}-{proxima_tentativa(pasta, prefixo)}"
+    saida.mkdir(parents=True, exist_ok=False)
+    try:
+        reprocessamento.vincular_execucao(RUNTIME, sol, saida.name)
+    except (OSError, ValueError, KeyError) as exc:          # o vínculo é auditoria: nunca impede a etapa
+        print(f"Aviso: vínculo da execução {saida.name} à tentativa não registrado ({type(exc).__name__}).", file=sys.stderr)
+    return saida
+
+
+def finalizar_tentativa(sol: str, tentativa: dict, erro: BaseException | None = None) -> dict | None:
+    """Fecha a tentativa auditada iniciada por iniciar_execucao: CONCLUIDA, BLOQUEADA (bloqueio funcional) ou FALHOU (erro
+    técnico). Idempotente (segunda chamada não altera nada). Erro técnico fica registrado sem rastreamento interno."""
+    try:
+        atual = next((t for t in reprocessamento.listar(RUNTIME, sol) if t["numero"] == tentativa["numero"]), None)
+        if not atual or atual.get("status") in reprocessamento.FINAIS:
+            return atual and dict(atual, finalizacao_repetida=True)
+        s = coordenador.ler_registro()["solicitacoes"].get(sol) or {}
+        plano = coordenador.plano_de(s) if s else []
+        execucoes = reprocessamento.resumir_execucoes(RUNTIME, sol, atual.get("execucoes", []))
+        status = reprocessamento.status_final(execucoes, plano, erro=erro is not None)
+        bloqueios = [b for e in execucoes for b in e.get("bloqueio_lote") or []]
+        resultado = {"execucoes": execucoes, "bloqueio_lote": bloqueios,
+                     "motivo_bloqueio": bloqueios[0] if bloqueios else None,
+                     "plano": [{"etapa": e.get("etapa"), "situacao": e.get("situacao")} for e in plano]}
+        falha = None
+        if erro is not None:
+            falha = {"tipo": type(erro).__name__, "mensagem": "Erro técnico durante a execução; detalhes no registro local do servidor."}
+        elif status == "FALHOU":
+            falha = {"tipo": "ETAPA", "mensagem": next((e["falha"] for e in execucoes if e.get("falha")), None)
+                     or "Etapa sem resultado registrado ou nenhuma execução realizada."}
+        return reprocessamento.finalizar(RUNTIME, sol, tentativa["numero"], status, resultado=resultado,
+                                         estado_sol=s.get("estado"), erro=falha)
+    except Exception as exc:                                   # nunca derrubar o servidor por causa da auditoria
+        print(f"Aviso: finalização da tentativa de {sol} não registrada ({type(exc).__name__}).", file=sys.stderr)
+        return None
+
+
 def fotografar_fontes(pasta: Path, empresa: str, etapa: str) -> None:
     """sha256 das fontes da empresa ANTES da etapa: o Coordenador recusa o resultado se elas mudarem durante a execução."""
     gravar_json(pasta / 'fontes.json', {'etapa': etapa, 'em': agora(),
@@ -343,7 +384,7 @@ def executar_etapa_documental(sol, etapa):
     """Fiscal, DP (pacote de Documentos com âncora) ou seus especialistas da Contabilidade (resultado registrado da área)."""
     s = coordenador.ler_registro()['solicitacoes'][sol]; pasta = RUNTIME / 'execucoes' / sol
     ferramenta, prefixo, comando, fonte = ETAPAS_DOCUMENTAIS[etapa]
-    saida = pasta / f'{prefixo}-{proxima_tentativa(pasta, prefixo)}'; saida.mkdir(parents=True, exist_ok=False)
+    saida = nova_execucao(sol, prefixo)
     comuns = ['--empresa', s['empresa'], '--competencia', s['competencia'], '--sol', sol, '--saida', str(saida)]
     gravar_json(saida / 'origem.json', {'sol': sol, 'etapa': etapa, 'inicio': agora()})
     fotografar_fontes(saida, s['empresa'], etapa)
@@ -390,8 +431,7 @@ def executar_financeiro(sol: str) -> None:
     registro = coordenador.ler_registro()
     s = registro["solicitacoes"][sol]
     pasta = RUNTIME / "execucoes" / sol
-    fin = pasta / f"financeiro-{proxima_tentativa(pasta, 'financeiro')}"
-    fin.mkdir(parents=True, exist_ok=False)
+    fin = nova_execucao(sol, "financeiro")
     fotografar_fontes(fin, s["empresa"], "FINANCEIRO")
     gravar_json(fin / "ja-tratados.json", coordenador.movimentos_tratados(registro, sol))
     gravar_json(fin / "decisoes.json", s.get("decisoes_movimentos", {}))
@@ -433,8 +473,7 @@ def executar_bancos(sol: str) -> None:
     pasta = RUNTIME / "execucoes" / sol
     comuns = ["--empresa", s["empresa"], "--sol", sol, "--competencia", s["competencia"]]
     try:
-        ban = pasta / f"bancos-{proxima_tentativa(pasta, 'bancos')}"
-        ban.mkdir(parents=True, exist_ok=False)
+        ban = nova_execucao(sol, "bancos")
         fotografar_fontes(ban, s["empresa"], "BANCOS")
         EM_FINANCEIRO.update(sol=sol, etapa="BANCOS")
         origem = ultimo_concluido_caminho(sol, "financeiro")
@@ -465,8 +504,7 @@ def executar_conciliacao(sol: str) -> None:
     """Conciliação sobre os resultados REGISTRADOS (caminho + sha256 do registro) e o pacote de Documentos com âncora."""
     s = coordenador.ler_registro()['solicitacoes'][sol]
     pasta = RUNTIME / 'execucoes' / sol
-    saida = pasta / f"conciliacao-{proxima_tentativa(pasta, 'conciliacao')}"
-    saida.mkdir(parents=True, exist_ok=False)
+    saida = nova_execucao(sol, "conciliacao")
     gravar_json(saida / 'origem.json', {'sol': sol, 'etapa': 'CONCILIACAO', 'inicio': agora()})
     fotografar_fontes(saida, s['empresa'], 'CONCILIACAO')
     try:
@@ -536,11 +574,22 @@ def iniciar_execucao(sol: str) -> bool:
         if EM_EXECUCAO["sol"]:
             return False
         EM_EXECUCAO["sol"] = sol
+    try:
+        tentativa = reprocessamento.iniciar(RUNTIME, sol)       # PREPARADA → EM_EXECUCAO (somente ciclo V2)
+    except (OSError, ValueError, KeyError) as exc:
+        tentativa = None
+        print(f"Aviso: início da tentativa de {sol} não registrado ({type(exc).__name__}).", file=sys.stderr)
 
     def rodar():
+        erro = None
         try:
             executar_pendentes(sol)
+        except Exception as exc:                               # erro técnico inesperado: auditado como FALHOU
+            erro = exc
+            print(f"Erro técnico na execução de {sol}: {type(exc).__name__}: {exc}", file=sys.stderr)
         finally:
+            if tentativa:
+                finalizar_tentativa(sol, tentativa, erro)
             with TRAVA:
                 EM_EXECUCAO["sol"] = None
     threading.Thread(target=rodar, daemon=True).start()
@@ -1633,7 +1682,7 @@ class Manipulador(BaseHTTPRequestHandler):
         if not eleg["elegivel"]:
             return self.json(409, {"mensagem": "Reprocessamento bloqueado.", "motivos": eleg["motivos"]})
         atual = reprocessamento.listar(RUNTIME, sol)
-        if atual and atual[-1].get("status") in {"PREPARADA", "EM_EXECUCAO"}:
+        if reprocessamento.ativa(RUNTIME, sol):                 # só PREPARADA/EM_EXECUCAO impedem; finais não
             return self.erro(409, "Já existe uma tentativa de reprocessamento em andamento.")
         nova = reprocessamento.criar(RUNTIME, sol, origem=(atual[-1] if atual else {"numero": 1}),
                                      motivo=motivo, solicitante=str(dados.get("solicitante") or "Supervisor"),
