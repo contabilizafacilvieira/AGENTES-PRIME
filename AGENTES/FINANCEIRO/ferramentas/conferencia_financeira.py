@@ -35,9 +35,11 @@ def clientes():
 sys.path.insert(0, str(RAIZ / 'API-LOCAL'))
 from documentos_local import encaminhamento
 from metodo_empresa import carregar as carregar_metodo_empresa
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import normalizador_financeiro as nf
 EXTRATOR = RAIZ / "AGENTES" / "DOCUMENTOS" / "ferramentas" / "extrair_documentos.py"
-VERSAO = "1.2"
-PROCEDIMENTO = "AGENTES/FINANCEIRO/PROCEDIMENTO.md v1.2"
+VERSAO = "1.3"
+PROCEDIMENTO = "AGENTES/FINANCEIRO/PROCEDIMENTO.md v1.3"
 RE_CNPJ = re.compile(r"(?<!\d)\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2}(?!\d)")
 RE_DATA = re.compile(r"(\d{2})/(\d{2})/(\d{4})")
 RE_VALOR_BR = re.compile(r"(?<!\d)(?:\d{1,3}(?:\.\d{3})+|\d+),\d{2}(?!\d)")
@@ -525,6 +527,8 @@ def ler_nfe(a: dict, cad: dict) -> dict:
 
 # ---------------------------------------------------------------- conferência
 
+TIPO_RELATORIO_FINANCEIRO = "Relatório financeiro de lançamentos"     # natureza documental definida por Documentos
+FONTE_AUXILIAR = "FONTE_AUXILIAR_FINANCEIRA"
 NATUREZA = {"NOTA_FISCAL", "GUIA", "RECIBO", "FOLHA"}   # boleto identifica a cobrança, não a natureza (ver PROCEDIMENTO)
 # FOLHA = resumo da folha (cópia de suporte do DP): natureza do pagamento de salários, vinculada por referência explícita.
 
@@ -539,6 +543,8 @@ class Conferencia:
         self.ressalvas = []
         self.documentos_pendentes_leitura = []
         self.posicoes, self.posicoes_titulos, self.posicoes_resumo = [], [], None
+        # Fonte AUXILIAR (relatório financeiro normalizado): nunca se mistura com extratos/movimentos bancários.
+        self.relatorios_financeiros, self.movimentos_auxiliares = [], []
 
     def pendencia(self, tipo, descricao, referencia=None):
         self.pendencias.append({"id": f"PF-{len(self.pendencias) + 1:02d}", "tipo": tipo, "descricao": descricao, "referencia": referencia})
@@ -593,6 +599,9 @@ class Conferencia:
                 self.pendencia("SALDO_INICIAL_AUSENTE", f"{nome}: saldo inicial não informado no layout. "
                                "Os movimentos podem ser conferidos, mas a verificação aritmética integral do mês continua pendente.", nome)
                 continue
+            if destino.get("tipo") == TIPO_RELATORIO_FINANCEIRO and leitura == "EXTRAIDO_PLANILHA":
+                self.carregar_relatorio_financeiro(a, nome)
+                continue
             linhas = linhas_tabulares(a)
             if linhas and cabecalho(linhas, CSV_EXTRATO)[0] is not None:
                 self.extratos += ler_csv_extrato(a, linhas)
@@ -632,6 +641,60 @@ class Conferencia:
             if d.get("cancelada"):
                 d["bloqueado"] = "nota fiscal cancelada"
                 self.pendencia("DOCUMENTO_CANCELADO", f"{d['arquivo']}: NF-e cancelada; não sustenta pagamento.", d["arquivo"])
+
+    # ---- fonte auxiliar: relatório financeiro → Normalizador Financeiro (NÃO é extrato bancário)
+    def carregar_relatorio_financeiro(self, a: dict, nome: str):
+        try:
+            r = nf.normalizar(a)
+        except Exception as exc:                       # falha do normalizador vira pendência; nunca derruba a conferência
+            self.pendencia("RELATORIO_FINANCEIRO_NAO_NORMALIZADO", f"{nome}: falha ao normalizar o relatório financeiro "
+                           f"({type(exc).__name__}); nenhum movimento auxiliar foi usado.", nome)
+            self.ignorados.append({"arquivo": nome, "motivo": "FALHA_NORMALIZADOR"})
+            self.relatorios_financeiros.append({"arquivo": nome, "sha256": a.get("sha256"), "situacao": "NAO_NORMALIZADO",
+                                                "falha": type(exc).__name__})
+            return
+        if r["situacao"] == "NAO_NORMALIZADO":
+            motivo = "; ".join(p["problema"] for p in r["pendencias"] if p["nivel"] == nf.BLOQUEIO) or "relatório não normalizado"
+            self.pendencia("RELATORIO_FINANCEIRO_NAO_NORMALIZADO", f"{motivo} Nenhum movimento auxiliar foi usado.", nome)
+            self.ignorados.append({"arquivo": nome, "motivo": "RELATORIO_FINANCEIRO_NAO_NORMALIZADO"})
+        else:
+            grupos = {}
+            for p in r["pendencias"]:
+                if p["nivel"] != nf.INFORMATIVO:
+                    grupos.setdefault(p["codigo"], []).append(p)
+            for codigo, lista in grupos.items():
+                p = lista[0]
+                texto_p = p["problema"] if len(lista) == 1 else f"{nome}: {len(lista)} linha(s) com {codigo}."
+                self.pendencia(f"RELATORIO_FINANCEIRO_{codigo}", f"{texto_p} Impacto: {p['impacto']} O que fazer: {p['o_que_fazer']}", nome)
+            self.limitacoes.append(f"{nome}: relatório financeiro usado como FONTE AUXILIAR ({r['resumo']['movimentos']} movimento(s) "
+                                   "normalizado(s)); não é extrato bancário e não comprova movimentação na conta.")
+        self.movimentos_auxiliares += [dict(nf.para_json(m), fonte=FONTE_AUXILIAR) for m in r["movimentos"]]
+        self.relatorios_financeiros.append(nf.para_json({k: r[k] for k in (
+            "contrato", "versao", "tipo_fonte", "adaptador", "origem", "situacao", "abas", "campos_ausentes",
+            "campos_complementares_ausentes", "resumo", "pendencias", "linhas_nao_realizadas", "linhas_ignoradas") if k in r}))
+
+    def saida_fontes(self) -> dict:
+        """Campos NOVOS do resultado (retrocompatíveis): fonte bancária e fonte auxiliar, sempre separadas."""
+        movs = self.movimentos_auxiliares
+        conta = lambda n: sum(1 for m in movs if m["natureza"] == n)
+        soma = lambda n: fmt(sum((Decimal(m["valor"]) for m in movs if m["natureza"] == n), Decimal("0.00")))
+        return {
+            "fonte_bancaria": {"tipo": "EXTRATO_BANCARIO", "extratos_recebidos": len(self.extratos),
+                               "extratos_utilizaveis": sum(1 for e in self.extratos if e.get("aceito")),
+                               "movimentos_bancarios": len(self.movimentos)},
+            "fonte_auxiliar_financeira": {
+                "tipo": FONTE_AUXILIAR, "contrato": nf.CONTRATO,
+                "aviso": "Relatório financeiro é fonte AUXILIAR: não substitui extrato bancário, não conclui a conferência "
+                         "bancária e não gera lançamento contábil.",
+                "relatorios": self.relatorios_financeiros,
+                "resumo": {"relatorios": len(self.relatorios_financeiros), "movimentos": len(movs),
+                           "entradas": conta("ENTRADA"), "saidas": conta("SAIDA"), "indeterminadas": conta("INDETERMINADA"),
+                           "total_entradas": soma("ENTRADA"), "total_saidas": soma("SAIDA"),
+                           "nao_realizadas": sum(len(r.get("linhas_nao_realizadas") or []) for r in self.relatorios_financeiros),
+                           "pendencias": sum(1 for r in self.relatorios_financeiros for p in r.get("pendencias") or []
+                                             if p.get("nivel") != nf.INFORMATIVO) +
+                                         sum(1 for r in self.relatorios_financeiros if r.get("falha"))}},
+            "movimentos_financeiros_auxiliares": movs}
 
     # ---- extratos: conta, titular, período, saldos, duplicidades
     def preparar_movimentos(self):
@@ -757,6 +820,9 @@ class Conferencia:
         if not aceitos:
             bloqueios.append("Nenhum extrato utilizável de conta cadastrada desta empresa (extrato ausente, ilegível ou de outro titular): "
                              "titularidade do lote indeterminada e arquivo essencial indisponível.")
+            if any(r.get("situacao") != "NAO_NORMALIZADO" for r in self.relatorios_financeiros):
+                bloqueios.append("Relatório financeiro processado como fonte auxiliar, porém nenhum extrato bancário utilizável foi "
+                                 "localizado para a conta; o relatório não substitui o extrato.")
             return bloqueios
         periodos = [(e["inicio"], e["fim"]) for e in aceitos if e["inicio"] and e["fim"]]
         datas = [m["data"] for m in self.movimentos]
@@ -779,7 +845,7 @@ class Conferencia:
                                          "movimentos_encontrados": len(self.movimentos)},
             "relacionados_sem_movimento": [], "ambiguas": [], "sugestoes": [], "duplicidades": self.duplicidades, "pendencias": self.pendencias,
             "documentos": self.documentos, "relacao": self.relacao, "ignorados": self.ignorados, "limitacoes": self.limitacoes,
-            "posicoes_titulos": [], "posicoes_titulos_resumo": None}
+            "posicoes_titulos": [], "posicoes_titulos_resumo": None, **self.saida_fontes()}
 
     # ---- correspondências
     PALAVRAS_COMUNS = {"LTDA", "EIRELI", "FICTICIA", "FICTICIO", "COMERCIO", "SERVICOS", "INDUSTRIA", "EMPRESA", "BRASIL", "PRESTADOR",
@@ -1275,6 +1341,7 @@ class Conferencia:
                 "Posição de títulos a pagar/receber é controle INTERNO da empresa; não substitui confirmação de terceiros.",
                 "PDFs digitais, mistos e escaneados têm leitura local por página; OCR duvidoso ou leitura incompleta exige conferência.",
                 "CSV de extrato e relação somente no leiaute do projeto (ver PROCEDIMENTO.md)."],
+            **self.saida_fontes(),
         }
 
 

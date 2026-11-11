@@ -1,7 +1,8 @@
-# PROCEDIMENTO GERAL · AGENTE FINANCEIRO · versão 1.2 (03/11/2026)
+# PROCEDIMENTO GERAL · AGENTE FINANCEIRO · versão 1.3 (11/11/2026)
 > 1.1: bloqueio do lote × pendência individual; divergência entre extratos sobrepostos; ressalvas de Documentos.
 > 1.2: relação com TIPO (pagamentos e recebimentos), posição de títulos (controle interno), resumo da folha como natureza
 >      do pagamento de salários, isolamento de documento de outra empresa não cadastrada.
+> 1.3: relatório financeiro normalizado como FONTE AUXILIAR (Normalizador Financeiro); não substitui extrato bancário.
 
 Procedimento GERAL, válido para qualquer empresa. Regras específicas de cliente NÃO entram aqui (ficam em
 `CLIENTES/<EMPRESA>/`). Implementação: `ferramentas/conferencia_financeira.py` (código local, sem Claude).
@@ -73,6 +74,37 @@ competência = `COMPETENCIA`. Sustenta a NATUREZA do pagamento de salários some
 (ex.: `DOCUMENTOS=FP-2026-10`); valor igual sem referência é apenas candidato. O Financeiro não analisa a folha.
 Outros documentos do DP (encargos, provisões, folha genérica) e da Conciliação são ignorados quando não há cópia
 destinada ao Financeiro.
+
+## Relatório financeiro normalizado (fonte AUXILIAR) — v1.3
+Ordem geral inalterada: Coordenador → Documentos → Financeiro → Contabilidade; a Conciliação continua como suporte.
+- **Entrada:** documento classificado por Documentos como "Relatório financeiro de lançamentos" e lido como planilha
+  (`EXTRAIDO_PLANILHA`, inclusive pela leitura alternativa de XLSX com estilo inválido). Passa pelo Normalizador
+  Financeiro (`ferramentas/normalizador_financeiro.py`), que devolve o contrato `MOVIMENTOS_FINANCEIROS_NORMALIZADOS_V1`.
+  O reconhecimento usa cabeçalho e conteúdo, nunca o nome do arquivo. Valores em Decimal; nada é presumido.
+- **Fonte auxiliar:** os movimentos ficam em `movimentos_financeiros_auxiliares` (marca `FONTE_AUXILIAR_FINANCEIRA`, id
+  `RF-…`), SEPARADOS dos movimentos bancários (`movimentos`, id `MOV-…`). Resumo e relatórios em `fonte_auxiliar_financeira`;
+  extratos em `fonte_bancaria`. Campos antigos do resultado não mudam.
+- **Relatório financeiro NÃO substitui extrato bancário:** não entra na verificação de extratos, não conclui a conferência
+  bancária e não gera conciliação nem lançamento. Sem extrato utilizável, o LOTE CONTINUA BLOQUEADO, com o aviso
+  "Relatório financeiro processado como fonte auxiliar, porém nenhum extrato bancário utilizável foi localizado".
+- **Competência:** `data_competencia` (data ou mês explícito) é campo próprio; nunca substitui data, vencimento ou quitação.
+- **Situação:** só valores exatos testados. Pago/quitado/recebido = `REALIZADO`; em aberto/pendente/não pago = `EM_ABERTO`;
+  cancelado = `CANCELADO`; texto não reconhecido = `INDETERMINADO` (pendência `SITUACAO_NAO_RECONHECIDA`); coluna existente
+  com célula vazia = `AUSENTE` (pendência ATENÇÃO `SITUACAO_AUSENTE`). Sem a coluna, a situação fica vazia (não inventada).
+- **Linhas não realizadas:** `EM_ABERTO`, `CANCELADO`, `INDETERMINADO` e `AUSENTE` não entram como movimento realizado; ficam
+  em `linhas_nao_realizadas` com linha, situação, motivo, evidência, valor, natureza, datas, origem e SHA. Nenhuma regra
+  promove automaticamente uma dessas linhas a realizada.
+- **"É Despesa" (validação cruzada):** Valor Entrada/Saída continuam a fonte principal. Conflito = `DIVERGENCIA_NATUREZA`;
+  só define a natureza quando nenhuma outra coluna a define.
+- **"Valor Pago" (validação cruzada):** comparado com o valor do movimento; diferença = `DIVERGENCIA_VALOR_PAGO`, com os dois
+  valores preservados. Linha com qualquer divergência NÃO entra nos movimentos confiáveis, gera pendência e nunca é
+  corrigida silenciosamente (decisão do Supervisor, 11/11/2026).
+- **Contraparte:** estruturada {nome, nome_fantasia, documento}, só com campos existentes; não é obrigatória e não aparece
+  em mensagens de pendência.
+- **Rastreabilidade:** cada movimento/linha guarda SHA-256 do original, arquivo, aba e número da linha na planilha.
+- **Falha do normalizador** (sem SHA, cabeçalho ambíguo, sem leitor, erro inesperado): pendência
+  `RELATORIO_FINANCEIRO_NAO_NORMALIZADO`; nenhum movimento auxiliar; nunca convertido em extrato. Pendências de linha chegam
+  agrupadas por tipo (`RELATORIO_FINANCEIRO_<CÓDIGO>`).
 
 ## Bloqueio do lote × pendência individual
 - **Bloqueio do LOTE inteiro** (nada é conferido; Bancos não roda; nova solicitação necessária):

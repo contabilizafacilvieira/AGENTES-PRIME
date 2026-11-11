@@ -18,7 +18,7 @@ Para rodar só algumas áreas: `... executar_gate.py FISCAL LOCAL`.
 - Nenhuma regra de negócio foi afrouxada para um teste passar: fixtures antigas foram atualizadas para o contrato vigente.
 - Leituras de referências reais (STATE-BANK) ficam desligadas por padrão; só com `AGENTES_PRIME_TESTE_REFERENCIAS_REAIS=1`.
 
-## Baterias ATIVAS (50)
+## Baterias ATIVAS (52)
 
 | Área | Baterias |
 |---|---|
@@ -28,7 +28,7 @@ Para rodar só algumas áreas: `... executar_gate.py FISCAL LOCAL`.
 | API local / Segurança | `API/testar_api.py` (127.0.0.1, token, Host, origem, upload, limites) |
 | Documentos | `LOCAL/testar_pdf_local.py`, `testar_triagem_documentos.py`, `testar_salvaguardas_documentos.py`, `testar_pacotes_areas.py`, `testar_encaminhamento_automatico.py` |
 | Cadastro | `LOCAL/testar_local.py`, `testar_plano_dominio.py`, `testar_metodo_empresa.py`, `testar_lixeira.py`, `testar_revisao_piloto.py` |
-| Financeiro | `LOCAL/testar_extrato_santander.py`, `testar_confronto_suportes.py`, `testar_adiantamentos.py`, `testar_financeiro_percurso.py`, `FINANCEIRO/testar_correcoes_fluxo.py`, `FINANCEIRO/testar_financeiro.py` |
+| Financeiro | `LOCAL/testar_extrato_santander.py`, `testar_confronto_suportes.py`, `testar_adiantamentos.py`, `testar_financeiro_percurso.py`, `FINANCEIRO/testar_correcoes_fluxo.py`, `FINANCEIRO/testar_financeiro.py`, `FINANCEIRO/testar_normalizador_financeiro.py` (Normalizador Financeiro: planilha → contrato comum), `FINANCEIRO/testar_integracao_normalizador.py` (relatório financeiro como fonte AUXILIAR do Financeiro) |
 | Fiscal | `FISCAL/testar_fiscal.py`, `testar_salvaguardas_fiscais.py`, `testar_coordenador_fiscal.py`, `testar_fluxo_fiscal.py` |
 | DP / Conciliação / Exportação | `DP/testar_dp.py`, `CONCILIACAO/testar_conciliacao.py`, `EXPORTACAO/testar_exportacao_dominio.py` |
 | Base inicial e árvore do plano | `BASE-INICIAL/testar_base_inicial.py`, `BASE-INICIAL/testar_percurso_base_inicial.py`, `BASE-INICIAL/testar_plano_hierarquia.py` (HIER, GROUP, BOOK, BOOK-SEV, DUP, reanálise) |
