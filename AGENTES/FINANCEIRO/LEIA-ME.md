@@ -40,7 +40,11 @@ Primeiro adaptador: `SANTANDER_EXTRATO_CONSOLIDADO_PJ`. Novos bancos/leiautes en
 Financeiro 1.4: todo PDF passa primeiro pelo normalizador; fonte íntegra vira extrato utilizável (sujeito à conta
 cadastrada), fonte bloqueada vira `EXTRATO_BANCARIO_RECUSADO`; sem adaptador, segue o caminho antigo (leitor
 `ler_santander_pdf` mantido como LEGADO). Documentos usa o reconhecimento dos adaptadores como evidência de natureza.
-**Limitação temporária:** Enquanto não houver mecanismo aprovado de associação entre movimentos bancários e fontes auxiliares, a existência de um extrato bancário normalizado não constitui suporte documental/contábil para os movimentos.
+**Conciliação banco × relatório (Financeiro 1.5):** `ferramentas/conciliador_financeiro.py` classifica cada associação em
+CONCILIADO, PROVÁVEL, AMBÍGUO ou NÃO CONCILIADO por regras explícitas (ver PROCEDIMENTO.md); movimento do extrato normalizado
+sem CONCILIADO nem suporte independente bloqueia o lote para a proposta contábil. Conciliar não é suporte fiscal.
+Testes: `TESTES/FINANCEIRO/testar_conciliador_financeiro.py` (somente fictícios).
+**Limitação da v1.4 (tratada pela regra fail-closed acima):** Enquanto não houver mecanismo aprovado de associação entre movimentos bancários e fontes auxiliares, a existência de um extrato bancário normalizado não constitui suporte documental/contábil para os movimentos.
 Testes: `TESTES/FINANCEIRO/testar_normalizador_bancario.py` (somente fictícios).
 
 ## Limitações conhecidas

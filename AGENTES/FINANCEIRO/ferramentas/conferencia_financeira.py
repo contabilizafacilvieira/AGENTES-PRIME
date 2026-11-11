@@ -25,6 +25,7 @@ import re
 import subprocess
 import sys
 import unicodedata
+from collections import Counter
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
@@ -38,9 +39,10 @@ from metodo_empresa import carregar as carregar_metodo_empresa
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import normalizador_financeiro as nf
 import normalizador_bancario as nb
+import conciliador_financeiro as cf
 EXTRATOR = RAIZ / "AGENTES" / "DOCUMENTOS" / "ferramentas" / "extrair_documentos.py"
-VERSAO = "1.4"
-PROCEDIMENTO = "AGENTES/FINANCEIRO/PROCEDIMENTO.md v1.4"
+VERSAO = "1.5"
+PROCEDIMENTO = "AGENTES/FINANCEIRO/PROCEDIMENTO.md v1.5"
 RE_CNPJ = re.compile(r"(?<!\d)\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2}(?!\d)")
 RE_DATA = re.compile(r"(\d{2})/(\d{2})/(\d{4})")
 RE_VALOR_BR = re.compile(r"(?<!\d)(?:\d{1,3}(?:\.\d{3})+|\d+),\d{2}(?!\d)")
@@ -548,6 +550,8 @@ class Conferencia:
         self.relatorios_financeiros, self.movimentos_auxiliares = [], []
         # Fontes bancárias lidas pelo Normalizador Bancário (contrato comum), utilizáveis ou recusadas.
         self.fontes_bancarias_normalizadas = []
+        # Contratos completos (Decimal) usados pelo motor de conciliação banco × relatório.
+        self.contratos_bancarios, self.contratos_auxiliares, self.conciliacao = [], [], None
 
     def pendencia(self, tipo, descricao, referencia=None):
         self.pendencias.append({"id": f"PF-{len(self.pendencias) + 1:02d}", "tipo": tipo, "descricao": descricao, "referencia": referencia})
@@ -673,6 +677,8 @@ class Conferencia:
                 self.pendencia(f"RELATORIO_FINANCEIRO_{codigo}", f"{texto_p} Impacto: {p['impacto']} O que fazer: {p['o_que_fazer']}", nome)
             self.limitacoes.append(f"{nome}: relatório financeiro usado como FONTE AUXILIAR ({r['resumo']['movimentos']} movimento(s) "
                                    "normalizado(s)); não é extrato bancário e não comprova movimentação na conta.")
+        if r["situacao"] != "NAO_NORMALIZADO":
+            self.contratos_auxiliares.append(r)
         self.movimentos_auxiliares += [dict(nf.para_json(m), fonte=FONTE_AUXILIAR) for m in r["movimentos"]]
         self.relatorios_financeiros.append(nf.para_json({k: r[k] for k in (
             "contrato", "versao", "tipo_fonte", "adaptador", "origem", "situacao", "abas", "campos_ausentes",
@@ -706,6 +712,7 @@ class Conferencia:
             if p["nivel"] != nb.INFORMATIVO:
                 self.pendencia(f"EXTRATO_BANCARIO_{p['codigo']}", f"{nome}: {p['problema']} Impacto: {p['impacto']} "
                                f"O que fazer: {p['o_que_fazer']}", nome)
+        self.contratos_bancarios.append({"arquivo": nome, "contrato": r})
         self.extratos.append({
             "arquivo": nome, "formato": f"NORMALIZADO:{r['adaptador']}", "banco": r["banco"]["codigo"], "agencia": r["agencia"],
             "conta": r["conta"], "titular": None, "inicio": r["periodo_inicio"], "fim": r["periodo_fim"],
@@ -743,7 +750,45 @@ class Conferencia:
                            "pendencias": sum(1 for r in self.relatorios_financeiros for p in r.get("pendencias") or []
                                              if p.get("nivel") != nf.INFORMATIVO) +
                                          sum(1 for r in self.relatorios_financeiros if r.get("falha"))}},
-            "movimentos_financeiros_auxiliares": movs}
+            "movimentos_financeiros_auxiliares": movs,
+            "conciliacao_financeira": cf.para_json(self.conciliacao) if self.conciliacao else None}
+
+    # ---- conciliação financeira banco × relatório + regra fail-closed (somente movimentos do contrato bancário comum)
+    def conciliar_fontes(self) -> list:
+        """Executa o motor quando há extrato normalizado ACEITO (conta cadastrada). Anota cada movimento bancário com a
+        classificação da associação, sem alterar suportes, situação ou documentos. Devolve o bloqueio do lote (ou [])."""
+        aceitos = {e["arquivo"] for e in self.extratos if e.get("aceito")}
+        fontes = [c["contrato"] for c in self.contratos_bancarios if c["arquivo"] in aceitos]
+        if not fontes:
+            return []
+        self.conciliacao = cf.conciliar(fontes, self.contratos_auxiliares)
+        por_id = {i: x for x in self.conciliacao["associacoes"] for i in x["bancarios"]}
+        pendentes = Counter()
+        for m in self.movimentos:
+            rid = (m.get("rastreio_bancario") or {}).get("id")
+            if not rid:
+                continue                                  # leiautes antigos (CSV/OFX/PDF legado): regra anterior, inalterada
+            x = por_id.get(rid)
+            m["conciliacao_financeira"] = {"classificacao": x["classificacao"] if x else "NAO_CONCILIADO",
+                                           "associacao": x["id"] if x else None, "auxiliares": x["auxiliares"] if x else [],
+                                           "libera_associacao_financeira": bool(x and x["libera_associacao_financeira"]),
+                                           "suporte_documental": False}
+            suporte_independente = m.get("situacao") in ("COM_SUPORTE", "TRANSFERENCIA_PROPRIA")
+            if m["conciliacao_financeira"]["classificacao"] != "CONCILIADO" and not suporte_independente:
+                pendentes[m["conciliacao_financeira"]["classificacao"]] += 1
+        if not pendentes:
+            return []
+        total = sum(pendentes.values())
+        detalhe = ", ".join(f"{n} {r}" for r, n in (("prováveis", pendentes["PROVAVEL"]), ("ambíguas", pendentes["AMBIGUO"]),
+                                                    ("não conciliadas", pendentes["NAO_CONCILIADO"])) if n)
+        self.pendencia("ASSOCIACAO_FINANCEIRA_NAO_CONFIRMADA",
+                       f"Problema: existem movimentações bancárias que ainda não possuem associação financeira confirmada "
+                       f"({total} de {len([m for m in self.movimentos if m.get('rastreio_bancario')])}: {detalhe}). "
+                       "Impacto: essas movimentações não podem seguir automaticamente para tratamento contábil. "
+                       "O que fazer: revisar as associações sugeridas ou fornecer documentação/suporte adicional.")
+        return [f"Existem {total} movimentação(ões) bancária(s) sem associação financeira confirmada nem suporte independente "
+                f"({detalhe}); o lote não segue automaticamente para a proposta contábil. Revisar as associações sugeridas "
+                "ou fornecer documentação/suporte adicional."]
 
     # ---- extratos: conta, titular, período, saldos, duplicidades
     def preparar_movimentos(self):
@@ -1341,6 +1386,7 @@ class Conferencia:
     def montar(self, historico: dict) -> dict:
         """historico (do Coordenador): escriturados (lançamento efetivo → bloqueia) e propostas_simulacao (só rastreio)."""
         docs = {d["id"]: d for d in self.documentos}
+        bloqueio_conciliacao = self.conciliar_fontes()    # antes do resumo: a pendência agrupada entra na contagem
         escriturados, propostas = historico.get("escriturados", {}), historico.get("propostas_simulacao", {})
         for m in self.movimentos:
             if m["id"] in escriturados:
@@ -1368,9 +1414,11 @@ class Conferencia:
         return {
             "agente": "FINANCEIRO", "versao": VERSAO, "procedimento": PROCEDIMENTO, "sol": self.sol, "empresa": self.empresa,
             "competencia": self.competencia, "modo": "SIMULACAO", "executado_em": dt.datetime.now().astimezone().replace(microsecond=0).isoformat(),
-            "aviso": "Conferência financeira (extrato × relação × comprovantes × suportes). NÃO é conciliação contábil completa: "
-                     "a Conciliação independente é etapa futura.",
-            "verificacao_extratos": self.verificacoes, "movimentos": self.movimentos, "bloqueio_lote": [],
+            "aviso": ("LOTE BLOQUEADO: movimentações bancárias sem associação financeira confirmada; nada segue automaticamente "
+                      "para Contabilidade/Bancos." if bloqueio_conciliacao else
+                      "Conferência financeira (extrato × relação × comprovantes × suportes). NÃO é conciliação contábil completa: "
+                      "a Conciliação independente é etapa futura."),
+            "verificacao_extratos": self.verificacoes, "movimentos": self.movimentos, "bloqueio_lote": bloqueio_conciliacao,
             "ressalvas_documentos": self.ressalvas,
             "resumo": {
                 "movimentos": len(self.movimentos),

@@ -66,11 +66,11 @@ class IntegracaoBancaria(unittest.TestCase):
         self.assertEqual((len(r["movimentos"]), len(r["movimentos_financeiros_auxiliares"])), (5, 2))
         self.assertTrue(all(m["fonte"] == "FONTE_AUXILIAR_FINANCEIRA" and m["id"].startswith("RF-") for m in r["movimentos_financeiros_auxiliares"]))
 
-    def test_fin_bank_04_nenhum_matching(self):
+    def test_fin_bank_04_sem_casamento_nao_ha_suporte(self):
+        # v1.6: o motor roda, mas neste cenário nada casa (datas/valores distintos); nenhum suporte/relação é criado
         _, r = conferir([fx.extrato(), aux.relatorio()])
-        texto = json.dumps(r["movimentos"], ensure_ascii=False)
-        self.assertNotIn("RF-", texto)                                   # nenhum movimento auxiliar ligado a um bancário
-        self.assertTrue(all(m["relacao"] == [] for m in r["movimentos"]))
+        self.assertTrue(all(m["conciliacao_financeira"]["classificacao"] == "NAO_CONCILIADO" for m in r["movimentos"]))
+        self.assertTrue(all(m["relacao"] == [] and m["conciliacao_financeira"]["auxiliares"] == [] for m in r["movimentos"]))
 
     def test_fin_bank_05_aritmetica_divergente_recusada(self):
         p3 = fx.P3.replace("SALDO EM 31/10 1.300,00", "SALDO EM 31/10 1.300,01")
@@ -112,8 +112,10 @@ class IntegracaoBancaria(unittest.TestCase):
 
     def test_fin_bank_11_remove_bloqueio_sem_extrato(self):
         _, r = conferir([fx.extrato()])
-        self.assertEqual(r["bloqueio_lote"], [])
-        self.assertFalse(r["aviso"].startswith("LOTE BLOQUEADO"))
+        # o bloqueio "nenhum extrato utilizável" sai; entra o bloqueio fail-closed (movimentos sem associação confirmada)
+        self.assertFalse(any(b.startswith("Nenhum extrato utilizável") for b in r["bloqueio_lote"]))
+        self.assertEqual(len(r["bloqueio_lote"]), 1)
+        self.assertIn("sem associação financeira confirmada", r["bloqueio_lote"][0])
         # mesmo extrato com conta NÃO cadastrada: titularidade não é presumida
         sem_conta = dict(CAD, contas={})
         _, r = conferir([fx.extrato()], cadastro=sem_conta)
@@ -122,8 +124,8 @@ class IntegracaoBancaria(unittest.TestCase):
 
     def test_fin_bank_12_outras_pendencias_permanecem(self):
         _, r = conferir([fx.extrato(), NAO_IDENTIFICADO])
-        self.assertEqual(r["bloqueio_lote"], [])
         self.assertIn("DOCUMENTO_NAO_IDENTIFICADO", tipos(r))
+        self.assertIn("ASSOCIACAO_FINANCEIRA_NAO_CONFIRMADA", tipos(r))
 
     def test_fin_bank_13_auxiliar_nao_substitui_bancaria(self):
         _, r = conferir([aux.relatorio()])
@@ -153,8 +155,69 @@ class IntegracaoBancaria(unittest.TestCase):
         self.assertEqual((fa["resumo"]["relatorios"], fa["resumo"]["movimentos"]), (1, 2))
         self.assertEqual((len(r["movimentos"]), len(r["movimentos_financeiros_auxiliares"])), (5, 2))
         self.assertFalse({m["id"] for m in r["movimentos"]} & {m["id"] for m in r["movimentos_financeiros_auxiliares"]})
-        self.assertEqual(r["bloqueio_lote"], [])
+        self.assertEqual(r["conciliacao_financeira"]["resumo"]["movimentos_bancarios"], 5)
         json.dumps(r, ensure_ascii=False)                                # resultado serializável (sem Decimal solto)
+
+
+
+# ---------------------------------------------------------------- v1.6: motor de conciliação no Financeiro (FIN-CONC)
+def extrato_identificado():
+    """Mesmo extrato fictício, com documento/contraparte identificáveis (aritmética e saldos inalterados)."""
+    p2 = (fx.P2.replace("TARIFA FICTICIA -  10,00-", "TARIFA FICTICIA 778899  10,00-")
+          .replace("PIX RECEBIDO CLIENTE TESTE - 500,00", "PIX RECEBIDO OMEGA ALIMENTOS - 500,00")
+          .replace("LANCAMENTO QUALQUER XYZ - 100,00", "LANCAMENTO QUALQUER XYZ 445566 100,00"))
+    p3 = fx.P3.replace("PIX ENVIADO FORNECEDOR TESTE LTDA", "PIX ENVIADO SIGMA METALURGICA")
+    return fx.extrato([fx.P1, p2, p3, fx.P4])
+
+
+def relatorio_casavel(sem=()):
+    def linha(cod, quit, entrada, saida, doc=None, razao=None):
+        return [cod, quit, quit, "Não" if entrada else "Sim", entrada, saida, entrada or saida, "Foi Pago", None, razao, doc,
+                "Plano Teste", "Banco Teste", "Lançamento fictício", "00.000.000/0001-91", "10/2026"]
+    linhas = {1: linha(1, "2026-10-01", None, "10,00", doc="778899"), 2: linha(2, "2026-10-01", "500,00", None, razao="OMEGA ALIMENTOS LTDA"),
+              3: linha(3, "2026-10-05", None, "90,00", doc="123456"), 4: linha(4, "2026-10-07", "100,00", None, doc="445566"),
+              5: linha(5, "2026-10-07", None, "200,00", razao="SIGMA METALURGICA LTDA")}
+    return aux.relatorio([aux.CAB] + [v for k, v in linhas.items() if k not in sem])
+
+
+class ConciliacaoNoFinanceiro(unittest.TestCase):
+    def test_fin_conc_01_todos_conciliados_liberam_associacao(self):
+        _, r = conferir([extrato_identificado(), relatorio_casavel()])
+        cl = [m["conciliacao_financeira"]["classificacao"] for m in r["movimentos"]]
+        self.assertEqual(cl, ["CONCILIADO"] * 5)
+        self.assertEqual(r["bloqueio_lote"], [])
+        self.assertNotIn("ASSOCIACAO_FINANCEIRA_NAO_CONFIRMADA", tipos(r))
+        # conciliar não é suporte documental: situação e documentos dos movimentos não mudam
+        self.assertTrue(all(m["situacao"] == "SEM_SUPORTE" and m["documentos"] == [] for m in r["movimentos"]))
+        self.assertTrue(all(m["conciliacao_financeira"]["suporte_documental"] is False for m in r["movimentos"]))
+        self.assertEqual(r["conciliacao_financeira"]["resumo"]["percentual_quantidade"], "100.00")
+
+    def test_fin_conc_02_um_nao_conciliado_bloqueia_com_mensagem_agrupada(self):
+        _, r = conferir([extrato_identificado(), relatorio_casavel(sem=(5,))])
+        self.assertEqual(len(r["bloqueio_lote"]), 1)
+        self.assertIn("1 não conciliadas", r["bloqueio_lote"][0])
+        agrupadas = [p for p in r["pendencias"] if p["tipo"] == "ASSOCIACAO_FINANCEIRA_NAO_CONFIRMADA"]
+        self.assertEqual(len(agrupadas), 1)                               # causa raiz agrupada, sem uma por movimento
+        d = agrupadas[0]["descricao"]
+        self.assertTrue(d.startswith("Problema:") and "Impacto:" in d and "O que fazer:" in d)
+
+    def test_fin_conc_03_sem_fonte_auxiliar_bloqueia(self):
+        _, r = conferir([extrato_identificado()])
+        self.assertEqual(r["conciliacao_financeira"]["situacao"], "SEM_FONTE_AUXILIAR")
+        self.assertIn("5 não conciliadas", r["bloqueio_lote"][0])         # risco da v1.5.0 corrigido
+
+    def test_fin_conc_04_provavel_bloqueia(self):
+        rel = aux.relatorio([aux.CAB, aux.lin(9, "Não", "500,00", None, quit="2026-10-01")])   # sem documento/contraparte compatível
+        _, r = conferir([extrato_identificado(), rel])
+        m = next(x for x in r["movimentos"] if x["valor"] == "500.00")
+        self.assertEqual(m["conciliacao_financeira"]["classificacao"], "PROVAVEL")
+        self.assertIn("prováveis", r["bloqueio_lote"][0])
+
+    def test_fin_conc_05_legado_nao_afetado(self):
+        _, r = conferir([aux.extrato()], cadastro=aux.CAD)                  # leiaute antigo: sem contrato bancário comum
+        self.assertIsNone(r["conciliacao_financeira"])
+        self.assertNotIn("ASSOCIACAO_FINANCEIRA_NAO_CONFIRMADA", tipos(r))
+        self.assertFalse(any("associação financeira" in b for b in r["bloqueio_lote"]))
 
 
 if __name__ == "__main__":

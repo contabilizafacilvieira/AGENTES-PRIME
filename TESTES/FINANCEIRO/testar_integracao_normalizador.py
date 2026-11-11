@@ -70,7 +70,7 @@ CHAVES_BLOQUEADO_V12 = {"agente", "versao", "procedimento", "sol", "empresa", "c
 RESUMO_BLOQUEADO_V12 = {"movimentos", "com_suporte", "comprovante_sem_natureza", "sem_suporte", "ambiguos", "transferencias_proprias",
                         "ja_escriturados", "com_proposta_anterior_simulacao", "relacionados_sem_movimento", "duplicidades",
                         "pendencias", "movimentos_encontrados"}
-CHAVES_NOVAS = {"fonte_bancaria", "fonte_auxiliar_financeira", "movimentos_financeiros_auxiliares"}
+CHAVES_NOVAS = {"fonte_bancaria", "fonte_auxiliar_financeira", "movimentos_financeiros_auxiliares", "conciliacao_financeira"}
 
 
 def conferir(arquivos, competencia="2026-10"):
@@ -183,7 +183,7 @@ class IntegracaoNormalizador(unittest.TestCase):
 
     def test_fin_norm_09_formato_anterior_compativel(self):
         _, r = conferir([relatorio()])
-        self.assertEqual((r["versao"], r["procedimento"]), ("1.4", "AGENTES/FINANCEIRO/PROCEDIMENTO.md v1.4"))
+        self.assertEqual((r["versao"], r["procedimento"]), ("1.5", "AGENTES/FINANCEIRO/PROCEDIMENTO.md v1.5"))
         self.assertEqual(set(r) - CHAVES_NOVAS, CHAVES_BLOQUEADO_V12)
         self.assertEqual(set(r["resumo"]), RESUMO_BLOQUEADO_V12)
         _, sem_relatorio = conferir([extrato()])

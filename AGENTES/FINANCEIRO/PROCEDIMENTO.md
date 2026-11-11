@@ -1,9 +1,10 @@
-# PROCEDIMENTO GERAL · AGENTE FINANCEIRO · versão 1.4 (11/11/2026)
+# PROCEDIMENTO GERAL · AGENTE FINANCEIRO · versão 1.5 (11/11/2026)
 > 1.1: bloqueio do lote × pendência individual; divergência entre extratos sobrepostos; ressalvas de Documentos.
 > 1.2: relação com TIPO (pagamentos e recebimentos), posição de títulos (controle interno), resumo da folha como natureza
 >      do pagamento de salários, isolamento de documento de outra empresa não cadastrada.
 > 1.3: relatório financeiro normalizado como FONTE AUXILIAR (Normalizador Financeiro); não substitui extrato bancário.
 > 1.4: extrato bancário lido pelo Normalizador Bancário (contrato comum); leitor Santander antigo vira legado.
+> 1.5: conciliação financeira banco × relatório (motor genérico) e regra fail-closed para o extrato do contrato comum.
 
 Procedimento GERAL, válido para qualquer empresa. Regras específicas de cliente NÃO entram aqui (ficam em
 `CLIENTES/<EMPRESA>/`). Implementação: `ferramentas/conferencia_financeira.py` (código local, sem Claude).
@@ -76,6 +77,31 @@ competência = `COMPETENCIA`. Sustenta a NATUREZA do pagamento de salários some
 Outros documentos do DP (encargos, provisões, folha genérica) e da Conciliação são ignorados quando não há cópia
 destinada ao Financeiro.
 
+## Conciliação financeira banco × relatório — v1.5
+Motor `ferramentas/conciliador_financeiro.py` (`CONCILIACAO_FINANCEIRA_V1`, política `CONCILIACAO_FINANCEIRA_POLITICA_V1`),
+executado pelo Financeiro quando há extrato do contrato comum ACEITO (conta cadastrada). Não é a Conciliação geral do
+sistema e não gera lançamento, conta contábil ou aprovação.
+- **Elegível** (obrigatório): natureza compatível (CRÉDITO↔ENTRADA, DÉBITO↔SAÍDA), data do auxiliar = data de quitação
+  (senão `data`; nunca competência/vencimento) a até 2 dias corridos, valor exato (1×1) ou soma exata (grupos). Tolerância R$ 0,00.
+- **Evidências fortes:** documento exato (normalizado: caixa, espaços, pontuação, zeros à esquerda numéricos), CPF/CNPJ da
+  contraparte no histórico bancário, nome da contraparte com 2+ termos informativos presentes. **Fracas:** nome parcial,
+  descrição com 2+ termos informativos (termos genéricos como PIX/PAGAMENTO/BOLETO não contam).
+- **CONCILIADO (1×1):** elegível + (data ≤ 1 dia e ≥ 1 forte, ou 2 dias e ≥ 2 fortes) + sem concorrente. **PROVÁVEL:** único,
+  sem evidência forte suficiente. **AMBÍGUO:** dois ou mais candidatos disputando o mesmo movimento (componentes conexos; nada
+  é escolhido). **NÃO CONCILIADO:** nenhum candidato elegível.
+- **Grupos 1×N e N×1** (até 3 itens; mais de 12 candidatos = análise manual, sem força bruta): soma exata; CONCILIADO só com
+  evidência forte em todos os membros e data ≤ 1 dia; só a soma = PROVÁVEL; mais de uma combinação = AMBÍGUO.
+- Score com componentes só ordena/explica; a classificação vem das regras. Cada associação guarda id determinístico, ids dos
+  dois lados, cardinalidade, critérios atendidos/ausentes, versão da política e SHA das origens.
+- **Fail-closed:** cada movimento do extrato normalizado recebe `conciliacao_financeira`. Movimento que não está CONCILIADO e
+  não tem suporte independente (COM_SUPORTE ou transferência própria) BLOQUEIA o lote para a proposta contábil, com uma
+  pendência agrupada `ASSOCIACAO_FINANCEIRA_NAO_CONFIRMADA` (problema, impacto, o que fazer). PROVÁVEL exige decisão futura do
+  Supervisor. CONCILIADO libera só a associação financeira: **não** é suporte documental/fiscal (situação e documentos do
+  movimento não mudam). Extratos de leiaute antigo (CSV/OFX/PDF legado) seguem a regra anterior.
+- **Linha de base (11/11/2026):** a política V1 foi validada em cenário operacional real, somente leitura, sem alteração do
+  estado operacional, e não foram identificados falsos positivos entre as associações automáticas revisadas. Calibrações
+  futuras serão uma nova versão de política (V2), com testes próprios, sem alterar a V1 em silêncio.
+
 ## Extrato bancário pelo contrato comum (Normalizador Bancário) — v1.4
 - Todo PDF extraído passa primeiro por `ferramentas/normalizador_bancario.py`, que devolve
   `MOVIMENTOS_BANCARIOS_NORMALIZADOS_V1`. O Financeiro consome o contrato; não há leitor por banco no Financeiro.
@@ -90,7 +116,7 @@ destinada ao Financeiro.
 - Movimentos bancários ficam em `movimentos` (com `rastreio_bancario`: id do contrato, SHA, página, linhas, natureza);
   o resumo das fontes em `fonte_bancaria.fontes_normalizadas`. Fonte auxiliar continua separada. Nesta versão não há
   casamento automático entre extrato e relatório financeiro.
-- **Limitação temporária (decisão do Supervisor, 11/11/2026):** Enquanto não houver mecanismo aprovado de associação entre movimentos bancários e fontes auxiliares, a existência de um extrato bancário normalizado não constitui suporte documental/contábil para os movimentos.
+- **Limitação da v1.4 (decisão do Supervisor, 11/11/2026; tratada pela regra fail-closed da v1.5):** Enquanto não houver mecanismo aprovado de associação entre movimentos bancários e fontes auxiliares, a existência de um extrato bancário normalizado não constitui suporte documental/contábil para os movimentos.
   O relatório financeiro auxiliar não dá suporte a nenhum movimento bancário só por ambos existirem; os movimentos sem
   comprovante/nota/guia/relação vinculados continuam `SEM_SUPORTE`. A política fail-closed para a etapa seguinte será
   implementada junto com o casamento banco × relatório.

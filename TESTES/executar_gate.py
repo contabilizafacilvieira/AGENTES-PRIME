@@ -50,6 +50,7 @@ GATE = [
     ("FINANCEIRO", "TESTES/FINANCEIRO/testar_integracao_normalizador.py"),
     ("FINANCEIRO", "TESTES/FINANCEIRO/testar_normalizador_bancario.py"),
     ("FINANCEIRO", "TESTES/FINANCEIRO/testar_integracao_bancaria.py"),
+    ("FINANCEIRO", "TESTES/FINANCEIRO/testar_conciliador_financeiro.py"),
     ("FISCAL", "TESTES/FISCAL/testar_fiscal.py"),
     ("FISCAL", "TESTES/FISCAL/testar_salvaguardas_fiscais.py"),
     ("FISCAL", "TESTES/FISCAL/testar_coordenador_fiscal.py"),
