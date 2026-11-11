@@ -113,8 +113,9 @@ class IntegracaoNormalizador(unittest.TestCase):
     def test_fin_norm_03_fonte_auxiliar_nao_vira_extrato(self):
         c, r = conferir([relatorio()])
         self.assertEqual((c.extratos, c.movimentos, r["verificacao_extratos"], r["movimentos"]), ([], [], [], []))
-        self.assertEqual(r["fonte_bancaria"], {"tipo": "EXTRATO_BANCARIO", "extratos_recebidos": 0, "extratos_utilizaveis": 0,
-                                               "movimentos_bancarios": 0})
+        self.assertEqual({k: r["fonte_bancaria"][k] for k in ("tipo", "extratos_recebidos", "extratos_utilizaveis", "movimentos_bancarios")},
+                         {"tipo": "EXTRATO_BANCARIO", "extratos_recebidos": 0, "extratos_utilizaveis": 0, "movimentos_bancarios": 0})
+        self.assertEqual(r["fonte_bancaria"]["fontes_normalizadas"], [])
         self.assertIn("não substitui extrato", r["fonte_auxiliar_financeira"]["aviso"])
 
     def test_fin_norm_04_sem_extrato_continua_bloqueado(self):
@@ -182,7 +183,7 @@ class IntegracaoNormalizador(unittest.TestCase):
 
     def test_fin_norm_09_formato_anterior_compativel(self):
         _, r = conferir([relatorio()])
-        self.assertEqual((r["versao"], r["procedimento"]), ("1.3", "AGENTES/FINANCEIRO/PROCEDIMENTO.md v1.3"))
+        self.assertEqual((r["versao"], r["procedimento"]), ("1.4", "AGENTES/FINANCEIRO/PROCEDIMENTO.md v1.4"))
         self.assertEqual(set(r) - CHAVES_NOVAS, CHAVES_BLOQUEADO_V12)
         self.assertEqual(set(r["resumo"]), RESUMO_BLOQUEADO_V12)
         _, sem_relatorio = conferir([extrato()])

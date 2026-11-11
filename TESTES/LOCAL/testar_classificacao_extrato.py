@@ -3,6 +3,7 @@
 Uso (a partir da raiz AGENTES-PRIME):  .venv/bin/python -I TESTES/LOCAL/testar_classificacao_extrato.py
 """
 import copy
+import json
 import os
 import sys
 import tempfile
@@ -107,6 +108,81 @@ class ClassificacaoExtrato(unittest.TestCase):
             bloqueios = c.triagem()
         self.assertEqual((c.extratos, c.movimentos), ([], []))          # defesa em profundidade: o Financeiro revalida
         self.assertTrue(bloqueios and bloqueios[0].startswith("Nenhum extrato utilizável"))
+
+
+# ---------------------------------------------------------------- v1.4.2: precedência estrutural (DOC-BANK-01..10)
+sys.path.insert(0, str(RAIZ / "TESTES/FINANCEIRO"))
+import testar_normalizador_bancario as fx        # extrato fictício no leiaute Extrato Consolidado (adaptador bancário)
+
+PUBLICIDADE = ("Banco Fictício — soluções para sua empresa\nPagamento a fornecedores: use PAGFOR no internet banking.\n"
+               "Cuidado com o golpe do boleto: confira o Beneficiário e o código de barras antes de pagar.")
+
+
+def pdf_paginas(textos, nome="documento.pdf"):
+    return {"arquivo": f"RECEBIDOS/2026-09/{nome}", "extensao": ".pdf", "leitura": "EXTRAIDO_PDF", "sha256": "c" * 64,
+            "conteudo": {"paginas_total": len(textos), "paginas": [{"pagina": i, "texto": x} for i, x in enumerate(textos, 1)]}}
+
+
+class PrecedenciaEstrutural(unittest.TestCase):
+    def test_doc_bank_01_pagfor_em_pagina_publicitaria(self):
+        a = pdf_paginas([PUBLICIDADE, EXTRATO])                     # leiaute genérico, sem adaptador específico
+        av = d.avaliar_extrato(a)
+        self.assertEqual((av["decisao"], d.classificar(a)), ("EXTRATO", d.TIPO_EXTRATO_PDF))
+        self.assertIn("PAGFOR", av["marcas_isoladas_fora_da_movimentacao"])
+        self.assertEqual(av["contra_evidencias"], [])
+
+    def test_doc_bank_02_beneficiario_em_aviso(self):
+        av = d.avaliar_extrato(pdf_paginas([EXTRATO, PUBLICIDADE]))
+        self.assertEqual(av["decisao"], "EXTRATO")
+        self.assertTrue({"BENEFICIARIO", "CODIGO DE BARRAS"} <= set(av["marcas_isoladas_fora_da_movimentacao"]))
+        # leiaute com adaptador bancário (publicidade com PAGFOR/Beneficiário/linha digitável): extrato
+        a = fx.extrato()
+        self.assertEqual((d.classificar(a), d.encaminhamento(a)["area"]), (d.TIPO_EXTRATO_PDF, "FINANCEIRO"))
+
+    def test_doc_bank_03_pagfor_real_nao_e_extrato(self):
+        self.assertFalse(eh_extrato(pdf(PAGFOR)))
+        self.assertFalse(eh_extrato(pdf_paginas([PAGFOR, PAGFOR])))
+
+    def test_doc_bank_04_comprovante_com_agencia_conta(self):
+        comprovante = "COMPROVANTE DE TRANSFERENCIA\nAgência: 0001 Conta: 99999-9\nVALOR: 150,00\nDATA: 10/09/2026\nAUTENTICACAO 0A1B2C"
+        av = d.avaliar_extrato(pdf(comprovante))
+        self.assertEqual(av["decisao"], "NAO_EXTRATO")
+        self.assertTrue({"AGENCIA", "CONTA"} <= set(av["evidencias"]))
+
+    def test_doc_bank_05_nome_extrato_conteudo_pagfor(self):
+        a = pdf_paginas([PAGFOR, PUBLICIDADE], "Extrato Santander.pdf")
+        self.assertFalse(eh_extrato(a))
+        self.assertEqual(d.avaliar_extrato(a)["adaptadores_bancarios"], [])
+
+    def test_doc_bank_06_nome_generico_estrutura(self):
+        self.assertEqual(d.classificar(pdf_paginas([PUBLICIDADE, EXTRATO], "scan-0007.pdf")), d.TIPO_EXTRATO_PDF)
+        self.assertEqual(d.classificar(fx.extrato(nome="arquivo.pdf")), d.TIPO_EXTRATO_PDF)
+
+    def test_doc_bank_07_estrutura_insuficiente_nao_promovida(self):
+        pouco = "Agência: 0001 Conta: 99999-9\n05/09/2026 PIX RECEBIDO FICTICIO 500,00"
+        self.assertEqual(d.avaliar_extrato(pdf_paginas([pouco, PUBLICIDADE]))["decisao"], "NAO_EXTRATO")
+        # marcas de pagamento DENTRO da página de movimentação continuam impedindo a decisão automática
+        misturado = EXTRATO + "\nBENEFICIARIO: FORNECEDOR TESTE LTDA\nPAGADOR: EMPRESA FICTICIA LTDA"
+        self.assertEqual(d.avaliar_extrato(pdf_paginas([misturado]))["decisao"], "AMBIGUO")
+
+    def test_doc_bank_08_evidencias_registradas(self):
+        ev = d.encaminhamento(fx.extrato())["evidencias_extrato"]
+        self.assertEqual(ev["decisao"], "EXTRATO")
+        self.assertIn("ADAPTADOR_BANCARIO:SANTANDER_EXTRATO_CONSOLIDADO_PJ", ev["evidencias"])
+        self.assertEqual(ev["adaptadores_bancarios"], ["SANTANDER_EXTRATO_CONSOLIDADO_PJ"])
+        self.assertTrue(ev["marcas_isoladas_fora_da_movimentacao"] or ev["contra_evidencias"])
+        self.assertIn("páginas com movimentação", ev["criterio"])
+
+    def test_doc_bank_09_nao_depende_da_empresa(self):
+        outra = [x.replace("EMPRESA FICTICIA LTDA", "OUTRA EMPRESA TESTE SA") for x in (fx.P1, fx.P2, fx.P3, fx.P4)]
+        self.assertEqual(d.classificar(fx.extrato(outra)), d.classificar(fx.extrato()))
+        self.assertEqual(d.avaliar_extrato(fx.extrato(outra))["decisao"], "EXTRATO")
+
+    def test_doc_bank_10_nao_depende_do_santander(self):
+        a = pdf_paginas([PUBLICIDADE, EXTRATO.replace("BANCO FICTICIO S.A.", "COOPERATIVA TESTE")])
+        av = d.avaliar_extrato(a)
+        self.assertEqual((av["decisao"], av["adaptadores_bancarios"]), ("EXTRATO", []))
+        self.assertNotIn("SANTANDER", sem := d.sem_acento(json.dumps(av)))
 
 
 if __name__ == "__main__":

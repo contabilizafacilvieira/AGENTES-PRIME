@@ -1,8 +1,9 @@
-# PROCEDIMENTO GERAL · AGENTE FINANCEIRO · versão 1.3 (11/11/2026)
+# PROCEDIMENTO GERAL · AGENTE FINANCEIRO · versão 1.4 (11/11/2026)
 > 1.1: bloqueio do lote × pendência individual; divergência entre extratos sobrepostos; ressalvas de Documentos.
 > 1.2: relação com TIPO (pagamentos e recebimentos), posição de títulos (controle interno), resumo da folha como natureza
 >      do pagamento de salários, isolamento de documento de outra empresa não cadastrada.
 > 1.3: relatório financeiro normalizado como FONTE AUXILIAR (Normalizador Financeiro); não substitui extrato bancário.
+> 1.4: extrato bancário lido pelo Normalizador Bancário (contrato comum); leitor Santander antigo vira legado.
 
 Procedimento GERAL, válido para qualquer empresa. Regras específicas de cliente NÃO entram aqui (ficam em
 `CLIENTES/<EMPRESA>/`). Implementação: `ferramentas/conferencia_financeira.py` (código local, sem Claude).
@@ -74,6 +75,25 @@ competência = `COMPETENCIA`. Sustenta a NATUREZA do pagamento de salários some
 (ex.: `DOCUMENTOS=FP-2026-10`); valor igual sem referência é apenas candidato. O Financeiro não analisa a folha.
 Outros documentos do DP (encargos, provisões, folha genérica) e da Conciliação são ignorados quando não há cópia
 destinada ao Financeiro.
+
+## Extrato bancário pelo contrato comum (Normalizador Bancário) — v1.4
+- Todo PDF extraído passa primeiro por `ferramentas/normalizador_bancario.py`, que devolve
+  `MOVIMENTOS_BANCARIOS_NORMALIZADOS_V1`. O Financeiro consome o contrato; não há leitor por banco no Financeiro.
+- **Fonte utilizável** somente se: um único adaptador reconheceu a estrutura, SHA presente, documento completo,
+  aritmética (saldo inicial + créditos − débitos = saldo final) sem diferença e validações do adaptador aprovadas
+  (saldos impressos e saldos diários). Depois disso valem as regras de sempre: conta do extrato no CADASTRO.md
+  (titularidade não é presumida), cobertura da competência e verificação aritmética do Financeiro.
+- **Fonte recusada** (sem SHA, incompleta, aritmética ou saldo divergente, linha não interpretável, mais de um
+  adaptador): pendência `EXTRATO_BANCARIO_RECUSADO` (problema, impacto, o que fazer) e nenhum movimento usado.
+- Documento sem adaptador bancário segue os caminhos já existentes (inclusive o leitor Santander LEGADO do leiaute
+  "Agência: … Conta: …", mantido por compatibilidade).
+- Movimentos bancários ficam em `movimentos` (com `rastreio_bancario`: id do contrato, SHA, página, linhas, natureza);
+  o resumo das fontes em `fonte_bancaria.fontes_normalizadas`. Fonte auxiliar continua separada. Nesta versão não há
+  casamento automático entre extrato e relatório financeiro.
+- **Limitação temporária (decisão do Supervisor, 11/11/2026):** Enquanto não houver mecanismo aprovado de associação entre movimentos bancários e fontes auxiliares, a existência de um extrato bancário normalizado não constitui suporte documental/contábil para os movimentos.
+  O relatório financeiro auxiliar não dá suporte a nenhum movimento bancário só por ambos existirem; os movimentos sem
+  comprovante/nota/guia/relação vinculados continuam `SEM_SUPORTE`. A política fail-closed para a etapa seguinte será
+  implementada junto com o casamento banco × relatório.
 
 ## Relatório financeiro normalizado (fonte AUXILIAR) — v1.3
 Ordem geral inalterada: Coordenador → Documentos → Financeiro → Contabilidade; a Conciliação continua como suporte.

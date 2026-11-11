@@ -185,28 +185,57 @@ RE_SALDO = re.compile(r'\bSALDO\s+(?:ANTERIOR|INICIAL|FINAL|DO DIA|ATUAL|EM \d)|
 MARCAS_PAGAMENTO = ('BENEFICIARIO', 'PAGADOR', 'VALOR NOMINAL', 'LINHA DIGITAVEL', 'CODIGO DE BARRAS', 'COMPROVANTE',
                     'AUTENTICACAO', 'NOSSO NUMERO', 'BLQ OUTROS', 'PAGFOR', 'SACADO', 'CEDENTE', 'DATA DO PAGAMENTO')
 MIN_MOVIMENTOS_EXTRATO = 2
+# Reconhecimento estrutural dos ADAPTADORES BANCÁRIOS (normalizador bancário do Financeiro) usado como EVIDÊNCIA de natureza.
+# Documentos só pergunta "algum adaptador reconhece esta estrutura?"; não lê movimentos nem valores por meio dele.
+_FERRAMENTAS_FINANCEIRO = str(RAIZ / 'AGENTES' / 'FINANCEIRO' / 'ferramentas')
+if _FERRAMENTAS_FINANCEIRO not in sys.path:
+    sys.path.append(_FERRAMENTAS_FINANCEIRO)
+try:
+    import normalizador_bancario as _bancario
+except ImportError:                       # sem o normalizador, vale só o critério estrutural genérico abaixo
+    _bancario = None
+
+
+def adaptadores_bancarios(a) -> list:
+    """Nomes dos adaptadores bancários que reconhecem a ESTRUTURA do documento (nunca pelo nome do arquivo)."""
+    if _bancario is None or not (a.get('conteudo') or {}).get('paginas'):
+        return []
+    return [ad.nome for ad in _bancario.ADAPTADORES if ad.reconhece(a)]
 
 
 def avaliar_extrato(a, texto=None):
     """Evidências de EXTRATO BANCÁRIO no conteúdo. decisao: EXTRATO | AMBIGUO | NAO_EXTRATO.
 
     Estrutura mínima: agência + conta, pelo menos 2 linhas de movimentação datadas com valor, e período OU saldo.
-    Contra-evidência forte (2+ marcas de comprovante/boleto) impede a decisão automática (AMBIGUO)."""
+    Precedência estrutural (v1.5.0): marcas de comprovante/boleto só contam como contra-evidência quando aparecem em
+    página COM movimentação; em páginas sem movimentação (publicidade, avisos) são marcas isoladas e ficam só registradas.
+    Contra-evidência forte (2+ marcas na parte transacional) impede a decisão automática (AMBIGUO), salvo quando um
+    adaptador bancário reconhece a estrutura completa do leiaute."""
     c = a.get('conteudo') or {}
     t = sem_acento(texto if texto is not None else c.get('texto', '') + '\n'.join(x.get('texto', '') for x in c.get('paginas', [])))
     movimentos = len(RE_MOVIMENTO.findall(t))
+    paginas = [sem_acento(x.get('texto', '')) for x in c.get('paginas', [])] or [t]
+    marcas = lambda txt: [m for m in MARCAS_PAGAMENTO if re.search(r'\b' + m + r'\b', txt)]
+    transacionais = [p for p in paginas if RE_MOVIMENTO.search(p)]
+    todas_marcas = marcas(t)
+    contra = sorted(set(m for p in transacionais for m in marcas(p))) if transacionais else todas_marcas
+    isoladas = [m for m in todas_marcas if m not in contra]
+    adaptadores = adaptadores_bancarios(a)
     evidencias = [nome for nome, ok in (('AGENCIA', bool(RE_AGENCIA.search(t))), ('CONTA', bool(RE_CONTA.search(t))),
                                         ('PERIODO', bool(RE_PERIODO.search(t))), ('SALDO', bool(RE_SALDO.search(t))),
                                         (f'MOVIMENTACAO_DATADA:{movimentos}', movimentos >= MIN_MOVIMENTOS_EXTRATO)) if ok]
-    contra = [m for m in MARCAS_PAGAMENTO if re.search(r'\b' + m + r'\b', t)]
     nome = sem_acento(a.get('arquivo', '')).rsplit('/', 1)[-1]
     sinal_nome = bool(re.search(r'EXTRATO|BANCO|SANTANDER|BRADESCO|ITAU|CAIXA|\bCC\b', nome))
     estrutura = ({'AGENCIA', 'CONTA'} <= set(evidencias) and movimentos >= MIN_MOVIMENTOS_EXTRATO
                  and ('PERIODO' in evidencias or 'SALDO' in evidencias))
-    decisao = ('AMBIGUO' if estrutura and len(contra) >= 2 else 'EXTRATO' if estrutura else 'NAO_EXTRATO')
-    return {'decisao': decisao, 'evidencias': evidencias, 'contra_evidencias': contra,
-            'nome_arquivo': 'SINAL_AUXILIAR_COMPATIVEL' if sinal_nome else 'SEM_SINAL',
-            'criterio': 'agência + conta + 2 movimentos datados com valor + (período ou saldo); nome do arquivo não decide'}
+    if adaptadores:
+        evidencias.append('ADAPTADOR_BANCARIO:' + ','.join(adaptadores))
+    decisao = ('EXTRATO' if estrutura and adaptadores else 'AMBIGUO' if estrutura and len(contra) >= 2
+               else 'EXTRATO' if estrutura else 'NAO_EXTRATO')
+    return {'decisao': decisao, 'evidencias': evidencias, 'contra_evidencias': contra, 'marcas_isoladas_fora_da_movimentacao': isoladas,
+            'adaptadores_bancarios': adaptadores, 'nome_arquivo': 'SINAL_AUXILIAR_COMPATIVEL' if sinal_nome else 'SEM_SINAL',
+            'criterio': 'agência + conta + 2 movimentos datados com valor + (período ou saldo); marcas de pagamento só contam '
+                        'em páginas com movimentação; adaptador bancário confirma a estrutura; nome do arquivo não decide'}
 
 
 def cabecalhos(a, texto):
@@ -255,7 +284,10 @@ def classificar(a):
     # Decisão SOMENTE pelo conteúdo (avaliar_extrato); o nome do arquivo nunca classifica um extrato.
     avaliacao = avaliar_extrato(a, texto)
     if avaliacao['decisao'] == 'EXTRATO':
-        # O rótulo do leiaute só escolhe o leitor do Financeiro; a decisão de ser extrato já foi tomada pela estrutura.
+        # Rótulo só para roteamento; a decisão de ser extrato já foi tomada pela estrutura. Com adaptador bancário, o
+        # rótulo é genérico (o Financeiro lê pelo normalizador bancário); o rótulo Santander fica para o leiaute legado.
+        if avaliacao['adaptadores_bancarios']:
+            return TIPO_EXTRATO_PDF
         return TIPO_EXTRATO_SANTANDER if 'SANTANDER EMPRESAS' in t else TIPO_EXTRATO_PDF
     if avaliacao['decisao'] == 'AMBIGUO':
         return AMBIGUO + 'estrutura de extrato bancário e marcas de comprovante/boleto (' + ', '.join(avaliacao['contra_evidencias']) + ')'

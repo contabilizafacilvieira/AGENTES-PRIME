@@ -29,6 +29,20 @@ valores em Decimal; campo ausente fica vazio e listado; linha duvidosa vira pend
 - Extrato bancário ainda não tem adaptador no normalizador (aguarda o extrato correto).
 - Testes: `TESTES/FINANCEIRO/testar_normalizador_financeiro.py` e `testar_integracao_normalizador.py` (somente fictícios).
 
+## Normalizador Bancário (v1.0) — ligado à conferência no Financeiro 1.4
+`ferramentas/normalizador_bancario.py`: documento bancário extraído → adaptador → contrato comum
+`MOVIMENTOS_BANCARIOS_NORMALIZADOS_V1` (data, descrição, documento, valor Decimal, natureza CREDITO/DEBITO, saldo após,
+banco/agência/conta, SHA, página e linhas de origem, id determinístico). O adaptador só lê o leiaute; o núcleo valida
+completude, SHA, aritmética (saldo inicial + créditos − débitos = saldo final, tolerância zero), saldos impressos e saldos
+diários. Reconhecimento só pela estrutura do conteúdo (nome do arquivo nunca é lido); nenhum adaptador =
+`FONTE_SEM_ADAPTADOR`, mais de um = `FONTE_AMBIGUA`; qualquer divergência = BLOQUEIO, sem movimento inventado.
+Primeiro adaptador: `SANTANDER_EXTRATO_CONSOLIDADO_PJ`. Novos bancos/leiautes entram em `ADAPTADORES`.
+Financeiro 1.4: todo PDF passa primeiro pelo normalizador; fonte íntegra vira extrato utilizável (sujeito à conta
+cadastrada), fonte bloqueada vira `EXTRATO_BANCARIO_RECUSADO`; sem adaptador, segue o caminho antigo (leitor
+`ler_santander_pdf` mantido como LEGADO). Documentos usa o reconhecimento dos adaptadores como evidência de natureza.
+**Limitação temporária:** Enquanto não houver mecanismo aprovado de associação entre movimentos bancários e fontes auxiliares, a existência de um extrato bancário normalizado não constitui suporte documental/contábil para os movimentos.
+Testes: `TESTES/FINANCEIRO/testar_normalizador_bancario.py` (somente fictícios).
+
 ## Limitações conhecidas
 - CSV de extrato e relação somente no leiaute do projeto (sem mapeamento por banco); OFX sem saldo inicial não permite a
   verificação aritmética (aparece como "sem verificação aritmética").

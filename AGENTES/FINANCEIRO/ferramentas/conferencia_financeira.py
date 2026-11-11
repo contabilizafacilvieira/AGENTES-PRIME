@@ -37,9 +37,10 @@ from documentos_local import encaminhamento
 from metodo_empresa import carregar as carregar_metodo_empresa
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import normalizador_financeiro as nf
+import normalizador_bancario as nb
 EXTRATOR = RAIZ / "AGENTES" / "DOCUMENTOS" / "ferramentas" / "extrair_documentos.py"
-VERSAO = "1.3"
-PROCEDIMENTO = "AGENTES/FINANCEIRO/PROCEDIMENTO.md v1.3"
+VERSAO = "1.4"
+PROCEDIMENTO = "AGENTES/FINANCEIRO/PROCEDIMENTO.md v1.4"
 RE_CNPJ = re.compile(r"(?<!\d)\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2}(?!\d)")
 RE_DATA = re.compile(r"(\d{2})/(\d{2})/(\d{4})")
 RE_VALOR_BR = re.compile(r"(?<!\d)(?:\d{1,3}(?:\.\d{3})+|\d+),\d{2}(?!\d)")
@@ -545,6 +546,8 @@ class Conferencia:
         self.posicoes, self.posicoes_titulos, self.posicoes_resumo = [], [], None
         # Fonte AUXILIAR (relatório financeiro normalizado): nunca se mistura com extratos/movimentos bancários.
         self.relatorios_financeiros, self.movimentos_auxiliares = [], []
+        # Fontes bancárias lidas pelo Normalizador Bancário (contrato comum), utilizáveis ou recusadas.
+        self.fontes_bancarias_normalizadas = []
 
     def pendencia(self, tipo, descricao, referencia=None):
         self.pendencias.append({"id": f"PF-{len(self.pendencias) + 1:02d}", "tipo": tipo, "descricao": descricao, "referencia": referencia})
@@ -586,8 +589,10 @@ class Conferencia:
             if a["extensao"] == ".ofx" or (leitura == "EXTRAIDO_TEXTO" and "<OFX>" in texto_de(a).upper()):
                 self.extratos += ler_ofx(a, self.empresa)
                 continue
+            if leitura == "EXTRAIDO_PDF" and self.carregar_extrato_normalizado(a, nome):
+                continue                                   # contrato bancário comum: nenhum leitor específico é usado
             try:
-                santander = ler_santander_pdf(a)
+                santander = ler_santander_pdf(a)           # LEGADO: só para PDF sem adaptador no normalizador bancário
             except ValueError as exc:
                 self.pendencia("EXTRATO_PDF_NAO_UTILIZADO", f"{nome}: {exc}", nome)
                 self.ignorados.append({"arquivo": nome, "motivo": str(exc)})
@@ -673,6 +678,49 @@ class Conferencia:
             "contrato", "versao", "tipo_fonte", "adaptador", "origem", "situacao", "abas", "campos_ausentes",
             "campos_complementares_ausentes", "resumo", "pendencias", "linhas_nao_realizadas", "linhas_ignoradas") if k in r}))
 
+    # ---- fonte bancária: documento → Normalizador Bancário → contrato comum (MOVIMENTOS_BANCARIOS_NORMALIZADOS_V1)
+    def carregar_extrato_normalizado(self, a: dict, nome: str) -> bool:
+        """True = o normalizador bancário tratou o documento (fonte utilizável ou recusada); False = nenhum adaptador
+        reconheceu a estrutura (o documento segue para os demais leitores, inclusive o legado)."""
+        try:
+            r = nb.normalizar(a)
+        except Exception as exc:                       # falha técnica: recusa explícita, nunca leitura parcial
+            self.pendencia("EXTRATO_BANCARIO_RECUSADO", f"{nome}: falha técnica na leitura bancária ({type(exc).__name__}). "
+                           "Impacto: o documento não foi usado como extrato. O que fazer: enviar novamente ou conferir manualmente.", nome)
+            self.ignorados.append({"arquivo": nome, "motivo": "EXTRATO_BANCARIO_FALHA_TECNICA"})
+            return True
+        codigos = [p["codigo"] for p in r["pendencias"]]
+        if r["adaptador"] is None and codigos == ["FONTE_SEM_ADAPTADOR"]:
+            return False
+        resumo = nb.para_json({k: v for k, v in r.items() if k not in ("movimentos", "movimentos_nao_confirmados")})
+        utilizavel = r["situacao"] in ("NORMALIZADO", "NORMALIZADO_COM_PENDENCIAS")
+        self.fontes_bancarias_normalizadas.append(dict(resumo, arquivo=nome, utilizavel=utilizavel))
+        if not utilizavel:
+            for p in r["pendencias"]:
+                if p["nivel"] == nb.BLOQUEIO:
+                    self.pendencia("EXTRATO_BANCARIO_RECUSADO", f"{nome}: {p['problema']} Impacto: {p['impacto']} "
+                                   f"O que fazer: {p['o_que_fazer']} ({p['codigo']})", nome)
+            self.ignorados.append({"arquivo": nome, "motivo": "EXTRATO_BANCARIO_RECUSADO: " + ", ".join(codigos)})
+            return True
+        for p in r["pendencias"]:
+            if p["nivel"] != nb.INFORMATIVO:
+                self.pendencia(f"EXTRATO_BANCARIO_{p['codigo']}", f"{nome}: {p['problema']} Impacto: {p['impacto']} "
+                               f"O que fazer: {p['o_que_fazer']}", nome)
+        self.extratos.append({
+            "arquivo": nome, "formato": f"NORMALIZADO:{r['adaptador']}", "banco": r["banco"]["codigo"], "agencia": r["agencia"],
+            "conta": r["conta"], "titular": None, "inicio": r["periodo_inicio"], "fim": r["periodo_fim"],
+            "saldo_inicial": r["saldo_inicial"]["valor"], "data_saldo_inicial": r["saldo_inicial"]["data"],
+            "saldo_final": r["saldo_final"]["valor"], "data_saldo_final": r["saldo_final"]["data"],
+            "movimentos": [{"data": m["data"], "valor_assinado": m["valor"] if m["natureza"] == "CREDITO" else -m["valor"],
+                            "descricao": m["descricao"], "identificadores": {"DOCUMENTO": m["documento"]} if m["documento"] else {},
+                            "tipo_banco": None, "origem": f"{nome} · página {m['pagina']}, linha {m['linhas']['linha_inicial']}",
+                            "rastreio": {"contrato": nb.CONTRATO, "id": m["id"], "sha256": m["sha256_origem"], "pagina": m["pagina"],
+                                         "linhas": m["linhas"], "natureza": m["natureza"]}} for m in r["movimentos"]]})
+        self.limitacoes.append(f"{nome}: extrato lido pelo Normalizador Bancário ({r['adaptador']}); aritmética e saldos diários "
+                               "conferidos sem tolerância. Titular informado pelo banco por nome (CNPJ não consta no leiaute); a "
+                               "titularidade é verificada pela conta cadastrada.")
+        return True
+
     def saida_fontes(self) -> dict:
         """Campos NOVOS do resultado (retrocompatíveis): fonte bancária e fonte auxiliar, sempre separadas."""
         movs = self.movimentos_auxiliares
@@ -681,7 +729,8 @@ class Conferencia:
         return {
             "fonte_bancaria": {"tipo": "EXTRATO_BANCARIO", "extratos_recebidos": len(self.extratos),
                                "extratos_utilizaveis": sum(1 for e in self.extratos if e.get("aceito")),
-                               "movimentos_bancarios": len(self.movimentos)},
+                               "movimentos_bancarios": len(self.movimentos), "contrato": nb.CONTRATO,
+                               "fontes_normalizadas": self.fontes_bancarias_normalizadas},
             "fonte_auxiliar_financeira": {
                 "tipo": FONTE_AUXILIAR, "contrato": nf.CONTRATO,
                 "aviso": "Relatório financeiro é fonte AUXILIAR: não substitui extrato bancário, não conclui a conferência "
@@ -735,6 +784,8 @@ class Conferencia:
                        "data": m["data"], "valor": fmt(abs(m["valor_assinado"])), "direcao": "DEBITO" if m["valor_assinado"] < 0 else "CREDITO",
                        "descricao": m["descricao"], "identificadores": m["identificadores"], "tipo_banco": m["tipo_banco"],
                        "origens": [m["origem"]]}
+                if m.get("rastreio"):                          # origem no contrato bancário comum (id, SHA, página, linhas)
+                    mov["rastreio_bancario"] = m["rastreio"]
                 e["ids"].append(mov["id"])
                 if mov["id"] in por_id:
                     por_id[mov["id"]]["origens"].append(m["origem"])
@@ -1340,7 +1391,8 @@ class Conferencia:
                 "Comprovante prova a liquidação; a natureza depende de nota, guia, recibo, resumo da folha ou contrato vinculado.",
                 "Posição de títulos a pagar/receber é controle INTERNO da empresa; não substitui confirmação de terceiros.",
                 "PDFs digitais, mistos e escaneados têm leitura local por página; OCR duvidoso ou leitura incompleta exige conferência.",
-                "CSV de extrato e relação somente no leiaute do projeto (ver PROCEDIMENTO.md)."],
+                "CSV de extrato e relação somente no leiaute do projeto (ver PROCEDIMENTO.md).",
+                "Enquanto não houver mecanismo aprovado de associação entre movimentos bancários e fontes auxiliares, a existência de um extrato bancário normalizado não constitui suporte documental/contábil para os movimentos."],
             **self.saida_fontes(),
         }
 
