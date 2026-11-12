@@ -103,7 +103,8 @@
   avisoCadastro.append(motivoCadastro,concluirCadastro);
   concluirCadastro.addEventListener('click',()=>window.dispatchEvent(new CustomEvent(selEmpresa.value?'prime-empresa':'prime-empresas',{detail:selEmpresa.value})));
   const selFluxo = campo("Tipo de solicitação", el("select"));
-  [["", "Selecione o fluxo de trabalho"], ["DOCUMENTOS", "Receber documentos e distribuir por área"], ["FINANCEIRO_BANCOS", "Financeiro → Contabilidade/Bancos (SIMULAÇÃO)"]].forEach(([v, t]) => {
+  [["", "Selecione o fluxo de trabalho"], ["DOCUMENTOS", "Receber documentos e distribuir por área"], ["FINANCEIRO_BANCOS", "Financeiro → Contabilidade/Bancos (SIMULAÇÃO)"],
+    ["FECHAMENTO", "Fechamento do mês: receber e classificar tudo (depois \"Preparar fechamento\")"]].forEach(([v, t]) => {
     const o = el("option", null, t);
     o.value = v;
     selFluxo.append(o);
@@ -111,7 +112,9 @@
   selFluxo.value = "DOCUMENTOS";
   const avisoFluxo = el("p", "op-ajuda");
   const explicarFluxo = () => {
-    avisoFluxo.textContent = selFluxo.value === "DOCUMENTOS"
+    avisoFluxo.textContent = selFluxo.value === "FECHAMENTO"
+      ? "Envie de uma vez todos os documentos do mês (notas, extratos, relatório financeiro, book, balancete, razão, impostos, folha). O Agente de Documentos classifica e distribui por departamento; NENHUMA área executa até você conferir a classificação e clicar em \"Preparar fechamento\"."
+      : selFluxo.value === "DOCUMENTOS"
       ? "Documentos identifica e distribui por área: extratos ao Financeiro, folha/encargos/provisões ao DP, notas e guias ao Fiscal (piloto da empresa autorizado). Depois, Contabilidade prepara as propostas e a Conciliação confere o conjunto — tudo em SIMULAÇÃO."
       : "O Coordenador encaminhará Documentos → Financeiro → Contabilidade/Bancos; bloqueios serão apresentados para conferência.";
   };
@@ -333,7 +336,7 @@
   }
 
   function renderizar(d) {
-    if (d.fluxo === "FINANCEIRO_BANCOS" || (d.etapas && d.etapas.fiscal && d.etapas.fiscal.status !== 'NAO_APLICAVEL') || (d.plano_etapas || []).length) {
+    if (d.fluxo === "FINANCEIRO_BANCOS" || d.fluxo === "FECHAMENTO" || (d.etapas && d.etapas.fiscal && d.etapas.fiscal.status !== 'NAO_APLICAVEL') || (d.plano_etapas || []).length) {
       renderizarFluxoFinanceiro(d);         // tela própria: resumo, decisões, trabalho por área, auditoria
       return;
     }
@@ -369,6 +372,7 @@
       hist.append(b);
     }
     visao.append(hist);
+    if (window.EV.solDocumentos && d.execucao.status !== "EM_EXECUCAO") visao.append(window.EV.solDocumentos.bloco(d, () => { if (acompanhando === d.sol) atualizar(); }));
     if (d.documentos_local) visao.append(detalhes('Evidências da execução local e limitações', false,
       lista(d.documentos_local.itens.map(i => `${i.arquivo}: ${i.tipo} · ${i.leitura} · ${i.conteudo_utilizavel ? 'conteúdo extraído para conferência' : 'conteúdo não utilizável'}`)),
       lista(d.documentos_local.limitacoes)));
@@ -1722,7 +1726,7 @@
     const verifs = (r && r.verificacoes) || [];
     const areas = (k) => [...new Set(verifs.filter((v) => v.resultado === k).map((v) => v.area_responsavel).filter(Boolean))].join(", ");
     const acoes = [];
-    if (loteBloqueado.length) acoes.push("abrir nova solicitação com a competência e os documentos corretos (esta SOL fica registrada como está)");
+    if (loteBloqueado.length) acoes.push("se faltava documento, adicioná-lo como documento complementar e reprocessar o fechamento (nova solicitação só se a empresa ou a competência estiverem erradas)");
     if (falhas.length) acoes.push(d.retomada_disponivel ? `corrigir a causa e usar ${falhas.map((x) => `"Retomar ${x}"`).join(", ")} (seção Retomada de etapa)`
       : "abrir nova solicitação para reprocessar (a retomada não está disponível nesta SOL)");
     if (div) acoes.push(`analisar ${plural(div, "verificação divergente", "verificações divergentes")} da Conciliação com as áreas responsáveis (${areas("DIVERGENTE")})`);
@@ -1738,7 +1742,8 @@
 
   // ---------------------------------------------------------------- acompanhamento em abas (Resumo · Lançamentos · Conciliação · Decisões · Histórico)
   // O estado da tela (aba, filtros, linhas abertas) sobrevive às atualizações automáticas da mesma SOL.
-  const ABAS = [["resumo", "Resumo"], ["lancamentos", "Lançamentos"], ["conciliacao", "Conciliação"], ["decisoes", "Decisões"], ["historico", "Histórico"]];
+  const ABAS = [["resumo", "Resumo"], ["lancamentos", "Lançamentos"], ["conciliacao", "Conciliação"], ["decisoes", "Decisões"], ["historico", "Histórico"],
+    ["fechamento", "Prévia do fechamento"]];
   let telaAc = { sol: null, aba: "resumo", filtroLanc: { origem: "", status: "" }, filtroConc: "abertas", abertas: new Set() };
   let ativarAba = null;
   const dataHora = (iso) => (iso ? new Date(iso).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" }) : "—");
@@ -2135,12 +2140,25 @@
   }
 
   // Próxima ação em poucas palavras (o texto completo fica em "Resultado por extenso")
+  // Lote bloqueado: com conciliação financeira executada, a saída é a Central de Revisão; sem ela, falta documento.
+  function textoLoteBloqueado(f) {
+    const cfin = f && f.conciliacao_financeira;
+    if (cfin && cfin.situacao === "EXECUTADA") {
+      return "Revise as associações na Central de Revisão (Resumo → Abrir revisão da conciliação financeira). Movimentos sem associação confirmada continuam bloqueando.";
+    }
+    return "Se recebeu um documento que faltava, adicione-o como documento complementar e depois reprocesse o fechamento (Resumo → Documentos complementares e tentativas). "
+      + "Se a empresa ou a competência estiverem erradas, abra uma nova solicitação.";
+  }
+
   function proximaCurta(d, tipo, ctx) {
+    if (d.checkpoint && d.checkpoint.situacao === "AGUARDANDO_AUTORIZACAO") {
+      return "Financeiro concluído — revise o resultado e, se concordar, autorize a Contabilidade/Bancos (Resumo → Documentos complementares e tentativas).";
+    }
     if (d.estado === "FECHAMENTO_APROVADO") return "Nada pendente. Se precisar corrigir algo, revogue a aprovação.";
     if (d.estado === "CANCELADA") return "Somente consulta.";
     if (d.revisao_parcial_encerrada) return "Consultar o histórico ou reabrir a revisão parcial.";
     if (tipo === "andamento") return "Aguardar: a etapa termina sozinha.";
-    if (ctx.loteBloqueado) return "Abrir nova solicitação com a competência e os documentos corretos.";
+    if (ctx.loteBloqueado) return textoLoteBloqueado(ctx.f);
     const p = [];
     const r = d.conciliacao && d.conciliacao.resultado;
     const falhas = (d.plano_etapas || []).filter((x) => x.situacao === "FALHOU").map((x) => NOME_ETAPA[x.etapa] || x.etapa);
@@ -2227,7 +2245,7 @@
       proxima = "Aguarde: a etapa termina sozinha. Nada é escriturado.";
     } else if (tipo === "bloqueio" && loteBloqueado) {
       resultado = `Lote bloqueado: ${f.bloqueio_lote.join(" ")} Nada foi conferido nem escriturado.`;
-      proxima = "Abrir nova solicitação com a competência e os documentos corretos. Esta SOL fica registrada como está.";
+      proxima = textoLoteBloqueado(f);
     } else if (tipo === "bloqueio") {
       resultado = `A solicitação parou: ${d.motivos.filter((m) => !m.startsWith("Relatório: pendência")).slice(0, 2).join(" ")} Nada foi escriturado.`;
       proxima = "Revisar os motivos (aba Histórico) e abrir nova solicitação se necessário.";
@@ -2278,17 +2296,32 @@
       decisoes: el("section", "ac-painel ac-painel-decisoes"),
       lancamentos: el("section", "ac-painel"),
       conciliacao: el("section", "ac-painel"),
-      historico: el("section", "ac-painel ac-painel-historico")
+      historico: el("section", "ac-painel ac-painel-historico"),
+      fechamento: el("section", "ac-painel ac-painel-fechamento")
+    };
+    // PRÉVIA DO FECHAMENTO: os cinco departamentos, pendências, checkpoints, balanço e impostos (somente leitura).
+    // Carregada só quando a aba é aberta (a consolidação lê balancete/book/razão; não a refazemos a cada atualização da tela).
+    const carregarPrevia = () => {
+      if (window.EV.previa && !paineis.fechamento.childNodes.length) paineis.fechamento.append(window.EV.previa.painel(d.sol));
     };
 
     // Resumo: status, indicadores, etapas, próxima ação, aprovação
     const R = paineis.resumo;
+    if (window.EV.previa) {
+      const bp = el("div", "ac-bloco pf-atalho");
+      const ab = el("button", "botao-sec pf-abrir", "Abrir a prévia do fechamento (Fiscal · Financeiro · Contábil · DP · Conciliação)");
+      ab.type = "button";
+      ab.dataset.acao = "abrir-previa";
+      ab.addEventListener("click", () => { if (ativarAba) ativarAba("fechamento", true); });
+      bp.append(ab);
+      R.append(bp);
+    }
     const locais = [...new Set([...situacao.itens, ...(loteBloqueado ? [`Lote bloqueado: ${f.bloqueio_lote.join(" ")}`] : [])])];
     R.append(faixaStatus(d, tipo, textoEtapa, locais, escopoPercurso), indicadores(d, e));
     const etapas = el("div", "ac-etapas");
     etapas.append(stepper(passo, tipo, !!d.fiscal || d.estado === 'FISCAL_EM_ANDAMENTO', situacao, d), el("p", "ac-etapa ac-" + tipo, `Etapa atual: ${textoEtapa}`));
     R.append(etapas);
-    R.append(el("p", "ac-proxima", `Próxima ação: ${proximaCurta(d, tipo, { agora: agora.length, regras: regrasPropostas.length, documento: documento.length, loteBloqueado })}`));
+    R.append(el("p", "ac-proxima", `Próxima ação: ${proximaCurta(d, tipo, { agora: agora.length, regras: regrasPropostas.length, documento: documento.length, loteBloqueado, f })}`));
     const cfin = f && f.conciliacao_financeira;
     if (cfin && cfin.situacao === "EXECUTADA" && window.EV.central) {
       // Central de Revisão: os números e as decisões vêm do servidor; aqui só o acesso
@@ -2303,6 +2336,7 @@
       bloco.append(abrirC);
       R.append(bloco);
     }
+    if (window.EV.solDocumentos && tipo !== "andamento") R.append(window.EV.solDocumentos.bloco(d, () => { if (acompanhando === d.sol) atualizar(); }, { reprocessar: true }));
     if (["AGUARDANDO_SUPERVISOR", "FECHAMENTO_APROVADO"].includes(d.estado) && tipo !== "andamento" && !encerrada) R.append(blocoAprovacao(d));
     if (situacao.itens.length) {
       const caixa = el("div", "ac-pend-areas");
@@ -2383,8 +2417,11 @@
       conciliacao: nConcAbertas ? { n: nConcAbertas, tom: "alerta" } : r ? { n: cont(r.resumo, "conferido"), tom: "ok" } : null,
       decisoes: nDec ? { n: nDec, tom: "alerta" } : documento.length ? { n: documento.length, tom: "" } : null
     });
-    ativarAba = ativar;
-    visao.append(barra, paineis.resumo, paineis.decisoes, paineis.lancamentos, paineis.conciliacao, paineis.historico);
+    ativarAba = (id, focar) => { if (id === "fechamento") carregarPrevia(); ativar(id, focar); };
+    barra.querySelector('[data-aba="fechamento"]').addEventListener("click", carregarPrevia);
+    barra.addEventListener("keydown", () => { if (telaAc.aba === "fechamento") carregarPrevia(); });
+    visao.append(barra, paineis.resumo, paineis.decisoes, paineis.lancamentos, paineis.conciliacao, paineis.historico, paineis.fechamento);
+    if (telaAc.aba === "fechamento") carregarPrevia();
     ativar(telaAc.aba);
   }
 

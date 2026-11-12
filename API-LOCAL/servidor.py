@@ -55,9 +55,13 @@ import regras_areas  # noqa: E402  (sugestões e confirmação guiada das refer�
 import reprocessamento  # noqa: E402  (tentativas auditadas; somente metadados no runtime)
 import central_conciliacao as central  # noqa: E402  (Central de Revisão: decisões do Supervisor em camada separada)
 import decisoes_conciliacao as dcs  # noqa: E402
+import complementos  # noqa: E402  (documento complementar de SOL existente; manifesto/pacote efetivo da tentativa)
+import previa_fechamento  # noqa: E402  (PRÉVIA DO FECHAMENTO: consolidação somente leitura por departamento)
 
 HOST = "127.0.0.1"
 PORTA = int(os.environ.get("AGENTES_PRIME_PORTA", "8765"))
+# Identificação VISÍVEL do ambiente (segurança): só servidores de demonstração declaram DEMONSTRACAO; o padrão é REAL.
+AMBIENTE = "DEMONSTRACAO" if os.environ.get("AGENTES_PRIME_AMBIENTE", "").upper() == "DEMONSTRACAO" else "REAL"
 PY = sys.executable
 FERRAMENTA_COORDENADOR = RAIZ / "COORDENADOR-GERAL" / "ferramentas" / "coordenador.py"
 FERRAMENTA_IMPORTACAO = RAIZ / "AGENTES" / "IMPORTACAO" / "ferramentas" / "importacao_vgrow.py"
@@ -123,10 +127,16 @@ def pasta_runtime() -> Path:
 RUNTIME = None
 
 
-def pasta_demonstracao() -> Path:
-    """Pasta PRÓPRIA da demonstração da Central (decisões fictícias): irmã do runtime, nunca dentro dele nem do projeto."""
-    p = Path(os.environ.get("AGENTES_PRIME_DEMO_CONCILIACAO") or (RUNTIME.parent / "demonstracao-conciliacao")).resolve()
-    if p.name != "demonstracao-conciliacao" or str(p).lower().startswith(str(RAIZ).lower()) or p == RUNTIME or RUNTIME in p.parents:
+DEMONSTRACOES = {"conciliacao": ("AGENTES_PRIME_DEMO_CONCILIACAO", "demonstracao-conciliacao"),
+                  "manual": ("AGENTES_PRIME_DEMO_MANUAL", "demonstracao-associacao-manual"),
+                  "ambiguo": ("AGENTES_PRIME_DEMO_AMBIGUO", "demonstracao-ambiguo-parcial")}
+
+
+def pasta_demonstracao(demo: str = "conciliacao") -> Path:
+    """Pasta PRÓPRIA de cada demonstração da Central (decisões fictícias): irmã do runtime, nunca dentro dele nem do projeto."""
+    variavel, nome = DEMONSTRACOES[demo]
+    p = Path(os.environ.get(variavel) or (RUNTIME.parent / nome)).resolve()
+    if p.name != nome or str(p).lower().startswith(str(RAIZ).lower()) or p == RUNTIME or RUNTIME in p.parents:
         raise RuntimeError("Pasta da demonstração recusada.")
     return p
 
@@ -311,9 +321,19 @@ def reconhecer_campos(sol: str, pasta_lote_rel: str) -> None:
     gravar_json(pasta / "reconhecimento-status.json", {"status": "PRONTO" if ok else "FALHOU", "fim": agora()})
 
 
+def pacote_vigente(pasta: Path, s: dict) -> tuple:
+    """Pacote de Documentos que as áreas usam: o PACOTE EFETIVO da tentativa quando a âncora do Coordenador aponta para ele
+    (lote original + complementares do snapshot); senão, o pacote original da SOL (comportamento anterior, inalterado)."""
+    ancora = s.get('ancora_documentos') or {}
+    if ancora.get('origem') == 'PACOTE_EFETIVO_TENTATIVA' and ancora.get('tentativa'):
+        base = pasta / 'tentativas' / f"{int(ancora['tentativa']):04d}" / 'pacote'
+        return base / 'documentos-local.json', base / 'extracao-local.json'
+    return pasta / 'documentos-local.json', pasta / 'extracao-local.json'
+
+
 def problema_ancora(s: dict, pasta: Path):
     """None se o pacote de Documentos confere com a âncora registrada pelo Coordenador; senão, o motivo (nada é presumido)."""
-    manifesto, extracao = pasta / 'documentos-local.json', pasta / 'extracao-local.json'
+    manifesto, extracao = pacote_vigente(pasta, s)
     if not manifesto.is_file() or not extracao.is_file():
         return None                                   # execução sem pacote local (fluxo legado): nada a conferir aqui
     ancora = s.get('ancora_documentos')
@@ -366,6 +386,11 @@ def finalizar_tentativa(sol: str, tentativa: dict, erro: BaseException | None = 
         if not atual or atual.get("status") in reprocessamento.FINAIS:
             return atual and dict(atual, finalizacao_repetida=True)
         s = coordenador.ler_registro()["solicitacoes"].get(sol) or {}
+        ck = s.get("checkpoint") or {}
+        if (erro is None and ck.get("situacao") == "AGUARDANDO_AUTORIZACAO" and ck.get("tentativa") == tentativa["numero"]
+                and atual.get("status") == "EM_EXECUCAO"):
+            # checkpoint do Supervisor: a tentativa NÃO termina; fica PAUSADA e retomável na mesma numeração
+            return reprocessamento.pausar(RUNTIME, sol, tentativa["numero"], checkpoint=ck, estado_sol=s.get("estado"))
         plano = coordenador.plano_de(s) if s else []
         execucoes = reprocessamento.resumir_execucoes(RUNTIME, sol, atual.get("execucoes", []))
         status = reprocessamento.status_final(execucoes, plano, erro=erro is not None)
@@ -411,8 +436,8 @@ def executar_etapa_documental(sol, etapa):
         else:
             if (motivo_ancora := problema_ancora(s, pasta)):
                 raise ValueError(motivo_ancora)
-            args = [str(globals()[ferramenta]), *comuns, '--pasta', s['pasta'], '--documentos-local', str(pasta / 'documentos-local.json'),
-                    '--extracao-local', str(pasta / 'extracao-local.json')]
+            man, ext = pacote_vigente(pasta, s)
+            args = [str(globals()[ferramenta]), *comuns, '--pasta', s['pasta'], '--documentos-local', str(man), '--extracao-local', str(ext)]
         p = subprocess.run([PY, '-I', *args], cwd=RAIZ, capture_output=True, encoding='utf-8', errors='replace', timeout=300)
         if p.returncode or not (saida / 'resultado.json').exists():
             raise ValueError((p.stderr or p.stdout or 'Resultado ausente')[-250:])
@@ -457,13 +482,14 @@ def executar_financeiro(sol: str) -> None:
     try:
         EM_FINANCEIRO.update(sol=sol, etapa="FINANCEIRO")
         pacote = []
-        if (pasta / 'documentos-local.json').is_file() and (pasta / 'extracao-local.json').is_file():
+        man, ext = pacote_vigente(pasta, s)
+        if man.is_file() and ext.is_file():
             motivo_ancora = problema_ancora(s, pasta)
             if motivo_ancora:
                 gravar_json(fin / 'falha.json', {'em': agora(), 'motivo': motivo_ancora})
                 coordenador_cli("registrar-falha-etapa", "--sol", sol, "--etapa", "FINANCEIRO", "--motivo", f"{fin.name}: {motivo_ancora}")
                 return
-            pacote = ['--documentos-local', str(pasta / 'documentos-local.json'), '--extracao-local', str(pasta / 'extracao-local.json'),
+            pacote = ['--documentos-local', str(man), '--extracao-local', str(ext),
                       '--exigir-ancora']
         p = subprocess.run([PY, "-I", str(FERRAMENTA_FINANCEIRO), *comuns, "--pasta", s["pasta"], "--saida", str(fin),
                             "--ja-tratados", str(fin / "ja-tratados.json"), "--decisoes", str(fin / "decisoes.json"),
@@ -538,8 +564,8 @@ def executar_conciliacao(sol: str) -> None:
                              'sha256_registrado': (s.get(chave) or [{}])[-1].get('resultado_sha256')}
         base = coordenador.CLIENTES / s['empresa']
         entradas = {'contrato': 'ENTRADAS_CONCILIACAO_V1', 'empresa': s['empresa'], 'sol': sol, 'competencia': s['competencia'],
-                    'etapas': etapas, 'pacote': {'pasta': s['pasta'], 'documentos_local': str(pasta / 'documentos-local.json'),
-                                                 'extracao_local': str(pasta / 'extracao-local.json')},
+                    'etapas': etapas, 'pacote': {'pasta': s['pasta'], 'documentos_local': str(pacote_vigente(pasta, s)[0]),
+                                                 'extracao_local': str(pacote_vigente(pasta, s)[1])},
                     'cadastro': str(base / 'CADASTRO.md'), 'plano': str(base / 'PLANO-DE-CONTAS' / 'PLANO-DE-CONTAS.md'),
                     'regras_conciliacao': str(base / 'REGRAS-CONCILIACAO.json'),
                     'base_inicial': str(base / 'BASE-INICIAL' / s['competencia'] / 'base.json'),
@@ -600,6 +626,7 @@ def iniciar_execucao(sol: str) -> bool:
     def rodar():
         erro = None
         try:
+            reancorar_pacote_da_tentativa(sol, tentativa)
             executar_pendentes(sol)
         except Exception as exc:                               # erro técnico inesperado: auditado como FALHOU
             erro = exc
@@ -614,6 +641,51 @@ def iniciar_execucao(sol: str) -> bool:
 
 
 iniciar_cadeia_financeira = iniciar_execucao
+
+
+MSG_TENTATIVA_FINALIZADA = ("Esta solicitação possui uma tentativa finalizada. Crie uma nova tentativa de reprocessamento antes de "
+                            "retomar a rota financeira.")
+
+
+def recusa_retomada_rota(sol: str):
+    """(código, mensagem) se a retomada direta da rota financeira não for segura; None se puder seguir. Somente leitura.
+    - checkpoint pendente ou tentativa PAUSADA → use a continuação (o Financeiro não é repetido);
+    - tentativa EM_EXECUCAO → aguarde;
+    - SOL ancorada no pacote de uma tentativa sem tentativa PREPARADA com pacote → crie nova tentativa (a retomada direta
+      reescreveria o registro documental e a âncora)."""
+    s = coordenador.ler_registro()['solicitacoes'].get(sol) or {}
+    t = reprocessamento.ativa(RUNTIME, sol)
+    if coordenador.checkpoint_pendente(s) or (t and t.get('status') == 'PAUSADA'):
+        return ('CHECKPOINT_PENDENTE', 'O Financeiro já foi concluído e aguarda sua autorização para a Contabilidade/Bancos. '
+                                       'Use "Continuar para Contabilidade/Bancos"; o Financeiro não é repetido.')
+    if t and t.get('status') == 'EM_EXECUCAO':
+        return ('EM_EXECUCAO', 'A tentativa ativa já está em execução; aguarde o término.')
+    ancora = s.get('ancora_documentos') or {}
+    if ancora.get('origem') == 'PACOTE_EFETIVO_TENTATIVA':
+        pronta = t and t.get('status') == 'PREPARADA' and ((t.get('manifesto_efetivo') or {}).get('pacote'))
+        if not pronta:
+            return ('TENTATIVA_FINALIZADA', MSG_TENTATIVA_FINALIZADA)
+    return None
+
+
+def reancorar_pacote_da_tentativa(sol: str, tentativa) -> None:
+    """Tentativa com pacote efetivo (complementares): a âncora do Coordenador passa a esse pacote ANTES de qualquer área.
+    Recusa → falha registrada na etapa em andamento e nada é executado (fail-closed)."""
+    pacote = ((tentativa or {}).get('manifesto_efetivo') or {}).get('pacote')
+    if not pacote:
+        return
+    s = coordenador.ler_registro()['solicitacoes'][sol]
+    ancora = s.get('ancora_documentos') or {}
+    if ancora.get('origem') == 'PACOTE_EFETIVO_TENTATIVA' and ancora.get('tentativa') == tentativa['numero']:
+        return
+    manifesto = RUNTIME / 'execucoes' / sol / pacote['pasta'] / 'documentos-local.json'
+    codigo, r = coordenador_cli('reancorar-pacote', '--sol', sol, '--manifesto', str(manifesto), '--tentativa', str(tentativa['numero']))
+    if codigo != 0:
+        etapa = ETAPA_EM_ANDAMENTO.get(s.get('estado'))
+        if etapa:
+            coordenador_cli('registrar-falha-etapa', '--sol', sol, '--etapa', etapa, '--motivo',
+                            f"Pacote efetivo da tentativa recusado: {r.get('motivo')}")
+        raise RuntimeError(f"Pacote efetivo recusado: {r.get('motivo')}")
 
 
 def tentativas(sol: str, prefixo: str) -> list:
@@ -1079,6 +1151,7 @@ def detalhe_solicitacao(sol: str) -> dict:
         "pendencias": tabela(relatorio, 5)[1:] if relatorio else [],
         "relatorio": relatorio,
         "tentativas": reprocessamento.comparar(reprocessamento.listar(RUNTIME, sol)),
+        "checkpoint": registro.get("checkpoint"), "checkpoints": registro.get("checkpoints", []),
     }
 
 
@@ -1373,6 +1446,10 @@ class Manipulador(BaseHTTPRequestHandler):
                 return self.api_amostra(metodo, partes[1:])
             if partes[:2] == ['demonstracao', 'conciliacao-financeira']:
                 return self.api_central(metodo, None, partes[2:])
+            if partes[:2] == ['demonstracao', 'associacao-manual']:
+                return self.api_central(metodo, None, partes[2:], demo="manual")
+            if partes[:2] == ['demonstracao', 'ambiguo-parcial']:
+                return self.api_central(metodo, None, partes[2:], demo="ambiguo")
             if metodo == 'GET' and partes == ['solicitacoes']:
                 return self.api_solicitacoes()
             if metodo == 'GET' and partes == ['solicitacoes', 'lixeira']:
@@ -1408,6 +1485,10 @@ class Manipulador(BaseHTTPRequestHandler):
                 return self.api_pendencia_decisao(partes[1])
             if metodo == 'POST' and len(partes) == 3 and partes[0] == 'solicitacoes' and RE_SOL.fullmatch(partes[1]) and partes[2] == 'revisao-piloto':
                 return self.api_revisao_piloto(partes[1])
+            if metodo == 'GET' and len(partes) == 3 and partes[0] == 'solicitacoes' and RE_SOL.fullmatch(partes[1]) and partes[2] == 'previa-fechamento':
+                return self.api_previa_fechamento(partes[1])
+            if metodo == 'POST' and len(partes) == 3 and partes[0] == 'solicitacoes' and RE_SOL.fullmatch(partes[1]) and partes[2] == 'continuar-apos-financeiro':
+                return self.api_continuar_apos_financeiro(partes[1])
             if metodo == 'POST' and len(partes) == 3 and partes[0] == 'solicitacoes' and RE_SOL.fullmatch(partes[1]) and partes[2] == 'retomar-rota-financeira':
                 return self.api_retomar_rota_financeira(partes[1])
             if metodo == 'POST' and len(partes) == 3 and partes[0] == 'solicitacoes' and RE_SOL.fullmatch(partes[1]) and partes[2] == 'aprovacao':
@@ -1423,6 +1504,11 @@ class Manipulador(BaseHTTPRequestHandler):
             if (metodo == 'POST' and len(partes) == 5 and partes[0] == 'solicitacoes' and RE_SOL.fullmatch(partes[1]) and partes[2] == 'areas'
                     and partes[3] in coordenador.ETAPAS and partes[4] == 'retomar'):
                 return self.api_retomar_area(partes[1], partes[3])
+            if len(partes) >= 3 and partes[0] == "solicitacoes" and RE_SOL.fullmatch(partes[1]) and partes[2] == "complementos":
+                return self.api_complementos(metodo, partes[1], partes[3:])
+            if (len(partes) == 5 and partes[0] == "solicitacoes" and RE_SOL.fullmatch(partes[1]) and partes[2] == "tentativas"
+                    and re.fullmatch(r"\d{4}", partes[3]) and partes[4] == "reconciliacao-legada"):
+                return self.api_reconciliacao_legada(metodo, partes[1], int(partes[3]))
             if len(partes) >= 3 and partes[0] == "solicitacoes" and RE_SOL.fullmatch(partes[1]) and partes[2] == "conciliacao-financeira":
                 return self.api_central(metodo, partes[1], partes[3:])
             if len(partes) >= 3 and partes[0] == "solicitacoes" and RE_SOL.fullmatch(partes[1]) and partes[2] == "financeiro":
@@ -1702,12 +1788,40 @@ class Manipulador(BaseHTTPRequestHandler):
             eleg = {"elegivel": False, "motivos": ["Execução original ou documentos não encontrados."], "documentos": []}
         if not eleg["elegivel"]:
             return self.json(409, {"mensagem": "Reprocessamento bloqueado.", "motivos": eleg["motivos"]})
-        atual = reprocessamento.listar(RUNTIME, sol)
-        if reprocessamento.ativa(RUNTIME, sol):                 # só PREPARADA/EM_EXECUCAO impedem; finais não
-            return self.erro(409, "Já existe uma tentativa de reprocessamento em andamento.")
-        nova = reprocessamento.criar(RUNTIME, sol, origem=(atual[-1] if atual else {"numero": 1}),
-                                     motivo=motivo, solicitante=str(dados.get("solicitante") or "Supervisor"),
-                                     documentos=eleg["documentos"], raiz=RAIZ)
+        with TRAVA:
+            atual = reprocessamento.listar(RUNTIME, sol)
+            if reprocessamento.ativa(RUNTIME, sol):                 # só PREPARADA/EM_EXECUCAO impedem; finais não
+                return self.erro(409, "Já existe uma tentativa de reprocessamento em andamento.")
+            if not motivo or len(motivo) < 3:
+                return self.erro(400, "Informe o motivo do reprocessamento.")
+            numero = reprocessamento.proximo_numero(RUNTIME, sol)
+            # SNAPSHOT: lote original + complementares concluídos ATÉ AGORA (os posteriores ficam para a próxima tentativa)
+            try:
+                efetivo = complementos.manifesto_efetivo(RUNTIME, sol, numero, lote, lote["pasta"])
+            except ValueError as exc:
+                return self.erro(409, str(exc))
+            documentos = list(eleg["documentos"])
+            for doc in [x for x in efetivo["documentos"] if x["origem"] == "COMPLEMENTAR"]:
+                caminho = coordenador.CLIENTES / registro["empresa"] / doc["arquivo"]
+                if not caminho.is_file() or reprocessamento.sha256(caminho) != doc["sha256"]:
+                    return self.json(409, {"mensagem": "Reprocessamento bloqueado.", "motivos": [f"Documento complementar ausente ou alterado: {doc['arquivo']}."]})
+                documentos.append({"nome": doc["arquivo"].rsplit("/", 1)[-1], "caminho": str(caminho), "sha256": doc["sha256"],
+                                   "lote": doc["lote"], "origem": "COMPLEMENTAR"})
+            if efetivo["lotes_complementares"] and not (RUNTIME / "execucoes" / sol / "documentos-local.json").is_file():
+                return self.json(409, {"mensagem": "Reprocessamento bloqueado.", "motivos": ["Pacote original de Documentos indisponível; "
+                                                                                        "não é possível somar os complementares."]})
+            pasta_pacote = RUNTIME / "execucoes" / sol / "tentativas" / f"{numero:04d}"
+            try:
+                efetivo["pacote"] = complementos.montar_pacote(RUNTIME, sol, numero, efetivo)
+                nova = reprocessamento.criar(RUNTIME, sol, origem=(atual[-1] if atual else {"numero": 1}),
+                                             motivo=motivo, solicitante=str(dados.get("solicitante") or "Supervisor"),
+                                             documentos=documentos, raiz=RAIZ, manifesto_efetivo=efetivo)
+            except Exception as exc:
+                if pasta_pacote.exists() and not (pasta_pacote / "tentativa.json").exists():
+                    shutil.rmtree(pasta_pacote, onexc=lambda fn, c, _e: (os.chmod(c, stat.S_IWRITE), fn(c)))
+                if isinstance(exc, ValueError):        # classificação vigente ambígua/indeterminada: fail-closed explicado
+                    return self.json(409, {"mensagem": "Reprocessamento bloqueado.", "motivos": [str(exc)]})
+                raise
         return self.json(201, {"mensagem": "Nova tentativa criada e registrada para execução auditada.", "tentativa": nova})
 
     def do_GET(self):
@@ -1731,7 +1845,8 @@ class Manipulador(BaseHTTPRequestHandler):
         conteudo = arquivo.read_bytes()
         if arquivo.name == "index.html":
             conteudo = conteudo.decode("utf-8").replace("connect-src 'none'", "connect-src 'self'").replace(
-                "<head>", f'<head>\n  <meta name="prime-sessao" content="{self.server.token}">', 1).encode("utf-8")
+                "<head>", f'<head>\n  <meta name="prime-sessao" content="{self.server.token}">\n  <meta name="prime-ambiente" content="{AMBIENTE}">',
+                1).encode("utf-8")
         self.responder(200, conteudo, tipo)
 
     # ---- API
@@ -1753,7 +1868,7 @@ class Manipulador(BaseHTTPRequestHandler):
                              "estado": r.get("estado"), "execucao": x.get("status"), "etapas": etapas_de(x["sol"], r, x),
                              **resumo_conciliacao(x["sol"], r)})
         autorizadas = empresas_autorizadas()
-        self.json(200, {"modo": "OPERACAO_LOCAL", "empresas": list(autorizadas.values()),
+        self.json(200, {"modo": "OPERACAO_LOCAL", "ambiente": AMBIENTE, "empresas": list(autorizadas.values()),
                         "empresas_pendentes": empresas_com_cadastro_pendente(autorizadas),
                         "em_execucao": EM_EXECUCAO["sol"], "recentes": recentes,
                         "limites": {"arquivo": LIMITE_ARQUIVO, "lote": LIMITE_LOTE, "arquivos": LIMITE_ARQUIVOS,
@@ -1887,6 +2002,8 @@ class Manipulador(BaseHTTPRequestHandler):
             lote = ler_json(pasta / "lote.json")
             if not lote or lote["estado"] != "RECEBENDO":
                 return self.erro(409, "Lote inexistente ou já iniciado.")
+            if lote.get("tipo") == "COMPLEMENTAR":
+                return self.erro(409, "Lote complementar: conclua pelo recebimento da própria solicitação (não abre nova solicitação).")
             if not lote["arquivos"]:
                 return self.erro(409, "Envie ao menos um documento.")
             if EM_EXECUCAO["sol"] or coordenador.ler_ordem() is not None:
@@ -2076,16 +2193,81 @@ class Manipulador(BaseHTTPRequestHandler):
             codigo, r = coordenador_cli('revisar-piloto', '--sol', sol, '--acao', str(corpo['acao']), '--justificativa', str(corpo['justificativa']))
         return self.json(200, r) if codigo == 0 else self.erro(409, r.get('motivo') or 'Ação recusada.')
 
-    def api_retomar_rota_financeira(self, sol):
+    def api_previa_fechamento(self, sol):
+        """PRÉVIA DO FECHAMENTO (somente leitura): cada departamento, pendências, checkpoints, conciliação do balanço e impostos da
+        SOL. Lê apenas os resultados REGISTRADOS desta SOL/empresa (hash conferido com o registro do Coordenador)."""
+        s = coordenador.ler_registro()['solicitacoes'].get(sol)
+        if not s:
+            return self.erro(404, 'Solicitação não encontrada.')
+        pasta = RUNTIME / 'execucoes' / sol
+        manifesto, extracao = pacote_vigente(pasta, s)
+        # estado VIGENTE da Central (decisões do Supervisor posteriores à última execução do Financeiro), somente leitura
+        central_estado = None
+        fonte, _ = self.fonte_central(sol)
+        if fonte:
+            try:
+                dados = dcs.carregar(fonte.caminho, fonte.contexto)
+                efetivas, _ = dcs.decisoes_efetivas(dados, fonte.conciliacao)
+                central_estado = {"liberados": sorted(dcs.bancarios_liberados(fonte.conciliacao, efetivas)),
+                                  "resumo": dcs.resumo(fonte.conciliacao, efetivas, fonte.suporte)}
+            except dcs.EstadoCorrompido:
+                central_estado = {"corrompido": True, "liberados": [], "resumo": {}}
+        previa = previa_fechamento.montar(RUNTIME, coordenador.CLIENTES, sol, s, manifesto, extracao, central=central_estado,
+                                          registro=coordenador.ler_registro()['solicitacoes'], tentativa=reprocessamento.ativa(RUNTIME, sol),
+                                          tentativas=reprocessamento.listar(RUNTIME, sol), ambiente=AMBIENTE,
+                                          em_execucao=EM_EXECUCAO['sol'] == sol, problema_ancora=problema_ancora(s, pasta))
+        return self.json(200, previa)
+
+    def api_continuar_apos_financeiro(self, sol):
+        """Supervisor autoriza a Contabilidade/Bancos após o checkpoint: MESMA tentativa, Financeiro não repetido, uma execução."""
         corpo = self.corpo_json()
         if set(corpo) != {'justificativa', 'confirmado'} or corpo['confirmado'] is not True:
-            raise ValueError('Confirme a retomada e informe a justificativa.')
+            raise ValueError('Confirme a continuação e informe a justificativa.')
         with TRAVA:
             if EM_EXECUCAO['sol'] or coordenador.ORDEM_ATIVA.exists():
                 return self.erro(409, 'Há processamento ativo; aguarde o término.')
+            s = coordenador.ler_registro()['solicitacoes'].get(sol)
+            if not s:
+                return self.erro(404, 'Solicitação não encontrada.')
+            ck = s.get('checkpoint') or {}
+            if ck.get('situacao') != 'AGUARDANDO_AUTORIZACAO':
+                return self.json(409, {"erro": "Não há etapa aguardando sua autorização nesta solicitação.", "codigo": "SEM_CHECKPOINT"})
+            t = reprocessamento.ativa(RUNTIME, sol)
+            if ck.get('tentativa') and (not t or t['numero'] != ck['tentativa'] or t.get('status') != 'PAUSADA'):
+                return self.json(409, {"erro": "A tentativa em pausa não está disponível para continuar. Atualize a tela.", "codigo": "TENTATIVA_INVALIDA"})
+            if (motivo := problema_ancora(s, RUNTIME / 'execucoes' / sol)):
+                return self.erro(409, motivo)
+            codigo, r = coordenador_cli('autorizar-continuacao', '--sol', sol, '--justificativa', str(corpo['justificativa']),
+                                        *(['--tentativa', str(ck['tentativa'])] if ck.get('tentativa') else []))
+            if codigo != 0:
+                return self.json(409, {"erro": r.get('motivo') or 'Continuação recusada.', "codigo": r.get('resultado')})
+        iniciar_execucao(sol)
+        return self.json(202, {"resultado": "CONTINUACAO_INICIADA", "tentativa": ck.get('tentativa'),
+                               "mensagem": "Continuação autorizada: Contabilidade e Conciliação iniciadas na mesma tentativa. O Financeiro não foi repetido."})
+
+    def api_retomar_rota_financeira(self, sol):
+        corpo = self.corpo_json()
+        if not {'justificativa', 'confirmado'} <= set(corpo) <= {'justificativa', 'confirmado', 'parar_apos_financeiro'} \
+                or corpo['confirmado'] is not True or not isinstance(corpo.get('parar_apos_financeiro', False), bool):
+            raise ValueError('Confirme a retomada e informe a justificativa.')
+        parar = corpo.get('parar_apos_financeiro') is True
+        with TRAVA:
+            if EM_EXECUCAO['sol'] or coordenador.ORDEM_ATIVA.exists():
+                return self.erro(409, 'Há processamento ativo; aguarde o término.')
+            # PROTEÇÃO (antes de QUALQUER escrita): rota financeira só segue por caminho com integridade garantida
+            recusa = recusa_retomada_rota(sol)
+            if recusa:
+                return self.json(409, {"erro": recusa[1], "codigo": recusa[0]})
+            ativa_t = reprocessamento.ativa(RUNTIME, sol)
+            s_atual = coordenador.ler_registro()['solicitacoes'].get(sol) or {}
+            # SOL aberta no fluxo FECHAMENTO: o plano vem do pacote VIGENTE (original ancorado ou pacote congelado da tentativa),
+            # somente leitura; o manifesto original NUNCA é reescrito por esta rota.
+            fechamento = 'FECHAMENTO' in (s_atual.get('fluxo'), s_atual.get('fluxo_origem'))
             tipos = {}
-            extracao = ler_json(RUNTIME / 'execucoes' / sol / 'extracao-local.json') or {}
-            manifesto_path = RUNTIME / 'execucoes' / sol / 'documentos-local.json'
+            pac = ((reprocessamento.ativa(RUNTIME, sol) or {}).get('manifesto_efetivo') or {}).get('pacote')
+            base_pac = RUNTIME / 'execucoes' / sol / (pac['pasta'] if pac else '')
+            extracao = ler_json(base_pac / 'extracao-local.json') or {}
+            manifesto_path = base_pac / 'documentos-local.json'      # pacote efetivo: somente leitura (snapshot imutável)
             manifesto = ler_json(manifesto_path) or {}
             por_arquivo = {x.get('arquivo'): x for x in extracao.get('arquivos', [])}
             alterados = []
@@ -2108,7 +2290,7 @@ class Manipulador(BaseHTTPRequestHandler):
                 financeiros.append(registro_doc)
                 if 'CONCILIACAO' in (novo.get('copias_suporte') or []):
                     conciliacoes.append(dict(registro_doc, id=registro_doc['id'].replace('-FINANCEIRO', '-CONCILIACAO'), papel='SUPORTE'))
-            if alterados:
+            if alterados and not pac and not fechamento:
                 manifesto['reavaliacao_rota'] = {'em': agora(), 'motivo': str(corpo['justificativa']), 'arquivos': alterados}
                 manifesto['tarefas_areas'] = {'TRIAGEM': {'area': 'TRIAGEM', 'estado': 'ENCAMINHADO', 'documentos': financeiros},
                                               'FINANCEIRO': {'area': 'FINANCEIRO', 'estado': 'DISPONIVEL_PARA_ENCAMINHAMENTO', 'documentos': financeiros},
@@ -2116,12 +2298,27 @@ class Manipulador(BaseHTTPRequestHandler):
                 manifesto['pendencias'] = [p for p in manifesto.get('pendencias', []) if 'marcação' in p or 'marcação' in p]
                 gravar_json(manifesto_path, manifesto)
             manifesto_sha = hashlib.sha256(manifesto_path.read_bytes()).hexdigest() if manifesto_path.is_file() else ''
+            # pacote CONGELADO da tentativa: o plano do fechamento vem da classificação gravada no snapshot (lida do disco, imutável)
+            triagem_pacote = []
+            if fechamento and not pac:
+                manifesto_path = pacote_vigente(RUNTIME / 'execucoes' / sol, s_atual)[0]
+            if (pac or fechamento) and manifesto_path.is_file():
+                congelado = ler_json(manifesto_path) or {}
+                triagem_pacote = [{'arquivo': i.get('arquivo'), 'tipo': i.get('tipo'), 'area': (i.get('encaminhamento') or {}).get('area')}
+                                  for i in congelado.get('itens', []) if not i.get('leitura_pendente')]
             codigo, r = coordenador_cli('retomar-rota-financeira', '--sol', sol, '--justificativa', str(corpo['justificativa']),
-                                        '--tipos', json.dumps(tipos, ensure_ascii=False), '--manifesto-sha256', manifesto_sha)
+                                        '--tipos', json.dumps(tipos, ensure_ascii=False), '--manifesto-sha256', manifesto_sha,
+                                        *(['--triagem-pacote', json.dumps(triagem_pacote, ensure_ascii=False)] if (pac or fechamento) else []),
+                                        *(['--parar-apos-financeiro'] if parar else []),
+                                        *(['--tentativa', str(ativa_t['numero'])] if (parar and ativa_t) else []))
         if codigo != 0:
             return self.erro(409, r.get('motivo') or 'Retomada recusada.')
         iniciar_execucao(sol)
-        self.json(202, dict(r, mensagem='Rota determinada automaticamente. Financeiro e Conciliação interna iniciados.'))
+        etapas_txt = ' → '.join(previa_fechamento.NOME_ETAPA.get(e, e) for e in r.get('reexecuta') or [])
+        self.json(202, dict(r, parar_apos_financeiro=parar, mensagem=(
+            (f'Fechamento iniciado ({etapas_txt}). ' if r.get('resultado') == 'FECHAMENTO_PREPARADO' else 'Financeiro iniciado. ')
+            + ('A solicitação vai PARAR depois do Financeiro para a sua revisão; a Contabilidade e a Conciliação só começam com a sua '
+               'autorização.' if parar else 'Rota determinada automaticamente; as etapas seguem sem parada.'))))
 
     def api_aprovacao(self, sol):
         corpo = self.corpo_json()
@@ -2295,11 +2492,175 @@ class Manipulador(BaseHTTPRequestHandler):
         iniciar_cadeia_financeira(sol)
         self.json(202, dict(r, mensagem=f"{r['regra']} aprovada. Nova tentativa Financeiro → Bancos iniciada para aplicá-la."))
 
+    # ---------------------------------------------------------------- documento complementar de SOL existente
+    def contexto_complemento(self, sol):
+        """(registro, lote_original, problema). Valida SOL, empresa ativa e autorizada, competência e lote original."""
+        registro = coordenador.ler_registro()["solicitacoes"].get(sol)
+        if not registro:
+            return None, None, (404, "Solicitação não encontrada.")
+        if registro.get("estado") in ("CANCELADA", "FECHAMENTO_APROVADO") or registro.get("aprovacao"):
+            return None, None, (409, "Solicitação encerrada ou com fechamento aprovado: não recebe documentos complementares.")
+        if registro["empresa"] not in empresas_autorizadas() or \
+                (ler_json(coordenador.CLIENTES / registro["empresa"] / "empresa-local.json") or {}).get("excluida"):
+            return None, None, (403, "Empresa não autorizada, inativa ou excluída.")
+        execucao = ler_json(RUNTIME / "execucoes" / sol / "execucao.json") or {}
+        original = ler_json(pasta_lote(execucao.get("lote", "")) / "lote.json") if execucao.get("lote") else None
+        if not original or original.get("sol") != sol or original.get("empresa") != registro["empresa"] \
+                or original.get("competencia") != registro["competencia"] or not original.get("pasta"):
+            return None, None, (409, "Lote original da solicitação não encontrado ou incompatível; nada foi recebido.")
+        return registro, original, None
+
+    def ocupado(self, sol):
+        ativa = reprocessamento.ativa(RUNTIME, sol)
+        return bool(EM_EXECUCAO["sol"] or EM_FINANCEIRO["sol"] or coordenador.ler_ordem() is not None
+                    or (ativa and ativa.get("status") == "EM_EXECUCAO"))
+
+    def api_complementos(self, metodo, sol, resto):
+        registro, original, problema = self.contexto_complemento(sol)
+        if metodo == "GET" and resto == []:
+            if problema and problema[0] == 404:
+                return self.erro(*problema)
+            try:
+                feitos = complementos.concluidos(RUNTIME, sol)
+            except ValueError as exc:
+                return self.erro(409, str(exc))
+            uso = complementos.consumo(RUNTIME, sol, reprocessamento.listar(RUNTIME, sol))
+            pendentes = [{"lote": o["lote"], "motivo": o.get("motivo"), "arquivos": len(o.get("arquivos", [])), "criado_em": o.get("criado_em")}
+                         for o in (ler_json(x) for x in (RUNTIME / "lotes").glob("L-*/lote.json"))
+                         if o and o.get("tipo") == "COMPLEMENTAR" and o.get("sol_destino") == sol and o.get("estado") == "RECEBENDO"]
+            return self.json(200, {"sol": sol, "pode_receber": problema is None, "motivo": problema[1] if problema else None,
+                                   "complementos": [dict(c, tentativas=uso.get(c["lote"], [])) for c in feitos],
+                                   "em_recebimento": pendentes, "mensagem": complementos.MENSAGEM_RECEBIDO})
+        if problema:
+            return self.erro(*problema)
+        if metodo == "POST" and resto == []:
+            corpo = self.corpo_json()
+            if set(corpo) != {"motivo"} or not isinstance(corpo["motivo"], str) or not 5 <= len(corpo["motivo"].strip()) <= 300:
+                raise ValueError("Informe o motivo do documento complementar (5 a 300 caracteres).")
+            with TRAVA:
+                if self.ocupado(sol):
+                    return self.erro(409, "Há processamento ativo; aguarde o término.")
+                lote = novo_lote_id()
+                (pasta_lote(lote) / "arquivos").mkdir(parents=True)
+                gravar_json(pasta_lote(lote) / "lote.json", {
+                    "lote": lote, "empresa": registro["empresa"], "competencia": registro["competencia"], "instrucao": corpo["motivo"].strip(),
+                    "fluxo": "COMPLEMENTO", "tipo": "COMPLEMENTAR", "sol_destino": sol, "lote_original": original["lote"],
+                    "motivo": corpo["motivo"].strip(), "responsavel": "Supervisor", "criado_em": agora(), "estado": "RECEBENDO", "arquivos": []})
+            return self.json(201, {"lote": lote, "mensagem": "Envie os arquivos; depois revise e confirme o recebimento."})
+        if len(resto) >= 1 and RE_LOTE.fullmatch(resto[0]):
+            lote = ler_json(pasta_lote(resto[0]) / "lote.json")
+            if not lote or lote.get("tipo") != "COMPLEMENTAR" or lote.get("sol_destino") != sol:
+                return self.erro(404, "Lote complementar inexistente nesta solicitação.")
+            if metodo == "GET" and len(resto) == 1:
+                itens = [dict({k: a[k] for k in ("nome_original", "sha256", "tamanho")},
+                              duplicidade=complementos.classificar_duplicidade(RUNTIME, sol, registro["empresa"], registro["competencia"],
+                                                                               a["sha256"], original, lote["lote"]))
+                         for a in lote.get("arquivos", [])]
+                return self.json(200, {"lote": lote["lote"], "estado": lote["estado"], "motivo": lote.get("motivo"), "arquivos": itens,
+                                       "pode_concluir": lote["estado"] == "RECEBENDO" and bool(itens)
+                                       and not any(i["duplicidade"]["categoria"] == "MESMA_SOL" for i in itens)})
+            if metodo == "POST" and resto[1:] == ["concluir"]:
+                corpo = self.corpo_json()
+                if corpo != {"confirmado": True}:
+                    raise ValueError("Confirme o recebimento do documento complementar.")
+                return self.concluir_complemento(sol, registro, original, lote)
+        return self.erro(404, "Rota inexistente.")
+
+    def concluir_complemento(self, sol, registro, original, lote):
+        """staging → CLIENTES (somente leitura, SHA conferido) → Documentos → complemento.json. Falha em qualquer passo desfaz
+        tudo o que este passo criou (sem estado parcial). Não reprocessa e não executa nenhuma área."""
+        def apagar(p):
+            if p.exists():
+                shutil.rmtree(p, onexc=lambda fn, c, _e: (os.chmod(c, stat.S_IWRITE), fn(c)))
+        with TRAVA:
+            lote = ler_json(pasta_lote(lote["lote"]) / "lote.json")
+            if lote["estado"] != "RECEBENDO" or not lote["arquivos"]:
+                return self.erro(409, "Lote complementar já concluído ou sem arquivos.")
+            if (lote["empresa"], lote["competencia"]) != (registro["empresa"], registro["competencia"]):
+                return self.erro(409, "Empresa ou competência do lote não confere com a solicitação.")
+            if self.ocupado(sol):
+                return self.erro(409, "Há processamento ativo; aguarde o término.")
+            duplicidades = {}
+            for a in lote["arquivos"]:
+                d = complementos.classificar_duplicidade(RUNTIME, sol, registro["empresa"], registro["competencia"], a["sha256"],
+                                                         original, lote["lote"])
+                if d["categoria"] == "MESMA_SOL":
+                    return self.json(409, {"erro": f"{a['nome_original']}: {d['explicacao']} Remova-o do envio (descarte o lote) e tente de novo.",
+                                           "duplicidade": d})
+                duplicidades[a["sha256"]] = d
+            relativa = f"RECEBIDOS/{lote['competencia']}/{lote['lote']}"
+            destino = coordenador.CLIENTES / lote["empresa"] / relativa
+            saida = complementos.pasta_complementos(RUNTIME, sol) / lote["lote"]
+            if (saida / "complemento.json").exists():
+                return self.erro(409, "Complemento já registrado; nada foi alterado.")
+            apagar(saida)                                  # restos de uma conclusão interrompida (nunca usados: sem complemento.json)
+            if destino.exists():
+                esperados = {a["nome_interno"]: a["sha256"] for a in lote["arquivos"]}
+                presentes = {x.name: hashlib.sha256(x.read_bytes()).hexdigest() for x in destino.iterdir() if x.is_file()}
+                if not set(presentes) <= set(esperados) or any(esperados[n] != h for n, h in presentes.items()):
+                    return self.erro(409, "Destino do lote já existe com conteúdo diferente; nada foi sobrescrito.")
+                apagar(destino)
+            try:
+                destino.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copytree(pasta_lote(lote["lote"]) / "arquivos", destino)
+                for a in lote["arquivos"]:
+                    arquivo = destino / a["nome_interno"]
+                    if hashlib.sha256(arquivo.read_bytes()).hexdigest() != a["sha256"]:
+                        raise ValueError("Falha de integridade ao transferir o lote complementar.")
+                    os.chmod(arquivo, stat.S_IREAD)
+                manifesto = complementos.triagem(registro["empresa"], sol, registro["competencia"], relativa, saida)
+                c = complementos.registrar_complemento(RUNTIME, sol=sol, registro=registro, lote=lote, lote_original=original,
+                                                       motivo=lote.get("motivo"), responsavel=lote.get("responsavel") or "Supervisor",
+                                                       pasta_relativa=relativa, manifesto=manifesto, duplicidades=duplicidades)
+            except Exception as exc:                       # noqa: BLE001 — desfaz e informa; nada parcial fica valendo
+                apagar(saida)
+                apagar(destino)
+                print(f"Complemento {lote['lote']} de {sol} desfeito: {type(exc).__name__}: {exc}", file=sys.stderr)
+                return self.erro(500, "Não foi possível concluir o recebimento; nada foi registrado. Tente novamente.")
+            lote.update(estado="CONCLUIDO", sol=sol, pasta=relativa, iniciado_em=c["concluido_em"])
+            gravar_json(pasta_lote(lote["lote"]) / "lote.json", lote)
+            shutil.rmtree(pasta_lote(lote["lote"]) / "arquivos", ignore_errors=True)
+        return self.json(201, {"mensagem": complementos.MENSAGEM_RECEBIDO, "complemento": c, "reprocessado": False})
+
+    # ---------------------------------------------------------------- reconciliação de tentativa legada
+    def api_reconciliacao_legada(self, metodo, sol, numero):
+        registro = coordenador.ler_registro()["solicitacoes"].get(sol)
+        if not registro:
+            return self.erro(404, "Solicitação não encontrada.")
+        if metodo == "GET":
+            av = reprocessamento.avaliar_legada(RUNTIME, sol, numero, registro)
+            return self.json(200, dict(av, frase=reprocessamento.frase_reconciliacao(sol, numero),
+                                       problema="Esta tentativa antiga ficou registrada como preparada, mas as evidências mostram que ela foi executada.",
+                                       impacto="Enquanto ela aparece como ativa, nenhuma nova tentativa de reprocessamento pode ser criada.",
+                                       o_que_sera_feito=(f"A tentativa será encerrada como {av.get('estado_derivado')}, ligada às execuções comprovadas. "
+                                                         "Nada é apagado nem reexecutado; o registro original fica preservado.")
+                                       if av.get("elegivel") else None))
+        if metodo != "POST":
+            return self.erro(405, "Método não permitido.")
+        corpo = self.corpo_json()
+        if set(corpo) != {"justificativa", "frase", "confirmado"} or corpo["confirmado"] is not True:
+            raise ValueError("Confirme a reconciliação, informe a justificativa e a frase de confirmação.")
+        with TRAVA:
+            if self.ocupado(sol):
+                return self.erro(409, "Há processamento ativo; aguarde o término.")
+            try:
+                r = reprocessamento.reconciliar_legada(RUNTIME, sol, numero, registro, justificativa=str(corpo["justificativa"]),
+                                                       frase=str(corpo["frase"]), responsavel="Supervisor", raiz=RAIZ)
+            except (ValueError, FileExistsError) as exc:
+                return self.erro(409, str(exc) if isinstance(exc, ValueError) else "Reconciliação já registrada.")
+        if r["resultado"] == "JA_RECONCILIADA":
+            return self.json(200, {"resultado": "JA_RECONCILIADA", "mensagem": "Esta tentativa já estava reconciliada; nada foi alterado.",
+                                   "estado": r.get("estado_derivado")})
+        return self.json(201, {"resultado": "RECONCILIADA", "estado": r["estado_derivado"],
+                               "execucoes": [e["execucao"] for e in r["execucoes"]],
+                               "mensagem": f"Tentativa {numero:04d} reconciliada como {r['estado_derivado']}. Nada foi apagado nem reexecutado."})
+
     # ---------------------------------------------------------------- Central de Revisão (conciliação financeira)
-    def fonte_central(self, sol):
+    def fonte_central(self, sol, demo="conciliacao"):
         """(fonte, motivo). sol None = DEMONSTRAÇÃO fictícia isolada. SOL sem conciliação → (None, motivo)."""
         if sol is None:
-            return central.fonte_demo(pasta_demonstracao()), None
+            construir = {"manual": central.fonte_demo_manual, "ambiguo": central.fonte_demo_ambiguo}.get(demo, central.fonte_demo)
+            return construir(pasta_demonstracao(demo)), None
         registro = coordenador.ler_registro()["solicitacoes"].get(sol)
         if not registro:
             return None, "Solicitação não encontrada."
@@ -2309,8 +2670,8 @@ class Manipulador(BaseHTTPRequestHandler):
                           "e um relatório financeiro na última conferência concluída do Financeiro).")
         return fonte, None
 
-    def api_central(self, metodo, sol, resto):
-        fonte, motivo = self.fonte_central(sol)
+    def api_central(self, metodo, sol, resto, demo="conciliacao"):
+        fonte, motivo = self.fonte_central(sol, demo)
         if metodo == "GET":
             if not fonte:
                 return self.json(200 if motivo.startswith("Esta") else 404, {"disponivel": False, "motivo": motivo})
@@ -2321,6 +2682,9 @@ class Manipulador(BaseHTTPRequestHandler):
             if len(resto) == 1 and RE_ASSOC.fullmatch(resto[0]):
                 d = central.detalhe(fonte, resto[0])
                 return self.json(200, d) if d else self.erro(404, "Associação inexistente nesta conciliação. Atualize a tela.")
+            if len(resto) == 2 and RE_ASSOC.fullmatch(resto[0]) and resto[1] == "busca-manual":
+                b = central.busca_manual(fonte, resto[0])          # somente leitura: nada é decidido nem gravado
+                return self.json(200, b) if b else self.erro(404, "Associação inexistente nesta conciliação. Atualize a tela.")
             return self.erro(404, "Rota inexistente.")
         if metodo != "POST":
             return self.erro(405, "Método não permitido.")
@@ -2329,18 +2693,22 @@ class Manipulador(BaseHTTPRequestHandler):
             if set(corpo) != {"confirmado"} or corpo["confirmado"] is not True:
                 raise ValueError("Confirme o reinício da demonstração.")
             with TRAVA_CENTRAL:
-                central.reiniciar_demo(pasta_demonstracao())
+                central.reiniciar_demo(pasta_demonstracao(demo))
             return self.json(200, {"mensagem": "Demonstração reiniciada: decisões fictícias apagadas. Nada real foi tocado.",
-                                   "visao": central.visao(central.fonte_demo(pasta_demonstracao()))})
+                                   "visao": central.visao(self.fonte_central(None, demo)[0])})
         if not fonte:
             return self.erro(409, motivo)
         if sol and (EM_EXECUCAO["sol"] == sol or EM_FINANCEIRO["sol"] == sol):
             return self.erro(409, "O Financeiro está processando esta solicitação. Aguarde e atualize a tela.")
         revisoes = {"revisao_conciliacao", "revisao_decisoes", "justificativa"}
         if len(resto) == 2 and RE_ASSOC.fullmatch(resto[0]) and resto[1] == "decisao":
-            if not (revisoes | {"decisao"}) <= set(corpo) <= (revisoes | {"decisao", "candidato"}):
-                raise ValueError("Envie {decisao, justificativa, revisao_conciliacao, revisao_decisoes[, candidato]}.")
-            pedidos, origem = [{"associacao": resto[0], "decisao": corpo["decisao"], "candidato": corpo.get("candidato")}], "INDIVIDUAL"
+            if not (revisoes | {"decisao"}) <= set(corpo) <= (revisoes | {"decisao", "candidato", "manual", "alvo"}) or \
+                    ("manual" in corpo and (not isinstance(corpo["manual"], dict) or set(corpo["manual"]) != {"auxiliares"})):
+                raise ValueError("Envie {decisao, justificativa, revisao_conciliacao, revisao_decisoes[, candidato | manual]}.")
+            pedidos = [{"associacao": resto[0], "decisao": corpo["decisao"], "candidato": corpo.get("candidato"),
+                        **({"manual": corpo["manual"]} if "manual" in corpo else {}),
+                        **({"alvo": corpo["alvo"]} if isinstance(corpo.get("alvo"), str) else {})}]
+            origem = dcs.ORIGEM_MANUAL if "manual" in corpo else "INDIVIDUAL"
         elif resto == ["decisoes-lote"]:
             if set(corpo) != revisoes | {"associacoes"} or not isinstance(corpo["associacoes"], list):
                 raise ValueError("Envie {associacoes, justificativa, revisao_conciliacao, revisao_decisoes}.")
@@ -2356,6 +2724,9 @@ class Manipulador(BaseHTTPRequestHandler):
             return self.json(409, {"erro": "O registro de decisões desta conciliação está inconsistente; nenhuma decisão foi aceita. "
                                            "Avise o responsável técnico.", "codigo": "ESTADO_CORROMPIDO"})
         n = len(eventos)
+        if origem == dcs.ORIGEM_MANUAL:
+            return self.json(201, {"registradas": n, "mensagem": "Associação manual confirmada. A classificação do sistema continua "
+                                   "\"não conciliado\"; isto não é suporte documental nem aprovação fiscal ou contábil.", "visao": central.visao(fonte)})
         texto = {dcs.APROVADO: "confirmada(s)", dcs.REJEITADO: "rejeitada(s)", dcs.REVOGADO: "desfeita(s)", dcs.OBSERVACAO: "registrada(s)"}
         return self.json(201, {"registradas": n, "mensagem": f"{n} decisão(ões) {texto[eventos[0]['decisao']]}. A classificação do motor "
                                                               "foi preservada; isto não é aprovação fiscal nem contábil.",

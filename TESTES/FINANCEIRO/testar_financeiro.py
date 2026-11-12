@@ -717,7 +717,8 @@ def tela(sol, sol_bloqueada, sol_ambigua):
         bloq = cdp.js("document.querySelector('.ac-resumo').textContent")
         cdp.foto(fotos / "tela-6-lote-bloqueado.png")
         resultados_tela.append(("T-08 lote bloqueado: resumo explica o motivo (competência) e a próxima ação; nenhuma decisão oferecida",
-                                "Lote bloqueado" in bloq and "Competência da solicitação (2026-10)" in bloq and "abrir nova solicitação" in bloq.lower()
+                                "Lote bloqueado" in bloq and "Competência da solicitação (2026-10)" in bloq
+                                and "competência estiverem erradas, abra uma nova solicitação" in bloq and "documento complementar" in bloq
                                 and not cdp.js("document.querySelector('.ac-decisao')"), bloq[:140]))
         # decisão parcial: cartões de R$ 800,00 e R$ 3.000,00 antes e depois (SOL com os casos ainda abertos)
         cartao_js = """((valor) => { const a = Array.from(document.querySelectorAll('.ac-decisao[data-movimento]'))
@@ -823,7 +824,7 @@ def tela(sol, sol_bloqueada, sol_ambigua):
     falhas = [r for r in resultados_tela if not r[1]]
     for r in resultados_tela:
         registrar(*r)
-    return (opcoes == "DOCUMENTOS,FINANCEIRO_BANCOS" and not falhas and estados == '["CONCLUIDO","CONCLUIDO"]',
+    return (opcoes == "DOCUMENTOS,FINANCEIRO_BANCOS,FECHAMENTO" and not falhas and estados == '["CONCLUIDO","CONCLUIDO"]',
             f"opções {opcoes} · escritório {estados} · capturas em {fotos}")
 
 

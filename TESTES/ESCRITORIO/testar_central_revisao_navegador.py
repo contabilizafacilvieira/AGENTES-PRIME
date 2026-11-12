@@ -217,8 +217,8 @@ def bateria(t):
     abrir_primeiro(t, "NAO_CONCILIADO")
     det = t.js("document.querySelector('.cr-detalhe').innerText")
     botoes = t.js("[...document.querySelectorAll('.cr-detalhe .cr-acoes button')].map(b=>b.textContent)")
-    registrar("UI-CR-11 NÃO CONCILIADO: 'Não encontramos associação segura', sem confirmar/rejeitar", "Não encontramos associação segura" in det
-              and botoes == ["Registrar observação"], botoes)
+    registrar("UI-CR-11 NÃO CONCILIADO: 'Não encontramos associação segura', sem confirmar/rejeitar (só busca manual e observação)",
+              "Não encontramos associação segura" in det and botoes == ["Buscar registros no relatório", "Registrar observação"], botoes)
     t.js("document.querySelector('.cr-fechar').click()")
     # UI-CR-12 estado obsoleto: outra aba decide enquanto este detalhe está aberto
     abrir_primeiro(t, "REVISAR")

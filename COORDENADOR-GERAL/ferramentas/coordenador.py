@@ -286,7 +286,8 @@ def proxima_sol(registro: dict, ano: int) -> str:
 
 # ---------------------------------------------------------------- comandos
 
-FLUXOS = ("DOCUMENTOS", "FINANCEIRO_BANCOS")
+# FECHAMENTO: Documentos recebe, classifica e distribui; NENHUMA área executa até "Preparar fechamento" (tentativa + checkpoint).
+FLUXOS = ("DOCUMENTOS", "FINANCEIRO_BANCOS", "FECHAMENTO")
 
 
 def abrir(pedido: str, pasta_informada, fluxo: str = "DOCUMENTOS") -> int:
@@ -533,7 +534,8 @@ def encerrar_local(sol, caminho):
     solicitado_financeiro = s.get('fluxo') == 'FINANCEIRO_BANCOS'
     empresa_atual = empresas_cadastradas().get(s['empresa'])
     permitido = bool(empresa_atual and financeiro_permitido(empresa_atual))
-    financeiro = (solicitado_financeiro or destinos_financeiros) and not estruturais
+    so_classificar = s.get('fluxo') == 'FECHAMENTO'      # upload do fechamento NÃO inicia nenhuma área
+    financeiro = (solicitado_financeiro or destinos_financeiros) and not estruturais and not so_classificar
     if financeiro and not permitido:
         financeiro = False
         motivos.append('Documentos destinados ao Financeiro; encaminhamento pendente porque o piloto Financeiro/Bancos da empresa não está autorizado.')
@@ -543,7 +545,7 @@ def encerrar_local(sol, caminho):
         s['eventos'].append({'em': agora().isoformat(), 'evento': 'Triagem de Documentos identificou destino Financeiro; encaminhamento automático autorizado pelo cadastro da empresa.'})
     acionadas = {'FINANCEIRO': financeiro}
     for area, texto in (('DP', 'Documentos de pessoal recebidos'), ('FISCAL', 'Documentos fiscais recebidos')):
-        recebidos = not estruturais and bool(tarefas.get(area, {}).get('documentos'))
+        recebidos = not estruturais and bool(tarefas.get(area, {}).get('documentos')) and not so_classificar
         if recebidos and not permitido:
             motivos.append(f'{texto}; piloto da empresa não autorizado para execução local. Confira o cadastro com o Supervisor.')
             tarefas[area]['estado'] = 'BLOQUEADO'
@@ -563,6 +565,8 @@ def encerrar_local(sol, caminho):
                   'areas_acionadas': nomes,
                   'mensagem_supervisor': (f"Documentos distribuídos a {', '.join(nomes)}; depois a Contabilidade prepara as propostas e a "
                                           "Conciliação confere (SIMULAÇÃO)." if nomes else
+                                          'Documentos recebidos e classificados por departamento. Confira a classificação e use '
+                                          '"Preparar fechamento" para iniciar (nenhuma área foi executada).' if so_classificar else
                                           'Triagem local concluída; confira os destinos, limitações e pendências das áreas.'),
                   'motivos': s['motivos']})
 
@@ -1005,8 +1009,13 @@ RESULTADOS_ETAPA = {"FINANCEIRO": "financeiro", "BANCOS": "bancos", "DP": "dp", 
 ORDEM_RESUMOS = ("CONCILIACAO", "FINANCEIRO", "BANCOS", "CONTABILIDADE_DP", "CONTABILIDADE_FISCAL")
 
 
-def novo_plano(etapas) -> list:
-    return [{"etapa": e, "situacao": "PENDENTE", "depende": list(DEPENDE.get(e, ())), "tentativas": 0} for e in ETAPAS if e in etapas]
+# Fechamento completo (pacote congelado): Fiscal e DP produzem antes do Financeiro, para que ele possa CONSULTAR as obrigações e
+# documentos estruturados dessas áreas (intercâmbio); o checkpoint após o Financeiro para antes de toda a Contabilidade.
+ORDEM_FECHAMENTO = ("FISCAL", "DP", "FINANCEIRO", "BANCOS", "CONTABILIDADE_FISCAL", "CONTABILIDADE_DP", "CONCILIACAO")
+
+
+def novo_plano(etapas, ordem=ETAPAS) -> list:
+    return [{"etapa": e, "situacao": "PENDENTE", "depende": list(DEPENDE.get(e, ())), "tentativas": 0} for e in ordem if e in etapas]
 
 
 def plano_de(s: dict) -> list:
@@ -1108,8 +1117,13 @@ def registrar_financeiro(sol: str, caminho_resultado: str) -> int:
                             retorno_em=execucao['em'], pendencias=r.get('pendencias', []))
     s.setdefault("falhas_areas", {}).pop("FINANCEIRO", None)
     resumos = s.setdefault("resumos_etapas", {})
+    ck = checkpoint_pendente(s)
     if r.get("bloqueio_lote"):
         # bloqueio do LOTE INTEIRO (competência, titularidade do lote, extrato essencial): Bancos não é acionado
+        if ck and ck.get('situacao') == 'AGUARDANDO_FINANCEIRO':
+            ck.update(situacao='ENCERRADO_FINANCEIRO_BLOQUEADO', encerrado_em=execucao['em'])   # sem pausa: bloqueio normal
+            s.setdefault('checkpoints', []).append(dict(ck))
+            s.pop('checkpoint', None)
         execucao["bloqueio_lote"] = r["bloqueio_lote"]
         marcar(s, "FINANCEIRO", "BLOQUEADA")
         resumos["FINANCEIRO"] = [f"BLOQUEIO_LOTE: {b}" for b in r["bloqueio_lote"]]
@@ -1124,6 +1138,18 @@ def registrar_financeiro(sol: str, caminho_resultado: str) -> int:
     contab.update(especialista='BANCOS', origem='FINANCEIRO', documentos=tarefa_financeiro['documentos'])
     if contab.get('estado') in (None, 'EM_ANDAMENTO'):
         contab['estado'] = 'PRONTO_PARA_ENCAMINHAMENTO'
+    if ck and ck.get('situacao') == 'AGUARDANDO_FINANCEIRO' and ck.get('apos') == 'FINANCEIRO':
+        # CHECKPOINT: Financeiro concluído; Contabilidade/Bancos só com autorização explícita do Supervisor (nada é executado agora)
+        contab['estado'] = 'AGUARDANDO_AUTORIZACAO_SUPERVISOR'
+        ck.update(situacao='AGUARDANDO_AUTORIZACAO', atingido_em=execucao['em'], resultado_financeiro_sha256=execucao['resultado_sha256'],
+                  execucao_financeiro=len(s['financeiro']), resumo_financeiro=r['resumo'],
+                  proximas_etapas=[e['etapa'] for e in plano_de(s) if e['situacao'] == 'PENDENTE'])
+        s.update(etapa="FINANCEIRO_CONCLUIDO_AGUARDANDO_AUTORIZACAO", estado="AGUARDANDO_SUPERVISOR")
+        s["eventos"].append({"em": execucao["em"], "evento": f"FINANCEIRO concluído ({r['resumo']['movimentos']} movimento(s), {r['resumo']['pendencias']} "
+                             "pendência(s)) — aguardando autorização do Supervisor para Contabilidade/Bancos (checkpoint; nada foi encaminhado)"})
+        gravar_json(REGISTRO, registro)
+        return saida({"resultado": "FINANCEIRO_REGISTRADO_CHECKPOINT", "sol": sol, "estado": s["estado"], "proximo_estagio": None,
+                      "aguardando": "CONTABILIDADE/BANCOS"})
     s.update(etapa="FINANCEIRO_CONCLUIDO", estado=avancar(s))
     s["eventos"].append({"em": execucao["em"], "evento": f"FINANCEIRO devolveu a conferência ao Coordenador ({r['resumo']['movimentos']} movimento(s), "
                          f"{r['resumo']['pendencias']} pendência(s)); encaminhada à Contabilidade/Bancos"})
@@ -1444,15 +1470,81 @@ def revisar_piloto(sol, acao, justificativa):
     return saida({'resultado': 'REVISAO_PILOTO_REGISTRADA', 'estado': s['estado'], 'sol': sol, 'escopo': evento['escopo']})
 
 
-def retomar_rota_financeira(sol: str, justificativa: str, tipos_rota=None, manifesto_sha256=None) -> int:
-    """Retoma uma SOL quando a triagem determinística identificou Financeiro."""
+def checkpoint_pendente(s: dict):
+    """Checkpoint do Supervisor ainda em aberto (aguardando o Financeiro ou aguardando autorização para a etapa seguinte)."""
+    ck = s.get('checkpoint')
+    return ck if ck and ck.get('situacao') in ('AGUARDANDO_FINANCEIRO', 'AGUARDANDO_AUTORIZACAO') else None
+
+
+TIPOS_ROTA_FINANCEIRA = {'Extrato PDF Santander Empresas (leitura pelo Financeiro)', 'Extrato bancário PDF (leitura pelo Financeiro)',
+                         'Relatório financeiro de lançamentos', 'Extrato CSV (classificação por cabeçalho)', 'Extrato OFX (classificação por formato)',
+                         'Extrato OFX'}
+
+
+def etapas_do_pacote(triagem_pacote, empresa: dict):
+    """Etapas do fechamento pela classificação do PACOTE CONGELADO (lote original + complementares). Área sem documento não entra;
+    DP/Fiscal só com a empresa autorizada para execução local (mesma regra da triagem inicial). (etapas, motivos)"""
+    areas = {x.get('area') for x in triagem_pacote}
+    tipos_fin = {x.get('tipo') for x in triagem_pacote if x.get('area') == 'FINANCEIRO'}
+    permitido = bool(empresa and financeiro_permitido(empresa))
+    etapas, motivos = [], []
+    if 'FINANCEIRO' in areas and (tipos_fin & TIPOS_ROTA_FINANCEIRA):
+        etapas += ['FINANCEIRO', 'BANCOS']
+    for area, texto in (('FISCAL', 'Documentos fiscais'), ('DP', 'Documentos de pessoal')):
+        if area in areas:
+            if permitido:
+                etapas += [area, *DEPENDENTES[area]]
+            else:
+                motivos.append(f'{texto} no pacote; empresa não autorizada para execução local da área.')
+    if etapas:
+        etapas.append('CONCILIACAO')
+    return etapas, motivos
+
+
+def retomar_rota_financeira(sol: str, justificativa: str, tipos_rota=None, manifesto_sha256=None, parar_apos_financeiro=False,
+                            tentativa=None, triagem_pacote=None) -> int:
+    """Retoma uma SOL quando a triagem determinística identificou Financeiro. Com parar_apos_financeiro, o Financeiro executa e
+    a SOL PARA antes da Contabilidade/Bancos (checkpoint do Supervisor); conclusão técnica de área ≠ autorização da próxima."""
     registro = ler_registro(); s = registro['solicitacoes'].get(sol)
     if not s:
         return recusar('SOL_DESCONHECIDA', f'{sol} não consta no registro.')
     if s.get('estado') != 'AGUARDANDO_SUPERVISOR':
         return recusar('ESTADO_INVALIDO', 'A SOL não está aguardando retomada de rota.')
+    if checkpoint_pendente(s):
+        return recusar('CHECKPOINT_PENDENTE', 'O Financeiro já foi concluído e aguarda sua autorização para a Contabilidade/Bancos. '
+                                              'Use "Continuar para Contabilidade/Bancos"; o Financeiro não é repetido.')
     if not isinstance(justificativa, str) or not 5 <= len(justificativa.strip()) <= 500:
         return recusar('PARAMETROS_INVALIDOS', 'Informe justificativa de 5 a 500 caracteres.')
+    momento = agora().isoformat()
+    if triagem_pacote is not None:
+        # FECHAMENTO COMPLETO pelo pacote congelado da tentativa: o plano inclui toda área com documento (Fiscal, DP, Financeiro)
+        # e a Conciliação; a triagem do registro NÃO é reescrita aqui (a reancoragem do pacote a substitui antes das áreas).
+        etapas, motivos_plano = etapas_do_pacote(triagem_pacote, empresas_cadastradas().get(s['empresa']))
+        if not etapas:
+            return recusar('ROTA_NAO_DETERMINADA', 'O pacote não tem documento de Financeiro, Fiscal ou DP com rota determinística; nada foi iniciado.')
+        so_financeira = etapas == ['FINANCEIRO', 'BANCOS', 'CONCILIACAO']        # mesma rota (e códigos) da versão anterior
+        s['fluxo_origem'] = s.get('fluxo_origem') or s.get('fluxo', 'DOCUMENTOS')
+        s['fluxo'] = 'FINANCEIRO_BANCOS' if 'FINANCEIRO' in etapas else s.get('fluxo', 'DOCUMENTOS')
+        s['plano_etapas'] = novo_plano(etapas, ORDEM_FECHAMENTO)
+        if manifesto_sha256:
+            s['ancora_documentos'] = dict(s.get('ancora_documentos') or {}, manifesto_sha256=manifesto_sha256, reancorada_em=momento)
+        s['estado'] = s['plano_etapas'][0]['etapa'] + '_EM_ANDAMENTO'
+        tarefa = s.setdefault('tarefas_areas', {}).setdefault(TAREFA_ETAPA[s['plano_etapas'][0]['etapa']],
+                                                              {'area': TAREFA_ETAPA[s['plano_etapas'][0]['etapa']], 'documentos': []})
+        tarefa['estado'] = 'EM_ANDAMENTO'
+        if parar_apos_financeiro and 'FINANCEIRO' in etapas:
+            s['checkpoint'] = {'apos': 'FINANCEIRO', 'proxima_etapa': 'BANCOS', 'situacao': 'AGUARDANDO_FINANCEIRO',
+                               'tentativa': int(tentativa) if tentativa else None, 'solicitado_em': momento,
+                               'origem': 'RETOMADA_ROTA_FINANCEIRA' if so_financeira else 'PREPARAR_FECHAMENTO', 'solicitante': 'Supervisor',
+                               'motivo': 'Executar Fiscal, DP e Financeiro e parar para revisão do Supervisor antes da Contabilidade e da Conciliação.'}
+        nomes = [e['etapa'] for e in s['plano_etapas']]
+        s.setdefault('retomadas', []).append({'em': momento, 'motivo': justificativa.strip(), 'estado_anterior': 'AGUARDANDO_SUPERVISOR',
+                                             'estado_novo': s['estado'], 'decisao': ' + '.join(nomes), 'origem': 'PACOTE_CONGELADO_FECHAMENTO',
+                                             'motivos_plano': motivos_plano})
+        s['eventos'].append({'em': momento, 'evento': 'Fechamento preparado a partir do pacote congelado: ' + ' → '.join(nomes)
+                             + ('; checkpoint do Supervisor após o Financeiro' if s.get('checkpoint') else '')})
+        gravar_json(REGISTRO, registro)
+        return saida({'resultado': 'ROTA_FINANCEIRA_RETOMADA' if so_financeira else 'FECHAMENTO_PREPARADO', 'sol': sol, 'estado': s['estado'], 'reexecuta': nomes, 'motivos_plano': motivos_plano})
     triagem = s.get('triagem_documentos') or []
     if tipos_rota:
         anterior = list(triagem)
@@ -1473,12 +1565,105 @@ def retomar_rota_financeira(sol: str, justificativa: str, tipos_rota=None, manif
         s['ancora_documentos'] = dict(s.get('ancora_documentos') or {}, manifesto_sha256=manifesto_sha256,
                                       reancorada_em=momento if 'momento' in locals() else agora().isoformat())
     s['estado'] = 'FINANCEIRO_EM_ANDAMENTO'
+    if parar_apos_financeiro:
+        s['checkpoint'] = {'apos': 'FINANCEIRO', 'proxima_etapa': 'BANCOS', 'situacao': 'AGUARDANDO_FINANCEIRO',
+                           'tentativa': int(tentativa) if tentativa else None, 'solicitado_em': momento,
+                           'origem': 'RETOMADA_ROTA_FINANCEIRA', 'solicitante': 'Supervisor',
+                           'motivo': 'Executar o Financeiro e parar para revisão do Supervisor antes da Contabilidade/Bancos.'}
     s.setdefault('retomadas', []).append({'em': momento, 'motivo': justificativa.strip(),
         'estado_anterior': 'AGUARDANDO_SUPERVISOR', 'estado_novo': s['estado'],
         'decisao': 'FINANCEIRO + CONCILIACAO', 'origem': 'ROTA_DETERMINISTICA'})
     s['eventos'].append({'em': momento, 'evento': 'Retomada após classificação automática dos documentos financeiros; rota Financeiro + Conciliação.'})
     gravar_json(REGISTRO, registro)
     return saida({'resultado': 'ROTA_FINANCEIRA_RETOMADA', 'sol': sol, 'estado': s['estado'], 'reexecuta': ['FINANCEIRO', 'BANCOS', 'CONCILIACAO']})
+
+
+RE_PASTA_COMPLEMENTAR = re.compile(r'RECEBIDOS/(\d{4}-\d{2})/L-\d{8}-\d{6}-[0-9a-f]{6}')
+
+
+def reancorar_pacote(sol: str, manifesto: str, tentativa: int) -> int:
+    """Âncora de integridade passa ao PACOTE EFETIVO de uma tentativa (lote original + complementares do snapshot).
+    Confere contrato, identificação, inventário real dos arquivos e hash da extração ANTES de mudar a âncora; a âncora anterior
+    fica preservada em ancoras_anteriores. Não executa nada."""
+    registro = ler_registro(); s = registro['solicitacoes'].get(sol)
+    if not s:
+        return recusar('SOL_DESCONHECIDA', f'{sol} não consta no registro.')
+    if s.get('estado') in ('CANCELADA', 'FECHAMENTO_APROVADO') or s.get('aprovacao'):
+        return recusar('ESTADO_INVALIDO', 'SOL encerrada ou com fechamento aprovado: pacote não pode mudar.')
+    try:
+        caminho = Path(manifesto)
+        d = json.loads(caminho.read_text(encoding='utf-8'))
+        if (d.get('contrato'), d.get('empresa'), d.get('sol'), d.get('competencia'), d.get('pasta')) != (
+                'DOCUMENTOS_LOCAL_V1', s['empresa'], sol, s['competencia'], s['pasta']):
+            raise ValueError('contrato ou identificação do pacote não conferem com a SOL')
+        if (d.get('pacote_efetivo') or {}).get('tentativa') != int(tentativa):
+            raise ValueError('pacote não pertence à tentativa informada')
+        base = (CLIENTES / s['empresa']).resolve()
+        pastas = [s['pasta']]
+        for c in d.get('pastas_complementares') or []:
+            m = RE_PASTA_COMPLEMENTAR.fullmatch(str(c))
+            if not m or m.group(1) != s['competencia'] or c in pastas:
+                raise ValueError('pasta complementar inválida')
+            pastas.append(c)
+        atuais = {}
+        for rel in pastas:
+            alvo = (base / rel).resolve(); alvo.relative_to(base)
+            atuais.update({x.relative_to(base).as_posix(): hashlib.sha256(x.read_bytes()).hexdigest()
+                           for x in alvo.rglob('*') if x.is_file() and not x.is_symlink()})
+        if atuais != {i['arquivo']: i['sha256'] for i in d['itens']}:
+            raise ValueError('inventário ou hashes não conferem com os documentos do pacote')
+        extracao = caminho.with_name('extracao-local.json')
+        sha_ext = hashlib.sha256(extracao.read_bytes()).hexdigest()
+        if sha_ext != d.get('extracao_sha256'):
+            raise ValueError('extração alterada depois da montagem do pacote')
+    except (OSError, ValueError, KeyError, TypeError) as e:
+        return recusar('PACOTE_INVALIDO', f'Pacote efetivo recusado: {e}.')
+    momento = agora().isoformat()
+    s.setdefault('ancoras_anteriores', []).append(s.get('ancora_documentos'))
+    s['ancora_documentos'] = {'manifesto_sha256': hashlib.sha256(caminho.read_bytes()).hexdigest(), 'extracao_sha256': sha_ext,
+                              'registrada_em': momento, 'origem': 'PACOTE_EFETIVO_TENTATIVA', 'tentativa': int(tentativa),
+                              'pastas_complementares': pastas[1:]}
+    s['triagem_documentos'] = [{'arquivo': i['arquivo'], **i['encaminhamento']} for i in d['itens'] if i.get('encaminhamento')]
+    s['tarefas_areas'] = d.get('tarefas_areas', {})
+    s['eventos'].append({'em': momento, 'evento': f'Pacote efetivo da tentativa {int(tentativa):04d} ancorado ({len(d["itens"])} documento(s), '
+                                                  f'{len(pastas) - 1} lote(s) complementar(es)).'})
+    gravar_json(REGISTRO, registro)
+    return saida({'resultado': 'PACOTE_REANCORADO', 'sol': sol, 'tentativa': int(tentativa), 'documentos': len(d['itens'])})
+
+
+def autorizar_continuacao(sol: str, justificativa: str, tentativa=None) -> int:
+    """Supervisor autoriza a etapa seguinte ao checkpoint (Contabilidade/Bancos) na MESMA tentativa. O Financeiro não é repetido:
+    ele continua CONCLUIDA no plano; só o próximo estágio pendente é aberto. Segunda autorização é recusada (nada pendente)."""
+    registro = ler_registro(); s = registro['solicitacoes'].get(sol)
+    if not s:
+        return recusar('SOL_DESCONHECIDA', f'{sol} não consta no registro.')
+    if ORDEM_ATIVA.exists():
+        return recusar('ORDEM_ATIVA', 'Há uma ordem ativa; aguarde o término.')
+    ck = s.get('checkpoint')
+    if not ck or ck.get('situacao') != 'AGUARDANDO_AUTORIZACAO':
+        return recusar('SEM_CHECKPOINT', 'Não há etapa aguardando sua autorização nesta solicitação (o Financeiro ainda não concluiu, '
+                                         'já foi autorizado ou a rota não pediu parada).')
+    if s.get('estado') != 'AGUARDANDO_SUPERVISOR':
+        return recusar('ESTADO_INVALIDO', 'A solicitação não está aguardando o Supervisor.')
+    if (ck.get('tentativa') or None) != (int(tentativa) if tentativa else None):
+        return recusar('TENTATIVA_DIVERGENTE', 'A tentativa em pausa não corresponde à informada. Atualize a tela.')
+    if not isinstance(justificativa, str) or not 5 <= len(justificativa.strip()) <= 500:
+        return recusar('PARAMETROS_INVALIDOS', 'Informe justificativa de 5 a 500 caracteres.')
+    fin, prox = etapa_do_plano(s, 'FINANCEIRO'), etapa_do_plano(s, ck.get('proxima_etapa') or 'BANCOS')
+    if not fin or fin['situacao'] != 'CONCLUIDA' or not prox or prox['situacao'] != 'PENDENTE':
+        return recusar('PLANO_INCOMPATIVEL', 'Financeiro não concluído ou próxima etapa não está pendente; nada foi autorizado.')
+    momento = agora().isoformat()
+    ck.update(situacao='AUTORIZADO', autorizado_em=momento, justificativa_autorizacao=justificativa.strip(), autorizado_por='Supervisor')
+    s.setdefault('checkpoints', []).append(dict(ck))
+    s.pop('checkpoint', None)
+    contab = s.setdefault('tarefas_areas', {}).setdefault('CONTABILIDADE', {'area': 'CONTABILIDADE', 'documentos': []})
+    if contab.get('estado') == 'AGUARDANDO_AUTORIZACAO_SUPERVISOR':
+        contab['estado'] = 'PRONTO_PARA_ENCAMINHAMENTO'
+    s.update(etapa='FINANCEIRO_CONCLUIDO', estado=avancar(s))
+    s['eventos'].append({'em': momento, 'evento': f"Supervisor autorizou a continuação para {ck.get('proxima_etapa')} ({justificativa.strip()[:120]}); "
+                                                  "Financeiro não é repetido"})
+    gravar_json(REGISTRO, registro)
+    return saida({'resultado': 'CONTINUACAO_AUTORIZADA', 'sol': sol, 'estado': s['estado'], 'tentativa': ck.get('tentativa')})
 
 
 def registrar_falha_etapa(sol: str, etapa: str, motivo: str) -> int:
@@ -1872,7 +2057,8 @@ def main() -> int:
     for nome in ("encerrar-local", "encerrar", "cancelar", "consultar", "registrar-importacao", "registrar-aceite", "registrar-decisao-pendencia",
                  "registrar-financeiro", "registrar-bancos", "registrar-falha-etapa", "registrar-decisao-movimento",
                  "propor-regra-bancos", "aprovar-regra-bancos", "revisar-piloto", "aprovar-fechamento", "registrar-liberacao", "registrar-fiscal", "registrar-contabilidade-fiscal",
-                 "registrar-dp", "registrar-contabilidade-dp", "registrar-conciliacao", "retomar-area", "retomar-rota-financeira"):
+                 "registrar-dp", "registrar-contabilidade-dp", "registrar-conciliacao", "retomar-area", "retomar-rota-financeira",
+                 "reancorar-pacote", "autorizar-continuacao"):
         s = sub.add_parser(nome)
         s.add_argument("--sol", required=True)
         if nome == 'registrar-liberacao':
@@ -1900,6 +2086,15 @@ def main() -> int:
             s.add_argument("--justificativa", required=True)
             s.add_argument("--tipos", default='{}')
             s.add_argument("--manifesto-sha256", default='')
+            s.add_argument("--triagem-pacote", default=None)
+            s.add_argument("--parar-apos-financeiro", action="store_true")
+            s.add_argument("--tentativa", type=int)
+        if nome == "autorizar-continuacao":
+            s.add_argument("--justificativa", required=True)
+            s.add_argument("--tentativa", type=int)
+        if nome == "reancorar-pacote":
+            s.add_argument("--manifesto", required=True)
+            s.add_argument("--tentativa", required=True, type=int)
         if nome == "registrar-decisao-movimento":
             s.add_argument("--movimento", required=True)
             s.add_argument("--tipo", required=True)
@@ -1972,12 +2167,21 @@ def executar_comando(args) -> int:
         return registrar_conciliacao(args.sol, args.resultado)
     if args.comando == 'retomar-area':
         return retomar_area(args.sol, args.etapa, args.justificativa)
+    if args.comando == 'reancorar-pacote':
+        return reancorar_pacote(args.sol, args.manifesto, args.tentativa)
     if args.comando == 'retomar-rota-financeira':
         try:
             tipos = json.loads(args.tipos)
+            triagem_pacote = json.loads(args.triagem_pacote) if args.triagem_pacote else None
+            if triagem_pacote is not None and not (isinstance(triagem_pacote, list) and all(isinstance(x, dict) for x in triagem_pacote)):
+                raise ValueError('triagem do pacote inválida')
         except (TypeError, ValueError):
             return recusar('PARAMETROS_INVALIDOS', 'Classificação de rota inválida.')
-        return retomar_rota_financeira(args.sol, args.justificativa, tipos, args.manifesto_sha256 or None)
+        return retomar_rota_financeira(args.sol, args.justificativa, tipos, args.manifesto_sha256 or None,
+                                       parar_apos_financeiro=args.parar_apos_financeiro, tentativa=args.tentativa,
+                                       triagem_pacote=triagem_pacote)
+    if args.comando == 'autorizar-continuacao':
+        return autorizar_continuacao(args.sol, args.justificativa, args.tentativa)
     if args.comando == 'registrar-liberacao':
         return registrar_liberacao(args.sol, args.situacao, args.arquivo, args.sha256, args.linhas or '0', args.total or '0', args.motivo,
                                    args.movimentacao, args.auditoria, args.anexos)

@@ -28,7 +28,7 @@
  // aprovação do Supervisor em SIMULAÇÃO: estado fechado; nunca "escriturado" nem "liberado"
  estados.FECHAMENTO_APROVADO='Fechamento aprovado (SIMULAÇÃO)';
  const ESTADOS_FECHADOS=['FECHAMENTO_APROVADO','ENCERRADA','CANCELADA'];
- const fluxos={DOCUMENTOS:'Documentos',FINANCEIRO_BANCOS:'Financeiro / Bancos'};
+ const fluxos={DOCUMENTOS:'Documentos',FINANCEIRO_BANCOS:'Financeiro / Bancos',FECHAMENTO:'Fechamento do mês'};
  let pagina='',versao=0;
  function recolher(){versao++;area.hidden=true;op.fechar();pagina='';nav.querySelectorAll('button').forEach(b=>b.setAttribute('aria-current','false'));}
  async function navegar(t){

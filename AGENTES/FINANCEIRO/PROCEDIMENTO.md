@@ -125,6 +125,34 @@ operacional, calculado numa única função).
   registro corrompido ou de outra SOL/empresa/competência: nada é gravado nem aplicado. Decisão feita sobre uma associação que
   mudou numa nova execução fica desatualizada (não vale).
 
+### Checkpoint após o Financeiro (primeiro ciclo controlado)
+Conclusão técnica do Financeiro ≠ autorização para a Contabilidade/Bancos. Com "Executar o Financeiro e parar para revisão" (padrão na
+tela), o Financeiro executa normalmente; se bloquear, o bloqueio segue como sempre (tentativa BLOQUEADA). Se concluir sem bloqueio, o
+Coordenador NÃO avança: SOL "aguardando Supervisor" (etapa FINANCEIRO_CONCLUIDO_AGUARDANDO_AUTORIZACAO), Bancos e Conciliação
+pendentes, tentativa PAUSADA (ativa, não finalizada), checkpoint auditado (tentativa, resultado do Financeiro, data/hora, origem,
+próxima etapa). "Continuar para Contabilidade/Bancos" registra a autorização com justificativa e continua a MESMA tentativa, sem repetir o
+Financeiro. Retomada direta da rota sem tentativa ativa numa SOL ancorada a pacote de tentativa é recusada antes de qualquer escrita.
+
+### Ambiguidade com vários movimentos bancários (decisão parcial)
+Um AMBIGUO pode reunir mais de um movimento bancário (ex.: 2 movimentos × 2 registros = 4 candidatos). Cada escolha do Supervisor
+confirma SÓ o candidato escolhido; o grupo aceita novas escolhas disjuntas (nenhum movimento ou registro já confirmado) até cobrir
+todos os seus movimentos. Enquanto houver movimento do grupo sem associação, o estado operacional do grupo é AGUARDANDO_SUPERVISOR
+("Ambíguo — parcialmente resolvido"), ele aparece nos Ambíguos e em "Ver bloqueios", e os candidatos já consumidos aparecem como
+indisponíveis. Mesmo que reste um único candidato, nada é confirmado sozinho. "Desfazer esta escolha" revoga só aquela escolha
+(evento REVOGADO apontando a escolha). A classificação do motor continua AMBIGUO. "Ver bloqueios" lista cada movimento que impede o
+avanço (por movimento, não por grupo), com Problema/Impacto/O que fazer; total = liberados + bloqueadores.
+
+### Associação manual assistida (exceções que o motor recusou)
+Só para movimento bancário NAO_CONCILIADO (1 banco, nenhum registro auxiliar) e sem decisão vigente. A Central busca, SOMENTE na mesma
+conciliação/tentativa, registros do relatório de natureza compatível, ainda não usados em associação confirmada e rastreáveis; ordena pela
+proximidade de data (sem esconder os fora da janela automática; mais de 15 dias = alerta) e sugere combinações de soma EXATA (Decimal,
+tolerância zero) de até 5 registros, entre os 40 mais próximos, com orçamento de busca. Nenhuma sugestão é escolhida pelo sistema.
+O Supervisor seleciona explicitamente, confere e confirma com justificativa: evento `APROVADO` com origem `ASSOCIACAO_MANUAL_ASSISTIDA`
+(registros, valores, SHA, soma, diferença 0,00), na mesma cadeia auditável. A classificação do motor continua NAO_CONCILIADO; o estado
+operacional passa a `ASSOCIACAO_CONFIRMADA_PELO_SUPERVISOR`; registro usado fica indisponível para outra associação; revogação devolve o
+bloqueio. O limite 5 é da ferramenta manual: o agrupamento automático da Política V1 continua até 3. Não é suporte documental/fiscal nem
+lançamento; o bloqueio do lote só muda numa nova execução autorizada do Financeiro.
+
 ## Extrato bancário pelo contrato comum (Normalizador Bancário) — v1.4
 - Todo PDF extraído passa primeiro por `ferramentas/normalizador_bancario.py`, que devolve
   `MOVIMENTOS_BANCARIOS_NORMALIZADOS_V1`. O Financeiro consome o contrato; não há leitor por banco no Financeiro.

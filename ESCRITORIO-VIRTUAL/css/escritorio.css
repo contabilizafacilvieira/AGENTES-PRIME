@@ -770,7 +770,7 @@ body.prime-gestao.prime-acomp.prime-ampliado { --prime-dock: clamp(360px, calc(1
 .ac-selo-vermelho { color: var(--st-falha); border-color: var(--st-falha-borda); background: var(--st-falha-fundo); }
 
 /* abas */
-.ac-abas { position: sticky; top: -14px; z-index: 3; display: flex; gap: 2px; margin: 0; padding: 0; overflow-x: auto;
+.ac-abas { position: sticky; top: -14px; z-index: 3; display: flex; flex-wrap: wrap; gap: 2px; margin: 0; padding: 0; overflow-x: auto;
   background: var(--superficie); border-bottom: 1px solid var(--borda); scrollbar-width: none; }
 .ac-aba { display: inline-flex; align-items: center; gap: 6px; padding: 9px 11px 8px; font: 600 13px var(--fonte); color: var(--texto-suave);
   background: none; border: 0; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; }
@@ -1097,3 +1097,96 @@ body.cr-aberta .gestao { display: none; }
   .cr-item .cr-lado, .cr-item .cr-status, .cr-item .cr-abrir { grid-column: 2; }
   .cr-natureza { margin-left: 0; }
 }
+
+/* ============================================================ Documentos complementares e tentativas (tela da solicitação) */
+.sd-bloco .botao-sec { margin-top: 6px; }
+.sd-legada { padding: 8px 10px; margin: 6px 0; border: 1px solid var(--st-alerta-borda); background: var(--st-alerta-fundo); }
+.sd-lista { margin: 6px 0; padding-left: 18px; font-size: 12px; }
+.sd-caixa input[type="file"], .sd-frase { background: var(--fundo); color: var(--texto); border: 1px solid var(--borda); padding: 6px; font: inherit; }
+.sd-revisao { margin-top: 10px; }
+.sd-dup { margin: 4px 0; padding: 6px 8px; border: 1px solid var(--borda); }
+.sd-dup-mesma_sol { color: var(--st-falha); border-color: var(--st-falha-borda); background: var(--st-falha-fundo); }
+.sd-dup-mesma_empresa_competencia, .sd-dup-lote_anterior { color: var(--st-alerta); border-color: var(--st-alerta-borda); }
+.sd-classificacao { margin: 4px 0; color: var(--st-ok); }
+.sd-camada[hidden], .sd-caixa [hidden] { display: none !important; }
+.sd-camada { position: fixed; inset: 0; z-index: 80; background: rgba(5, 6, 8, .72); display: flex; justify-content: center; align-items: flex-start;
+  overflow-y: auto; padding: 32px 12px; }
+.sd-caixa { width: min(620px, 100%); margin-top: 8vh; background: var(--superficie); border: 1px solid var(--borda); border-top: 4px solid var(--destaque);
+  padding: 16px 20px 20px; }
+.sd-aviso-congelar { color: var(--st-info); font-weight: 700; }
+
+/* ============================================================ Central: associação manual assistida */
+.cr-manual { margin-top: 14px; padding: 12px 14px; border: 1px solid var(--st-info-borda); background: var(--st-info-fundo); }
+.cr-manual-aviso { font-weight: 700; color: var(--st-info); margin: 6px 0; }
+.cr-manual-alerta { color: var(--st-alerta); font-size: 12px; margin: 4px 0 0; }
+.cr-manual-combos { display: flex; flex-direction: column; gap: 8px; margin: 8px 0; }
+.cr-manual-combo { cursor: default; }
+.cr-manual-lista { list-style: none; margin: 6px 0; padding: 0; display: flex; flex-direction: column; gap: 4px; max-height: 320px; overflow-y: auto; }
+.cr-manual-item { padding: 6px 8px; background: var(--superficie); border: 1px solid var(--borda); }
+.cr-manual-item label { display: flex; gap: 8px; align-items: flex-start; cursor: pointer; }
+.cr-manual-extra { font-size: 11px; margin: 2px 0 0 26px; }
+.cr-manual-resumo { font-weight: 700; margin: 10px 0 0; }
+.cr-manual-resumo[data-diferenca="0"] { color: var(--st-ok); }
+.cr-manual[hidden] { display: none !important; }
+
+/* ============================================================ Central: ver bloqueios (rede de segurança) */
+.cr-ver-bloqueios { margin-top: 8px; }
+.cr-ver-bloqueios summary { cursor: pointer; font-weight: 700; color: var(--st-falha); }
+.cr-bloqueios-lista { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.cr-bloqueio-item { padding: 8px 10px; background: var(--superficie); border: 1px solid var(--st-falha-borda); }
+.cr-bloqueio-item p { margin: 4px 0; }
+.sd-parar { display: flex; gap: 6px; align-items: flex-start; margin-top: 8px; font-size: 13px; }
+.sd-checkpoint { margin: 8px 0; padding: 10px 12px; border: 1px solid var(--st-info-borda); background: var(--st-info-fundo); }
+.sd-ck-linha { margin: 2px 0; font-weight: 700; }
+.sd-ck-ok { color: var(--st-ok); }
+.sd-ck-espera { color: var(--st-alerta); }
+
+/* ============================================================ ambiente (REAL × DEMONSTRAÇÃO) — identificação visível, segurança */
+.amb-faixa { flex: 0 0 auto; padding: 5px 12px; font-weight: 700; letter-spacing: .04em; text-align: center; font-size: 13px; }
+.amb-real { background: #7a1f1f; color: #fff; border-bottom: 2px solid #ff6b6b; }
+.amb-demo { background: #6b4e00; color: #fff; border-bottom: 2px solid var(--destaque); }
+
+/* ============================================================ prévia do fechamento */
+.ac-painel-fechamento { overflow-x: auto; }
+.pf-painel { display: flex; flex-direction: column; gap: 12px; }
+.pf-cabecalho { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.pf-titulo { margin: 0; font-size: 18px; letter-spacing: .05em; }
+.pf-ident { margin: 0; color: var(--texto-suave); }
+.pf-nota { margin: 4px 0; color: var(--texto-suave); font-size: 12.5px; }
+.pf-chip { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 12px; font-weight: 600; border: 1px solid; }
+.pf-verde { color: #7fd98a; border-color: #2f7a3a; background: #12261a; }
+.pf-ambar { color: var(--destaque); border-color: var(--destaque-escuro); background: #2a2110; }
+.pf-vermelho { color: #ff8f8f; border-color: #8a2b2b; background: #2a1414; }
+.pf-azul { color: #8cc4ff; border-color: #2b5a8a; background: #13202e; }
+.pf-cinza { color: var(--texto-suave); border-color: var(--borda); background: var(--superficie-2); }
+.pf-geral { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
+.pf-geral-item { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; background: var(--superficie-2); border-left: 4px solid var(--borda); }
+.pf-deps { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+.pf-dep { padding: 10px; background: var(--superficie); border: 1px solid var(--borda); border-top: 4px solid var(--borda); display: flex; flex-direction: column; gap: 6px; }
+.pf-dep h4 { margin: 0; font-size: 15px; }
+.pf-borda-verde { border-left-color: #2f7a3a; border-top-color: #2f7a3a; }
+.pf-borda-ambar { border-left-color: var(--destaque); border-top-color: var(--destaque); }
+.pf-borda-vermelho { border-left-color: #c94a4a; border-top-color: #c94a4a; }
+.pf-borda-azul { border-left-color: #3d7fc4; border-top-color: #3d7fc4; }
+.pf-borda-cinza { border-left-color: var(--borda); border-top-color: var(--borda); }
+.pf-num { display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; margin: 0; font-size: 12.5px; }
+.pf-num dt { color: var(--texto-suave); }
+.pf-num dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.pf-pend-n, .pf-acao { margin: 0; font-size: 12.5px; }
+.pf-acao { color: var(--texto); }
+.pf-lista { margin: 4px 0; padding-left: 18px; }
+.pf-lista li { margin: 4px 0; }
+.pf-sub { display: block; color: var(--texto-suave); font-size: 12.5px; }
+.pf-sub-titulo { margin: 10px 0 4px; font-size: 13px; }
+.pf-det { background: var(--superficie); border: 1px solid var(--borda); padding: 6px 10px; }
+.pf-det > summary { cursor: pointer; font-weight: 600; }
+.pf-tabela { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 6px 0; }
+.pf-tabela th, .pf-tabela td { border-bottom: 1px solid var(--borda); padding: 4px 6px; text-align: left; vertical-align: top; }
+.pf-tabela th { color: var(--texto-suave); font-weight: 600; }
+.pf-docs-resumo { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; margin: 6px 0; }
+.pf-docs-dep { display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; background: var(--superficie-2); border-left: 4px solid var(--borda); font-size: 12.5px; }
+.pf-consulta { padding: 6px 0; border-bottom: 1px solid var(--borda); }
+.pf-filtro { margin: 0 0 6px; }
+.pf-atalho .pf-abrir { width: 100%; padding: 8px; font-weight: 600; }
+.sd-classificacao-dep { margin: 8px 0 2px; font-weight: 700; }
+@media (max-width: 640px) { .pf-deps, .pf-geral { grid-template-columns: 1fr; } }

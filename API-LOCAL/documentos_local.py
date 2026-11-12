@@ -267,6 +267,47 @@ def cnpjs_cadastro(empresa):
     return sorted({re.sub(r'\D', '', c) for c in re.findall(r'\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}', arquivo.read_text(encoding='utf-8'))})
 
 
+TIPO_BALANCETE = 'Balancete contábil do período'
+TIPO_RAZAO = 'Razão contábil'
+TIPO_BOOK = 'Book de conciliação contábil'
+TIPOS_CONTABEIS = (TIPO_BALANCETE, TIPO_RAZAO, TIPO_BOOK)
+_SALDO_INI, _SALDO_FIM = {'SALDO_ANTERIOR', 'SALDO_INICIAL'}, {'SALDO_ATUAL', 'SALDO_FINAL'}
+_DEB, _CRED = {'DEBITO', 'DEBITOS'}, {'CREDITO', 'CREDITOS'}
+
+
+def texto_planilha(a, limite=4000):
+    """Texto normalizado das células das abas visíveis (para rótulos de book). Limitado: só indício estrutural."""
+    partes = []
+    for aba in (a.get('conteudo') or {}).get('abas', []):
+        if aba.get('oculta'):
+            continue
+        for l in aba.get('linhas', [])[:200]:
+            partes += [sem_acento(v) for v in (l.get('valores') or []) if isinstance(v, str)]
+            if len(partes) > limite:
+                return ' | '.join(partes)
+    return ' | '.join(partes)
+
+
+def tipo_contabil(a, t, cabs):
+    """Balancete / razão / book pela ESTRUTURA (cabeçalhos tabulares) ou pelo TÍTULO do próprio documento. None = não é."""
+    planilha = texto_planilha(a) if a.get('leitura') == 'EXTRAIDO_PLANILHA' else ''
+    if planilha and ('SALDO CONFORME BALANCETE' in planilha or 'CONCILIACAO CONTABIL' in planilha
+                     or ('BOOK' in planilha and 'COMPOSICAO' in planilha)):
+        return TIPO_BOOK
+    for c in cabs:
+        if ({'CONTA', 'CLASSIFICACAO'} & c and 'DESCRICAO' in c and _SALDO_INI & c and _DEB & c and _CRED & c and _SALDO_FIM & c):
+            return TIPO_BALANCETE
+        if {'DATA', 'CONTA', 'HISTORICO'} <= c and _DEB & c and _CRED & c and not ({'TIPO', 'VALOR'} <= c):
+            return TIPO_RAZAO
+    topo = [l.strip() for l in t.splitlines() if l.strip()][:8]
+    titulo = ' '.join(topo)
+    if re.search(r'\bBALANCETE\b', titulo) and 'DEBITO' in t and 'CREDITO' in t and ('SALDO ANTERIOR' in t or 'SALDO INICIAL' in t):
+        return TIPO_BALANCETE
+    if re.search(r'\bRAZAO\b(?! SOCIAL)', titulo) and 'DEBITO' in t and 'CREDITO' in t and 'HISTORICO' in t:
+        return TIPO_RAZAO
+    return None
+
+
 def classificar(a):
     if (a.get('conteudo') or {}).get('tipo') == 'CANCELAMENTO': return 'Evento fiscal'
     if a.get('leitura') == 'EXTRAIDO_NFE':
@@ -296,6 +337,11 @@ def classificar(a):
         return 'Extrato CSV (classificação por cabeçalho)'
     if any(chave <= c for chave in CAB_RELATORIO_FINANCEIRO for c in cabs):
         return 'Relatório financeiro de lançamentos'
+    # Documentos contábeis do fechamento (MOTOR GERAL, qualquer empresa): book antes do balancete (o book costuma ter uma aba
+    # BALANCETE); decisão só por estrutura/rótulo do próprio documento, nunca pelo nome do arquivo.
+    contabil = tipo_contabil(a, t, cabs)
+    if contabil:
+        return contabil
     # Layouts tabulares documentados: o cabeçalho define o tipo (o conteúdo das colunas não troca o destino).
     if any(CAB_POSICAO <= c for c in cabs):
         return 'Posição de títulos'
@@ -370,6 +416,13 @@ def _rota(a, cnpjs_empresa=None):
                 'cnpjs_identificados': outros, 'observacao': texto + '; não distribuído (isolamento entre empresas).',
                 'acao_necessaria': 'Confirmar a titularidade: se o documento for de outra empresa, retirá-lo deste lote e '
                                    'enviá-lo na solicitação da empresa correta; se for desta empresa, enviar versão que a identifique.'}
+    if tipo in (TIPO_BALANCETE, TIPO_RAZAO):
+        return {'area': 'CONTABIL', 'situacao': 'DISPONIVEL_PARA_ENCAMINHAMENTO', 'copias_suporte': ['CONCILIACAO'], 'tipo': tipo,
+                'observacao': 'Documento contábil do período: responsabilidade do Contábil; cópia à Conciliação (balanço). '
+                              'Documentos não confere saldos nem lançamentos.'}
+    if tipo == TIPO_BOOK:
+        return {'area': 'CONCILIACAO', 'situacao': 'DISPONIVEL_PARA_ENCAMINHAMENTO', 'copias_suporte': [], 'tipo': tipo,
+                'observacao': 'Book (composição das contas) destinado à Conciliação do balanço; Documentos não confere composições.'}
     if tipo == 'Confirmação de saldo':
         return {'area': 'CONCILIACAO', 'situacao': 'DISPONIVEL_PARA_ENCAMINHAMENTO', 'copias_suporte': [], 'tipo': tipo,
                 'observacao': 'Evidência de terceiro destinada à Conciliação; Documentos não confere o saldo.'}

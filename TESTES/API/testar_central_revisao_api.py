@@ -273,7 +273,8 @@ class CentralAPI(unittest.TestCase):
         v = self.visao()
         n = self.item(v, "NAO_CONCILIADO")[0]["id"]
         s, d = self.j("GET", f"{BASE_DEMO}/{n}")
-        self.assertEqual(d["acoes"], {"confirmar": False, "rejeitar": False, "escolher_candidato": False, "desfazer": False, "observacao": True})
+        self.assertEqual(d["acoes"], {"confirmar": False, "rejeitar": False, "escolher_candidato": False, "desfazer": False, "desfazer_escolha": False, "observacao": True,
+                                      "buscar_manual": True})            # associação manual assistida (v1.8): só com seleção explícita
         s, r = self.decidir(v, n)
         self.assertEqual((s, r["codigo"]), (409, "SEM_ASSOCIACAO"))
         s, r = self.decidir(v, n, "OBSERVACAO")

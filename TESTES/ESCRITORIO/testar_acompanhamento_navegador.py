@@ -87,8 +87,9 @@ def bateria(cdp, fotos):
     acompanhar()
     abas = jsj("Array.from(document.querySelectorAll('.ac-aba')).map(b=>[b.dataset.aba,b.getAttribute('aria-selected'),b.getAttribute('role')])")
     paineis = jsj("Array.from(document.querySelectorAll('.op-sol [role=tabpanel]')).filter(p=>!p.hidden).map(p=>p.id)")
-    registrar("AB-01 cinco abas na ordem (Resumo, Lançamentos, Conciliação, Decisões, Histórico) com papéis ARIA; Resumo aberto por padrão",
-              [a[0] for a in abas] == ["resumo", "lancamentos", "conciliacao", "decisoes", "historico"] and abas[0][1] == "true"
+    registrar("AB-01 seis abas na ordem (Resumo, Lançamentos, Conciliação, Decisões, Histórico, Prévia do fechamento) com papéis ARIA; "
+              "Resumo aberto por padrão",
+              [a[0] for a in abas] == ["resumo", "lancamentos", "conciliacao", "decisoes", "historico", "fechamento"] and abas[0][1] == "true"
               and all(a[2] == "tab" for a in abas) and paineis == ["ac-painel-resumo"], json.dumps({"abas": abas, "paineis": paineis}))
     cdp.js("document.querySelector('.ac-aba[data-aba=resumo]').focus();document.querySelector('.ac-abas').dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}))")
     time.sleep(0.2)

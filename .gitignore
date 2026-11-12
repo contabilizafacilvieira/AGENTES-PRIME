@@ -63,3 +63,13 @@ CLIENTES/*
 # amostra FICTÍCIA permanente do percurso completo (TESTES/AMOSTRA-COMPLETA/LEIA-ME.md)
 !TESTES/AMOSTRA-COMPLETA/**/*.csv
 !TESTES/AMOSTRA-COMPLETA/**/*.pdf
+
+# Runtime operacional, staging, uploads, caches e travas (o runtime real fica FORA do repositório:
+# $HOME/Library/Application Support/AgentesPrime/runtime — nunca copiar para cá)
+runtime/
+staging/
+uploads/
+snapshots/
+*.trava
+.DS_Store
+.cache/

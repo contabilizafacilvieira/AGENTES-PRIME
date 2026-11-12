@@ -98,8 +98,13 @@ def elegibilidade(base: Path, sol: str, registro: dict, execucao: dict, *, ordem
             "tentativas": listar(base, sol), "sol": sol}
 
 
+def proximo_numero(base: Path, sol: str) -> int:
+    anteriores = listar(base, sol)
+    return (anteriores[-1]["numero"] if anteriores else 0) + 1
+
+
 def criar(base: Path, sol: str, *, origem: dict, motivo: str, solicitante: str,
-          documentos: list[dict], raiz: Path | None = None) -> dict:
+          documentos: list[dict], raiz: Path | None = None, manifesto_efetivo: dict | None = None) -> dict:
     if not motivo or len(motivo.strip()) < 3:
         raise ValueError("Informe o motivo do reprocessamento.")
     pasta = _pasta(base, sol) / "tentativas"
@@ -113,6 +118,14 @@ def criar(base: Path, sol: str, *, origem: dict, motivo: str, solicitante: str,
                 "status": "PREPARADA", "pendencias": [], "auditoria": {"origem": "REPROCESSAMENTO_AUDITADO"},
                 "ciclo_vida": CICLO_VIDA, "execucoes": [],
                 "eventos": [{"em": criada, "evento": "Tentativa criada (PREPARADA)."}]}
+    if manifesto_efetivo is not None:
+        # SNAPSHOT IMUTÁVEL: documentos que esta tentativa pode usar (original + complementares existentes AGORA).
+        # Documento complementar recebido depois só entra numa próxima tentativa.
+        if manifesto_efetivo.get("tentativa") != numero:
+            raise ValueError("Manifesto efetivo montado para outra tentativa.")
+        registro["manifesto_efetivo"] = manifesto_efetivo
+        registro["manifesto_efetivo_sha256"] = hashlib.sha256(json.dumps(manifesto_efetivo, ensure_ascii=False, sort_keys=True)
+                                                              .encode("utf-8")).hexdigest()
     gravar(pasta / f"{numero:04d}" / "tentativa.json", registro)
     return registro
 
@@ -123,8 +136,10 @@ def criar(base: Path, sol: str, *, origem: dict, motivo: str, solicitante: str,
 #   FALHOU    = erro técnico (exceção, etapa sem resultado, registro recusado).
 # Tentativas antigas (sem "ciclo_vida") nunca são assumidas automaticamente por uma execução nova: a reconciliação delas é
 # uma ação explícita, para não atribuir execuções à tentativa errada.
+#   PAUSADA = checkpoint do Supervisor (ex.: Financeiro concluído, Contabilidade/Bancos aguardando autorização). Continua ATIVA:
+#             não é falha nem fim; a MESMA tentativa volta a EM_EXECUCAO quando o Supervisor autoriza a continuação.
 CICLO_VIDA = "V2"
-ATIVOS = ("PREPARADA", "EM_EXECUCAO")
+ATIVOS = ("PREPARADA", "EM_EXECUCAO", "PAUSADA")
 FINAIS = ("CONCLUIDA", "BLOQUEADA", "FALHOU")
 
 
@@ -148,6 +163,29 @@ def iniciar(base: Path, sol: str) -> dict | None:
         t.update(status="EM_EXECUCAO", iniciada_em=momento)
         t.setdefault("eventos", []).append({"em": momento, "evento": "Execução iniciada (EM_EXECUCAO)."})
         gravar(_arquivo(base, sol, t["numero"]), t)
+    elif t["status"] == "PAUSADA":                      # continuação autorizada após checkpoint: MESMA tentativa
+        momento = agora()
+        t.update(status="EM_EXECUCAO", retomada_em=momento)
+        t.setdefault("eventos", []).append({"em": momento, "evento": "Continuação autorizada após o checkpoint (EM_EXECUCAO)."})
+        gravar(_arquivo(base, sol, t["numero"]), t)
+    return t
+
+
+def pausar(base: Path, sol: str, numero: int, *, checkpoint: dict, estado_sol: str | None) -> dict:
+    """EM_EXECUCAO → PAUSADA no checkpoint do Supervisor (não finaliza, não falha). Repetição não altera nada."""
+    caminho = _arquivo(base, sol, numero)
+    t = ler(caminho)
+    if not t:
+        raise ValueError("Tentativa não encontrada.")
+    if t.get("status") == "PAUSADA":
+        return dict(t, pausa_repetida=True)
+    if t.get("status") != "EM_EXECUCAO":
+        raise ValueError("Somente uma tentativa EM_EXECUCAO pode ser pausada.")
+    momento = agora()
+    t.update(status="PAUSADA", pausada_em=momento, estado_sol_pausa=estado_sol, checkpoint=checkpoint)
+    t.setdefault("eventos", []).append({"em": momento, "evento": f"Pausada no checkpoint após {checkpoint.get('apos')}: "
+                                                              f"{checkpoint.get('proxima_etapa')} aguardando autorização do Supervisor."})
+    gravar(caminho, t)
     return t
 
 
@@ -221,4 +259,143 @@ def comparar(tentativas: list[dict]) -> list[dict]:
              "criada_em": x.get("criada_em"), "resultado": x.get("resultado"),
              "documentos": x.get("documentos", []), "execucoes": x.get("execucoes", []),
              "iniciada_em": x.get("iniciada_em"), "finalizada_em": x.get("finalizada_em"),
-             "estado_sol_final": x.get("estado_sol_final")} for x in tentativas]
+             "estado_sol_final": x.get("estado_sol_final"), "ciclo_vida": x.get("ciclo_vida"),
+             "legada_pendente": x.get("ciclo_vida") != CICLO_VIDA and x.get("status") in ATIVOS and not x.get("reconciliacao_legada"),
+             "reconciliacao_legada": x.get("reconciliacao_legada"),
+             "manifesto_efetivo": {k: (x.get("manifesto_efetivo") or {}).get(k) for k in ("lote_original", "lotes_complementares", "documentos")}
+             if x.get("manifesto_efetivo") else None} for x in tentativas]
+
+
+# ---------------------------------------------------------------- reconciliação de tentativa LEGADA (ação explícita e auditada)
+# Tentativa anterior ao ciclo V2 que ficou PREPARADA/EM_EXECUCAO embora tenha sido executada (o vínculo não era gravado).
+# Evidência ESTRUTURAL, nunca só horário:
+#   1. exatamente UMA retomada no registro do Coordenador com o MESMO motivo da tentativa (texto exato);
+#   2. registros de execução do Coordenador no intervalo dessa retomada (até a retomada seguinte);
+#   3. cada registro aponta, pelo resultado_sha256, para UMA pasta de execução existente cujo resultado.json tem esse hash;
+#   4. nenhuma dessas pastas está vinculada a outra tentativa; nenhuma falha registrada no mesmo intervalo (evidência mista).
+# O estado final é DERIVADO das execuções comprovadas (status_final); nada é presumido.
+ORIGEM_LEGADA = "RECONCILIACAO_LEGADA"
+REGISTROS_EXECUCAO = {"financeiro": "financeiro", "bancos": "bancos", "conciliacao": "conciliacao", "fiscal": "fiscal",
+                      "contabilidade_fiscal": "contabilfiscal", "dp": "dp", "contabilidade_dp": "contabdp"}
+
+
+def frase_reconciliacao(sol: str, numero: int) -> str:
+    return f"RECONCILIAR TENTATIVA {int(numero):04d} {sol}"
+
+
+def _ts(valor):
+    try:
+        return datetime.fromisoformat(str(valor))
+    except (TypeError, ValueError):
+        return None
+
+
+def avaliar_legada(base: Path, sol: str, numero: int, registro: dict | None) -> dict:
+    """Somente leitura. {elegivel, codigo, motivos, estado_derivado, execucoes, evidencias, ja_reconciliada}."""
+    def recusa(codigo, motivo, **extra):
+        return dict({"elegivel": False, "codigo": codigo, "motivos": [motivo], "estado_derivado": None, "execucoes": [],
+                     "evidencias": {}, "ja_reconciliada": False, "sol": sol, "numero": int(numero)}, **extra)
+    t = ler(_arquivo(base, sol, numero))
+    if not t or t.get("sol") != sol:
+        return recusa("TENTATIVA_INEXISTENTE", "Tentativa não encontrada nesta solicitação.")
+    if t.get("reconciliacao_legada"):
+        return recusa("JA_RECONCILIADA", "Esta tentativa já foi reconciliada; nada a fazer.", ja_reconciliada=True,
+                      reconciliacao=t["reconciliacao_legada"], estado_derivado=t.get("status"))
+    if t.get("ciclo_vida") == CICLO_VIDA:
+        return recusa("NAO_LEGADA", "Tentativa do ciclo de vida atual (V2): o encerramento é automático, não há reconciliação legada.")
+    if t.get("status") not in ATIVOS:
+        return recusa("ESTADO_JA_FINAL", f"Tentativa já está em estado final ({t.get('status')}); nada incompatível a reconciliar.")
+    if not registro or registro.get("sol", sol) != sol:
+        return recusa("SOL_INEXISTENTE", "Registro da solicitação não encontrado.")
+    motivo = str(t.get("motivo") or "").strip()
+    retomadas = sorted(registro.get("retomadas") or [], key=lambda r: str(r.get("em")))
+    iguais = [r for r in retomadas if str(r.get("motivo") or "").strip() == motivo and motivo]
+    if not iguais:
+        return recusa("SEM_EVIDENCIA_DE_EXECUCAO", "Nenhuma retomada do Coordenador com o motivo desta tentativa: não há prova de que "
+                                                  "ela foi executada. Nada é marcado como executado.")
+    if len(iguais) > 1:
+        return recusa("EVIDENCIA_CONFLITANTE", "Mais de uma retomada com o mesmo motivo: não é possível saber qual execução pertence "
+                                              "a esta tentativa.")
+    ret = iguais[0]
+    ini, criada = _ts(ret.get("em")), _ts(t.get("criada_em"))
+    if not ini or not criada or ini < criada:
+        return recusa("EVIDENCIA_INSUFICIENTE", "A retomada não é posterior à criação da tentativa; vínculo não comprovado.")
+    seguinte = next((_ts(r.get("em")) for r in retomadas if _ts(r.get("em")) and _ts(r.get("em")) > ini), None)
+    no_intervalo = lambda em: (x := _ts(em)) is not None and x >= ini and (seguinte is None or x < seguinte)
+    pasta = _pasta(base, sol)
+    vinculadas_outras = {e.get("execucao") for o in listar(base, sol) if o.get("numero") != t.get("numero") for e in o.get("execucoes", [])}
+    execucoes, evid = [], []
+    for chave, prefixo in REGISTROS_EXECUCAO.items():
+        for reg in registro.get(chave) or []:
+            if not no_intervalo(reg.get("em")):
+                continue
+            alvo = reg.get("resultado_sha256")
+            if not alvo:
+                return recusa("EVIDENCIA_INSUFICIENTE", f"Registro de {chave} sem hash do resultado; vínculo não comprovado.")
+            pastas = [p for p in pasta.glob(f"{prefixo}-*") if p.name.split("-")[-1].isdigit() and (p / "resultado.json").is_file()
+                      and sha256(p / "resultado.json") == alvo]
+            if len(pastas) != 1:
+                return recusa("EVIDENCIA_INSUFICIENTE" if not pastas else "EVIDENCIA_CONFLITANTE",
+                              f"Registro de {chave} não aponta para exatamente uma pasta de execução com o mesmo resultado.")
+            nome = pastas[0].name
+            if reg.get("tentativa") is not None and str(reg["tentativa"]) != nome.split("-")[-1]:
+                return recusa("EVIDENCIA_CONFLITANTE", f"Registro de {chave} indica outra execução ({reg['tentativa']}).")
+            if nome in vinculadas_outras:
+                return recusa("EVIDENCIA_CONFLITANTE", f"{nome} já está vinculada a outra tentativa.")
+            execucoes.append({"execucao": nome, "etapa": prefixo})
+            evid.append({"registro": chave, "em": reg.get("em"), "resultado_sha256": alvo, "execucao": nome})
+    if not execucoes:
+        return recusa("SEM_EVIDENCIA_DE_EXECUCAO", "Nenhum resultado de execução registrado após a retomada: não há prova de execução.")
+    falhas = [e for e in registro.get("eventos") or [] if isinstance(e, dict) and no_intervalo(e.get("em"))
+              and str(e.get("evento") or "").startswith("Falha na etapa")]
+    if falhas:
+        return recusa("EVIDENCIA_CONFLITANTE", "Há falhas registradas no mesmo intervalo das execuções: resultado não determinável com segurança.")
+    resumo = resumir_execucoes(base, sol, execucoes)
+    estado = status_final(resumo, [])
+    return {"elegivel": True, "codigo": "ELEGIVEL", "motivos": [], "estado_derivado": estado, "execucoes": resumo,
+            "evidencias": {"retomada": {"em": ret.get("em"), "motivo": motivo, "origem": ret.get("origem")}, "registros": evid,
+                           "criterio": "motivo idêntico da retomada + resultado_sha256 do registro do Coordenador = resultado.json da pasta"},
+            "ja_reconciliada": False, "sol": sol, "numero": int(t["numero"]), "estado_legado": t.get("status")}
+
+
+def reconciliar_legada(base: Path, sol: str, numero: int, registro: dict, *, justificativa: str, frase: str,
+                       responsavel: str = "Supervisor", raiz: Path | None = None) -> dict:
+    """Ação explícita. Acrescenta uma CAMADA administrativa: o registro original fica copiado (com hash) em
+    reconciliacao-legada.json (criação exclusiva) e a tentativa passa ao estado derivado das evidências. Nada é apagado."""
+    av = avaliar_legada(base, sol, numero, registro)
+    if av.get("ja_reconciliada"):
+        return dict(av, resultado="JA_RECONCILIADA")
+    if not av["elegivel"]:
+        raise ValueError(av["motivos"][0])
+    if frase != frase_reconciliacao(sol, numero):
+        raise ValueError(f"Digite exatamente a frase de confirmação: {frase_reconciliacao(sol, numero)}")
+    texto = " ".join(str(justificativa or "").split())
+    if not 10 <= len(texto) <= 500:
+        raise ValueError("Informe a justificativa (10 a 500 caracteres).")
+    caminho = _arquivo(base, sol, numero)
+    original_bytes = caminho.read_bytes()
+    original = json.loads(original_bytes)
+    commit, tag = _codigo_atual(raiz or Path.cwd())
+    momento = agora()
+    auditoria = {"origem": ORIGEM_LEGADA, "sol": sol, "empresa": registro.get("empresa"), "competencia": registro.get("competencia"),
+                 "tentativa": int(numero), "estado_legado_anterior": original.get("status"), "estado_reconciliado": av["estado_derivado"],
+                 "execucoes_vinculadas": [e["execucao"] for e in av["execucoes"]], "motivo_tentativa": original.get("motivo"),
+                 "justificativa": texto, "responsavel": str(responsavel or "Supervisor")[:80], "em": momento,
+                 "versao_codigo": commit, "tag": tag, "evidencias": av["evidencias"], "execucoes": av["execucoes"],
+                 "tentativa_original_sha256": hashlib.sha256(original_bytes).hexdigest(), "tentativa_original": original}
+    camada = caminho.with_name("reconciliacao-legada.json")
+    with open(camada, "x", encoding="utf-8") as f:                       # criação exclusiva: nunca sobrescreve
+        f.write(json.dumps(auditoria, ensure_ascii=False, indent=2))
+    t = dict(original)
+    t.update(status=av["estado_derivado"], finalizada_em=momento,
+             execucoes=[{"execucao": e["execucao"], "etapa": e["etapa"], "vinculada_em": momento, "origem": ORIGEM_LEGADA}
+                        for e in av["execucoes"]],
+             resultado={"execucoes": av["execucoes"], "origem": ORIGEM_LEGADA},
+             reconciliacao_legada={k: auditoria[k] for k in ("origem", "estado_legado_anterior", "estado_reconciliado", "execucoes_vinculadas",
+                                                             "justificativa", "responsavel", "em", "versao_codigo", "tag",
+                                                             "tentativa_original_sha256")}
+             | {"arquivo": camada.name, "arquivo_sha256": sha256(camada)})
+    t.setdefault("eventos", []).append({"em": momento, "evento": f"Reconciliação legada: {original.get('status')} → {av['estado_derivado']} "
+                                                              f"(execuções comprovadas: {', '.join(auditoria['execucoes_vinculadas'])})."})
+    gravar(caminho, t)
+    return dict(av, resultado="RECONCILIADA", tentativa=t)

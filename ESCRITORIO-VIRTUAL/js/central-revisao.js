@@ -185,6 +185,22 @@
       imp.append(el("p", "cr-impede-titulo", `✕ ${plural(r.bloqueios_restantes, "movimentação ainda impede", "movimentações ainda impedem")} o avanço.`));
       const p = v.pendencia_bloqueio;
       imp.append(pio(p.problema, p.impacto, p.o_que_fazer));
+      // rede de segurança: TODO movimento que impede o avanço, um por linha, independente do filtro
+      const ver = el("details", "cr-ver-bloqueios");
+      ver.append(el("summary", null, `Ver bloqueios (${(v.bloqueios_lista || []).length})`));
+      const ul = el("ul", "cr-bloqueios-lista");
+      (v.bloqueios_lista || []).forEach((b) => {
+        const li = el("li", "cr-bloqueio-item");
+        li.dataset.associacao = b.associacao;
+        li.append(el("strong", null, `${fmtData(b.data)} · ${NATUREZA[b.natureza] || "—"} · ${fmtValor(b.valor)} · ${b.descricao || "—"}`),
+          el("p", "cr-suave", `Classificação do sistema: ${CLASSE[b.classificacao_motor] || b.classificacao_motor} · Situação: ${b.situacao}`),
+          pio(b.problema, b.impacto, b.o_que_fazer), el("p", "cr-nota", `Ação disponível: ${b.acao}`));
+        const ab = botao("Abrir", "cr-botao cr-abrir-bloqueio", () => abrirDetalhe(b.associacao));
+        li.append(ab);
+        ul.append(li);
+      });
+      ver.append(ul);
+      imp.append(ver);
     } else {
       imp.append(el("p", "cr-impede-titulo", "✓ Nenhuma movimentação do banco impede o avanço por falta de associação."));
     }
@@ -266,7 +282,8 @@
     const c = el("div", "cr-lado");
     c.append(el("span", "cr-lado-titulo", lado === "banco" ? "Banco" : "Relatório"));
     if (lado === "relatorio" && item.status === "AMBIGUO") {
-      c.append(el("span", "cr-lado-linha", `${item.candidatos_quantidade} candidatos — escolha um`), el("span", "cr-lado-valor", fmtValor(linhas[0] && linhas[0].valor)));
+      c.append(el("span", "cr-lado-linha", item.parcial ? `${item.movimentos_resolvidos} de ${item.movimentos_total} movimentos resolvidos — revise o restante`
+        : `${item.candidatos_quantidade} candidatos — escolha um`), el("span", "cr-lado-valor", fmtValor(linhas[0] && linhas[0].valor)));
       return c;
     }
     if (!linhas.length) {
@@ -362,14 +379,14 @@
     });
     return ul;
   }
-  function campoJustificativa(inicial) {
+  function campoJustificativa(inicial, exemplo) {
     const l = el("label", "cr-justificativa");
     l.append(el("span", null, "Justificativa da decisão (obrigatória)"));
     const t = el("textarea");
     t.rows = 2;
     t.maxLength = 500;
     t.value = inicial || "";
-    t.placeholder = "Ex.: conferi data, valor e favorecido no comprovante.";
+    t.placeholder = exemplo || "Ex.: conferi data, valor e favorecido no comprovante.";
     l.append(t);
     return [l, t];
   }
@@ -409,7 +426,7 @@
       d.candidatos.forEach((c) => {
         const card = el("label", "cr-candidato" + (c.escolhido ? " cr-candidato-escolhido" : ""));
         card.dataset.candidato = String(c.numero);
-        if (d.acoes.escolher_candidato) {
+        if (d.acoes.escolher_candidato && c.disponivel) {
           const r = el("input");
           r.type = "radio";
           r.name = "cr-candidato";
@@ -418,13 +435,20 @@
         }
         const corpo = el("div");
         corpo.append(el("strong", null, `Candidato ${c.numero}${c.escolhido ? " — escolhido pelo Supervisor" : ""}`));
+        if (!c.escolhido && !c.disponivel && d.parcial) corpo.append(el("p", "cr-manual-alerta", "Indisponível: usa movimento ou registro já confirmado em outra escolha."));
         c.relatorio.forEach((x) => corpo.append(el("p", "cr-cand-linha", `${fmtData(x.data)} · ${x.contraparte || x.descricao || "—"} · ${x.descricao && x.contraparte ? x.descricao + " · " : ""}${fmtValor(x.valor)}`)));
         if (c.banco.length > 1 || d.banco.length > 1) c.banco.forEach((x) => corpo.append(el("p", "cr-cand-linha cr-suave", `Banco: ${fmtData(x.data)} · ${x.descricao} · ${fmtValor(x.valor)}`)));
         corpo.append(explicacao(c.explicacao));
         if (c.pontuacao !== null && c.pontuacao !== undefined) corpo.append(el("p", "cr-pontuacao", `Pontuação de referência: ${c.pontuacao} (só ajuda a ordenar; quem decide são as regras)`));
+        if (c.escolhido && c.escolha_evento && d.acoes.desfazer_escolha) {
+          const desf = botao("Desfazer esta escolha", "cr-botao cr-botao-sec", (e) => { e.preventDefault(); pedirIndividual(d, "REVOGADO", null, "", c.escolha_evento); });
+          desf.dataset.acao = "desfazer-escolha";
+          corpo.append(desf);
+        }
         card.append(corpo);
         grupo.append(card);
       });
+      if (d.aviso_candidatos) col.append(el("p", "cr-manual-aviso cr-aviso-candidatos", d.aviso_candidatos));
       col.append(grupo);
       grade.append(col);
     } else {
@@ -456,6 +480,10 @@
       () => pedirIndividual(d, "REJEITADO", null, just.value));
     const bDesf = botao("Desfazer decisão", "cr-botao cr-botao-sec", () => pedirIndividual(d, "REVOGADO", null, just.value));
     const bObs = botao("Registrar observação", "cr-botao cr-botao-sec", () => pedirIndividual(d, "OBSERVACAO", null, just.value));
+    const painelManual = el("section", "cr-secao cr-manual");
+    painelManual.hidden = true;
+    const bBusca = botao("Buscar registros no relatório", "cr-botao cr-pri", () => { bBusca.disabled = true; abrirBusca(d, painelManual); });
+    bBusca.dataset.acao = "buscar-manual";
     function atualizarBotoes() { bCand.disabled = !escolhido; }
     atualizarBotoes();
     const linhaB = el("div", "cr-acoes-botoes");
@@ -463,12 +491,15 @@
     if (d.acoes.escolher_candidato) linhaB.append(bCand);
     if (d.acoes.rejeitar) linhaB.append(bRej);
     if (d.acoes.desfazer) linhaB.append(bDesf);
+    if (d.acoes.buscar_manual) linhaB.append(bBusca);
     if (d.acoes.observacao) linhaB.append(bObs);
     if (d.status === "CONCILIADO") acoes.append(el("p", "cr-auto", "✓ Conciliado automaticamente. Não precisa da sua aprovação."));
-    if (d.status === "NAO_CONCILIADO") acoes.append(el("p", "cr-sem", "Não encontramos associação segura. O sistema não cria associação: forneça suporte ou registre uma observação."));
+    if (d.status === "NAO_CONCILIADO") acoes.append(el("p", "cr-sem", "Não encontramos associação segura automaticamente. Se conseguir comprovar, "
+      + "busque os registros no relatório e confirme uma associação manual; senão, registre uma observação."));
+    if (d.status === "RELATORIO_ASSOCIADO_MANUAL") acoes.append(el("p", "cr-auto", "✓ Este registro do relatório já foi usado numa associação manual confirmada."));
     if (d.status === "RELATORIO_SEM_BANCO") acoes.append(el("p", "cr-sem", "Registro do relatório sem movimento no banco. Não há o que confirmar aqui."));
     if (linhaB.childNodes.length) acoes.append(rotJust, linhaB);
-    detalhe.append(acoes);
+    detalhe.append(acoes, painelManual);
 
     if (d.historico.length) {
       const h = el("details", "cr-secao");
@@ -484,6 +515,122 @@
     estado.detalheAtual = d;
     (d.acoes.confirmar ? bConf : d.acoes.escolher_candidato ? detalhe.querySelector("input[type=radio]") || bCand : cab.lastChild).focus();
   }
+  // ---------------------------------------------------------------- associação manual assistida (NAO_CONCILIADO)
+  const centavos = (v) => Math.round(parseFloat(v) * 100);
+  const reais = (c) => fmtValor((c / 100).toFixed(2));
+  async function abrirBusca(d, alvo) {
+    alvo.hidden = false;
+    alvo.replaceChildren(el("p", "cr-carregando", "Buscando registros no relatório…"));
+    let b;
+    try {
+      b = await api("GET", `${estado.base}/${d.id}/busca-manual`);
+    } catch (e) {
+      alvo.replaceChildren(el("p", "cr-erro-fixo", e.message));
+      return;
+    }
+    if (!b.disponivel) { alvo.replaceChildren(el("p", "cr-erro-fixo", b.motivo)); return; }
+    const sel = new Set();
+    const porId = Object.fromEntries(b.candidatos.map((c) => [c.id, c]));
+    const alvoC = centavos(b.valor_banco);
+    alvo.replaceChildren(el("h3", "cr-secao-titulo", "REGISTROS DO RELATÓRIO PARA ASSOCIAÇÃO MANUAL"),
+      el("p", "cr-nota", `Movimento no banco: ${fmtData(b.banco.data)} · ${b.banco.descricao || "—"} · ${fmtValor(b.valor_banco)}. `
+        + `Selecione de 1 a ${b.limite_manual} registros cuja soma seja exatamente o valor do banco.`));
+    const linhaRegistro = (c) => `${fmtData(c.data)} (${c.dias === null ? "sem data" : plural(c.dias, "dia", "dias") + " do banco"}) · `
+      + `${c.contraparte || c.descricao || "—"}${c.descricao && c.contraparte ? " · " + c.descricao : ""}${c.documento ? " · doc. " + c.documento : ""} · ${fmtValor(c.valor)}`;
+    // combinações sugeridas (nenhuma é escolhida pelo sistema)
+    const sCombo = el("div", "cr-manual-combos");
+    if (b.combinacoes.length) {
+      sCombo.append(el("p", "cr-manual-aviso", b.combinacoes.length > 1
+        ? `Encontramos ${b.combinacoes.length} combinações possíveis. O sistema não escolhe: confira e selecione uma.`
+        : "Encontramos uma combinação possível. É uma sugestão para revisão: confira antes de confirmar."));
+      b.combinacoes.forEach((cb, n) => {
+        const card = el("div", "cr-candidato cr-manual-combo");
+        card.dataset.combinacao = String(n + 1);
+        const corpo = el("div");
+        corpo.append(el("strong", null, `Sugestão para revisão ${n + 1} · ${plural(cb.quantidade, "registro", "registros")} · Total ${fmtValor(cb.total)} · Diferença ${fmtValor(cb.diferenca)}`));
+        cb.registros.forEach((id) => corpo.append(el("p", "cr-cand-linha", linhaRegistro(porId[id]))));
+        if (cb.com_alerta_data) corpo.append(el("p", "cr-manual-alerta", "Atenção: data distante do movimento bancário."));
+        if (cb.com_sugestao_pendente) corpo.append(el("p", "cr-manual-alerta", "Contém registro sugerido pelo sistema para outro movimento (ainda sem decisão)."));
+        const usar = botao("Selecionar esta combinação", "cr-botao cr-botao-sec", () => { sel.clear(); cb.registros.forEach((id) => sel.add(id)); atualizar(); });
+        usar.dataset.acao = "selecionar-combinacao";
+        corpo.append(usar);
+        card.append(corpo);
+        sCombo.append(card);
+      });
+    } else {
+      sCombo.append(el("p", "cr-manual-aviso", `Nenhuma combinação de até ${b.limite_manual} registros fecha exatamente o valor do banco. `
+        + "Sem soma exata a associação manual não é possível: o movimento continua não conciliado (você pode registrar uma observação)."));
+    }
+    if (!b.busca_completa) sCombo.append(el("p", "cr-manual-alerta", "A busca de combinações foi limitada por segurança; selecione os registros manualmente se necessário."));
+    // registros elegíveis
+    const lista = el("ul", "cr-manual-lista");
+    const checks = {};
+    if (!b.candidatos.length) lista.append(el("li", "cr-suave", "Nenhum registro elegível (natureza compatível e ainda disponível)."));
+    b.candidatos.forEach((c) => {
+      const li = el("li", "cr-manual-item");
+      li.dataset.id = c.id;
+      const lab = el("label");
+      const cbx = el("input");
+      cbx.type = "checkbox";
+      cbx.className = "cr-manual-check";
+      cbx.addEventListener("change", () => { cbx.checked ? sel.add(c.id) : sel.delete(c.id); atualizar(); });
+      checks[c.id] = cbx;
+      const txt = el("span", null, linhaRegistro(c));
+      lab.append(cbx, txt);
+      li.append(lab);
+      const extra = [c.plano_contas ? `plano de contas: ${c.plano_contas}` : "", c.banco_relatorio ? `banco no relatório: ${c.banco_relatorio}` : "",
+        c.data_origem].filter(Boolean).join(" · ");
+      if (extra) li.append(el("p", "cr-suave cr-manual-extra", extra));
+      if (c.alerta_data) li.append(el("p", "cr-manual-alerta", "Atenção: data distante do movimento bancário."));
+      if (c.sugerido_em_outra) li.append(el("p", "cr-manual-alerta", "Sugerido pelo sistema para outro movimento (ainda sem decisão)."));
+      lista.append(li);
+    });
+    const resumo = el("p", "cr-manual-resumo");
+    const confirmarB = botao("Confirmar associação manual", "cr-botao cr-pri", () => pedirManual(d, b, [...sel]));
+    confirmarB.dataset.acao = "confirmar-manual";
+    function atualizar() {
+      Object.entries(checks).forEach(([id, cbx]) => { cbx.checked = sel.has(id); });
+      const soma = [...sel].reduce((s, id) => s + centavos(porId[id].valor), 0);
+      const dif = alvoC - soma;
+      resumo.textContent = `Selecionados: ${sel.size} de no máximo ${b.limite_manual} · Soma ${reais(soma)} · Valor do banco ${fmtValor(b.valor_banco)} · Diferença ${reais(Math.abs(dif))}`;
+      resumo.dataset.diferenca = String(dif);
+      confirmarB.disabled = !(sel.size >= 1 && sel.size <= b.limite_manual && dif === 0);
+    }
+    const porque = el("details", "cr-secao");
+    porque.append(el("summary", null, "Por que estes registros apareceram?"));
+    const ulp = el("ul", "cr-hist-itens");
+    b.explicacao.forEach((x) => ulp.append(el("li", null, x)));
+    porque.append(ulp);
+    const linha = el("div", "cr-acoes-botoes");
+    linha.append(confirmarB);
+    alvo.append(sCombo, el("h3", "cr-secao-titulo", `REGISTROS ELEGÍVEIS (${b.candidatos.length})`), lista, resumo, linha, porque,
+      el("p", "cr-nota", b.aviso_efeito));
+    atualizar();
+  }
+  function pedirManual(d, b, ids) {
+    const regs = ids.map((id) => b.candidatos.find((c) => c.id === id));
+    const soma = regs.reduce((s, r) => s + centavos(r.valor), 0);
+    pedirConfirmacao({
+      titulo: "Confirmar associação manual",
+      texto: `Você está associando manualmente 1 movimento do banco a ${plural(regs.length, "registro", "registros")} do relatório. `
+        + "A classificação do sistema continua \"não conciliado\". Isso permitirá que a movimentação deixe de bloquear o Financeiro, "
+        + "mas não é suporte documental nem aprovação fiscal ou contábil.",
+      itens: [`Banco: ${fmtData(b.banco.data)} · ${b.banco.natureza === "ENTRADA" ? "entrada" : "saída"} · ${b.banco.descricao || "—"}`
+        + `${b.banco.documento ? " · doc. " + b.banco.documento : ""} · ${fmtValor(b.valor_banco)}`]
+        .concat(regs.map((r) => `Relatório: ${fmtData(r.data)} · ${r.contraparte || r.descricao || "—"}${r.documento ? " · doc. " + r.documento : ""} · ${fmtValor(r.valor)}`))
+        .concat([`Valor do banco ${fmtValor(b.valor_banco)} · Soma do relatório ${reais(soma)} · Diferença ${reais(centavos(b.valor_banco) - soma)}`]),
+      justificativa: "", editavel: true, rotulo: "Confirmar associação manual",
+      exemplo: "Ex.: Conferi os registros selecionados; a soma, natureza e contraparte correspondem ao movimento bancário.",
+      enviar: async (j) => {
+        const r = await api("POST", `${estado.base}/${d.id}/decisao`, { decisao: "APROVADO", manual: { auxiliares: ids }, justificativa: j,
+          revisao_conciliacao: b.revisao_conciliacao, revisao_decisoes: b.revisao_decisoes });
+        aplicarVisao(r.visao);
+        fecharDetalhe();
+        aviso(r.mensagem, "ok");
+      }
+    });
+  }
+
   function fecharDetalhe() {
     camadaDetalhe.hidden = true;
     estado.aberto = null;
@@ -493,7 +640,7 @@
   function textoJustificativaOk(t) {
     return (t || "").trim().length >= 10;
   }
-  function pedirConfirmacao({ titulo, texto, itens, justificativa, editavel, rotulo, enviar }) {
+  function pedirConfirmacao({ titulo, texto, itens, justificativa, editavel, rotulo, enviar, exemplo }) {
     confirmar.replaceChildren();
     confirmar.append(el("h2", "cr-conf-titulo", titulo), el("p", "cr-conf-texto", texto));
     if (itens && itens.length) {
@@ -504,7 +651,7 @@
     }
     let campo = null;
     if (editavel) {
-      const [l, t] = campoJustificativa(justificativa);
+      const [l, t] = campoJustificativa(justificativa, exemplo);
       campo = t;
       confirmar.append(l);
     } else {
@@ -558,7 +705,7 @@
     return `${b ? fmtData(b.data) + " · " + (b.descricao || "") : "—"} ↔ ${a ? (a.contraparte || a.descricao || "") : "—"} · ${fmtValor(i.valor_banco)}`;
   }
 
-  function pedirIndividual(d, decisao, candidato, justificativa) {
+  function pedirIndividual(d, decisao, candidato, justificativa, alvo) {
     const textos = {
       APROVADO: candidato
         ? [`Confirmar o candidato ${candidato.numero}`, "Você está confirmando 1 associação (o candidato selecionado). Os demais candidatos ficarão registrados como não escolhidos. Isso permitirá que a movimentação deixe de bloquear o Financeiro, mas não representa aprovação fiscal ou contábil.", "Confirmar candidato"]
@@ -572,6 +719,7 @@
       enviar: async (j) => {
         const corpo = { decisao, justificativa: j, revisao_conciliacao: d.revisao_conciliacao, revisao_decisoes: d.revisao_decisoes };
         if (candidato) corpo.candidato = { bancarios: candidato.bancarios, auxiliares: candidato.auxiliares };
+        if (alvo) corpo.alvo = alvo;
         const r = await api("POST", `${estado.base}/${d.id}/decisao`, corpo);
         aplicarVisao(r.visao);
         fecharDetalhe();
@@ -632,6 +780,8 @@
   // ---------------------------------------------------------------- pontos de entrada
   window.EV.central = {
     abrirDemonstracao: () => abrir("/demonstracao/conciliacao-financeira"),
+    abrirDemonstracaoManual: () => abrir("/demonstracao/associacao-manual"),
+    abrirDemonstracaoAmbiguo: () => abrir("/demonstracao/ambiguo-parcial"),
     abrirSolicitacao: (sol) => (/^SOL-20\d{2}-\d{6}$/.test(sol) ? abrir(`/solicitacoes/${sol}/conciliacao-financeira`) : null),
     fechar
   };
@@ -646,5 +796,18 @@
   } else {
     document.querySelector(".topo").append(entrada);
   }
-  if (new URLSearchParams(window.location.search).get("central") === "demonstracao") window.EV.central.abrirDemonstracao();
+  const entradaManual = botao("Demo assoc. manual", "gestao-botao cr-entrada-demo cr-entrada-demo-manual", () => window.EV.central.abrirDemonstracaoManual());
+  entradaManual.dataset.icone = "✚";
+  entradaManual.title = "DEMONSTRAÇÃO — Associação manual (dados fictícios)";
+  entradaManual.setAttribute("aria-label", "DEMONSTRAÇÃO — Associação manual");
+  entrada.after(entradaManual);
+  const entradaAmb = botao("Demo ambíguo parcial", "gestao-botao cr-entrada-demo cr-entrada-demo-ambiguo", () => window.EV.central.abrirDemonstracaoAmbiguo());
+  entradaAmb.dataset.icone = "⇆";
+  entradaAmb.title = "DEMONSTRAÇÃO — Ambiguidade parcial (dados fictícios)";
+  entradaAmb.setAttribute("aria-label", "DEMONSTRAÇÃO — Ambiguidade parcial");
+  entradaManual.after(entradaAmb);
+  const pedidoCentral = new URLSearchParams(window.location.search).get("central");
+  if (pedidoCentral === "demonstracao") window.EV.central.abrirDemonstracao();
+  if (pedidoCentral === "associacao-manual") window.EV.central.abrirDemonstracaoManual();
+  if (pedidoCentral === "ambiguo-parcial") window.EV.central.abrirDemonstracaoAmbiguo();
 })();

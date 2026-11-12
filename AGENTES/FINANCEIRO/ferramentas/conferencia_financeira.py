@@ -1469,6 +1469,26 @@ class Conferencia:
         }
 
 
+RE_PASTA_COMPLEMENTAR = re.compile(r'RECEBIDOS/(\d{4}-\d{2})/L-\d{8}-\d{6}-[0-9a-f]{6}')
+
+
+def inventario_pacote(base, competencia, pasta, complementares):
+    """Inventário (caminho relativo à empresa → sha256) da pasta ORIGINAL do lote + pastas de lotes COMPLEMENTARES declaradas
+    no pacote efetivo da tentativa. Complementar só da MESMA competência, dentro da pasta da empresa e sem repetir a original."""
+    pastas = [pasta]
+    for c in complementares:
+        m = RE_PASTA_COMPLEMENTAR.fullmatch(str(c))
+        if not m or m.group(1) != competencia or c == pasta or c in pastas:
+            raise ValueError('Pasta complementar inválida no pacote; pacote recusado.')
+        pastas.append(c)
+    atuais = {}
+    for rel in pastas:
+        alvo = (base / rel).resolve(); alvo.relative_to(base)
+        atuais.update({p.relative_to(base).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                       for p in alvo.rglob('*') if p.is_file() and not p.is_symlink()})
+    return atuais
+
+
 def receber_pacote_local(empresa, competencia, sol, pasta, manifesto, extracao, area='FINANCEIRO', exigir_hash=False):
     """Entrega de Documentos ao Financeiro: reutilizar extração e validar os originais."""
     d = json.loads(Path(manifesto).read_text(encoding='utf-8'))
@@ -1480,9 +1500,8 @@ def receber_pacote_local(empresa, competencia, sol, pasta, manifesto, extracao, 
     if (d.get('contrato'), d.get('empresa'), d.get('competencia'), d.get('sol'), d.get('pasta')) != (
             'DOCUMENTOS_LOCAL_V1', empresa, competencia, sol, pasta):
         raise ValueError('Pacote de Documentos não corresponde à solicitação.')
-    base = (clientes() / empresa).resolve(); alvo = (base / pasta).resolve(); alvo.relative_to(base)
-    atuais = {p.relative_to(base).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
-              for p in alvo.rglob('*') if p.is_file() and not p.is_symlink()}
+    base = (clientes() / empresa).resolve()
+    atuais = inventario_pacote(base, competencia, pasta, d.get('pastas_complementares') or [])
     esperados = {i['arquivo']: i['sha256'] for i in d['itens']}
     extraidos = {a['arquivo']: a['sha256'] for a in x['arquivos']}
     if atuais != esperados or extraidos != esperados:

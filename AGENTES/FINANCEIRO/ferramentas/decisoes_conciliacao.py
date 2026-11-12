@@ -21,9 +21,15 @@ Regras:
   guia ou lançamento contábil.
 - Fail-closed: registro ilegível, de outra SOL/empresa/competência ou com cadeia quebrada → EstadoCorrompido (nada é aceito
   nem aplicado).
+- ASSOCIAÇÃO MANUAL ASSISTIDA (exceções que o motor recusou): só para NAO_CONCILIADO com 1 movimento bancário e nenhum
+  registro auxiliar; o Supervisor seleciona explicitamente de 1 a 5 registros da MESMA conciliação, de natureza compatível,
+  ainda disponíveis e com soma EXATA (Decimal, tolerância zero). A classificação do motor continua NAO_CONCILIADO; o estado
+  operacional passa a ASSOCIACAO_CONFIRMADA_PELO_SUPERVISOR. O limite 5 é proteção da ferramenta manual; a Política V1
+  (agrupamento automático até 3) não muda.
 """
 import datetime as dt
 import hashlib
+from decimal import Decimal, InvalidOperation
 import json
 import os
 import re
@@ -37,7 +43,12 @@ POLITICA = "CONCILIACAO_FINANCEIRA_POLITICA_V1"
 
 SEM_DECISAO, APROVADO, REJEITADO, REVOGADO, OBSERVACAO = "SEM_DECISAO", "APROVADO", "REJEITADO", "REVOGADO", "OBSERVACAO"
 DECISOES = (APROVADO, REJEITADO, REVOGADO, OBSERVACAO)
-ORIGENS = ("INDIVIDUAL", "LOTE")
+ORIGEM_MANUAL = "ASSOCIACAO_MANUAL_ASSISTIDA"
+ORIGENS = ("INDIVIDUAL", "LOTE", ORIGEM_MANUAL)
+LIMITE_MANUAL = 5                      # registros por associação manual (proteção da ferramenta; NÃO é a Política V1)
+FERRAMENTA_MANUAL = "ASSOCIACAO_MANUAL_ASSISTIDA_V1"
+NATUREZA_COMPATIVEL = {"CREDITO": "ENTRADA", "DEBITO": "SAIDA"}
+CAMPOS_MANUAL = ("associacao_manual",)  # campo ADICIONAL só dos eventos de associação manual (eventos antigos seguem válidos)
 
 CONFIRMADA_AUTO = "ASSOCIACAO_CONFIRMADA_AUTOMATICAMENTE"
 CONFIRMADA_SUPERVISOR = "ASSOCIACAO_CONFIRMADA_PELO_SUPERVISOR"
@@ -136,7 +147,8 @@ def validar(dados, contexto: dict) -> dict:
         raise EstadoCorrompido("lista de eventos ausente")
     anterior = None
     for i, ev in enumerate(eventos, 1):
-        if not isinstance(ev, dict) or set(ev) != set(CAMPOS_EVENTO):
+        manual = isinstance(ev, dict) and ev.get("origem") == ORIGEM_MANUAL
+        if not isinstance(ev, dict) or set(ev) != set(CAMPOS_EVENTO) | (set(CAMPOS_MANUAL) if manual else set()):
             raise EstadoCorrompido(f"evento {i} com campos inválidos")
         if ev["sequencia"] != i or ev["hash_anterior"] != anterior or ev["hash"] != _hash_evento(ev):
             raise EstadoCorrompido(f"cadeia de eventos quebrada no evento {i}")
@@ -184,35 +196,100 @@ def _candidato_igual(c: dict, escolhido: dict) -> bool:
         sorted(c.get("auxiliares") or []) == sorted(escolhido.get("auxiliares") or [])
 
 
-def _ainda_valida(ev: dict, assoc) -> bool:
+def universo_auxiliar(conciliacao: dict) -> set:
+    """Todos os registros auxiliares da conciliação (o motor lista cada um em alguma associação, inclusive 0x1)."""
+    return {i for x in (conciliacao or {}).get("associacoes") or [] for i in x["auxiliares"]}
+
+
+def _ainda_valida(ev: dict, assoc, universo=None) -> bool:
     """A decisão só vale para a MESMA associação que o Supervisor viu (mesma classificação do motor e mesmos movimentos)."""
     if not assoc or assoc["classificacao"] != ev["classificacao_motor"]:
         return False
     if sorted(assoc["bancarios"]) != ev["bancarios"] or sorted(assoc["auxiliares"]) != ev["auxiliares"]:
         return False
+    if ev.get("origem") == ORIGEM_MANUAL:          # registros escolhidos precisam existir na MESMA conciliação
+        escolhido = ev.get("candidato_escolhido") or {}
+        return (ev["decisao"] == APROVADO and escolhido.get("bancarios") == ev["bancarios"]
+                and bool(escolhido.get("auxiliares")) and set(escolhido["auxiliares"]) <= (universo or set()))
     if ev["candidato_escolhido"] is not None:
         return any(_candidato_igual(c, ev["candidato_escolhido"]) for c in assoc.get("candidatos") or [])
     return True
 
 
-def vigentes_brutas(dados: dict) -> dict:
-    """Última decisão APROVADO/REJEITADO não revogada por associação (sem conferir contra a conciliação atual)."""
+def _escolha_ambiguo(ev) -> bool:
+    return ev["decisao"] == APROVADO and ev.get("classificacao_motor") == "AMBIGUO" and bool(ev.get("candidato_escolhido"))
+
+
+def vigentes_listas(dados: dict) -> dict:
+    """Decisões vigentes por associação (sem conferir contra a conciliação atual). AMBIGUO aceita VÁRIAS escolhas parciais
+    (candidatos disjuntos, uma por evento) até cobrir todos os seus movimentos bancários; REVOGADO desfaz a escolha indicada em
+    decisao_anterior (ou tudo, se ela não for uma escolha vigente). Histórico nunca é apagado."""
     atual = {}
     for ev in (dados or {}).get("eventos") or []:
-        if ev["decisao"] in (APROVADO, REJEITADO):
-            atual[ev["associacao"]] = ev
+        aid = ev["associacao"]
+        lista = atual.get(aid) or []
+        if _escolha_ambiguo(ev) and lista and all(_escolha_ambiguo(e) for e in lista):
+            atual[aid] = lista + [ev]                     # escolha parcial adicional do mesmo grupo ambíguo
+        elif ev["decisao"] in (APROVADO, REJEITADO):
+            atual[aid] = [ev]
         elif ev["decisao"] == REVOGADO:
-            atual.pop(ev["associacao"], None)
+            resto = [e for e in lista if e.get("id") != ev.get("decisao_anterior")]
+            if resto and len(resto) < len(lista):
+                atual[aid] = resto
+            else:
+                atual.pop(aid, None)
     return atual
+
+
+def vigentes_brutas(dados: dict) -> dict:
+    """Compatibilidade: última decisão vigente por associação."""
+    return {aid: lista[-1] for aid, lista in vigentes_listas(dados).items()}
+
+
+def _agregar(lista: list) -> dict:
+    """Uma escolha → o próprio evento (formato de sempre). Várias escolhas parciais → visão agregada (união dos candidatos)."""
+    if len(lista) == 1:
+        return lista[0]
+    ev = dict(lista[-1])
+    ev["candidato_escolhido"] = {"bancarios": sorted({i for e in lista for i in e["candidato_escolhido"]["bancarios"]}),
+                                 "auxiliares": sorted({i for e in lista for i in e["candidato_escolhido"]["auxiliares"]})}
+    ev["escolhas"] = list(lista)
+    return ev
+
+
+def escolhas(decisao) -> list:
+    """Eventos de escolha vigentes de um AMBIGUO (vazio se não for o caso)."""
+    if not decisao or not _escolha_ambiguo(decisao):
+        return []
+    return list(decisao.get("escolhas") or [decisao])
 
 
 def decisoes_efetivas(dados: dict, conciliacao: dict) -> tuple:
     """(efetivas, desatualizadas): efetivas = decisões vigentes que ainda correspondem à conciliação atual."""
     por_id = _assoc_por_id(conciliacao)
+    universo = universo_auxiliar(conciliacao)
     efetivas, desatualizadas = {}, []
-    for aid, ev in vigentes_brutas(dados).items():
-        (efetivas.__setitem__(aid, ev) if _ainda_valida(ev, por_id.get(aid)) else desatualizadas.append(ev))
+    for aid, lista in vigentes_listas(dados).items():
+        validas = [ev for ev in lista if _ainda_valida(ev, por_id.get(aid), universo)]
+        desatualizadas += [ev for ev in lista if ev not in validas]
+        if validas:
+            efetivas[aid] = _agregar(validas)
     return efetivas, desatualizadas
+
+
+def parcial(assoc: dict, decisao=None) -> bool:
+    """AMBIGUO com escolha(s) confirmada(s) que ainda NÃO cobrem todos os movimentos bancários do grupo."""
+    if assoc["classificacao"] != "AMBIGUO" or not escolhas(decisao):
+        return False
+    return not set(assoc["bancarios"]) <= set(decisao["candidato_escolhido"]["bancarios"])
+
+
+def candidatos_disponiveis(assoc: dict, decisao=None, consumidos_fora=()) -> list:
+    """Candidatos ORIGINAIS de um AMBIGUO ainda possíveis: nenhum banco/registro já usado por escolha vigente deste grupo nem
+    registro consumido por outra associação confirmada. Nada é escolhido automaticamente, mesmo que reste só um."""
+    usados = decisao["candidato_escolhido"] if escolhas(decisao) else {"bancarios": [], "auxiliares": []}
+    bloq_b, bloq_a = set(usados["bancarios"]), set(usados["auxiliares"]) | set(consumidos_fora or ())
+    return [c for c in assoc.get("candidatos") or [] if not set(c["bancarios"]) & bloq_b and not set(c["auxiliares"]) & bloq_a]
 
 
 def estado_operacional(assoc: dict, decisao=None) -> str:
@@ -221,12 +298,18 @@ def estado_operacional(assoc: dict, decisao=None) -> str:
     if classe == "CONCILIADO":
         return CONFIRMADA_AUTO
     if classe == "NAO_CONCILIADO":
+        if decisao is not None and decisao.get("origem") == ORIGEM_MANUAL and decisao["decisao"] == APROVADO \
+                and (decisao.get("candidato_escolhido") or {}).get("auxiliares"):
+            return CONFIRMADA_SUPERVISOR           # associação manual assistida; a classificação do motor NÃO muda
         return SEM_ASSOCIACAO
     if classe in ("PROVAVEL", "AMBIGUO"):
         if decisao is None:
             return AGUARDANDO
-        if decisao["decisao"] == APROVADO and (classe == "PROVAVEL" or decisao.get("candidato_escolhido")):
+        if decisao["decisao"] == APROVADO and classe == "PROVAVEL":
             return CONFIRMADA_SUPERVISOR
+        if decisao["decisao"] == APROVADO and decisao.get("candidato_escolhido"):
+            # o grupo só está resolvido quando TODOS os seus movimentos bancários têm associação confirmada
+            return AGUARDANDO if parcial(assoc, decisao) else CONFIRMADA_SUPERVISOR
         if decisao["decisao"] == REJEITADO:
             return REJEITADA
     return AGUARDANDO
@@ -237,6 +320,8 @@ def ids_confirmados(assoc: dict, decisao=None) -> tuple:
     estado = estado_operacional(assoc, decisao)
     if estado == CONFIRMADA_AUTO:
         return list(assoc["bancarios"]), list(assoc["auxiliares"])
+    if escolhas(decisao):                             # AMBIGUO: só o que as escolhas vigentes cobrem (mesmo se parcial)
+        return list(decisao["candidato_escolhido"]["bancarios"]), list(decisao["candidato_escolhido"]["auxiliares"])
     if estado == CONFIRMADA_SUPERVISOR:
         alvo = decisao["candidato_escolhido"] or {"bancarios": assoc["bancarios"], "auxiliares": assoc["auxiliares"]}
         return list(alvo["bancarios"]), list(alvo["auxiliares"])
@@ -247,6 +332,14 @@ def bancarios_liberados(conciliacao: dict, efetivas: dict) -> set:
     out = set()
     for x in (conciliacao or {}).get("associacoes") or []:
         out.update(ids_confirmados(x, efetivas.get(x["id"]))[0])
+    return out
+
+
+def auxiliares_confirmados(conciliacao: dict, efetivas: dict) -> set:
+    """Registros auxiliares JÁ consumidos por associação confirmada (automática ou pelo Supervisor): indisponíveis."""
+    out = set()
+    for x in (conciliacao or {}).get("associacoes") or []:
+        out.update(ids_confirmados(x, efetivas.get(x["id"]))[1])
     return out
 
 
@@ -282,8 +375,11 @@ def resumo(conciliacao: dict, efetivas: dict, suporte_independente=()) -> dict:
         "conciliados_automaticamente": contar(lambda x, e: e == CONFIRMADA_AUTO),
         "para_revisar": contar(lambda x, e: x["classificacao"] == "PROVAVEL" and e == AGUARDANDO),
         "ambiguos": contar(lambda x, e: x["classificacao"] == "AMBIGUO" and e == AGUARDANDO),
+        "ambiguos_parciais": contar(lambda x, e: parcial(x, efetivas.get(x["id"]))),
         "nao_conciliados": contar(lambda x, e: e == SEM_ASSOCIACAO and x["bancarios"]),
-        "relatorio_sem_banco": contar(lambda x, e: e == SEM_ASSOCIACAO and not x["bancarios"]),
+        "relatorio_sem_banco": contar(lambda x, e: e == SEM_ASSOCIACAO and not x["bancarios"]
+                                      and not set(x["auxiliares"]) & auxiliares_confirmados(conciliacao, efetivas)),
+        "associacoes_manuais": contar(lambda x, e: e == CONFIRMADA_SUPERVISOR and x["classificacao"] == "NAO_CONCILIADO"),
         "aprovados_supervisor": contar(lambda x, e: e == CONFIRMADA_SUPERVISOR),
         "rejeitados": contar(lambda x, e: e == REJEITADA),
         "movimentos_bancarios": total_b,
@@ -318,11 +414,30 @@ def _validar_pedido(p: dict, assoc, atual) -> None:
     if dec == REVOGADO:
         if atual is None:
             raise DecisaoRecusada("NADA_A_REVOGAR", "Não há decisão vigente para desfazer nesta associação.")
+        ativos = escolhas(atual) or [atual]
+        alvo = p.get("alvo")
+        if alvo is not None and alvo not in {e["id"] for e in ativos}:
+            raise DecisaoRecusada("ALVO_INVALIDO", "A decisão indicada não está vigente nesta associação. Atualize a tela.")
+        if alvo is None and len(ativos) > 1:
+            raise DecisaoRecusada("ALVO_OBRIGATORIO", "Há mais de uma escolha vigente neste grupo: indique qual escolha desfazer.")
         return
     if classe == "CONCILIADO":
         raise DecisaoRecusada("JA_CONCILIADO", "Associação conciliada automaticamente: não precisa de aprovação nem de rejeição.")
     if classe == "NAO_CONCILIADO":
         raise DecisaoRecusada("SEM_ASSOCIACAO", "Não há associação segura para confirmar ou rejeitar; o sistema não cria associação.")
+    if atual is not None and classe == "AMBIGUO" and dec == APROVADO and escolhas(atual):
+        c = p.get("candidato")
+        if not isinstance(c, dict) or not any(_candidato_igual(x, c) for x in assoc.get("candidatos") or []):
+            raise DecisaoRecusada("CANDIDATO_OBRIGATORIO", "Associação ambígua: escolha explicitamente UM candidato válido para confirmar.")
+        if any(_candidato_igual(e["candidato_escolhido"], c) for e in escolhas(atual)):
+            raise DecisaoRecusada("DECISAO_REPETIDA", "Esta escolha já está registrada para este grupo; nada foi alterado.")
+        if not parcial(assoc, atual):
+            raise DecisaoRecusada("JA_DECIDIDA", "Todos os movimentos deste grupo já têm associação confirmada. Desfaça uma escolha antes de registrar outra.")
+        usados = atual["candidato_escolhido"]
+        if set(c["bancarios"]) & set(usados["bancarios"]) or set(c["auxiliares"]) & set(usados["auxiliares"]):
+            raise DecisaoRecusada("CANDIDATO_INDISPONIVEL", "Este candidato usa movimento ou registro já confirmado em outra escolha deste grupo. "
+                                                            "Atualize a tela; nada foi gravado.")
+        return                                          # escolha parcial adicional (disjunta) permitida
     if atual is not None:
         if atual["decisao"] == dec and (dec != APROVADO or canonico(atual["candidato_escolhido"]) == canonico(p.get("candidato"))):
             raise DecisaoRecusada("DECISAO_REPETIDA", "Esta decisão já está registrada para esta associação; nada foi alterado.")
@@ -337,9 +452,67 @@ def _validar_pedido(p: dict, assoc, atual) -> None:
         raise DecisaoRecusada("CANDIDATO_INDEVIDO", "Rejeição da ambiguidade não escolhe candidato.")
 
 
+def _dinheiro(v) -> Decimal:
+    if isinstance(v, (float, bool)) or v is None:
+        raise DecisaoRecusada("REGISTRO_INVALIDO", "Valor ausente ou inválido em registro selecionado.")
+    try:
+        d = Decimal(str(v))
+    except InvalidOperation as exc:
+        raise DecisaoRecusada("REGISTRO_INVALIDO", "Valor inválido em registro selecionado.") from exc
+    if d != d.quantize(Decimal("0.01")):
+        raise DecisaoRecusada("REGISTRO_INVALIDO", "Valor com mais de duas casas decimais.")
+    return d.quantize(Decimal("0.01"))
+
+
+def _mascarar_doc(doc) -> str | None:
+    d = re.sub(r"\D", "", str(doc or ""))
+    return (f"{d[:2]}{'*' * max(len(d) - 4, 0)}{d[-2:]}" if len(d) > 4 else "*" * len(d)) if d else None
+
+
+def validar_manual(assoc, escolhidos, registros: dict, conciliacao: dict, efetivas: dict) -> dict:
+    """Regras da associação manual assistida. Devolve o detalhamento auditável (registros, soma, diferença). Recusa = nada gravado."""
+    if not assoc or assoc["classificacao"] != "NAO_CONCILIADO" or len(assoc["bancarios"]) != 1 or assoc["auxiliares"]:
+        raise DecisaoRecusada("MANUAL_INDISPONIVEL", "A associação manual só se aplica a movimento bancário que o sistema não conseguiu associar.")
+    if not isinstance(escolhidos, list) or not escolhidos or not all(isinstance(i, str) and i for i in escolhidos) \
+            or len(set(escolhidos)) != len(escolhidos):
+        raise DecisaoRecusada("SELECAO_INVALIDA", "Selecione os registros do relatório (sem repetição).")
+    if len(escolhidos) > LIMITE_MANUAL:
+        raise DecisaoRecusada("LIMITE_MANUAL", f"A associação manual aceita no máximo {LIMITE_MANUAL} registros do relatório por movimento.")
+    universo = universo_auxiliar(conciliacao)
+    consumidos = auxiliares_confirmados(conciliacao, efetivas)
+    natureza = NATUREZA_COMPATIVEL.get(assoc.get("natureza_bancaria"))
+    itens, soma = [], Decimal("0.00")
+    for i in escolhidos:
+        r = registros.get(i)
+        if i not in universo or not r:
+            raise DecisaoRecusada("REGISTRO_INEXISTENTE", "Registro selecionado não pertence a esta conciliação. Atualize a tela.")
+        if i in consumidos:
+            raise DecisaoRecusada("REGISTRO_INDISPONIVEL", "Um registro selecionado já foi usado em outra associação confirmada. "
+                                                           "Atualize a tela; nada foi gravado.")
+        if not natureza or r.get("natureza") != natureza:
+            raise DecisaoRecusada("NATUREZA_INCOMPATIVEL", "Natureza incompatível: entrada no banco só com recebimento; saída só com pagamento.")
+        sha = r.get("sha") or r.get("sha256")
+        if not sha:
+            raise DecisaoRecusada("SEM_RASTREIO", "Registro selecionado sem rastreabilidade (origem/SHA); não pode ser associado.")
+        v = _dinheiro(r.get("valor"))
+        soma += v
+        cp = r.get("contraparte") or {}
+        itens.append({"id": i, "valor": f"{v:.2f}", "natureza": r.get("natureza"), "data_quitacao": r.get("data_quitacao"), "data": r.get("data"),
+                      "contraparte": mascarar_documentos(str(cp.get("nome") or cp.get("nome_fantasia") or ""))[:120] or None,
+                      "contraparte_documento": _mascarar_doc(cp.get("documento")), "documento": mascarar_documentos(str(r.get("documento") or ""))[:60] or None,
+                      "sha256_origem": sha, "origem": r.get("origem")})
+    valor_banco = _dinheiro(assoc.get("valor_bancario"))
+    if soma != valor_banco:
+        raise DecisaoRecusada("SOMA_DIFERENTE", f"A soma dos registros selecionados (R$ {soma:.2f}) é diferente do valor do banco "
+                                                f"(R$ {valor_banco:.2f}). Diferença: R$ {abs(valor_banco - soma):.2f}. A associação exige soma exata.")
+    return {"tipo": ORIGEM_MANUAL, "ferramenta": FERRAMENTA_MANUAL, "limite_manual": LIMITE_MANUAL, "registros": itens,
+            "quantidade": len(itens), "valor_bancario": f"{valor_banco:.2f}", "soma_relatorio": f"{soma:.2f}", "diferenca": "0.00",
+            "natureza_bancaria": assoc.get("natureza_bancaria"), "origem_bancaria_sha256": (assoc.get("origem") or {}).get("bancaria_sha256")}
+
+
 def registrar(dados: dict, contexto: dict, conciliacao: dict, pedidos: list, *, revisao_conciliacao_cliente: str,
               revisao_decisoes_cliente: str, justificativa, origem: str = "INDIVIDUAL", responsavel: str = RESPONSAVEL_PADRAO,
-              em: str | None = None) -> tuple:
+              em: str | None = None, registros: dict | None = None) -> tuple:
     """Valida TUDO antes de gravar e devolve (novos_dados, eventos_novos). Nenhum efeito colateral: quem chama grava.
     Lote: só APROVADO de PROVAVEIS sem decisão; um item inválido recusa o lote inteiro (fail-closed)."""
     validar(dados, contexto)
@@ -354,18 +527,31 @@ def registrar(dados: dict, contexto: dict, conciliacao: dict, pedidos: list, *, 
         raise DecisaoRecusada("PEDIDO_VAZIO", "Nenhuma associação selecionada.")
     if origem == "LOTE" and len(pedidos) > LIMITE_LOTE:
         raise DecisaoRecusada("LOTE_GRANDE", f"Selecione no máximo {LIMITE_LOTE} associações por vez.")
-    if origem == "INDIVIDUAL" and len(pedidos) != 1:
+    if origem in ("INDIVIDUAL", ORIGEM_MANUAL) and len(pedidos) != 1:
         raise DecisaoRecusada("PEDIDO_INVALIDO", "Decisão individual trata uma associação por vez.")
+    if origem == ORIGEM_MANUAL and (not isinstance(pedidos[0], dict) or pedidos[0].get("decisao") != APROVADO or pedidos[0].get("candidato") is not None):
+        raise DecisaoRecusada("PEDIDO_INVALIDO", "Associação manual: confirme os registros selecionados.")
+    if origem != ORIGEM_MANUAL and any(isinstance(p, dict) and p.get("manual") is not None for p in pedidos):
+        raise DecisaoRecusada("PEDIDO_INVALIDO", "Seleção manual só é aceita pela associação manual assistida.")
     alvos = [p.get("associacao") if isinstance(p, dict) else None for p in pedidos]
     if any(not isinstance(a, str) or not RE_ASSOC.fullmatch(a) for a in alvos) or len(set(alvos)) != len(alvos):
         raise DecisaoRecusada("PEDIDO_INVALIDO", "Associação repetida ou identificador inválido no pedido.")
     por_id = _assoc_por_id(conciliacao)
     efetivas, _ = decisoes_efetivas(dados, conciliacao)
-    brutas = vigentes_brutas(dados)
+    brutas = {aid: _agregar(l) for aid, l in vigentes_listas(dados).items()}
     for p in pedidos:
         assoc = por_id.get(p["associacao"])
         if origem == "LOTE" and (p.get("decisao") != APROVADO or not assoc or assoc["classificacao"] != "PROVAVEL" or p.get("candidato") is not None):
             raise DecisaoRecusada("LOTE_SO_PROVAVEIS", "A aprovação em lote aceita somente associações PROVÁVEIS; nenhum item do lote foi gravado.")
+        if origem == ORIGEM_MANUAL:
+            atual = efetivas.get(p["associacao"])
+            if atual is not None:
+                igual = atual.get("origem") == ORIGEM_MANUAL and sorted((atual.get("candidato_escolhido") or {}).get("auxiliares") or []) \
+                    == sorted(((p.get("manual") or {}).get("auxiliares")) or [])
+                raise DecisaoRecusada("DECISAO_REPETIDA" if igual else "JA_DECIDIDA",
+                                      "Esta associação manual já está registrada; nada foi alterado." if igual
+                                      else "Este movimento já tem uma decisão vigente. Desfaça a decisão antes de registrar outra.")
+            continue
         try:
             _validar_pedido(p, assoc, brutas.get(p["associacao"]) if p.get("decisao") == REVOGADO else efetivas.get(p["associacao"]))
         except DecisaoRecusada as exc:
@@ -377,10 +563,15 @@ def registrar(dados: dict, contexto: dict, conciliacao: dict, pedidos: list, *, 
     novos, nova_efetiva = [], dict(efetivas)
     lote = ("LT-" + _sha([alvos, revisao_decisoes(dados), em or ""])[:12].upper()) if origem == "LOTE" else None
     momento = em or agora()
+    manual = (validar_manual(por_id[pedidos[0]["associacao"]], (pedidos[0].get("manual") or {}).get("auxiliares"), registros or {},
+                             conciliacao, efetivas) if origem == ORIGEM_MANUAL else None)
     for p in pedidos:
         assoc = por_id[p["associacao"]]
         antes_ev = efetivas.get(assoc["id"])
         anterior_bruto = brutas.get(assoc["id"])
+        if p["decisao"] == REVOGADO and anterior_bruto is not None:
+            anterior_bruto = next(e for e in (escolhas(anterior_bruto) or [anterior_bruto])
+                                  if p.get("alvo") in (None, e["id"]))
         estado_antes = estado_operacional(assoc, antes_ev)
         ev = {"sequencia": len(eventos) + 1, "sol": contexto["sol"], "empresa": contexto["empresa"], "competencia": contexto["competencia"],
               "tentativa": contexto.get("tentativa"), "associacao": assoc["id"], "classificacao_motor": assoc["classificacao"],
@@ -397,13 +588,14 @@ def registrar(dados: dict, contexto: dict, conciliacao: dict, pedidos: list, *, 
             ev["candidato_escolhido"] = {"bancarios": sorted(esc["bancarios"]), "auxiliares": sorted(esc["auxiliares"])}
             ev["candidatos_nao_escolhidos"] = [{"bancarios": sorted(c["bancarios"]), "auxiliares": sorted(c["auxiliares"])}
                                                for c in assoc["candidatos"] if not _candidato_igual(c, esc)]
-        if p["decisao"] in (APROVADO, REJEITADO):
-            nova_efetiva[assoc["id"]] = ev
-        elif p["decisao"] == REVOGADO:
-            nova_efetiva.pop(assoc["id"], None)
-        ev["estado_posterior"] = estado_operacional(assoc, nova_efetiva.get(assoc["id"]))
+        if manual is not None:
+            ev["candidato_escolhido"] = {"bancarios": sorted(assoc["bancarios"]), "auxiliares": sorted(r["id"] for r in manual["registros"])}
+            ev["associacao_manual"] = manual
+        # estado posterior recalculado pela MESMA regra de leitura (inclui escolhas parciais e revogação de uma escolha)
         ev["id"] = "DS-" + _sha([ev["sequencia"], ev["associacao"], ev["decisao"], ev["hash_anterior"], momento])[:12].upper()
-        ev = {k: ev[k] for k in CAMPOS_EVENTO if k != "hash"}
+        nova_efetiva = decisoes_efetivas({"eventos": eventos + [dict(ev)]}, conciliacao)[0]
+        ev["estado_posterior"] = estado_operacional(assoc, nova_efetiva.get(assoc["id"]))
+        ev = {k: ev[k] for k in CAMPOS_EVENTO + (CAMPOS_MANUAL if manual is not None else ()) if k != "hash"}
         ev["hash"] = _hash_evento(ev)
         eventos.append(ev)
         novos.append(ev)
