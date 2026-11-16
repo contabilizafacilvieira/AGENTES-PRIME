@@ -55,6 +55,14 @@ Uma falha estrutural de integridade impede o aproveitamento. Lote financeiro blo
   Evento de cancelamento relacionado impede aproveitamento da nota, sem estorno automático.
 - Nenhuma regra de adiantamentos automáticos é reativada.
 
+## Rotina CAIXINHA (especializações; não alteram as leituras acima)
+
+- `ferramentas/pagamentos_ecac.py`: relatório/comprovante de PAGAMENTOS do e-CAC (data de arrecadação = evidência; composição por
+  código de receita; guia sem arrecadação não comprova; divisão sem composição nunca presumida) → `PAGAMENTOS_TRIBUTARIOS_NORMALIZADOS_V1`.
+- `ferramentas/situacao_fiscal.py`: Relatório de Situação Fiscal (conferência adicional; vencido × a vencer pela data de emissão).
+- `ferramentas/caixinha_fiscal.py`: etapa `CAIXINHA_FISCAL` (somente no fluxo CONCILIACAO_CAIXINHA). Ver
+  `AGENTES/CONCILIACAO/CAIXINHA/PROCEDIMENTO.md`.
+
 ## Resultado e limites
 
 `FISCAL_LOCAL_V1` registra fatos, arquivo, hash, leitura/páginas, ressalvas e pendências por documento.

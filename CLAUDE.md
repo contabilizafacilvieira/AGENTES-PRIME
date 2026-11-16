@@ -77,6 +77,15 @@ Agente de Importação (AGENTES/IMPORTACAO): exclusivo da VGROW; DESATIVADO por 
 respondem 410 e o Coordenador recusa os comandos exclusivos; código, regras e histórico preservados. Não confundir com a
 exportação contábil TXT para importação manual no Domínio, que continua ativa.
 
+## 5.1 Conciliação Caixinha (rotina por empresa, SIMULAÇÃO)
+Empresas sem extrato bancário ("caixinha"): rotina CAIXINHA definida no cadastro (padrão TRADICIONAL), regras versionadas em
+`CLIENTES/<EMP>/REGRAS-CAIXINHA.json` (frase `VALIDADO REGRA CAIXINHA <EMP> <CHAVE>`), fluxo `CONCILIACAO_CAIXINHA` no Coordenador
+(Documentos → Contábil/leitores → Fiscal/e-CAC e situação fiscal → DP/resumo da folha → Conciliação Caixinha). Pagamentos do e-CAC
+são a evidência das baixas tributárias; baixas do pró-labore seguem a política operacional APROVADA. Contrapartida: Caixa Geral.
+Procedimento: `AGENTES/CONCILIACAO/CAIXINHA/PROCEDIMENTO.md`. Fluxos tradicionais (Financeiro/Bancos e Conciliação) inalterados; TXT
+de empresa real continua bloqueado (layout de partida simples não homologado). Leitores conferidos com os arquivos reais da empresa piloto
+(16/11/2026; 18/18 valores de referência conferidos); razão em PDF ainda a homologar. Razão `.xls` lido só pelos valores.
+
 ## 6. Empresas (clientes)
 O sistema é genérico e deve atender qualquer empresa cliente, sem vínculo com clientes específicos.
 

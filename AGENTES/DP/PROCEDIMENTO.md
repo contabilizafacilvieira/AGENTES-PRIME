@@ -35,6 +35,13 @@ Todos exigem rótulos `CNPJ`, `COMPETENCIA` (MM/AAAA) e `NUMERO DO DOCUMENTO`; `
 com valores divergentes, linha fora do layout, cabeçalho ausente, tabela vazia ou mais de um demonstrativo no
 arquivo → pendência. Outros layouts → `NAO_RECONHECIDO` com pendência (não inferir pelo nome do arquivo).
 
+## Resumo mensal da folha do Domínio (rotina CAIXINHA)
+
+`ferramentas/resumo_folha_dominio.py` lê o relatório emitido pelo Domínio (rubricas por descrição; somas exatas = totais declarados;
+proventos − descontos = líquido), separa pró-labore bruto, INSS, IRRF, outros descontos e líquido; folha mista não separa o líquido
+do pró-labore (pendência). Etapa `CAIXINHA_DP` (`ferramentas/caixinha_dp.py`) só no fluxo CONCILIACAO_CAIXINHA; os layouts
+documentados acima continuam com `analise_dp.py`.
+
 ## Pendências que impedem o aproveitamento
 
 Documento com qualquer pendência não é elegível e não gera fatos (nenhum fato parcial):

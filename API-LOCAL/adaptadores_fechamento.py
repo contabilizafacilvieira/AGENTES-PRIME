@@ -40,6 +40,9 @@ CATEGORIA_TIPO = [
     (lambda t: t in ("Folha / documento de pessoal", "Resumo da folha de pagamento", "Resumo de encargos da folha",
                      "Demonstrativo de provisões"), ("DP", "Folha e documentos de pessoal", ("CONTABIL", "FINANCEIRO"))),
     (lambda t: t == dl.TIPO_BOOK, ("CONCILIACAO", "Book de conciliação", ())),
+    (lambda t: t == dl.TIPO_PAGAMENTOS_ECAC, ("FISCAL", "Pagamentos e-CAC", ("CONCILIACAO",))),
+    (lambda t: t == dl.TIPO_SITUACAO_FISCAL, ("FISCAL", "Situação fiscal", ("CONCILIACAO",))),
+    (lambda t: t == dl.TIPO_RESUMO_FOLHA_DOMINIO, ("DP", "Folha e documentos de pessoal", ("CONCILIACAO",))),
     (lambda t: t in ("Confirmação de saldo", "Saldos de abertura"), ("CONCILIACAO", "Confirmações e saldos de abertura", ())),
 ]
 AREA_PARA_DEPARTAMENTO = {"FISCAL": "FISCAL", "FINANCEIRO": "FINANCEIRO", "CONTABIL": "CONTABIL", "DP": "DP", "CONCILIACAO": "CONCILIACAO"}
@@ -159,14 +162,34 @@ def _secao_razao(linha):
     classificacao = next((x for x in vals[1:] if re.fullmatch(r"\d+(?:\.\d+){2,}", x)), None)
     if not classificacao:
         return None
-    codigo = vals[1] if len(vals) > 1 and re.fullmatch(r"\d+(?:\.0+)?", vals[1]) else None
+    codigo = re.sub(r"\.0+$", "", vals[1]) if len(vals) > 1 and re.fullmatch(r"\d+(?:\.0+)?", vals[1]) else None
     pos = vals.index(classificacao)
     descricao = next((x for x in vals[pos + 1:] if x), None)
     return {"conta": classificacao, "codigo": codigo, "descricao": descricao}
 
 
+def adapter_razao_pdf(item, clientes, empresa):
+    """Razão em PDF do Domínio (colunas pela posição do cabeçalho; razao_pdf_dominio)."""
+    import razao_pdf_dominio
+    dados = original(clientes, empresa, item)
+    if dados is None:
+        return None, "Original ausente ou alterado (sha256 não confere); razão não lido."
+    try:
+        lido = razao_pdf_dominio.ler(dados)
+    except Exception as exc:                       # noqa: BLE001 — leitor recusou: layout novo (nunca valor presumido)
+        return None, f"Leitor do razão em PDF recusou o arquivo ({type(exc).__name__})."
+    if not lido["lancamentos"] and not lido["contas"]:
+        return None, "; ".join(lido.get("limites") or []) or "Nenhuma conta/lançamento reconhecido no razão em PDF."
+    lancs = [dict(l, conta_principal=l.get("conta")) for l in lido["lancamentos"]]
+    return {"contrato": "RAZAO_CONTABIL_NORMALIZADO_V1", "adapter": razao_pdf_dominio.LEITOR, "lancamentos": lancs,
+            "contas": lido["contas"], "meta": lido["meta"], "limites": lido["limites"],
+            "problemas": [f"p.{l['pagina']} {l['data']}: {x}" for l in lancs for x in l.get("problemas", [])]}, None
+
+
 def adapter_razao(item, extraido, clientes, empresa):
-    """Razão tabular, incluindo o layout Domínio com seções ``Conta:``."""
+    """Razão tabular, incluindo o layout Domínio com seções ``Conta:``; PDF do Domínio pelo leitor de colunas."""
+    if str(item.get("arquivo") or "").lower().endswith(".pdf"):
+        return adapter_razao_pdf(item, clientes, empresa)
     linhas = linhas_tabulares(extraido) if extraido.get("leitura") in ("EXTRAIDO_PLANILHA", "EXTRAIDO_TEXTO") else []
     secao_layout = False
     for i, l in enumerate(linhas[:30]):
@@ -179,14 +202,22 @@ def adapter_razao(item, extraido, clientes, empresa):
         return None, "Razão sem cabeçalho tabular reconhecido (data, conta, histórico, débito, crédito)."
     lancamentos, problemas = [], []
     secao = None
+    resumo = {}                                      # seção "Conta:" → saldo anterior, débitos, créditos, último saldo acumulado
     for n, l in enumerate(linhas[i + 1:], i + 2):
         marcador = _secao_razao(l)
         if marcador:
             secao = marcador
+            resumo[id(secao)] = {**secao, "saldo_anterior": None, "debitos": Decimal("0"), "creditos": Decimal("0"), "ultimo": None,
+                                 "lancamentos": 0, "problemas": []}
             continue
         get = lambda c: l[mapa[c]] if c in mapa and mapa[c] < len(l) else None  # noqa: E731
         conta = str(get("conta") or (secao or {}).get("conta") or "").strip()
         if not conta:
+            continue
+        rs = resumo.get(id(secao)) if secao else None
+        if rs is not None and "SALDO ANTERIOR" in book_contabil.chave(get("historico") or ""):
+            numeros = [x for x in l if isinstance(x, (int, float)) and not isinstance(x, bool)]
+            rs["saldo_anterior"] = Decimal(str(numeros[-1])) if numeros else None
             continue
         try:
             deb, cre = numero(get("debito")) or Decimal("0"), numero(get("credito")) or Decimal("0")
@@ -195,19 +226,49 @@ def adapter_razao(item, extraido, clientes, empresa):
             problemas.append(f"linha {n}: {exc}; lançamento não aproveitado")
             continue
         data = book_contabil.data_iso(get("data"))
+        if not data and not deb and not cre and saldo is None:
+            continue                         # linha sem data e sem valores (rodapé/texto do relatório): não é lançamento
         if not data:
             problemas.append(f"linha {n}: data ausente ou inválida; lançamento não aproveitado")
             continue
+        if rs is not None:
+            rs["debitos"] += deb
+            rs["creditos"] += cre
+            rs["lancamentos"] += 1
+            numeros = [x for x in l if isinstance(x, (int, float)) and not isinstance(x, bool)]
+            rs["ultimo"] = Decimal(str(numeros[-1])) if numeros else None
         lancamentos.append({"linha": n, "data": data, "conta": conta, "conta_principal": conta,
-                            "contrapartida": str(get("contrapartida") or "").strip() or None,
+                            "codigo": (secao or {}).get("codigo"),
+                            "contrapartida": re.sub(r"\.0+$", "", str(get("contrapartida") or "").strip()) or None,
                             "historico": str(get("historico") or "").strip(), "debito": f"{deb:.2f}", "credito": f"{cre:.2f}",
                             "saldo": None if saldo is None else f"{saldo:.2f}", "documento": str(get("documento") or "").strip() or None,
                             "lote": str(get("lote") or "").strip() or None, "referencia": str(get("referencia") or "").strip() or None,
                             "secao": dict(secao) if secao else None})
     if not lancamentos:
         return None, "Nenhum lançamento aproveitável no razão."
+    contas = []
+    for rs in resumo.values():              # resumo por conta (layout com seções): saldo final = anterior + débitos − créditos
+        final = None if rs["saldo_anterior"] is None else rs["saldo_anterior"] + rs["debitos"] - rs["creditos"]
+        if rs["saldo_anterior"] is None:
+            rs["problemas"].append("saldo anterior não identificado na seção da conta")
+        elif rs["ultimo"] is not None and rs["lancamentos"] and rs["ultimo"] != final:
+            rs["problemas"].append(f"saldo acumulado da última linha ({rs['ultimo']:.2f}) ≠ anterior + débitos − créditos ({final:.2f})")
+        contas.append({"codigo": rs.get("codigo"), "classificacao": rs.get("conta"), "descricao": rs.get("descricao"),
+                       "saldo_anterior": None if rs["saldo_anterior"] is None else f"{rs['saldo_anterior']:.2f}",
+                       "debitos": f"{rs['debitos']:.2f}", "creditos": f"{rs['creditos']:.2f}",
+                       "saldo_final": None if final is None else f"{final:.2f}", "lancamentos": rs["lancamentos"], "problemas": rs["problemas"]})
+    meta = {}
+    for l in linhas[:i]:                    # cabeçalho do relatório: CNPJ e período (Domínio: "C.N.P.J.:" e "Período:")
+        k = [book_contabil.chave(x) for x in l]
+        vals = [str(x).strip() for x in l if str(x or "").strip()]
+        if k and k[0].startswith("C.N.P.J") and len(vals) > 1:
+            meta["cnpj"] = vals[1]
+        if k and k[0].startswith("PERIODO") and len(vals) > 1:
+            m = re.search(r"(\d{2}/\d{2}/\d{4})\s*-\s*(\d{2}/\d{2}/\d{4})", vals[1])
+            if m:
+                meta["periodo"] = {"inicio": book_contabil.data_iso(m.group(1)), "fim": book_contabil.data_iso(m.group(2))}
     return {"contrato": "RAZAO_CONTABIL_NORMALIZADO_V1", "adapter": "RAZAO_SECOES_CONTA_V1" if secao_layout else "RAZAO_TABELA_SINONIMOS_V1", "lancamentos": lancamentos,
-            "problemas": problemas}, None
+            "problemas": problemas, "contas": contas, "meta": meta}, None
 
 
 def adapter_book(item, extraido, clientes, empresa):
@@ -229,7 +290,21 @@ def adapter_book(item, extraido, clientes, empresa):
             "pendencias_fonte": len(lido.get("pendencias", [])), "alertas": lido.get("alertas", []), "_lido": lido}, None
 
 
-ADAPTERS = {dl.TIPO_BALANCETE: adapter_balancete, dl.TIPO_RAZAO: adapter_razao, dl.TIPO_BOOK: adapter_book}
+def _adapter_caixinha(modulo, contrato, campo):
+    def adapter(item, extraido, clientes, empresa):
+        import caixinha_comum as cc
+        cnpjs = cc.cnpjs_no_texto(cc.texto_total(extraido or {}))
+        lido = modulo.ler(dict(extraido or {}, arquivo=item.get("arquivo"), sha256=item.get("sha256")), empresa, cnpjs)
+        if lido["reconhecimento"] != "RECONHECIDO":
+            return None, "; ".join(lido["pendencias"]) or "Estrutura não reconhecida."
+        return {"contrato": contrato, "adapter": modulo.LEITOR, campo: lido.get(campo), "pendencias_leitura": lido["pendencias"]}, None
+    return adapter
+
+
+ADAPTERS = {dl.TIPO_BALANCETE: adapter_balancete, dl.TIPO_RAZAO: adapter_razao, dl.TIPO_BOOK: adapter_book,
+            dl.TIPO_PAGAMENTOS_ECAC: _adapter_caixinha(dl._ecac, "PAGAMENTOS_TRIBUTARIOS_NORMALIZADOS_V1", "pagamentos"),
+            dl.TIPO_SITUACAO_FISCAL: _adapter_caixinha(dl._situacao, "SITUACAO_FISCAL_NORMALIZADA_V1", "itens"),
+            dl.TIPO_RESUMO_FOLHA_DOMINIO: _adapter_caixinha(dl._folha_dominio, "RESUMO_FOLHA_DOMINIO_V1", "rubricas")}
 
 # Documentos lidos pelos agentes já existentes (o reconhecimento final vem do resultado da área: NAO_RECONHECIDO → layout novo).
 LEITOR_DA_AREA = {"Notas fiscais": "Fiscal (NF-e XML / NFS-e por rótulos)", "Impostos, guias e apurações": "Fiscal (guias e apurações por rótulos)",

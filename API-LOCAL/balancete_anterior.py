@@ -94,11 +94,36 @@ def _cabecalho(linhas):
             clas = next(p for p in l["p"] if chave(p["t"]).startswith("CLASSIFICA"))
             if not (ant and atu and desc and len(saldos) == 2):
                 continue
-            return i, {"codigo_ate": clas["x0"] - 0.5, "classif_de": clas["x0"] - 1.5, "descricao_de": desc["x0"] - 1.5,
+            return i, {"sem_classificacao": False,"codigo_ate": clas["x0"] - 0.5, "classif_de": clas["x0"] - 1.5, "descricao_de": desc["x0"] - 1.5,
                        "valores_de": saldos[0]["x0"] - 40,
                        "direitas": {"saldo_anterior": ant["x1"], "debitos": ps["DEBITO"]["x1"], "creditos": ps["CREDITO"]["x1"],
                                     "saldo_atual": atu["x1"]}}
+        # Variante do Domínio SEM coluna "Classificação" (Código · Descrição da conta · Saldo Anterior · Débito · Crédito · Saldo Atual):
+        # a hierarquia vem do RECUO da descrição; a classificação é DERIVADA (sinalizada em cada conta), nunca inventada como oficial.
+        if "CODIGO" in k and not any(x.startswith("CLASSIFICA") for x in k) and "DEBITO" in k and "CREDITO" in k:
+            ps = {chave(p["t"]): p for p in l["p"]}
+            saldos = sorted([p for p in l["p"] if chave(p["t"]) == "SALDO"], key=lambda p: p["x0"])
+            ant = next((p for p in l["p"] if chave(p["t"]) == "ANTERIOR"), None)
+            atu = next((p for p in l["p"] if chave(p["t"]) == "ATUAL"), None)
+            desc = next((p for p in l["p"] if chave(p["t"]).startswith("DESCRI")), None)
+            if not (ant and atu and desc and len(saldos) == 2):
+                continue
+            return i, {"sem_classificacao": True, "codigo_ate": desc["x0"] - 1, "classif_de": desc["x0"] - 1.5,
+                       "descricao_de": desc["x0"] - 1.5, "valores_de": saldos[0]["x0"] - 40,
+                       "direitas": {"saldo_anterior": ant["x1"], "debitos": ps["DEBITO"]["x1"], "creditos": ps["CREDITO"]["x1"],
+                                    "saldo_atual": atu["x1"]}}
     return None, None
+
+
+def _classificacao_por_recuo(pilha: list, recuo: float, passo: float = 5.0) -> str:
+    """Classificação DERIVADA do recuo da descrição (relatório sem a coluna): nível = posição do recuo entre os já vistos."""
+    while pilha and pilha[-1]["recuo"] > recuo + 1.5:
+        pilha.pop()
+    if pilha and abs(pilha[-1]["recuo"] - recuo) <= 1.5:
+        pilha[-1]["n"] += 1
+    else:
+        pilha.append({"recuo": recuo, "n": 1})
+    return ".".join(str(x["n"]) for x in pilha)
 
 
 def _valores_da_zona(palavras):
@@ -155,8 +180,36 @@ def ler_pdf(dados: bytes) -> dict:
             ignoradas["cabecalho_repetido"] += 1
         ignoradas["rodape_ou_titulo"] += i_cab
         anterior = None
+        if col.get("sem_classificacao") and "_pilha" not in meta:
+            meta["_pilha"] = []
         for l in linhas[i_cab + 1:]:
             cod = [p for p in l["p"] if p["x1"] <= col["codigo_ate"] and p["t"].isdigit()]
+            if col.get("sem_classificacao"):
+                desc = [p for p in l["p"] if col["descricao_de"] <= p["x0"] < col["valores_de"]]
+                nums = _valores_da_zona([p for p in l["p"] if p["x0"] >= col["valores_de"]])
+                codigo = "".join(p["t"] for p in cod)
+                if codigo.isdigit() and desc and nums:
+                    classificacao = _classificacao_por_recuo(meta["_pilha"], desc[0]["x0"])
+                    vals, ok = {}, True
+                    for p in nums:
+                        alvo = min(col["direitas"], key=lambda k: abs(col["direitas"][k] - p["x1"]))
+                        if abs(col["direitas"][alvo] - p["x1"]) > 8 or alvo in vals:
+                            ok = False
+                            continue
+                        vals[alvo] = p["t"]
+                    conta = _conta(codigo, classificacao, " ".join(p["t"] for p in desc), vals, f"p.{n + 1}")
+                    conta["classificacao_derivada"] = True
+                    conta.setdefault("observacoes", []).append("classificação derivada do recuo da descrição (relatório sem a coluna "
+                                                               "Classificação)")
+                    if not ok:
+                        conta["problemas"].append("valor fora das colunas reconhecidas; conferir no relatório")
+                    contas.append(conta)
+                    anterior = conta
+                elif l["p"][0]["x0"] < col["descricao_de"] and not codigo.isdigit():
+                    ignoradas["texto_auxiliar"] += 1
+                else:
+                    ignoradas["rodape_ou_titulo"] += 1
+                continue
             cla = [p for p in l["p"] if col["classif_de"] <= p["x0"] < col["descricao_de"] and re.fullmatch(r"[\d.]+", p["t"])]
             desc = [p for p in l["p"] if col["descricao_de"] <= p["x0"] < col["valores_de"]]
             # pontuação solta sobreposta a uma palavra vem de outra camada de texto (descrição auxiliar duplicada): descartada
@@ -189,6 +242,8 @@ def ler_pdf(dados: bytes) -> dict:
                 ignoradas["rodape_ou_titulo"] += 1
     for c in contas:
         c.pop("_y", None)
+    if meta.pop("_pilha", None) is not None:
+        limites.append("Relatório sem a coluna Classificação: hierarquia derivada do recuo das descrições (conferir o plano da empresa).")
     meta.update(meta_texto)
     return {"formato": "PDF_DOMINIO_BALANCETE", "meta": meta, "contas": contas, "linhas_ignoradas": ignoradas, "limites": limites}
 

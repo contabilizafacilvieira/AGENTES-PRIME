@@ -79,6 +79,20 @@ bancos e piloto. As rotas de estudo por razão e parametros-bancos foram removid
 | `GET /api/solicitacoes/<SOL>/previa-fechamento` | PRÉVIA DO FECHAMENTO (contrato `PREVIA_FECHAMENTO_V1`, somente leitura): status por departamento (Fiscal, Financeiro, Contábil, DP, Conciliação; sem percentual), decisões do Supervisor, checkpoints, documentos com reconhecimento (adapter existente / layout novo / não reconhecido), conciliação do balanço (book × balancete × razão), impostos, consultas do Financeiro às outras áreas (candidatos, nunca confirmação), propostas contábeis e pendências (problema, impacto, o que fazer, responsável) com proveniência. Lê só resultados REGISTRADOS desta SOL/empresa (sha256 conferido) |
 | `GET /api/estado` → `ambiente` | `REAL` (padrão), `DEMONSTRACAO` ou `TESTE`; a página identifica cada perfil no topo. DEMONSTRAÇÃO e TESTE usam raízes isoladas; no REAL, a preparação da amostra fictícia fica bloqueada na API e oculta na interface |
 
+### Conciliação Caixinha (fluxo `CONCILIACAO_CAIXINHA`; ver `AGENTES/CONCILIACAO/CAIXINHA/PROCEDIMENTO.md`)
+| Rota | Função |
+|---|---|
+| `GET /api/empresas/<id>/caixinha?competencia=AAAA-MM` | Rotina, regras gravadas, avaliação (o que vale na competência), sugestões pelo plano, frases |
+| `POST /api/empresas/<id>/caixinha-rotina` | `{rotina: TRADICIONAL/CAIXINHA, justificativa, confirmado}` (versionada; revoga o piloto) |
+| `POST /api/empresas/<id>/caixinha-regras` | `{configuracao?, politica_folha?, confirmado}` → nova versão em PROPOSTA (nada aprovado) |
+| `POST /api/empresas/<id>/caixinha-aprovar` | `{chave: CONFIGURACAO/POLITICA_FOLHA, frase, confirmado}` → Coordenador `aprovar-regra-caixinha` |
+| `POST /api/lotes` com `fluxo: "CONCILIACAO_CAIXINHA"` | Só empresa com rotina CAIXINHA e piloto Caixinha autorizado (403 nas demais) |
+| `GET /api/solicitacoes/<SOL>/caixinha` | Painel `PAINEL_CAIXINHA_V1` (tributos, folha, Caixa, pendências, etapas, documentos, vigência, aprovação) — só resultados com sha256 do registro |
+| `GET /api/solicitacoes/<SOL>/caixinha/documento/<CXD-…>` | Original do documento pelo id da ficha (sha256 conferido; nenhum caminho aceito) |
+| `GET /api/solicitacoes/<SOL>/caixinha/simulacao-txt` | Linhas do TXT em SIMULAÇÃO (validações do exportador; nenhum arquivo gravado) |
+| `GET /api/caixinha/lote?competencia=AAAA-MM` · `POST /api/caixinha/lote/executar` | Painel por empresa e fila sequencial `{lotes, confirmado}` |
+| `POST /api/solicitacoes/<SOL>/aprovacao` com `ciente_pendencias` | Ciência dos itens em revisão (não geram lançamento) na aprovação Caixinha |
+
 Tentativa nova (`POST …/reprocessar`) congela o MANIFESTO EFETIVO (lote original + complementares concluídos até aquele momento) e, havendo
 complementares, um PACOTE EFETIVO imutável em `tentativas/NNNN/pacote/`. Ao iniciar a execução, o Coordenador confere e ancora esse pacote
 (`reancorar-pacote`); todas as áreas usam o pacote da âncora. Complemento recebido depois só entra numa próxima tentativa.
@@ -90,7 +104,7 @@ Não existe rota para executar comando, ler arquivo por caminho, escolher agente
   (DNS rebinding). `Origin`/`Sec-Fetch-Site` de outra origem são recusados. Token novo a cada início, entregue só na
   página servida. Cabeçalhos: CSP restrita a `'self'`, `frame-ancestors 'none'`, `nosniff`, `no-store`.
 - **Página:** lista fixa de arquivos `.html/.css/.js` do Escritório; nada fora dela é servido.
-- **Upload:** formatos `pdf xml xlsx xlsm txt csv ofx png jpg jpeg`; assinatura do conteúdo conferida; 20 MB por
+- **Upload:** formatos `pdf xml xlsx xlsm xls txt csv ofx png jpg jpeg` (`.xls` = Excel antigo, assinatura OLE conferida, lido só pelos valores); assinatura do conteúdo conferida; 20 MB por
   arquivo, 30 arquivos e 100 MB por lote; SHA-256 calculado pelo navegador e conferido (incompleto ou corrompido
   falha sem resíduo); nome saneado com prefixo de ordem; gravação sem sobrescrita; arquivo idêntico no mesmo lote
   recusado; idêntico a outra SOL da mesma empresa sinalizado.

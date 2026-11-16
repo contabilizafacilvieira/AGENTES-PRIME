@@ -58,6 +58,13 @@ def cnpj(v):
     return f'{n[:2]}.{n[2:5]}.{n[5:8]}/{n[8:12]}-{n[12:]}'
 
 
+def rotina(d) -> str:
+    """Rotina operacional da empresa: CAIXINHA só por definição expressa; ausência = TRADICIONAL (nada muda para as existentes)."""
+    r = (d or {}).get('rotina')
+    tipo = (r or {}).get('tipo') if isinstance(r, dict) else r
+    return 'CAIXINHA' if tipo == 'CAIXINHA' else 'TRADICIONAL'
+
+
 class Empresas:
     def __init__(self, raiz, runtime):
         self.raiz, self.clientes, self.runtime = Path(raiz), Path(os.environ.get('AGENTES_PRIME_CLIENTES') or Path(raiz) / 'CLIENTES'), Path(runtime)
@@ -80,6 +87,7 @@ class Empresas:
         d = dict(d)
         d.update(producao_liberada=False)
         d['situacao'] = 'EXCLUIDA' if d.get('excluida') else ('ATIVA' if d.get('piloto') and d.get('cadastro_confirmado') else 'CADASTRO_PENDENTE')
+        d['tipo_rotina'] = rotina(d)
         return d
 
     def listar(self, incluir_excluidas=False):
@@ -130,7 +138,14 @@ class Empresas:
         plano.write_text('# Plano de contas\n\n## Contas utilizadas\n| Código reduzido | Classificação | Descrição | Grupo | Tipo | Observação |\n|---|---|---|---|---|---|\n' + '\n'.join('| ' + ' | '.join(limpo(c.get(k)) for k in ('codigo','classificacao','descricao','grupo','tipo','observacao')) + ' |' for c in d['plano']), encoding='utf-8')
         contas = '\n'.join('| ' + ' | '.join(limpo(c[k]) for k in ('banco','agencia','conta','titular','contabil')) + ' | ATIVA |' for c in d['contas'])
         cadastro = f"# Cadastro — {d['id']}\n\n## Identificação\n- Razão social: {d['nome']}\n- CNPJ (matriz): {d['cnpj']}\n- Regime tributário: {d['regime']}\n\n## CNPJs do cliente\n| CNPJ | Tipo | Razão social | Observação |\n|---|---|---|---|\n| {d['cnpj']} | matriz | {d['nome']} | Cadastro informado pelo Supervisor |\n\n## Contas bancárias\n| Banco | Agência | Conta | Titular (CNPJ) | Conta contábil | Situação |\n|---|---|---|---|---|---|\n{contas}\n\n## Situação\n- Status: {'EXCLUIDO' if d.get('excluida') else 'CONFIGURAÇÃO / SIMULAÇÃO'}\n- Cadastro validado: {'SIM' if d['cadastro_confirmado'] else 'NÃO'}\n- Liberação de lançamentos reais: BLOQUEADA\n"
-        if d['piloto']:
+        if rotina(d) == 'CAIXINHA':
+            # Rotina CAIXINHA (sem extrato bancário): o fluxo Financeiro/Bancos só é habilitado se houver vínculo bancário.
+            cadastro += '- Rotina: CAIXINHA (Conciliação Caixinha; sem extrato bancário)\n'
+            if d['piloto']:
+                cadastro += '\n- Agente de Documentos: PILOTO SUPERVISIONADO AUTORIZADO\n- Conciliação Caixinha: PILOTO SIMULACAO AUTORIZADO\n'
+                if d['contas']:
+                    cadastro += '- Financeiro/Bancos local: PILOTO SIMULACAO AUTORIZADO\n'
+        elif d['piloto']:
             cadastro += '\n- Agente de Documentos: PILOTO SUPERVISIONADO AUTORIZADO\n- Financeiro/Bancos local: PILOTO SIMULACAO AUTORIZADO\n'
         # Indicação expressa do Supervisor (lida pelo Coordenador e por Contabilidade/Bancos); sem linha, nenhuma conta é aceita.
         adiantamentos = d.get('contas_adiantamento') or {}
@@ -413,12 +428,39 @@ class Empresas:
         atual = self.obter(ident)
         faltas = []
         if not atual.get('plano'): faltas.append('Importe e confira o plano de contas.')
-        if not atual.get('contas'): faltas.append('Salve ao menos um vínculo bancário na etapa 2.')
+        if rotina(atual) == 'CAIXINHA':
+            # Rotina CAIXINHA: não há extrato; no lugar do vínculo bancário, a conta Caixa Geral da configuração da rotina.
+            import regras_caixinha
+            try:
+                cfg = (regras_caixinha.ler(self.base(ident)) or {}).get('configuracao') or {}
+            except (OSError, ValueError):
+                cfg = {}
+            if not (cfg.get('contas') or {}).get('CAIXA_GERAL'):
+                faltas.append('Rotina Caixinha: salve a configuração com a conta Caixa Geral (Conciliação Caixinha → Configuração).')
+        elif not atual.get('contas'): faltas.append('Salve ao menos um vínculo bancário na etapa 2.')
         if d.get('frase') != f'CONFIRMO PILOTO {ident}': faltas.append(f'Digite exatamente: CONFIRMO PILOTO {ident}.')
         if faltas:
             raise ValueError(' '.join(faltas))
         return self.atualizar(ident, {'cadastro_confirmado': True, 'piloto': True,
                                     'autorizacao_piloto': {'em': agora(), 'frase': d['frase'], 'modo': 'SIMULACAO'}})
+
+    def definir_rotina(self, ident, d):
+        """Tipo de rotina da empresa: TRADICIONAL (padrão; processos financeiros/bancários existentes) ou CAIXINHA (Conciliação
+        Caixinha, sem extrato). Mudança expressa do Supervisor, versionada no cadastro; altera a vigência das conferências."""
+        atual = self.obter(ident)
+        if atual.get('legado'):
+            raise ValueError('Cadastro legado: a rotina não pode ser definida por esta tela.')
+        tipo = limpo(d.get('rotina')).upper()
+        just = limpo(d.get('justificativa'))
+        if tipo not in ('TRADICIONAL', 'CAIXINHA'):
+            raise ValueError('Rotina deve ser TRADICIONAL ou CAIXINHA.')
+        if d.get('confirmado') is not True or not 5 <= len(just) <= 300:
+            raise ValueError('Confirme a rotina e informe uma justificativa (5 a 300 caracteres).')
+        if rotina(atual) == tipo:
+            return atual
+        # trocar de rotina revoga a habilitação do piloto: a nova rotina tem exigências próprias (vínculo bancário ou Caixa Geral)
+        return self.atualizar(ident, {'rotina': {'tipo': tipo, 'definida_em': agora(), 'por': 'Supervisor Contábil', 'justificativa': just},
+                                      'cadastro_confirmado': False, 'piloto': False})
 
     def contas_adiantamento(self, ident, d):
         """Indicação EXPRESSA, pelo Supervisor, da conta de adiantamento da empresa (uma por natureza). Não classifica nada

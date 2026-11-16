@@ -77,6 +77,14 @@ e distinguir entrega parcial do piloto de fechamento integral conciliado.
 - Fiscal e Financeiro são independentes: falha de uma área não descarta a outra; Contabilidade/Fiscal depende do Fiscal.
   O pacote de Documentos tem âncora de integridade registrada pelo Coordenador; pacote sem âncora não é tratado como verificado.
 - PDF criptografado (inclusive só de proprietário) fica PDF_PROTEGIDO, sem tentativa de senha.
+- CONCILIAÇÃO CAIXINHA (`AGENTES/CONCILIACAO/CAIXINHA/PROCEDIMENTO.md`): só empresa com `rotina` CAIXINHA no cadastro e piloto
+  em SIMULAÇÃO (habilitação exige plano + Caixa Geral; o vínculo bancário segue exigido para TRADICIONAL). Regras em
+  `REGRAS-CAIXINHA.json` (CONFIGURACAO e POLITICA_FOLHA), PROPOSTA → APROVADA só pelo Coordenador (`aprovar-regra-caixinha`),
+  vinculadas a versão + sha256 do conteúdo; fonte de vigência `REGRAS_CAIXINHA`. Etapas `CAIXINHA_*` registradas com
+  `registrar-caixinha`; identidades `CXN-TRIB|…`/`CXN-FOLHA|…` entram no controle de duplicidade entre SOLs. Não transformar o e-CAC
+  em extrato nem usar o contrato bancário; guia sem data de arrecadação não comprova pagamento; divisão de DARF sem composição nunca
+  é presumida. Testes: `TESTES/CAIXINHA/` e `TESTES/ESCRITORIO/testar_caixinha_navegador.py` (fictícios). Homologação com documentos
+  reais só por `TESTES/CAIXINHA/homologar_caixinha_local.py` (ambiente temporário; referência fora do Git).
 - O usuário zerou todos os cadastros e solicitações em 01/11/2026. As remoções em CLIENTES (exceto _MODELO) são intencionais;
   não restaure empresas de demonstração/teste por checkout ou inicialização automática. Dados anteriores estão fora do
   aplicativo, em `%LOCALAPPDATA%/AgentesPrime/backups`. Testes futuros devem preparar seus clientes fictícios de forma isolada.

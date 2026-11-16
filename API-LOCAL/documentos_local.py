@@ -267,6 +267,30 @@ def cnpjs_cadastro(empresa):
     return sorted({re.sub(r'\D', '', c) for c in re.findall(r'\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}', arquivo.read_text(encoding='utf-8'))})
 
 
+# ---- documentos da rotina CAIXINHA (reconhecimento pelo CONTEÚDO, pelos leitores especialistas; nunca pelo nome do arquivo)
+TIPO_PAGAMENTOS_ECAC = 'Pagamentos efetuados (e-CAC)'
+TIPO_SITUACAO_FISCAL = 'Relatório de situação fiscal'
+TIPO_RESUMO_FOLHA_DOMINIO = 'Resumo mensal da folha (Domínio)'
+TIPOS_CAIXINHA = (TIPO_PAGAMENTOS_ECAC, TIPO_SITUACAO_FISCAL, TIPO_RESUMO_FOLHA_DOMINIO)
+for _pasta in (RAIZ / 'AGENTES' / 'FISCAL' / 'ferramentas', RAIZ / 'AGENTES' / 'DP' / 'ferramentas'):
+    if str(_pasta) not in sys.path:
+        sys.path.append(str(_pasta))
+import pagamentos_ecac as _ecac  # noqa: E402
+import situacao_fiscal as _situacao  # noqa: E402
+import resumo_folha_dominio as _folha_dominio  # noqa: E402
+
+
+def tipo_caixinha(texto):
+    """Pagamentos do e-CAC, situação fiscal ou resumo mensal da folha do Domínio, pela estrutura do próprio documento. None = não é."""
+    if _situacao.reconhece(texto):
+        return TIPO_SITUACAO_FISCAL
+    if _ecac.reconhece(texto):
+        return TIPO_PAGAMENTOS_ECAC
+    if _folha_dominio.reconhece(texto):
+        return TIPO_RESUMO_FOLHA_DOMINIO
+    return None
+
+
 TIPO_BALANCETE = 'Balancete contábil do período'
 TIPO_RAZAO = 'Razão contábil'
 TIPO_BOOK = 'Book de conciliação contábil'
@@ -299,6 +323,9 @@ def tipo_contabil(a, t, cabs):
             return TIPO_BALANCETE
         if {'DATA', 'CONTA', 'HISTORICO'} <= c and _DEB & c and _CRED & c and not ({'TIPO', 'VALOR'} <= c):
             return TIPO_RAZAO
+    if planilha and re.search(r'(?:^| \| )RAZAO(?: \| |$)', planilha[:600]) and 'DEBITO' in planilha and 'CREDITO' in planilha \
+            and 'HISTORICO' in planilha and 'CONTA:' in planilha:
+        return TIPO_RAZAO                 # razão do Domínio exportado em planilha: título "RAZÃO" e seções "Conta:"
     topo = [l.strip() for l in t.splitlines() if l.strip()][:8]
     titulo = ' '.join(topo)
     if re.search(r'\bBALANCETE\b', titulo) and 'DEBITO' in t and 'CREDITO' in t and ('SALDO ANTERIOR' in t or 'SALDO INICIAL' in t):
@@ -342,6 +369,10 @@ def classificar(a):
     contabil = tipo_contabil(a, t, cabs)
     if contabil:
         return contabil
+    # Rotina CAIXINHA: relatório de pagamentos do e-CAC (não é guia nem extrato), situação fiscal e resumo mensal do Domínio.
+    caixinha = tipo_caixinha(texto)
+    if caixinha:
+        return caixinha
     # Layouts tabulares documentados: o cabeçalho define o tipo (o conteúdo das colunas não troca o destino).
     if any(CAB_POSICAO <= c for c in cabs):
         return 'Posição de títulos'
@@ -432,6 +463,14 @@ def _rota(a, cnpjs_empresa=None):
     if tipo == 'Posição de títulos':
         return {'area': 'FINANCEIRO', 'situacao': 'DISPONIVEL_PARA_ENCAMINHAMENTO', 'copias_suporte': ['CONCILIACAO'], 'tipo': tipo,
                 'observacao': 'Posição de títulos (controle interno): Financeiro confere liquidações; cópia à Conciliação.'}
+    if tipo in (TIPO_PAGAMENTOS_ECAC, TIPO_SITUACAO_FISCAL):
+        return {'area': 'FISCAL', 'situacao': 'DISPONIVEL_PARA_ENCAMINHAMENTO', 'copias_suporte': ['CONCILIACAO'], 'tipo': tipo,
+                'observacao': ('Pagamentos registrados no e-CAC: evidência documental das baixas tributárias (leitura pelo Fiscal; não é '
+                               'extrato bancário).' if tipo == TIPO_PAGAMENTOS_ECAC else
+                               'Situação fiscal: conferência adicional do Fiscal; não comprova pagamento nem baixa contábil.')}
+    if tipo == TIPO_RESUMO_FOLHA_DOMINIO:
+        return {'area': 'DP', 'situacao': 'DISPONIVEL_PARA_ENCAMINHAMENTO', 'copias_suporte': ['CONCILIACAO'], 'tipo': tipo,
+                'observacao': 'Resumo mensal da folha emitido pelo Domínio: leitura pelo DP (proventos, descontos e líquido).'}
     if tipo == 'Demonstrativo de apuração':
         # Somente Fiscal: não é suporte de pagamento (cópia ao Financeiro geraria pendência falsa).
         return {'area': 'FISCAL', 'situacao': 'DISPONIVEL_PARA_ENCAMINHAMENTO', 'copias_suporte': [], 'tipo': tipo,

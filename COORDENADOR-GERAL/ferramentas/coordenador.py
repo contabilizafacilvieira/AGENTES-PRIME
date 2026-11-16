@@ -287,7 +287,29 @@ def proxima_sol(registro: dict, ano: int) -> str:
 # ---------------------------------------------------------------- comandos
 
 # FECHAMENTO: Documentos recebe, classifica e distribui; NENHUMA área executa até "Preparar fechamento" (tentativa + checkpoint).
-FLUXOS = ("DOCUMENTOS", "FINANCEIRO_BANCOS", "FECHAMENTO")
+FLUXOS = ("DOCUMENTOS", "FINANCEIRO_BANCOS", "FECHAMENTO", "CONCILIACAO_CAIXINHA")
+# CONCILIACAO_CAIXINHA: empresas com rotina CAIXINHA (sem extrato bancário). Documentos recebe e classifica; depois Contábil (leitores),
+# Fiscal (e-CAC e situação fiscal) e DP (resumo da folha) normalizam; a Conciliação Caixinha cruza e prepara as baixas contra o Caixa.
+# Não exige nem executa Financeiro/Bancos; empresas TRADICIONAIS continuam nos fluxos existentes.
+ETAPAS_CAIXINHA = ("CAIXINHA_CONTABIL", "CAIXINHA_FISCAL", "CAIXINHA_DP", "CAIXINHA_CONCILIACAO")
+
+
+def rotina_caixinha(empresa: dict) -> bool:
+    return bool(re.search(r"^- Rotina: CAIXINHA\b", empresa["texto"], re.M))
+
+
+def caixinha_permitido(empresa: dict) -> bool:
+    """Rotina CAIXINHA definida no cadastro + piloto em SIMULAÇÃO autorizado para a Conciliação Caixinha (autorização por empresa)."""
+    return (rotina_caixinha(empresa) and eh_piloto(empresa)
+            and bool(re.search(r"^- Conciliação Caixinha: PILOTO SIMULACAO AUTORIZADO[ \t]*$", empresa["texto"], re.M)))
+
+
+def eh_caixinha(s: dict) -> bool:
+    return (s or {}).get("fluxo") == "CONCILIACAO_CAIXINHA"
+
+
+def etapa_conciliacao(s: dict) -> str:
+    return "CAIXINHA_CONCILIACAO" if eh_caixinha(s) else "CONCILIACAO"
 
 
 def abrir(pedido: str, pasta_informada, fluxo: str = "DOCUMENTOS") -> int:
@@ -300,6 +322,9 @@ def abrir(pedido: str, pasta_informada, fluxo: str = "DOCUMENTOS") -> int:
         return recusar("EMPRESA_NAO_AUTORIZADA", motivo, empresa=empresa)
     if fluxo not in FLUXOS:
         return recusar("PARAMETROS_INVALIDOS", f"Fluxo deve ser um de {', '.join(FLUXOS)}.")
+    if fluxo == "CONCILIACAO_CAIXINHA" and not caixinha_permitido(empresas[empresa]):
+        return recusar("FLUXO_NAO_AUTORIZADO", "A Conciliação Caixinha exige empresa com rotina CAIXINHA definida no cadastro e piloto em "
+                       "SIMULAÇÃO autorizado pelo Supervisor. Empresas tradicionais continuam nos fluxos existentes.", empresa=empresa)
     if fluxo == "FINANCEIRO_BANCOS" and not financeiro_permitido(empresas[empresa]):
         return recusar("FLUXO_NAO_AUTORIZADO", "O fluxo Financeiro → Contabilidade/Bancos exige empresa fictícia ou piloto real AUTORIZADO "
                        "em SIMULAÇÃO (autorização específica do Supervisor). Produção continua bloqueada.", empresa=empresa)
@@ -339,6 +364,8 @@ def abrir(pedido: str, pasta_informada, fluxo: str = "DOCUMENTOS") -> int:
         "- Tarefas: (1) inventário completo da pasta; (2) leitura de todos os documentos pelo extrator; (3) ficha de cada "
         "documento extraído; (4) classificação por tipo e competência; (5) duplicidades; (6) pendências propostas; "
         "(7) documentos não analisados com o código do extrator.\n"
+        + ("- Fluxo: CONCILIAÇÃO CAIXINHA. Identifique balancete, razão, pagamentos do e-CAC, relatório de situação fiscal e resumo "
+           "mensal da folha pelo CONTEÚDO; não há extrato bancário nesta rotina.\n" if fluxo == "CONCILIACAO_CAIXINHA" else "")
         + ("- Fluxo: FINANCEIRO → CONTABILIDADE/BANCOS. Organize extratos bancários, relação de pagamentos, comprovantes e "
            "documentos de suporte (nota, boleto, guia, recibo); indique conta bancária, titular e período de cada extrato quando "
            "constarem no documento. Não faça a conferência financeira (é do Agente Financeiro).\n" if fluxo == "FINANCEIRO_BANCOS" else "")
@@ -534,6 +561,8 @@ def encerrar_local(sol, caminho):
     solicitado_financeiro = s.get('fluxo') == 'FINANCEIRO_BANCOS'
     empresa_atual = empresas_cadastradas().get(s['empresa'])
     permitido = bool(empresa_atual and financeiro_permitido(empresa_atual))
+    if eh_caixinha(s) and not estruturais:
+        return _encerrar_caixinha(registro, s, sol, motivos)
     so_classificar = s.get('fluxo') == 'FECHAMENTO'      # upload do fechamento NÃO inicia nenhuma área
     financeiro = (solicitado_financeiro or destinos_financeiros) and not estruturais and not so_classificar
     if financeiro and not permitido:
@@ -569,6 +598,26 @@ def encerrar_local(sol, caminho):
                                           '"Preparar fechamento" para iniciar (nenhuma área foi executada).' if so_classificar else
                                           'Triagem local concluída; confira os destinos, limitações e pendências das áreas.'),
                   'motivos': s['motivos']})
+
+
+def _encerrar_caixinha(registro, s, sol, motivos):
+    """Documentos encerrado no fluxo CONCILIACAO_CAIXINHA: plano próprio (leitores → Fiscal → DP → Conciliação Caixinha); nenhuma
+    etapa do Financeiro/Bancos. Autorização reconferida no cadastro atual (fail-closed)."""
+    empresa_atual = empresas_cadastradas().get(s['empresa'])
+    if not empresa_atual or not caixinha_permitido(empresa_atual):
+        motivos.append('Conciliação Caixinha não autorizada no cadastro atual da empresa (rotina CAIXINHA + piloto em SIMULAÇÃO).')
+        s['plano_etapas'] = novo_plano([])
+    else:
+        s['plano_etapas'] = novo_plano(ETAPAS_CAIXINHA, ETAPAS_CAIXINHA)
+    s.update(etapa='DOCUMENTOS_PENDENTE' if motivos else 'DOCUMENTOS_CONCLUIDO', motivos=list(motivos), pendencias_documentos=list(motivos),
+             executor_documentos='LOCAL_SEM_MODELO', escopo_resultado='SIMULACAO_CAIXINHA')
+    s['estado'] = avancar(s)
+    s['eventos'].append({'em': agora().isoformat(), 'evento': 'Documentos local encerrado → ' + s['estado'] + '; Conciliação Caixinha: '
+                         'leitores contábeis, Fiscal (e-CAC/situação fiscal), DP (resumo da folha) e Conciliação Caixinha (sem extrato)'})
+    gravar_json(REGISTRO, registro)
+    return saida({'resultado': 'SOL_ENCERRADA', 'estado': s['estado'], 'sol': sol, 'piloto': s.get('piloto'),
+                  'areas_acionadas': ['Contábil (leitores)', 'Fiscal', 'DP', 'Conciliação Caixinha'] if s['plano_etapas'] else [],
+                  'mensagem_supervisor': 'Documentos classificados; Conciliação Caixinha em execução (SIMULAÇÃO).', 'motivos': s['motivos']})
 
 
 IMPORTACAO_VGROW_ATIVA = False   # especialista desativado por decisão do Supervisor; código e histórico preservados
@@ -806,18 +855,22 @@ def movimentos_tratados(registro: dict, sol: str) -> dict:
 ARQUIVOS_FONTE = {"CADASTRO": "CADASTRO.md", "EMPRESA_LOCAL": "empresa-local.json", "PLANO": "PLANO-DE-CONTAS/PLANO-DE-CONTAS.md",
                   "REGRAS_BANCOS": "REGRAS-BANCOS.md", "REGRAS_DP": "REGRAS-DP.json", "REGRAS_FISCAIS": "REGRAS-FISCAIS.json",
                   "REGRAS_CONCILIACAO": "REGRAS-CONCILIACAO.json", "PERFIL_FECHAMENTO": "PERFIL-FECHAMENTO.json",
-                  "MARCA_FICTICIA": "AMOSTRA-FICTICIA.json", "BASE_INICIAL": "BASE-INICIAL/INDICE.json"}
+                  "MARCA_FICTICIA": "AMOSTRA-FICTICIA.json", "BASE_INICIAL": "BASE-INICIAL/INDICE.json",
+                  "REGRAS_CAIXINHA": "REGRAS-CAIXINHA.json"}
 ROTULO_FONTE = {"CADASTRO": "cadastro (CADASTRO.md)", "EMPRESA_LOCAL": "cadastro local e vínculos bancários (empresa-local.json)",
                 "PLANO": "plano de contas", "REGRAS_BANCOS": "regras bancárias", "REGRAS_DP": "referências de DP",
                 "REGRAS_FISCAIS": "referências fiscais", "REGRAS_CONCILIACAO": "exigências da Conciliação",
                 "PERFIL_FECHAMENTO": "perfil de fechamento (referência)", "MARCA_FICTICIA": "marcador de empresa fictícia",
                 "PACOTE": "pacote de Documentos (manifesto)", "EXTRACAO": "extração dos documentos",
-                "BASE_INICIAL": "base inicial (balancete anterior, book, saldos e confirmação)"}
+                "BASE_INICIAL": "base inicial (balancete anterior, book, saldos e confirmação)",
+                "REGRAS_CAIXINHA": "regras da rotina Caixinha (contas, tributos, datas, política da folha)"}
 _FONTES_BASE = ("CADASTRO", "EMPRESA_LOCAL", "MARCA_FICTICIA")
 FONTES_ETAPA = {"FINANCEIRO": _FONTES_BASE + ("PERFIL_FECHAMENTO",), "DP": _FONTES_BASE, "FISCAL": _FONTES_BASE,
                 "BANCOS": _FONTES_BASE + ("PLANO", "REGRAS_BANCOS"), "CONTABILIDADE_DP": _FONTES_BASE + ("PLANO", "REGRAS_DP"),
                 "CONTABILIDADE_FISCAL": _FONTES_BASE + ("PLANO", "REGRAS_FISCAIS"),
-                "CONCILIACAO": _FONTES_BASE + ("PLANO", "REGRAS_CONCILIACAO", "BASE_INICIAL")}
+                "CONCILIACAO": _FONTES_BASE + ("PLANO", "REGRAS_CONCILIACAO", "BASE_INICIAL"),
+                "CAIXINHA_CONTABIL": _FONTES_BASE, "CAIXINHA_FISCAL": _FONTES_BASE, "CAIXINHA_DP": _FONTES_BASE,
+                "CAIXINHA_CONCILIACAO": _FONTES_BASE + ("PLANO", "REGRAS_CAIXINHA")}
 
 
 def fontes_atuais(empresa: str, nomes=None) -> dict:
@@ -853,11 +906,12 @@ def _ultima(s: dict, etapa: str):
 def vigencia(s: dict, conc=None) -> dict:
     """Vigência de uma Conciliação (padrão: a última): resultados, pacote, extração e fontes da empresa precisam ser exatamente os
     conferidos. Devolve {'vigente', 'motivos', 'rever'} — 'rever' = etapas que precisam ser revistas (nada é reexecutado sozinho)."""
-    conc = conc if conc is not None else (s.get("conciliacao") or [None])[-1]
+    ec = etapa_conciliacao(s)
+    conc = conc if conc is not None else (s.get(RESULTADOS_ETAPA[ec]) or [None])[-1]
     if not conc:
-        return {"vigente": False, "motivos": ["Nenhuma Conciliação registrada."], "rever": ["CONCILIACAO"]}
+        return {"vigente": False, "motivos": ["Nenhuma Conciliação registrada."], "rever": [ec]}
     motivos, rever = [], []
-    atuais = {e: (_ultima(s, e) or {}).get("resultado_sha256") for e in RESULTADOS_ETAPA if e != "CONCILIACAO"}
+    atuais = {e: (_ultima(s, e) or {}).get("resultado_sha256") for e in RESULTADOS_ETAPA if e not in ("CONCILIACAO", "CAIXINHA_CONCILIACAO")}
     atuais = {e: v for e, v in atuais.items() if v}
     ancora = s.get("ancora_documentos") or {}
     if ancora.get("manifesto_sha256"):
@@ -869,9 +923,9 @@ def vigencia(s: dict, conc=None) -> dict:
         if atuais.get(k) != conferidas.get(k):
             nome = ROTULO_FONTE.get(k, f"resultado de {k}")
             motivos.append(f"{nome}: {'não conferido pela Conciliação' if k not in conferidas else 'alterado depois da Conciliação'}.")
-            rever.append("CONCILIACAO")
+            rever.append(ec)
     agora_f = fontes_atuais(s["empresa"])
-    execucoes = [(e, _ultima(s, e)) for e in ETAPAS if e != "CONCILIACAO" and _ultima(s, e)] + [("CONCILIACAO", conc)]
+    execucoes = [(e, _ultima(s, e)) for e in ETAPAS if e not in ("CONCILIACAO", "CAIXINHA_CONCILIACAO") and _ultima(s, e)] + [(ec, conc)]
     for etapa, ex in execucoes:
         usadas = ex.get("fontes_sha256")
         if usadas is None:
@@ -882,8 +936,8 @@ def vigencia(s: dict, conc=None) -> dict:
             if agora_f.get(nome) != sha:
                 motivos.append(f"{ROTULO_FONTE.get(nome, nome)} alterado depois da etapa {etapa}.")
                 rever.append(etapa)
-    if rever and "CONCILIACAO" not in rever:
-        rever.append("CONCILIACAO")
+    if rever and ec not in rever:
+        rever.append(ec)
     return {"vigente": not motivos, "motivos": list(dict.fromkeys(motivos)), "rever": [e for e in ETAPAS if e in rever]}
 
 
@@ -901,7 +955,8 @@ def vigencia_aprovacao(s: dict) -> list:
 
 
 # ---------------------------------------------------------------- identidade dos fatos (duplicação entre solicitações)
-CHAVES_CONTABILIDADE = (("BANCOS", "bancos"), ("CONTABILIDADE_DP", "contabdp"), ("CONTABILIDADE_FISCAL", "contabilfiscal"))
+CHAVES_CONTABILIDADE = (("BANCOS", "bancos"), ("CONTABILIDADE_DP", "contabdp"), ("CONTABILIDADE_FISCAL", "contabilfiscal"),
+                        ("CAIXINHA_CONCILIACAO", "caixinha_conciliacao"))
 
 
 def fatos_do_resultado(r: dict) -> dict:
@@ -999,13 +1054,15 @@ def relacao_outras_sols(registro: dict, sol: str) -> list:
 # ---------------------------------------------------------------- plano de etapas da SOL
 # Áreas independentes (Financeiro, DP, Fiscal) analisam primeiro; a Contabilidade prepara depois (cada especialista depende só
 # da própria área); a Conciliação roda quando as demais terminaram (com sucesso ou não) e informa o alcance.
-ETAPAS = ("FINANCEIRO", "DP", "FISCAL", "BANCOS", "CONTABILIDADE_DP", "CONTABILIDADE_FISCAL", "CONCILIACAO")
+ETAPAS = ("FINANCEIRO", "DP", "FISCAL", "BANCOS", "CONTABILIDADE_DP", "CONTABILIDADE_FISCAL", "CONCILIACAO", *ETAPAS_CAIXINHA)
 DEPENDE = {"BANCOS": ("FINANCEIRO",), "CONTABILIDADE_DP": ("DP",), "CONTABILIDADE_FISCAL": ("FISCAL",)}
 DEPENDENTES = {"FINANCEIRO": ("BANCOS",), "DP": ("CONTABILIDADE_DP",), "FISCAL": ("CONTABILIDADE_FISCAL",)}
 TAREFA_ETAPA = {"FINANCEIRO": "FINANCEIRO", "DP": "DP", "FISCAL": "FISCAL", "BANCOS": "CONTABILIDADE", "CONTABILIDADE_DP": "CONTABILIDADE_DP",
-                "CONTABILIDADE_FISCAL": "CONTABILIDADE_FISCAL", "CONCILIACAO": "CONCILIACAO"}
+                "CONTABILIDADE_FISCAL": "CONTABILIDADE_FISCAL", "CONCILIACAO": "CONCILIACAO", "CAIXINHA_CONTABIL": "CONTABIL",
+                "CAIXINHA_FISCAL": "FISCAL", "CAIXINHA_DP": "DP", "CAIXINHA_CONCILIACAO": "CONCILIACAO"}
 RESULTADOS_ETAPA = {"FINANCEIRO": "financeiro", "BANCOS": "bancos", "DP": "dp", "CONTABILIDADE_DP": "contabdp", "FISCAL": "fiscal",
-                    "CONTABILIDADE_FISCAL": "contabilfiscal", "CONCILIACAO": "conciliacao"}
+                    "CONTABILIDADE_FISCAL": "contabilfiscal", "CONCILIACAO": "conciliacao", "CAIXINHA_CONTABIL": "caixinha_contabil",
+                    "CAIXINHA_FISCAL": "caixinha_fiscal", "CAIXINHA_DP": "caixinha_dp", "CAIXINHA_CONCILIACAO": "caixinha_conciliacao"}
 ORDEM_RESUMOS = ("CONCILIACAO", "FINANCEIRO", "BANCOS", "CONTABILIDADE_DP", "CONTABILIDADE_FISCAL")
 
 
@@ -1063,8 +1120,9 @@ def avancar(s: dict) -> str:
     for e in plano:
         if e["situacao"] != "PENDENTE":
             continue
-        if e["etapa"] == "CONCILIACAO":
-            if any(x["situacao"] == "PENDENTE" for x in plano if x["etapa"] != "CONCILIACAO"):
+        if e["etapa"] in ("CONCILIACAO", "CAIXINHA_CONCILIACAO"):
+            # a Conciliação (tradicional ou Caixinha) espera todas as demais e informa o alcance do que não foi executado
+            if any(x["situacao"] == "PENDENTE" for x in plano if x["etapa"] != e["etapa"]):
                 continue
         else:
             deps = [d for d in (etapa_do_plano(s, n) for n in e["depende"]) if d]
@@ -1245,6 +1303,102 @@ def registrar_conciliacao(sol, caminho_resultado):
     return saida({'resultado': 'CONCILIACAO_REGISTRADA', 'sol': sol, 'estado': s['estado'], 'resumo': contagem})
 
 
+CONTRATOS_CAIXINHA = {"CAIXINHA_CONTABIL": ("CONTABILIDADE/LEITORES", "CAIXINHA_CONTABIL_V1", "Contábil (leitores de balancete e razão)"),
+                      "CAIXINHA_FISCAL": ("FISCAL", "CAIXINHA_FISCAL_V1", "Fiscal (pagamentos e-CAC e situação fiscal)"),
+                      "CAIXINHA_DP": ("DP", "CAIXINHA_DP_V1", "DP (resumo mensal da folha)"),
+                      "CAIXINHA_CONCILIACAO": ("CONCILIACAO_CAIXINHA", "CONCILIACAO_CAIXINHA_V1", "Conciliação Caixinha")}
+VALIDOS_VERIFICACAO = {'CONFERIDO', 'DIVERGENTE', 'PENDENTE', 'NAO_APLICAVEL', 'NAO_DETERMINADO'}
+
+
+def registrar_caixinha(sol, etapa, caminho_resultado):
+    """Resultado de uma etapa da Conciliação Caixinha (SIMULAÇÃO): contrato, origem, sha256 e fontes da empresa conferidos; nada é
+    aprovado, escriturado ou liberado. A Conciliação registra também as identidades das baixas propostas (duplicidade entre SOLs)."""
+    registro = ler_registro(); s = registro['solicitacoes'].get(sol)
+    if etapa not in CONTRATOS_CAIXINHA:
+        return recusar('PARAMETROS_INVALIDOS', 'Etapa da Conciliação Caixinha inválida.')
+    if not s or not eh_caixinha(s) or s.get('estado') != etapa + '_EM_ANDAMENTO':
+        return recusar('ESTADO_INVALIDO', f'Etapa {etapa} não está em andamento nesta solicitação Caixinha.')
+    agente, contrato, rotulo = CONTRATOS_CAIXINHA[etapa]
+    r = _resultado_da_sol(caminho_resultado, s, sol, agente)
+    if not r or r.get('contrato') != contrato or r.get('modo') != 'SIMULACAO' or not isinstance(r.get('resumo'), dict):
+        return recusar('RESULTADO_INVALIDO', f'Retorno de {rotulo} inválido ou de outra SOL/empresa/competência.')
+    conc = etapa == 'CAIXINHA_CONCILIACAO'
+    if conc and (not isinstance(r.get('verificacoes'), list) or not isinstance(r.get('alcance'), dict)
+                 or any(v.get('resultado') not in VALIDOS_VERIFICACAO for v in r['verificacoes'])
+                 or any(l.get('aprovado') or l.get('escriturado') for l in r.get('lancamentos', []))):
+        return recusar('RESULTADO_INVALIDO', 'Retorno da Conciliação Caixinha inválido (verificações, alcance ou lançamento declarado aprovado).')
+    fontes, motivo_fontes = conferir_fontes(caminho_resultado, s['empresa'], etapa)
+    if motivo_fontes:
+        return recusar('FONTES_ALTERADAS', motivo_fontes)
+    momento = agora().isoformat()
+    chave = RESULTADOS_ETAPA[etapa]
+    execucao = {'em': momento, 'resumo': r['resumo'], 'fontes_sha256': fontes,
+                'resultado_sha256': hashlib.sha256(Path(caminho_resultado).read_bytes()).hexdigest()}
+    if conc:
+        execucao.update(tentativa=len(s.get(chave, [])) + 1, alcance=r['alcance'], versoes_entradas=r.get('versoes_entradas', {}),
+                        fatos=fatos_do_resultado(r))
+    s.setdefault(chave, []).append(execucao)
+    s.setdefault('falhas_areas', {}).pop(etapa, None)
+    marcar(s, etapa, 'CONCLUIDA')
+    area = TAREFA_ETAPA[etapa]
+    tarefa = s.setdefault('tarefas_areas', {}).setdefault(area, {'area': area, 'documentos': []})
+    res = r['resumo']
+    if conc:
+        texto = (f"CONCILIACAO_CAIXINHA_SIMULACAO: {res.get('propostos', 0)} baixa(s) proposta(s), {res.get('incompletos', 0)} incompleta(s), "
+                 f"{res.get('revisao', 0)} item(ns) para revisão, {res.get('bloqueantes', 0)} verificação(ões) bloqueante(s)"
+                 + ('; alcance PARCIAL' if r['alcance'].get('parcial') else '') + '. Nada aprovado, escriturado ou exportado.')
+        s.setdefault('resumos_etapas', {})[etapa] = texto
+        com_pendencia = res.get('bloqueantes') or res.get('incompletos') or res.get('revisao') or r['alcance'].get('parcial')
+        s['escopo_resultado'] = 'SIMULACAO_CAIXINHA_COM_PENDENCIAS' if com_pendencia else 'SIMULACAO_CAIXINHA_CONCILIADA_NO_ALCANCE'
+        tarefa.update(estado='ENTREGUE_COM_PENDENCIAS' if com_pendencia else 'ENTREGUE', retorno_em=momento, resumo=res, alcance=r['alcance'])
+    else:
+        tarefa.update(estado='ENTREGUE_COM_PENDENCIAS' if r.get('pendencias') else 'ENTREGUE', retorno_em=momento, resumo=res,
+                      pendencias=[p.get('descricao') if isinstance(p, dict) else str(p) for p in r.get('pendencias', [])][:50])
+    s['estado'] = avancar(s)
+    s['motivos'] = motivos_atuais(s)
+    s['eventos'].append({'em': momento, 'evento': f"{rotulo} entregou resultado (SIMULAÇÃO, Conciliação Caixinha)"
+                         + (f": {s['resumos_etapas'][etapa]}" if conc else '; sem escrituração ou liberação.')})
+    gravar_json(REGISTRO, registro)
+    return saida({'resultado': chave.upper() + '_REGISTRADO', 'sol': sol, 'estado': s['estado'], 'resumo': res})
+
+
+def _impedimentos_caixinha(s: dict, registro: dict = None, ciente_exportados: bool = False, ciente_pendencias: bool = False) -> list:
+    """Aprovação da Conciliação Caixinha: plano concluído, conciliação vigente sem verificação bloqueante, nenhuma proposta incompleta,
+    ao menos uma baixa proposta, ciência explícita dos itens em revisão (que NÃO geram lançamento) e nenhuma repetição de fato aprovado."""
+    faltas = []
+    if s.get('estado') != 'AGUARDANDO_SUPERVISOR':
+        faltas.append('A solicitação não está aguardando o Supervisor.')
+    if not s.get('ancora_documentos') or 'plano_etapas' not in s:
+        return faltas + ['Solicitação sem pacote local com âncora de integridade.']
+    for e in plano_de(s):
+        if e['situacao'] != 'CONCLUIDA':
+            faltas.append(f"Etapa {e['etapa']} não concluída ({e['situacao']}).")
+    conc = (s.get('caixinha_conciliacao') or [None])[-1]
+    if not conc:
+        return list(dict.fromkeys(faltas + ['Conciliação Caixinha não registrada.']))
+    res = conc.get('resumo') or {}
+    if res.get('bloqueantes'):
+        faltas.append(f"Conciliação Caixinha com {res['bloqueantes']} verificação(ões) bloqueante(s) (divergente/pendente).")
+    if res.get('incompletos'):
+        faltas.append(f"Conciliação Caixinha com {res['incompletos']} lançamento(s) incompleto(s) (regras/política não aprovadas, data ou conta).")
+    if not res.get('propostos'):
+        faltas.append('Nenhuma baixa proposta para aprovar.')
+    if (conc.get('alcance') or {}).get('parcial'):
+        faltas.append('Conciliação Caixinha com alcance parcial: ' + '; '.join((conc.get('alcance') or {}).get('motivos') or []) + '.')
+    if res.get('revisao') and not ciente_pendencias:
+        faltas.append(f"Há {res['revisao']} item(ns) para revisão humana que NÃO geram lançamento: confirme a ciência na aprovação.")
+    v = vigencia(s, conc)
+    if not v['vigente']:
+        faltas.append('Conciliação Caixinha desatualizada: ' + ' '.join(v['motivos']) + ' Rever: ' + ', '.join(v['rever']) + '.')
+    if registro is not None and s.get('sol') in registro.get('solicitacoes', {}):
+        for rel in relacao_outras_sols(registro, s['sol']):
+            if rel['classificacao'] in ('REPETICAO_DE_APROVADA', 'SUBSTITUICAO_DE_APROVADA', 'SEM_IDENTIDADES'):
+                faltas.append(f"Duplicação: {rel['texto']}")
+            elif rel['classificacao'] == 'FATOS_JA_EXPORTADOS' and not ciente_exportados:
+                faltas.append(f"Fatos já exportados: {rel['texto']} Confirme a ciência na aprovação.")
+    return list(dict.fromkeys(faltas))
+
+
 def registrar_bancos(sol: str, caminho_resultado: str) -> int:
     registro = ler_registro()
     s, erro = _sol_financeira(registro, sol, ("BANCOS_EM_ANDAMENTO",))
@@ -1278,9 +1432,11 @@ def registrar_bancos(sol: str, caminho_resultado: str) -> int:
                   "mensagem_supervisor": f"{sol}: escrituração bancária em SIMULAÇÃO pronta para a sua conferência. {motivo}"})
 
 
-def impedimentos_aprovacao(s: dict, registro: dict = None, ciente_exportados: bool = False) -> list:
+def impedimentos_aprovacao(s: dict, registro: dict = None, ciente_exportados: bool = False, ciente_pendencias: bool = False) -> list:
     """Motivos que impedem aprovar o fechamento (vazio = pode aprovar). Só se aprova o que foi conferido por inteiro, com as
     fontes vigentes e sem repetir fatos já aprovados em outra SOL. Aprovação parcial não existe nesta versão."""
+    if eh_caixinha(s):
+        return _impedimentos_caixinha(s, registro, ciente_exportados, ciente_pendencias)
     faltas = []
     if s.get('estado') != 'AGUARDANDO_SUPERVISOR':
         faltas.append('A solicitação não está aguardando o Supervisor.')
@@ -1319,7 +1475,7 @@ def impedimentos_aprovacao(s: dict, registro: dict = None, ciente_exportados: bo
     return list(dict.fromkeys(faltas))
 
 
-def aprovar_fechamento(sol, acao, frase, justificativa, ciente_exportados=False):
+def aprovar_fechamento(sol, acao, frase, justificativa, ciente_exportados=False, ciente_pendencias=False):
     """Aprovação EXPLÍCITA do Supervisor (SIMULAÇÃO) do fechamento conferido por inteiro. Não escritura. O TXT do Domínio é gerado
     depois, pela API, só para empresa fictícia (produção bloqueada). Revogar não estorna importação já feita no Domínio."""
     registro = ler_registro(); s = registro['solicitacoes'].get(sol)
@@ -1343,9 +1499,11 @@ def aprovar_fechamento(sol, acao, frase, justificativa, ciente_exportados=False)
     if (frase or '').strip() != esperado:
         return recusar('APROVACAO_INVALIDA', f'Aprovação exige a frase exata: "{esperado}".')
     s.setdefault('sol', sol)
-    faltas = impedimentos_aprovacao(s, registro, ciente_exportados)
+    faltas = impedimentos_aprovacao(s, registro, ciente_exportados, ciente_pendencias)
     if faltas:
         return recusar('APROVACAO_IMPEDIDA', 'Não é possível aprovar: ' + ' '.join(faltas))
+    if eh_caixinha(s):
+        return _aprovar_caixinha(registro, s, sol, esperado, justificativa, momento, ciente_exportados, ciente_pendencias)
     conc = s['conciliacao'][-1]
     relacao = relacao_outras_sols(registro, sol)
     s['aprovacao'] = {'em': momento, 'por': 'Supervisor Contábil', 'frase': esperado, 'justificativa': justificativa.strip(),
@@ -1362,6 +1520,45 @@ def aprovar_fechamento(sol, acao, frase, justificativa, ciente_exportados=False)
                                                   'a importação no Domínio é sempre manual.'})
     gravar_json(REGISTRO, registro)
     return saida({'resultado': 'FECHAMENTO_APROVADO', 'sol': sol, 'estado': s['estado']})
+
+
+def _aprovar_caixinha(registro, s, sol, esperado, justificativa, momento, ciente_exportados, ciente_pendencias):
+    """Aprovação da Conciliação Caixinha (SIMULAÇÃO): vincula o resultado da Conciliação Caixinha (sha256), as entradas conferidas,
+    as fontes da empresa (inclusive REGRAS-CAIXINHA) e as identidades das baixas. Itens em revisão ficam fora (ciência registrada)."""
+    conc = s['caixinha_conciliacao'][-1]
+    relacao = relacao_outras_sols(registro, sol)
+    s['aprovacao'] = {'em': momento, 'por': 'Supervisor Contábil', 'frase': esperado, 'justificativa': justificativa.strip(),
+                      'escopo': 'SIMULACAO', 'tipo': 'CONCILIACAO_CAIXINHA', 'conciliacao_tentativa': conc.get('tentativa'),
+                      'conciliacao_sha256': conc.get('resultado_sha256'),
+                      'versoes_aprovadas': dict(conc.get('versoes_entradas') or {}, CAIXINHA_CONCILIACAO=conc.get('resultado_sha256')),
+                      'fontes_aprovadas': fontes_atuais(s['empresa']), 'fatos_aprovados': fatos_da_sol(s) or {},
+                      'itens_em_revisao_fora_da_aprovacao': (conc.get('resumo') or {}).get('revisao', 0),
+                      'ciente_itens_em_revisao': bool(ciente_pendencias),
+                      'relacao_outras_sols': [{k: r.get(k) for k in ('sol', 'estado', 'classificacao', 'texto')} for r in relacao],
+                      'ciente_fatos_ja_exportados': bool(ciente_exportados and any(r['classificacao'] == 'FATOS_JA_EXPORTADOS' for r in relacao)),
+                      'escrituracao': 'NAO_REALIZADA', 'importacao_dominio': 'NAO_REGISTRADA_PELO_APLICATIVO',
+                      'liberacao_dominio': 'AGUARDANDO_GERACAO_TXT', 'tentativas_exportacao': []}
+    s['estado'] = 'FECHAMENTO_APROVADO'
+    s['eventos'].append({'em': momento, 'evento': 'Supervisor APROVOU as baixas da Conciliação Caixinha (SIMULAÇÃO). Nada foi escriturado; '
+                                                  'itens em revisão não foram aprovados; a importação no Domínio é sempre manual.'})
+    gravar_json(REGISTRO, registro)
+    return saida({'resultado': 'FECHAMENTO_APROVADO', 'sol': sol, 'estado': s['estado'], 'tipo': 'CONCILIACAO_CAIXINHA'})
+
+
+def aprovar_regra_caixinha(empresa: str, chave: str, frase: str) -> int:
+    """Confirmação EXPLÍCITA do Supervisor de uma regra da rotina Caixinha (CONFIGURACAO ou POLITICA_FOLHA) em PROPOSTA.
+    Frase "VALIDADO REGRA CAIXINHA <EMPRESA> <CHAVE>"; versão e sha256 do conteúdo vinculados; versão anterior em VERSOES/."""
+    sys.path.insert(0, str(RAIZ / "API-LOCAL"))
+    import regras_caixinha
+    if empresa not in empresas_cadastradas():
+        return recusar("PARAMETROS_INVALIDOS", "Empresa não cadastrada.")
+    try:
+        r = regras_caixinha.aprovar(CLIENTES / empresa, empresa, chave, frase)
+    except PermissionError as e:
+        return recusar("APROVACAO_INVALIDA", str(e))
+    except (OSError, ValueError) as e:
+        return recusar("NAO_PERMITIDO", str(e))
+    return saida(r)
 
 
 SITUACOES_LIBERACAO = ('PREPARANDO', 'LIBERADO_PARA_IMPORTACAO_MANUAL', 'BLOQUEADA_PRODUCAO', 'FALHOU', 'REVOGADO')
@@ -1703,12 +1900,12 @@ def retomar_area(sol: str, etapa: str, justificativa: str) -> int:
         return recusar('SEM_ANCORA', 'SOL anterior a esta versão ou sem âncora de integridade: a etapa não é retomada sobre este pacote '
                                      '(nenhuma integridade retroativa é fabricada). Abra nova solicitação.')
     e = etapa_do_plano(s, etapa)
-    desatualizada = bool(e and e['situacao'] == 'CONCLUIDA' and s.get('conciliacao') and etapa in vigencia(s)['rever'])
+    desatualizada = bool(e and e['situacao'] == 'CONCLUIDA' and s.get(RESULTADOS_ETAPA[etapa_conciliacao(s)]) and etapa in vigencia(s)['rever'])
     if not e or (e['situacao'] != 'FALHOU' and not desatualizada):
         return recusar('NAO_PERMITIDO', 'Somente etapa que FALHOU, ou etapa DESATUALIZADA por alteração de fonte (cadastro, plano, regras), '
                                         'pode ser retomada. Bloqueio de lote ou dependência se resolve na etapa de origem ou com nova '
                                         'solicitação (mudança de empresa, competência ou documentos).')
-    reabertas = reabrir(s, list(dict.fromkeys([etapa, *DEPENDENTES.get(etapa, ()), 'CONCILIACAO'])))
+    reabertas = reabrir(s, list(dict.fromkeys([etapa, *DEPENDENTES.get(etapa, ()), etapa_conciliacao(s)])))
     momento = agora().isoformat()
     s.setdefault('retomadas', []).append({'em': momento, 'etapa': etapa, 'justificativa': justificativa.strip(), 'reexecuta': reabertas})
     s['estado'] = avancar(s)
@@ -2058,7 +2255,7 @@ def main() -> int:
                  "registrar-financeiro", "registrar-bancos", "registrar-falha-etapa", "registrar-decisao-movimento",
                  "propor-regra-bancos", "aprovar-regra-bancos", "revisar-piloto", "aprovar-fechamento", "registrar-liberacao", "registrar-fiscal", "registrar-contabilidade-fiscal",
                  "registrar-dp", "registrar-contabilidade-dp", "registrar-conciliacao", "retomar-area", "retomar-rota-financeira",
-                 "reancorar-pacote", "autorizar-continuacao"):
+                 "reancorar-pacote", "autorizar-continuacao", "registrar-caixinha"):
         s = sub.add_parser(nome)
         s.add_argument("--sol", required=True)
         if nome == 'registrar-liberacao':
@@ -2070,11 +2267,15 @@ def main() -> int:
             s.add_argument('--frase', default='')
             s.add_argument('--justificativa', required=True)
             s.add_argument('--ciente-exportados', action='store_true')
+            s.add_argument('--ciente-pendencias', action='store_true')
         if nome == 'revisar-piloto':
             s.add_argument('--acao', choices=['encerrar', 'reabrir'], required=True)
             s.add_argument('--justificativa', required=True)
         if nome in ("registrar-financeiro", "registrar-bancos", "registrar-fiscal", "registrar-contabilidade-fiscal", "registrar-dp",
                     "registrar-contabilidade-dp", "registrar-conciliacao"):
+            s.add_argument("--resultado", required=True)
+        if nome == "registrar-caixinha":
+            s.add_argument("--etapa", required=True, choices=list(CONTRATOS_CAIXINHA))
             s.add_argument("--resultado", required=True)
         if nome == "registrar-falha-etapa":
             s.add_argument("--etapa", required=True, choices=list(ETAPAS))
@@ -2125,6 +2326,9 @@ def main() -> int:
     x = sub.add_parser("registrar-remocao")
     x.add_argument("--sol", required=True)
     x.add_argument("--pendentes", default="[]")
+    r = sub.add_parser("aprovar-regra-caixinha")
+    for opc in ("--empresa", "--chave", "--frase"):
+        r.add_argument(opc, required=True)
     r = sub.add_parser("aprovar-regra-area")
     for opc in ("--empresa", "--area", "--chave", "--frase"):
         r.add_argument(opc, required=True)
@@ -2151,6 +2355,8 @@ def executar_comando(args) -> int:
         return registrar_remocao(args.sol, args.pendentes)
     if args.comando == "aprovar-regra-area":
         return aprovar_regra_area(args.empresa, args.area, args.chave, args.frase)
+    if args.comando == "aprovar-regra-caixinha":
+        return aprovar_regra_caixinha(args.empresa, args.chave, args.frase)
     if getattr(args, "sol", None) and not re.fullmatch(r"SOL-20\d{2}-\d{6}", args.sol):
         return recusar("PARAMETROS_INVALIDOS", "SOL deve estar no formato SOL-AAAA-NNNNNN.")
     if args.comando == "abrir":
@@ -2165,6 +2371,8 @@ def executar_comando(args) -> int:
         return registrar_area(args.sol, 'CONTABILIDADE_DP' if args.comando == 'registrar-contabilidade-dp' else 'DP', args.resultado)
     if args.comando == 'registrar-conciliacao':
         return registrar_conciliacao(args.sol, args.resultado)
+    if args.comando == 'registrar-caixinha':
+        return registrar_caixinha(args.sol, args.etapa, args.resultado)
     if args.comando == 'retomar-area':
         return retomar_area(args.sol, args.etapa, args.justificativa)
     if args.comando == 'reancorar-pacote':
@@ -2186,7 +2394,7 @@ def executar_comando(args) -> int:
         return registrar_liberacao(args.sol, args.situacao, args.arquivo, args.sha256, args.linhas or '0', args.total or '0', args.motivo,
                                    args.movimentacao, args.auditoria, args.anexos)
     if args.comando == 'aprovar-fechamento':
-        return aprovar_fechamento(args.sol, args.acao, args.frase, args.justificativa, args.ciente_exportados)
+        return aprovar_fechamento(args.sol, args.acao, args.frase, args.justificativa, args.ciente_exportados, args.ciente_pendencias)
     if args.comando == 'revisar-piloto':
         return revisar_piloto(args.sol, args.acao, args.justificativa)
     if args.comando == "registrar-falha-etapa":

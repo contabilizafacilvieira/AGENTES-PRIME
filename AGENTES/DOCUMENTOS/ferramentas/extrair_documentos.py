@@ -53,8 +53,9 @@ EXT_PDF = {".pdf"}
 EXT_PLANILHA = {".xlsx", ".xlsm"}
 EXT_XML = {".xml"}
 EXT_IMAGEM = {".png", ".jpg", ".jpeg"}
+EXT_PLANILHA_XLS = {".xls"}       # Excel antigo (BIFF/OLE): SOMENTE valores pelo calamine; nada é executado
 FORA_DO_ESCOPO = {
-    ".xls": "Planilha .xls (Excel antigo) fora do escopo da V1.",
+    ".xls": "Planilha .xls (Excel antigo) ilegível, protegida ou fora do formato: envie XLSX ou PDF.",
     ".zip": "Arquivo compactado fora do escopo da V1.",
     ".rar": "Arquivo compactado fora do escopo da V1.",
     ".7z": "Arquivo compactado fora do escopo da V1.",
@@ -408,6 +409,21 @@ def _ler_planilha_calamine(arquivo: Path, meta: dict, marcacoes: set) -> dict:
         wb.close()
 
 
+def ler_planilha_xls(arquivo: Path) -> dict:
+    """Excel antigo (.xls, contêiner OLE/BIFF): leitura SOMENTE de valores (calamine). Macros e fórmulas nunca são executadas;
+    arquivo ilegível ou protegido não é lido (NAO_SUPORTADO, nada presumido)."""
+    if not cabecalho(arquivo, 8).startswith(b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"):
+        raise Resultado("EXTENSAO_INCOMPATIVEL", "O conteúdo não corresponde a uma planilha .xls (Excel antigo).")
+    try:
+        r = _ler_planilha_calamine(arquivo, {"abas": {}, "links_externos": [], "macros": False}, set())
+    except Exception:
+        raise Resultado("NAO_SUPORTADO", FORA_DO_ESCOPO[".xls"])
+    marcacoes = sorted(set(r["marcacoes"]) - {"ESTILO_XLSX_INVALIDO", "LEITOR_CALAMINE_FALLBACK"} | {"XLS_LEGADO_SOMENTE_VALORES"})
+    if not any(a["linhas"] for a in r["conteudo"]["abas"]):
+        raise Resultado("NAO_SUPORTADO", FORA_DO_ESCOPO[".xls"])
+    return dict(r, marcacoes=marcacoes, observacao="Planilha .xls (Excel antigo) lida somente pelos valores; macros e fórmulas não executadas.")
+
+
 def ler_planilha(arquivo: Path) -> dict:
     import openpyxl
 
@@ -640,7 +656,7 @@ def classificar_imagem(arquivo: Path) -> dict:
 
 
 # ============================================================ execução isolada com tempo máximo
-FUNCOES_ISOLADAS = {"pdf": ler_pdf, "planilha": ler_planilha, "xml": ler_xml}
+FUNCOES_ISOLADAS = {"pdf": ler_pdf, "planilha": ler_planilha, "planilha_xls": ler_planilha_xls, "xml": ler_xml}
 
 
 def _trabalhador(fila, nome, caminho):
@@ -694,6 +710,8 @@ def analisar_arquivo(arquivo: Path, pasta_empresa: Path) -> dict:
             resultado = executar_isolado("pdf", arquivo)
         elif ext in EXT_PLANILHA:
             resultado = executar_isolado("planilha", arquivo)
+        elif ext in EXT_PLANILHA_XLS:
+            resultado = executar_isolado("planilha_xls", arquivo)
         elif ext in EXT_XML:
             resultado = executar_isolado("xml", arquivo)
         elif ext in EXT_IMAGEM:

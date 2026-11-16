@@ -44,6 +44,8 @@ sys.path.insert(0, str(RAIZ / "AGENTES" / "IMPORTACAO" / "ferramentas"))
 sys.path.insert(0, str(RAIZ / "AGENTES" / "CONTABILIDADE"))
 import coordenador  # noqa: E402  (somente leitura de cadastro/registro e identificação de empresa/competência)
 import documentos_local  # noqa: E402
+import caixinha_api  # noqa: E402  (Conciliação Caixinha: etapas, painel, evidências, lote)
+import regras_caixinha  # noqa: E402
 import empresas_local  # noqa: E402
 import base_inicial  # noqa: E402  (base inicial: balancete anterior + book; somente dados da empresa)
 import amostra_ficticia  # noqa: E402
@@ -92,7 +94,7 @@ LIMITE_LOTE = 100 * 1024 * 1024
 LIMITE_ARQUIVOS = 30
 LIMITE_JSON = 16 * 1024
 LIMITE_INSTRUCAO = 2000
-FORMATOS = {".pdf", ".xml", ".xlsx", ".xlsm", ".txt", ".csv", ".ofx", ".png", ".jpg", ".jpeg"}
+FORMATOS = {".pdf", ".xml", ".xlsx", ".xlsm", ".xls", ".txt", ".csv", ".ofx", ".png", ".jpg", ".jpeg"}
 NOMES_RESERVADOS = {"CON", "PRN", "AUX", "NUL", *(f"COM{i}" for i in range(1, 10)), *(f"LPT{i}" for i in range(1, 10))}
 RE_LOTE = re.compile(r"L-\d{8}-\d{6}-[0-9a-f]{6}")
 RE_SOL = re.compile(r"SOL-20\d{2}-\d{6}")
@@ -252,6 +254,8 @@ def conteudo_confere(ext: str, inicio: bytes) -> bool:
         return b"%PDF-" in inicio[:1024]
     if ext in (".xlsx", ".xlsm"):
         return inicio.startswith(b"PK\x03\x04")
+    if ext == ".xls":                                   # Excel antigo: contêiner OLE (lido só pelos valores no extrator)
+        return inicio.startswith(b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1")
     if ext == ".png":
         return inicio.startswith(b"\x89PNG\r\n\x1a\n")
     if ext in (".jpg", ".jpeg"):
@@ -604,6 +608,8 @@ EXECUTORES_ETAPA = {
     'CONTABILIDADE_DP_EM_ANDAMENTO': lambda sol: executar_etapa_documental(sol, 'CONTABILIDADE_DP'),
     'CONTABILIDADE_FISCAL_EM_ANDAMENTO': lambda sol: executar_etapa_documental(sol, 'CONTABILIDADE_FISCAL'),
     'CONCILIACAO_EM_ANDAMENTO': lambda sol: executar_conciliacao(sol),
+    # Conciliação Caixinha (fluxo CONCILIACAO_CAIXINHA): leitores contábeis, Fiscal, DP e Conciliação Caixinha
+    **{estado: (lambda f: lambda sol: f(sol))(f) for estado, f in caixinha_api.EXECUTORES.items()},
 }
 
 
@@ -785,7 +791,8 @@ def etapas_de(sol: str, registro: dict, execucao: dict) -> dict:
     no_plano = {e['etapa'] for e in registro.get('plano_etapas', [])}
     fiscal = {}
     for chave, etapa in (('fiscal', 'FISCAL'), ('contabilfiscal', 'CONTABILIDADE_FISCAL'), ('dp', 'DP'), ('contabdp', 'CONTABILIDADE_DP'),
-                         ('conciliacao', 'CONCILIACAO')):
+                         ('conciliacao', 'CONCILIACAO'), ('caixinha_contabil', 'CAIXINHA_CONTABIL'), ('caixinha_fiscal', 'CAIXINHA_FISCAL'),
+                         ('caixinha_dp', 'CAIXINHA_DP'), ('caixinha_conciliacao', 'CAIXINHA_CONCILIACAO')):
         fiscal[chave] = (etapa_financeira(sol, chave, etapa) if etapa in no_plano or registro.get(chave)
                          else {'status': 'NAO_APLICAVEL'})
     if registro.get("fluxo") == "FINANCEIRO_BANCOS":
@@ -812,7 +819,8 @@ def etapas_de(sol: str, registro: dict, execucao: dict) -> dict:
 def conciliacao_vigente(sol: str, registro: dict):
     """Última Conciliação com o histórico. Uma execução só é VIGENTE se conferiu exatamente os resultados, o pacote, a extração e as
     fontes da empresa (cadastro, plano, regras) vigentes agora (coordenador.vigencia). Execuções anteriores ficam no histórico."""
-    execucoes = registro.get('conciliacao', [])
+    chave = coordenador.RESULTADOS_ETAPA[coordenador.etapa_conciliacao(registro)]
+    execucoes = registro.get(chave, [])
     if not execucoes:
         return None
     historico = []
@@ -821,7 +829,7 @@ def conciliacao_vigente(sol: str, registro: dict):
         historico.append(dict(x, vigente=v['vigente'], motivos_desatualizada=v['motivos']))
     atual = coordenador.vigencia(registro)
     return {'historico': historico, 'vigente': atual['vigente'], 'motivos': atual['motivos'], 'rever': atual['rever'],
-            'resultado': ultimo_concluido(sol, 'conciliacao')}
+            'resultado': ultimo_concluido(sol, chave)}
 
 
 def relativo_raiz(p: Path) -> str:
@@ -957,7 +965,7 @@ def liberar_txt(sol: str) -> dict:
         resultados = {etapa: str(c) for etapa, chave, _ in exportacao_dominio.ORIGENS if (c := ultimo_concluido_caminho(sol, chave))}
         plano = exportacao_dominio.plano_empresa(s['empresa'])
         gerado = exportacao_dominio.gerar(sol, s, resultados, plano)
-        conc = ultimo_concluido_caminho(sol, 'conciliacao')
+        conc = ultimo_concluido_caminho(sol, coordenador.RESULTADOS_ETAPA[coordenador.etapa_conciliacao(s)])
         if not conc or hashlib.sha256(conc.read_bytes()).hexdigest() != (s.get('aprovacao') or {}).get('conciliacao_sha256'):
             raise ValueError('Resultado da Conciliação aprovada ausente ou alterado (sha256): balancete não calculado; nada liberado.')
         arquivo = exportacao_dominio.destino(s['empresa'], s['competencia'], sol)
@@ -1069,10 +1077,11 @@ def revogar_txt(sol: str) -> dict:
 
 def resumo_conciliacao(sol: str, registro: dict) -> dict:
     """Vigência e alcance da última Conciliação (para o escritório mostrar desatualizada/parcial em qualquer SOL aberta)."""
-    c = conciliacao_vigente(sol, registro) if registro.get('conciliacao') else None
+    chave = coordenador.RESULTADOS_ETAPA[coordenador.etapa_conciliacao(registro)]
+    c = conciliacao_vigente(sol, registro) if registro.get(chave) else None
     if not c:
         return {}
-    return {'conciliacao_vigente': c['vigente'], 'conciliacao_parcial': bool((registro['conciliacao'][-1].get('alcance') or {}).get('parcial'))}
+    return {'conciliacao_vigente': c['vigente'], 'conciliacao_parcial': bool((registro[chave][-1].get('alcance') or {}).get('parcial'))}
 
 
 def dentro(p: Path, *bases) -> bool:
@@ -1384,6 +1393,60 @@ def validar_informados(corpo: dict, processos: set) -> dict:
 
 # ---------------------------------------------------------------- HTTP
 
+def iniciar_lote(lote_id: str) -> tuple:
+    """Início de UM lote (mesmo caminho para o botão individual e para a fila da execução em lote): valida, copia para RECEBIDOS
+    (somente leitura, sha256 conferido), abre a SOL no Coordenador e inicia o processamento. Devolve (código HTTP, dados)."""
+    pasta = pasta_lote(lote_id)
+    with TRAVA:
+        lote = ler_json(pasta / "lote.json")
+        if not lote or lote["estado"] != "RECEBENDO":
+            return 409, {"erro": "Lote inexistente ou já iniciado."}
+        if lote.get("tipo") == "COMPLEMENTAR":
+            return 409, {"erro": "Lote complementar: conclua pelo recebimento da própria solicitação (não abre nova solicitação)."}
+        if not lote["arquivos"]:
+            return 409, {"erro": "Envie ao menos um documento."}
+        if EM_EXECUCAO["sol"] or coordenador.ler_ordem() is not None:
+            return 409, {"erro": "Já existe uma solicitação em processamento. Aguarde a conclusão."}
+        if lote["empresa"] not in empresas_autorizadas():
+            return 403, {"erro": "Empresa não autorizada."}
+        ano, mes = lote["competencia"].split("-")
+        pedido = f"{lote['instrucao']}\n\n[Escritório Virtual] Empresa: {lote['empresa']}. Competência: {mes}/{ano}."
+        empresa, problema = coordenador.identificar_empresa(pedido, coordenador.empresas_cadastradas())
+        if problema or empresa != lote["empresa"]:
+            return 422, {"erro": "A instrução cita outra empresa ou não confere com a empresa selecionada. Ajuste a instrução."}
+        competencia, problema = coordenador.identificar_competencia(pedido)
+        if problema or competencia != lote["competencia"]:
+            return 422, {"erro": "A instrução cita outra competência. Ajuste a instrução ou a competência selecionada."}
+        relativa = f"RECEBIDOS/{lote['competencia']}/{lote_id}"
+        destino = coordenador.CLIENTES / lote["empresa"] / relativa
+        if destino.exists():
+            return 409, {"erro": "Destino do lote já existe; nada foi sobrescrito."}
+        destino.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(pasta / "arquivos", destino)
+        for a in lote["arquivos"]:
+            arquivo = destino / a["nome_interno"]
+            if hashlib.sha256(arquivo.read_bytes()).hexdigest() != a["sha256"]:
+                shutil.rmtree(destino, ignore_errors=True)
+                return 500, {"erro": "Falha de integridade ao transferir o lote; nada foi processado."}
+            os.chmod(arquivo, stat.S_IREAD)
+        codigo, aberto = coordenador_cli("abrir", "--pedido", pedido, "--pasta", relativa, "--fluxo", lote.get("fluxo", "DOCUMENTOS"))
+        lote.update(pasta=relativa, iniciado_em=agora())
+        if codigo != 0 or aberto.get("resultado") != "SOL_ABERTA":
+            lote.update(estado="RECUSADO", recusa=aberto)
+            gravar_json(pasta / "lote.json", lote)
+            return 422, {"erro": aberto.get("motivo") or "O Coordenador recusou a solicitação.", "coordenador": aberto}
+        lote.update(estado="INICIADO", sol=aberto["sol"])
+        gravar_json(pasta / "lote.json", lote)
+        shutil.rmtree(pasta / "arquivos", ignore_errors=True)
+        EM_EXECUCAO["sol"] = aberto["sol"]
+        (RUNTIME / "execucoes" / aberto["sol"]).mkdir(parents=True, exist_ok=True)
+        gravar_json(RUNTIME / "execucoes" / aberto["sol"] / "execucao.json",
+                    {"sol": aberto["sol"], "lote": lote_id, "status": "EM_EXECUCAO", "inicio": agora()})
+    threading.Thread(target=processar, args=(lote_id, aberto["sol"], aberto["ordem_de_servico"]), daemon=True).start()
+    return 202, {"sol": aberto["sol"], "empresa": aberto["empresa"], "competencia": aberto["competencia"], "modo": aberto["modo"],
+                 "piloto": aberto.get("piloto")}
+
+
 class Manipulador(BaseHTTPRequestHandler):
     server_version = "AgentesPrimeLocal"
     sys_version = ""
@@ -1454,6 +1517,10 @@ class Manipulador(BaseHTTPRequestHandler):
                 return self.api_empresas(metodo, partes[1:])
             if partes and partes[0] == 'amostra':
                 return self.api_amostra(metodo, partes[1:])
+            if partes and partes[0] == 'caixinha':
+                return self.api_caixinha_lote(metodo, partes[1:])
+            if len(partes) >= 3 and partes[0] == 'solicitacoes' and RE_SOL.fullmatch(partes[1]) and partes[2] == 'caixinha':
+                return self.api_caixinha_sol(metodo, partes[1], partes[3:])
             if partes[:2] == ['demonstracao', 'conciliacao-financeira']:
                 return self.api_central(metodo, None, partes[2:])
             if partes[:2] == ['demonstracao', 'associacao-manual']:
@@ -1554,6 +1621,40 @@ class Manipulador(BaseHTTPRequestHandler):
             return self.erro(500, 'Não foi possível concluir a operação por um erro inesperado do aplicativo. Tente novamente; se '
                                   'persistir, avise o responsável técnico (o detalhe ficou registrado no console do servidor).')
 
+    # ---- Conciliação Caixinha
+    def api_caixinha_sol(self, metodo, sol, resto):
+        if metodo != 'GET':
+            return self.erro(405, 'Método não permitido.')
+        try:
+            if not resto:
+                return self.json(200, caixinha_api.painel(sol))
+            if resto == ['simulacao-txt']:
+                return self.json(200, caixinha_api.simular_txt(sol))
+            if len(resto) == 2 and resto[0] == 'documento' and re.fullmatch(r'CXD-[0-9A-F]{12}', resto[1]):
+                dados, tipo, nome = caixinha_api.documento_original(sol, resto[1])
+                return self.responder(200, dados, tipo)
+        except LookupError as e:
+            return self.erro(404, str(e))
+        except PermissionError as e:
+            return self.erro(409, str(e))
+        return self.erro(404, 'Rota inexistente.')
+
+    def api_caixinha_lote(self, metodo, partes):
+        if metodo == 'GET' and partes == ['lote']:
+            comp = (parse_qs(urlsplit(self.path).query).get('competencia') or [''])[0]
+            if not RE_COMPETENCIA.fullmatch(comp):
+                raise ValueError('Competência deve estar no formato AAAA-MM.')
+            return self.json(200, caixinha_api.painel_lote(comp))
+        if metodo == 'POST' and partes == ['lote', 'executar']:
+            d = self.corpo_json()
+            if set(d) != {'lotes', 'confirmado'} or d['confirmado'] is not True:
+                raise ValueError('Informe os lotes e confirme a conferência humana dos resultados.')
+            try:
+                return self.json(202, caixinha_api.executar_fila(d['lotes']))
+            except RuntimeError as e:
+                return self.erro(409, str(e))
+        return self.erro(404, 'Rota inexistente.')
+
     def api_amostra(self, metodo, partes):
         """Amostra FICTÍCIA do percurso completo: preparação explícita (nunca na inicialização) e correção do caso B."""
         if not amostra_ficticia_permitida():
@@ -1596,6 +1697,29 @@ class Manipulador(BaseHTTPRequestHandler):
                     'permanece': ['Documentos recebidos e originais', 'Solicitações e históricos de auditoria',
                                   'Arquivos TXT, Excel e balancetes já gerados', 'Base inicial, balancetes e books enviados'],
                     'bloqueio': 'Não é possível excluir o cadastro enquanto existe uma operação em andamento.' if imp else None})
+            if len(partes) == 2 and partes[1] == 'caixinha':
+                e = gestor.obter(partes[0])
+                if e.get('legado'):
+                    return self.erro(409, 'Cadastro legado não pode receber a configuração Caixinha por esta tela.')
+                comp = (parse_qs(urlsplit(self.path).query).get('competencia') or [dt.datetime.now().strftime('%Y-%m')])[0]
+                if not RE_COMPETENCIA.fullmatch(comp):
+                    raise ValueError('Competência deve estar no formato AAAA-MM.')
+                base = gestor.base(partes[0])
+                try:
+                    regras = regras_caixinha.ler(base)
+                except (OSError, ValueError) as exc:
+                    regras = {'erro': str(exc)}
+                cad = coordenador.empresas_cadastradas().get(partes[0]) or {}
+                plano = e.get('plano') or []
+                return self.json(200, {'empresa': partes[0], 'nome': e.get('nome'), 'tipo_rotina': e.get('tipo_rotina'), 'rotina': e.get('rotina'),
+                                       'piloto': bool(e.get('piloto')), 'caixinha_autorizada': bool(cad and coordenador.caixinha_permitido(cad)),
+                                       'regras': regras, 'avaliacao': regras_caixinha.avaliar(base, partes[0], [e.get('cnpj')], comp),
+                                       'proposta_inicial': regras_caixinha.proposta_inicial(partes[0], plano, comp),
+                                       'contas_rotina': {k: v[0] for k, v in regras_caixinha.CONTAS.items()},
+                                       'politicas_datas': regras_caixinha.POLITICAS_DATA_TRIBUTOS, 'politicas_folha': regras_caixinha.POLITICAS_DATA_FOLHA,
+                                       'plano': [{k: c.get(k) for k in ('codigo', 'classificacao', 'descricao', 'grupo', 'tipo')} for c in plano],
+                                       'frases': {k: governanca_regras.frase('CAIXINHA', partes[0], k) for k in regras_caixinha.CHAVES},
+                                       'frase_piloto': f'CONFIRMO PILOTO {partes[0]}', 'competencia': comp})
             if len(partes) == 2 and partes[1] == 'base-inicial':
                 comp = (parse_qs(urlsplit(self.path).query).get('competencia') or [None])[0]
                 return self.json(200, base_inicial.BaseInicial(gestor).situacao(partes[0], comp))
@@ -1652,6 +1776,21 @@ class Manipulador(BaseHTTPRequestHandler):
                     raise ValueError('Informe área, chave, frase e confirme.')
                 codigo, r = coordenador_cli('aprovar-regra-area', '--empresa', ident, '--area', str(d['area']), '--chave', str(d['chave']),
                                             '--frase', str(d['frase']))
+                return self.json(200, r) if codigo == 0 else self.erro(409, r.get('motivo') or 'Confirmação recusada.')
+            if acao == 'caixinha-rotina':
+                return self.json(200, gestor.definir_rotina(ident, d))
+            if acao == 'caixinha-regras':
+                if d.get('confirmado') is not True or set(d) - {'configuracao', 'politica_folha', 'confirmado'}:
+                    raise ValueError('Confira a configuração e confirme para gravar a PROPOSTA (nada é aprovado aqui).')
+                e = gestor.obter(ident)
+                if e.get('tipo_rotina') != 'CAIXINHA':
+                    raise ValueError('Defina a rotina CAIXINHA da empresa antes de configurar as regras.')
+                return self.json(200, regras_caixinha.salvar_proposta(gestor.base(ident), ident, e.get('cnpj'), e.get('plano') or [],
+                                                                      d.get('configuracao'), d.get('politica_folha')))
+            if acao == 'caixinha-aprovar':
+                if set(d) != {'chave', 'frase', 'confirmado'} or d['confirmado'] is not True:
+                    raise ValueError('Informe a regra (CONFIGURACAO ou POLITICA_FOLHA), a frase exata e confirme.')
+                codigo, r = coordenador_cli('aprovar-regra-caixinha', '--empresa', ident, '--chave', str(d['chave']), '--frase', str(d['frase']))
                 return self.json(200, r) if codigo == 0 else self.erro(409, r.get('motivo') or 'Confirmação recusada.')
             bi = base_inicial.BaseInicial(gestor)
             funcoes = {'previa': gestor.previa, 'plano': gestor.plano, 'definir-conta': gestor.definir_conta, 'bancos': gestor.bancos,
@@ -1901,6 +2040,9 @@ class Manipulador(BaseHTTPRequestHandler):
             raise ValueError("Tipo de solicitação inválido.")
         if not isinstance(empresa, str) or empresa not in empresas_autorizadas():
             return self.erro(403, "Empresa não cadastrada ou não autorizada para o Agente de Documentos.")
+        if fluxo == "CONCILIACAO_CAIXINHA" and not coordenador.caixinha_permitido(coordenador.empresas_cadastradas()[empresa]):
+            return self.erro(403, "A Conciliação Caixinha exige empresa com rotina CAIXINHA e piloto em SIMULAÇÃO autorizado (Empresas → "
+                                  "Conciliação Caixinha). Empresas tradicionais continuam nos fluxos existentes.")
         if fluxo == "FINANCEIRO_BANCOS" and not coordenador.financeiro_permitido(coordenador.empresas_cadastradas()[empresa]):
             # recusa ANTES de receber arquivos: nada é copiado para a pasta de empresa real
             return self.erro(403, "O fluxo Financeiro → Contabilidade/Bancos exige empresa fictícia ou piloto real AUTORIZADO em SIMULAÇÃO "
@@ -2014,56 +2156,8 @@ class Manipulador(BaseHTTPRequestHandler):
         d = self.corpo_json()
         if d != {"conferencia_humana": True}:
             raise ValueError("Confirme a conferência humana do resultado para iniciar.")
-        pasta = pasta_lote(lote_id)
-        with TRAVA:
-            lote = ler_json(pasta / "lote.json")
-            if not lote or lote["estado"] != "RECEBENDO":
-                return self.erro(409, "Lote inexistente ou já iniciado.")
-            if lote.get("tipo") == "COMPLEMENTAR":
-                return self.erro(409, "Lote complementar: conclua pelo recebimento da própria solicitação (não abre nova solicitação).")
-            if not lote["arquivos"]:
-                return self.erro(409, "Envie ao menos um documento.")
-            if EM_EXECUCAO["sol"] or coordenador.ler_ordem() is not None:
-                return self.erro(409, "Já existe uma solicitação em processamento. Aguarde a conclusão.")
-            if lote["empresa"] not in empresas_autorizadas():
-                return self.erro(403, "Empresa não autorizada.")
-            ano, mes = lote["competencia"].split("-")
-            pedido = f"{lote['instrucao']}\n\n[Escritório Virtual] Empresa: {lote['empresa']}. Competência: {mes}/{ano}."
-            empresa, problema = coordenador.identificar_empresa(pedido, coordenador.empresas_cadastradas())
-            if problema or empresa != lote["empresa"]:
-                return self.erro(422, "A instrução cita outra empresa ou não confere com a empresa selecionada. Ajuste a instrução.")
-            competencia, problema = coordenador.identificar_competencia(pedido)
-            if problema or competencia != lote["competencia"]:
-                return self.erro(422, "A instrução cita outra competência. Ajuste a instrução ou a competência selecionada.")
-            relativa = f"RECEBIDOS/{lote['competencia']}/{lote_id}"
-            destino = coordenador.CLIENTES / lote["empresa"] / relativa
-            if destino.exists():
-                return self.erro(409, "Destino do lote já existe; nada foi sobrescrito.")
-            destino.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copytree(pasta / "arquivos", destino)
-            for a in lote["arquivos"]:
-                arquivo = destino / a["nome_interno"]
-                if hashlib.sha256(arquivo.read_bytes()).hexdigest() != a["sha256"]:
-                    shutil.rmtree(destino, ignore_errors=True)
-                    return self.erro(500, "Falha de integridade ao transferir o lote; nada foi processado.")
-                os.chmod(arquivo, stat.S_IREAD)
-            codigo, aberto = coordenador_cli("abrir", "--pedido", pedido, "--pasta", relativa, "--fluxo", lote.get("fluxo", "DOCUMENTOS"))
-            lote.update(pasta=relativa, iniciado_em=agora())
-            if codigo != 0 or aberto.get("resultado") != "SOL_ABERTA":
-                lote.update(estado="RECUSADO", recusa=aberto)
-                gravar_json(pasta / "lote.json", lote)
-                return self.json(422, {"erro": aberto.get("motivo") or "O Coordenador recusou a solicitação.", "coordenador": aberto})
-            lote.update(estado="INICIADO", sol=aberto["sol"])
-            gravar_json(pasta / "lote.json", lote)
-            shutil.rmtree(pasta / "arquivos", ignore_errors=True)
-            EM_EXECUCAO["sol"] = aberto["sol"]
-            (RUNTIME / "execucoes" / aberto["sol"]).mkdir(parents=True, exist_ok=True)
-            gravar_json(RUNTIME / "execucoes" / aberto["sol"] / "execucao.json",
-                        {"sol": aberto["sol"], "lote": lote_id, "status": "EM_EXECUCAO", "inicio": agora()})
-        threading.Thread(target=processar, args=(lote_id, aberto["sol"], aberto["ordem_de_servico"]), daemon=True).start()
-        self.json(202, {"sol": aberto["sol"], "empresa": aberto["empresa"], "competencia": aberto["competencia"], "modo": aberto["modo"],
-                        "piloto": aberto.get("piloto")})
-
+        codigo, dados = iniciar_lote(lote_id)
+        self.json(codigo, dados)
 
     def api_importacao_estado(self, sol: str) -> None:
         ctx, problema = contexto_importacao(sol)
@@ -2339,7 +2433,7 @@ class Manipulador(BaseHTTPRequestHandler):
 
     def api_aprovacao(self, sol):
         corpo = self.corpo_json()
-        if (set(corpo) - {'acao', 'frase', 'justificativa', 'confirmado', 'ciente_exportados'} or corpo.get('confirmado') is not True
+        if (set(corpo) - {'acao', 'frase', 'justificativa', 'confirmado', 'ciente_exportados', 'ciente_pendencias'} or corpo.get('confirmado') is not True
                 or corpo.get('acao') not in ('aprovar', 'revogar')):
             raise ValueError('Confirme a ação (aprovar ou revogar) e informe a justificativa.')
         with TRAVA:
@@ -2347,7 +2441,8 @@ class Manipulador(BaseHTTPRequestHandler):
                 return self.erro(409, 'Há processamento ativo; aguarde o término.')
             codigo, r = coordenador_cli('aprovar-fechamento', '--sol', sol, '--acao', corpo['acao'], '--frase', str(corpo.get('frase') or ''),
                                         '--justificativa', str(corpo.get('justificativa') or ''),
-                                        *(['--ciente-exportados'] if corpo.get('ciente_exportados') is True else []))
+                                        *(['--ciente-exportados'] if corpo.get('ciente_exportados') is True else []),
+                                        *(['--ciente-pendencias'] if corpo.get('ciente_pendencias') is True else []))
             if codigo != 0:
                 return self.erro(409, r.get('motivo') or 'Ação recusada.')
             r['liberacao'] = liberar_txt(sol) if corpo['acao'] == 'aprovar' else revogar_txt(sol)
@@ -2803,6 +2898,9 @@ def iniciar(porta: int = PORTA) -> Servidor:
     RUNTIME = pasta_runtime()
     reconciliar_interrompidas()
     return Servidor(porta)
+
+
+caixinha_api.vincular(sys.modules[__name__])
 
 
 def main() -> None:

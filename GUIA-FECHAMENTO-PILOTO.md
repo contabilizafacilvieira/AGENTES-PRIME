@@ -82,6 +82,11 @@ A conciliação bancária é função do **Financeiro**. A conciliação do bala
 
 Os contratos `MOVIMENTOS_BANCARIOS_NORMALIZADOS_V1` e `MOVIMENTOS_FINANCEIROS_NORMALIZADOS_V1` foram preservados.
 
+Rotina CAIXINHA (empresas sem extrato; `AGENTES/CONCILIACAO/CAIXINHA/PROCEDIMENTO.md`): `PAGAMENTOS_TRIBUTARIOS_NORMALIZADOS_V1`
+(itens `PAGAMENTO_TRIBUTARIO_V1`), `SITUACAO_FISCAL_NORMALIZADA_V1`, `RESUMO_FOLHA_DOMINIO_V1`, `CAIXINHA_CONTABIL_V1`,
+`CAIXINHA_FISCAL_V1`, `CAIXINHA_DP_V1`, `CONCILIACAO_CAIXINHA_V1`, `REGRAS_CAIXINHA_V1`, `PAINEL_CAIXINHA_V1`. O razão em PDF do
+Domínio passou a ter adapter (`razao_pdf_dominio.py`, em homologação).
+
 ### Novo layout real ("LAYOUT NOVO — ADAPTER NECESSÁRIO")
 
 1. **Inspecionar** o arquivo real, só localmente: o real nunca vai para o Git nem para fixture.

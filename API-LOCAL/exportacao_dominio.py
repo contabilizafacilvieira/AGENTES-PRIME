@@ -33,7 +33,9 @@ def clientes():
     """Pasta CLIENTES (avaliada a cada uso: AGENTES_PRIME_CLIENTES em testes isolados; RAIZ/CLIENTES em produção)."""
     return Path(os.environ.get("AGENTES_PRIME_CLIENTES") or RAIZ / "CLIENTES")
 PROPOSTO = ("PROPOSTO", "PROPOSTO_PARA_CONFERENCIA")
-ORIGENS = (("BANCOS", "bancos", "Bancos"), ("CONTABILIDADE_DP", "contabdp", "DP"), ("CONTABILIDADE_FISCAL", "contabilfiscal", "Fiscal"))
+ORIGENS = (("BANCOS", "bancos", "Bancos"), ("CONTABILIDADE_DP", "contabdp", "DP"), ("CONTABILIDADE_FISCAL", "contabilfiscal", "Fiscal"),
+           # Conciliação Caixinha: baixas tributárias (e-CAC) e regularização da folha contra o Caixa Geral (mesmas validações)
+           ("CAIXINHA_CONCILIACAO", "caixinha_conciliacao", "Caixinha"))
 CABECALHO = "Data;Débito;Crédito;Valor;CódHist;Complemento;IniciaLote;Matriz/Filial;CCDébito;CCCrédito"
 VALOR = re.compile(r"\d{1,13}(?:\.\d{1,2})?")
 EXTENSOES = r"(?:pdf|txt|csv|xml|xlsx|xlsm|xls|ofx|json|png|jpe?g|zip)"
