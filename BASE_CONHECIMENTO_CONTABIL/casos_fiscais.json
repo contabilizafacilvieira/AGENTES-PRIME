@@ -1,0 +1,1160 @@
+{
+  "VERSAO": "1.0.0-03E",
+  "DATA_CONSULTA": "2026-11-16",
+  "CASOS": [
+    {
+      "ID": "FISC-CASO-01",
+      "TITULO": "Compra de mercadoria com tributo potencialmente recuperável",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "Compra fictícia com documento e valor de tributo destacado; elegibilidade do crédito ainda precisa de norma/operação.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre compra de mercadoria com tributo potencialmente recuperável, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-02",
+        "FISC-10"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "MOC 7.0 Anexo I; LC 87/1996 conforme operação e UF",
+        "IN RFB 2.121/2022 e LC 87/1996; dispositivo concreto deve corresponder à hipótese"
+      ],
+      "FONTES": [
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "NFE-MOC-ANEXO-I",
+          "TITULO": "MOC 7.0 Anexo I — leiaute e regras NF-e/NFC-e",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?AspxAutoDetectCookieSupport=1&conteudo=J+I+v4eN00E%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "IN2121",
+          "TITULO": "IN RFB 2.121/2022 — PIS/Cofins",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/consulta.action?termoBusca=Instru%C3%A7%C3%A3o+Normativa+2.121",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Crédito somente se hipótese legal, regime, item, uso e evidência forem confirmados; nenhuma contabilização automática.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL + CONTÁBIL",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-02",
+      "TITULO": "Compra com tributo potencialmente não recuperável",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "Documento fictício indica tributo, sem suporte para afirmar crédito.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre compra com tributo potencialmente não recuperável, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-02",
+        "FISC-11"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "MOC 7.0 Anexo I; LC 87/1996 conforme operação e UF",
+        "NBC TG 1001, itens 13.5/13.10 e 17; NBC TG 1002, itens 13.4–13.6; legislação do tributo"
+      ],
+      "FONTES": [
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "NFE-MOC-ANEXO-I",
+          "TITULO": "MOC 7.0 Anexo I — leiaute e regras NF-e/NFC-e",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?AspxAutoDetectCookieSupport=1&conteudo=J+I+v4eN00E%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "IN2121",
+          "TITULO": "IN RFB 2.121/2022 — PIS/Cofins",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/consulta.action?termoBusca=Instru%C3%A7%C3%A3o+Normativa+2.121",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RIPI-2010",
+          "TITULO": "RIPI/2010 — índice oficial RFB",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/aduana-e-comercio-exterior/manuais/despacho-de-exportacao/legislacao/decretos",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Não reconhecer crédito pelo destaque; analisar custo do item segundo referencial e legislação confirmados.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL + CONTÁBIL",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-03",
+      "TITULO": "Compra de serviço",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "Nota fictícia de serviço contratado com município/local e contrato ainda a validar.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre compra de serviço, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-04",
+        "FISC-14"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "LC 116/2003, arts. 3º–4º e lista anexa; FAQ NFS-e v1.3 de 06/11/2026",
+        "LC 116/2003, arts. 1º–3º e lista anexa; FAQ NFS-e v1.3 (06/11/2026); lei municipal não determinada"
+      ],
+      "FONTES": [
+        {
+          "ID": "NFS-E-FAQ",
+          "TITULO": "FAQ NFS-e nacional v1.3, 06/11/2026",
+          "URL": "https://www.gov.br/nfse/pt-br/perguntas-frequentes/perguntas-frequentes-nfs-e-v1-3-20261106.pdf/%40%40download/file",
+          "ORGAO": "Portal Nacional da NFS-e"
+        },
+        {
+          "ID": "LC116",
+          "TITULO": "Lei Complementar 116/2003",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm",
+          "ORGAO": "Presidência da República"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Confirmar serviço, local, retenções e regras municipal/federal; reconhecimento contábil considera execução e referencial.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL + CONTÁBIL",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-04",
+      "TITULO": "Venda de mercadoria",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "NF-e fictícia emitida e autorizada; comprovante de entrega ainda vinculado.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre venda de mercadoria, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-03",
+        "FISC-07",
+        "FISC-08"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "MOC 7.0 Anexo I; reconhecimento contábil conforme NBC TG aplicável",
+        "NBC TG 1001, itens 23.1–23.8; NBC TG 1002, itens 23.1–23.7; CONT-06/19",
+        "IN RFB 1.700/2017; IN RFB 2.121/2022; LC 87/1996; LC 116/2003; RIPI/2010 no escopo próprio"
+      ],
+      "FONTES": [
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "NFE-MOC-ANEXO-I",
+          "TITULO": "MOC 7.0 Anexo I — leiaute e regras NF-e/NFC-e",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?AspxAutoDetectCookieSupport=1&conteudo=J+I+v4eN00E%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017 consolidada",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "IN2121",
+          "TITULO": "IN RFB 2.121/2022 — PIS/Cofins",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/consulta.action?termoBusca=Instru%C3%A7%C3%A3o+Normativa+2.121",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "LC116",
+          "TITULO": "Lei Complementar 116/2003",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "RIPI-2010",
+          "TITULO": "RIPI/2010 — índice oficial RFB",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/aduana-e-comercio-exterior/manuais/despacho-de-exportacao/legislacao/decretos",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Emissão informa documento fiscal; receita e tributo devem ser avaliados conforme entrega, contrato e regras vigentes.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL + CONTÁBIL",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-05",
+      "TITULO": "Prestação de serviço",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "NFS-e fictícia emitida para serviço mensal, com medição contratual.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre prestação de serviço, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-04",
+        "FISC-07",
+        "FISC-14"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "LC 116/2003, arts. 3º–4º e lista anexa; FAQ NFS-e v1.3 de 06/11/2026",
+        "NBC TG 1001, itens 23.1–23.8; NBC TG 1002, itens 23.1–23.7; CONT-06/19",
+        "LC 116/2003, arts. 1º–3º e lista anexa; FAQ NFS-e v1.3 (06/11/2026); lei municipal não determinada"
+      ],
+      "FONTES": [
+        {
+          "ID": "NFS-E-FAQ",
+          "TITULO": "FAQ NFS-e nacional v1.3, 06/11/2026",
+          "URL": "https://www.gov.br/nfse/pt-br/perguntas-frequentes/perguntas-frequentes-nfs-e-v1-3-20261106.pdf/%40%40download/file",
+          "ORGAO": "Portal Nacional da NFS-e"
+        },
+        {
+          "ID": "LC116",
+          "TITULO": "Lei Complementar 116/2003",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Confirmar serviço realizado, competência, município e hipótese de ISS; emissão e recebimento não substituem reconhecimento.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL + CONTÁBIL",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-06",
+      "TITULO": "NF de entrada cancelada",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "Evento fictício de cancelamento relacionado a uma NF-e de entrada.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre nf de entrada cancelada, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-02",
+        "FISC-06"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "MOC 7.0 Anexo I; LC 87/1996 conforme operação e UF",
+        "MOC 7.0 Anexo I e eventos; LC 87/1996 ou LC 116/2003 conforme operação"
+      ],
+      "FONTES": [
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "NFE-MOC-ANEXO-I",
+          "TITULO": "MOC 7.0 Anexo I — leiaute e regras NF-e/NFC-e",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?AspxAutoDetectCookieSupport=1&conteudo=J+I+v4eN00E%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "NFS-E-FAQ",
+          "TITULO": "FAQ NFS-e nacional v1.3, 06/11/2026",
+          "URL": "https://www.gov.br/nfse/pt-br/perguntas-frequentes/perguntas-frequentes-nfs-e-v1-3-20261106.pdf/%40%40download/file",
+          "ORGAO": "Portal Nacional da NFS-e"
+        },
+        {
+          "ID": "LC116",
+          "TITULO": "Lei Complementar 116/2003",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm",
+          "ORGAO": "Presidência da República"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Validar evento/protocolo e se documento já gerou registro ou crédito; não estornar automaticamente.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-07",
+      "TITULO": "NF de saída cancelada",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "Evento fictício de cancelamento relacionado a NF-e de saída.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre nf de saída cancelada, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-03",
+        "FISC-06",
+        "FISC-13"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "MOC 7.0 Anexo I; reconhecimento contábil conforme NBC TG aplicável",
+        "MOC 7.0 Anexo I e eventos; LC 87/1996 ou LC 116/2003 conforme operação",
+        "Decreto 7.212/2010 (RIPI); TIPI e atos alteradores aplicáveis ao produto/competência"
+      ],
+      "FONTES": [
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "NFE-MOC-ANEXO-I",
+          "TITULO": "MOC 7.0 Anexo I — leiaute e regras NF-e/NFC-e",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?AspxAutoDetectCookieSupport=1&conteudo=J+I+v4eN00E%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "NFS-E-FAQ",
+          "TITULO": "FAQ NFS-e nacional v1.3, 06/11/2026",
+          "URL": "https://www.gov.br/nfse/pt-br/perguntas-frequentes/perguntas-frequentes-nfs-e-v1-3-20261106.pdf/%40%40download/file",
+          "ORGAO": "Portal Nacional da NFS-e"
+        },
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "LC116",
+          "TITULO": "Lei Complementar 116/2003",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "RIPI-2010",
+          "TITULO": "RIPI/2010 — índice oficial RFB",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/aduana-e-comercio-exterior/manuais/despacho-de-exportacao/legislacao/decretos",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Confirmar validade do evento, período e reflexos; ajuste contábil/fiscal depende de registro anterior e revisão.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL + CONTÁBIL",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-08",
+      "TITULO": "Devolução de compra",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "Mercadoria fictícia devolvida parcialmente, com documento referenciando origem.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre devolução de compra, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-02",
+        "FISC-06",
+        "FISC-10"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "MOC 7.0 Anexo I; LC 87/1996 conforme operação e UF",
+        "MOC 7.0 Anexo I e eventos; LC 87/1996 ou LC 116/2003 conforme operação",
+        "IN RFB 2.121/2022 e LC 87/1996; dispositivo concreto deve corresponder à hipótese"
+      ],
+      "FONTES": [
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "NFE-MOC-ANEXO-I",
+          "TITULO": "MOC 7.0 Anexo I — leiaute e regras NF-e/NFC-e",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?AspxAutoDetectCookieSupport=1&conteudo=J+I+v4eN00E%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "NFS-E-FAQ",
+          "TITULO": "FAQ NFS-e nacional v1.3, 06/11/2026",
+          "URL": "https://www.gov.br/nfse/pt-br/perguntas-frequentes/perguntas-frequentes-nfs-e-v1-3-20261106.pdf/%40%40download/file",
+          "ORGAO": "Portal Nacional da NFS-e"
+        },
+        {
+          "ID": "LC116",
+          "TITULO": "Lei Complementar 116/2003",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "IN2121",
+          "TITULO": "IN RFB 2.121/2022 — PIS/Cofins",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/consulta.action?termoBusca=Instru%C3%A7%C3%A3o+Normativa+2.121",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Vincular documento original, quantidade e evento; avaliar tributo/crédito e reversão sem presumir alíquotas.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL + CONTÁBIL",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-09",
+      "TITULO": "Devolução de venda",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "Cliente fictício devolve mercadoria e apresenta documento relacionado à venda original.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre devolução de venda, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-03",
+        "FISC-06",
+        "FISC-07"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "MOC 7.0 Anexo I; reconhecimento contábil conforme NBC TG aplicável",
+        "MOC 7.0 Anexo I e eventos; LC 87/1996 ou LC 116/2003 conforme operação",
+        "NBC TG 1001, itens 23.1–23.8; NBC TG 1002, itens 23.1–23.7; CONT-06/19"
+      ],
+      "FONTES": [
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "NFE-MOC-ANEXO-I",
+          "TITULO": "MOC 7.0 Anexo I — leiaute e regras NF-e/NFC-e",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?AspxAutoDetectCookieSupport=1&conteudo=J+I+v4eN00E%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "NFS-E-FAQ",
+          "TITULO": "FAQ NFS-e nacional v1.3, 06/11/2026",
+          "URL": "https://www.gov.br/nfse/pt-br/perguntas-frequentes/perguntas-frequentes-nfs-e-v1-3-20261106.pdf/%40%40download/file",
+          "ORGAO": "Portal Nacional da NFS-e"
+        },
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "LC116",
+          "TITULO": "Lei Complementar 116/2003",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm",
+          "ORGAO": "Presidência da República"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Vincular venda e devolução; verificar tratamento fiscal e contábil, período e estoque antes de propor ajustes.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL + CONTÁBIL",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-10",
+      "TITULO": "Serviço contratado com retenções",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "NFS-e fictícia apresenta rótulo de IRRF/CSRF/ISS, sem decisão sobre hipótese.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre serviço contratado com retenções, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-04",
+        "FISC-09",
+        "FISC-16"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "LC 116/2003, arts. 3º–4º e lista anexa; FAQ NFS-e v1.3 de 06/11/2026",
+        "Lei 10.833/2003, arts. 30–36 em hipóteses específicas; SC Cosit 258/2024 limitada ao caso; EFD-Reinf R-4020/R-4080",
+        "Lei 10.833/2003, arts. 30–36; RIR/2018, art. 714 em hipótese; IN RFB 2.110/2022 para previdência"
+      ],
+      "FONTES": [
+        {
+          "ID": "NFS-E-FAQ",
+          "TITULO": "FAQ NFS-e nacional v1.3, 06/11/2026",
+          "URL": "https://www.gov.br/nfse/pt-br/perguntas-frequentes/perguntas-frequentes-nfs-e-v1-3-20261106.pdf/%40%40download/file",
+          "ORGAO": "Portal Nacional da NFS-e"
+        },
+        {
+          "ID": "LC116",
+          "TITULO": "Lei Complementar 116/2003",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "L10833",
+          "TITULO": "Lei 10.833/2003 — legislação Planalto",
+          "URL": "https://legislacao.planalto.gov.br/legisla/legislacao.nsf/Viw_Identificacao/lei%2010.833-2003",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "RFB-COSIT-258-2024",
+          "TITULO": "Solução Cosit 258/2024 (hipótese específica de retenção)",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/anexoOutros.action?idArquivoBinario=75717",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-REINF",
+          "TITULO": "EFD-Reinf — perguntas frequentes",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes/sped/efd-reinf/efdr",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017 consolidada",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Identificar retenção separadamente do líquido após validar natureza, pagador, prestador, legislação e comprovantes.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL + CONTÁBIL",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-11",
+      "TITULO": "Serviço prestado com retenções sofridas",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "NFS-e fictícia e demonstrativo do cliente indicam possível retenção sofrida.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre serviço prestado com retenções sofridas, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-04",
+        "FISC-09",
+        "FISC-16"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "LC 116/2003, arts. 3º–4º e lista anexa; FAQ NFS-e v1.3 de 06/11/2026",
+        "Lei 10.833/2003, arts. 30–36 em hipóteses específicas; SC Cosit 258/2024 limitada ao caso; EFD-Reinf R-4020/R-4080",
+        "Lei 10.833/2003, arts. 30–36; RIR/2018, art. 714 em hipótese; IN RFB 2.110/2022 para previdência"
+      ],
+      "FONTES": [
+        {
+          "ID": "NFS-E-FAQ",
+          "TITULO": "FAQ NFS-e nacional v1.3, 06/11/2026",
+          "URL": "https://www.gov.br/nfse/pt-br/perguntas-frequentes/perguntas-frequentes-nfs-e-v1-3-20261106.pdf/%40%40download/file",
+          "ORGAO": "Portal Nacional da NFS-e"
+        },
+        {
+          "ID": "LC116",
+          "TITULO": "Lei Complementar 116/2003",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "L10833",
+          "TITULO": "Lei 10.833/2003 — legislação Planalto",
+          "URL": "https://legislacao.planalto.gov.br/legisla/legislacao.nsf/Viw_Identificacao/lei%2010.833-2003",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "RFB-COSIT-258-2024",
+          "TITULO": "Solução Cosit 258/2024 (hipótese específica de retenção)",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/anexoOutros.action?idArquivoBinario=75717",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-REINF",
+          "TITULO": "EFD-Reinf — perguntas frequentes",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes/sped/efd-reinf/efdr",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017 consolidada",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Confirmar informe/comprovante, tributo, titularidade e possibilidade legal de compensar; não abater por mera indicação textual.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL + CONTÁBIL",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-12",
+      "TITULO": "Tributo próprio apurado",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "Demonstrativo fictício declara tributo, competência e valor; guia relacionada.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre tributo próprio apurado, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-08",
+        "FISC-18"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "IN RFB 1.700/2017; IN RFB 2.121/2022; LC 87/1996; LC 116/2003; RIPI/2010 no escopo próprio",
+        "IN RFB 1.700/2017; ECF SPED; CONT-19 e FIN-05/13"
+      ],
+      "FONTES": [
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017 consolidada",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "IN2121",
+          "TITULO": "IN RFB 2.121/2022 — PIS/Cofins",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/consulta.action?termoBusca=Instru%C3%A7%C3%A3o+Normativa+2.121",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "LC116",
+          "TITULO": "Lei Complementar 116/2003",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "RIPI-2010",
+          "TITULO": "RIPI/2010 — índice oficial RFB",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/aduana-e-comercio-exterior/manuais/despacho-de-exportacao/legislacao/decretos",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "SPED-ECF",
+          "TITULO": "Escrituração Contábil Fiscal",
+          "URL": "https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf",
+          "ORGAO": "SPED / Receita Federal"
+        },
+        {
+          "ID": "RFB-REINF",
+          "TITULO": "EFD-Reinf — perguntas frequentes",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes/sped/efd-reinf/efdr",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Separar declaração/apuração, passivo contábil e pagamento; não recalcular valor declarado nem presumir liquidação.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL + CONTÁBIL + FINANCEIRO",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-13",
+      "TITULO": "Pagamento de tributo provisionado",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "Comprovante fictício de pagamento relacionado a obrigação fiscal já reconhecida.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre pagamento de tributo provisionado, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-18"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "IN RFB 1.700/2017; ECF SPED; CONT-19 e FIN-05/13"
+      ],
+      "FONTES": [
+        {
+          "ID": "SPED-ECF",
+          "TITULO": "Escrituração Contábil Fiscal",
+          "URL": "https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf",
+          "ORGAO": "SPED / Receita Federal"
+        },
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017 consolidada",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-REINF",
+          "TITULO": "EFD-Reinf — perguntas frequentes",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes/sped/efd-reinf/efdr",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Se identidade e baixa forem confirmadas, liquidação baixa o passivo; não duplicar despesa/tributo.",
+      "DEPARTAMENTO_RESPONSAVEL": "FINANCEIRO + CONTÁBIL",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-14",
+      "TITULO": "Compensação tributária",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "Recibo fictício de declaração de compensação e débitos/créditos relacionados.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre compensação tributária, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-09",
+        "FISC-18",
+        "FISC-19"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "Lei 10.833/2003, arts. 30–36 em hipóteses específicas; SC Cosit 258/2024 limitada ao caso; EFD-Reinf R-4020/R-4080",
+        "IN RFB 1.700/2017; ECF SPED; CONT-19 e FIN-05/13",
+        "IN RFB 2.004/2021 (ECF); leiaute/manual ECF da competência; leiautes EFD-Reinf"
+      ],
+      "FONTES": [
+        {
+          "ID": "L10833",
+          "TITULO": "Lei 10.833/2003 — legislação Planalto",
+          "URL": "https://legislacao.planalto.gov.br/legisla/legislacao.nsf/Viw_Identificacao/lei%2010.833-2003",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "RFB-COSIT-258-2024",
+          "TITULO": "Solução Cosit 258/2024 (hipótese específica de retenção)",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/anexoOutros.action?idArquivoBinario=75717",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-REINF",
+          "TITULO": "EFD-Reinf — perguntas frequentes",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes/sped/efd-reinf/efdr",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017 consolidada",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "SPED-ECF",
+          "TITULO": "Escrituração Contábil Fiscal",
+          "URL": "https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf",
+          "ORGAO": "SPED / Receita Federal"
+        },
+        {
+          "ID": "RFB-ECF-2025",
+          "TITULO": "Perguntas e respostas pessoa jurídica 2025 — ECF",
+          "URL": "https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/perguntas-e-respostas/ecf/perguntas-e-respostas-da-pessoa-juridica-2025.pdf/%40%40download/file",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Confirmar crédito, declaração, homologação/situação e vinculação legal; saldo pode permanecer sujeito à análise.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL + CONTÁBIL",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-15",
+      "TITULO": "Importação de mercadoria",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "DUIMP fictícia relaciona NCM, valor aduaneiro, tributos e despesas aduaneiras.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre importação de mercadoria, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-17",
+        "FISC-10",
+        "FISC-11"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "Manual DUIMP, aba Tributos; II conforme TEC/NCM; legislação individual de cada tributo",
+        "IN RFB 2.121/2022 e LC 87/1996; dispositivo concreto deve corresponder à hipótese",
+        "NBC TG 1001, itens 13.5/13.10 e 17; NBC TG 1002, itens 13.4–13.6; legislação do tributo"
+      ],
+      "FONTES": [
+        {
+          "ID": "RFB-IMPORT-II",
+          "TITULO": "Imposto de Importação — RFB",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/imposto-importacao",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-DUIMP",
+          "TITULO": "Manual DUIMP — aba Tributos",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/aduana-e-comercio-exterior/manuais/despacho-de-importacao/sistemas/duimp/elaboracao-da-duimp/aba-tributos",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "IN2121",
+          "TITULO": "IN RFB 2.121/2022 — PIS/Cofins",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/consulta.action?termoBusca=Instru%C3%A7%C3%A3o+Normativa+2.121",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RIPI-2010",
+          "TITULO": "RIPI/2010 — índice oficial RFB",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/aduana-e-comercio-exterior/manuais/despacho-de-exportacao/legislacao/decretos",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Confrontar documentos aduaneiros, tributos e pagamentos; separar custo do estoque de direitos a crédito.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL + CONTÁBIL + FINANCEIRO",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-16",
+      "TITULO": "IRPJ e CSLL sobre base fiscal",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "Balancete fictício e memória fiscal não conciliam resultado contábil com base de cálculo.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre irpj e csll sobre base fiscal, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-20",
+        "FISC-21",
+        "FISC-22"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "LC 123/2006; IN RFB 1.700/2017; RIR/2018",
+        "IN RFB 1.700/2017, arts. 27–29 segundo regime; RIR/2018; confirmar redação pela competência",
+        "IN RFB 1.700/2017, arts. 27–30 conforme versão consolidada; confirmar atos posteriores"
+      ],
+      "FONTES": [
+        {
+          "ID": "LC123",
+          "TITULO": "Legislação do Simples Nacional",
+          "URL": "https://www8.receita.fazenda.gov.br/SimplesNacional/ConteudoApoio/Legislacao/TelaLegislacao.aspx",
+          "ORGAO": "Receita Federal / CGSN"
+        },
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017 consolidada",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-IRPJ",
+          "TITULO": "IRPJ — orientação Receita Federal",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/IRPJ",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-ECF-2025",
+          "TITULO": "Perguntas e respostas pessoa jurídica 2025 — ECF",
+          "URL": "https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/perguntas-e-respostas/ecf/perguntas-e-respostas-da-pessoa-juridica-2025.pdf/%40%40download/file",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Exigir regime, apuração, adições/exclusões e memória; não usar resultado contábil como base sem ajustes.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL + CONTÁBIL",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-17",
+      "TITULO": "Ajuste de adição no LALUR",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "Memória fictícia sugere adicionar despesa, sem dispositivo ou evidência completa.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre ajuste de adição no lalur, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-21",
+        "FISC-23"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "IN RFB 1.700/2017, arts. 27–29 segundo regime; RIR/2018; confirmar redação pela competência",
+        "IN RFB 2.004/2021; IN RFB 1.700/2017; manual e Q&A ECF RFB 2025, blocos aplicáveis ao leiaute"
+      ],
+      "FONTES": [
+        {
+          "ID": "RFB-IRPJ",
+          "TITULO": "IRPJ — orientação Receita Federal",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/IRPJ",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017 consolidada",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-ECF-2025",
+          "TITULO": "Perguntas e respostas pessoa jurídica 2025 — ECF",
+          "URL": "https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/perguntas-e-respostas/ecf/perguntas-e-respostas-da-pessoa-juridica-2025.pdf/%40%40download/file",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "SPED-ECF",
+          "TITULO": "Escrituração Contábil Fiscal",
+          "URL": "https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf",
+          "ORGAO": "SPED / Receita Federal"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Bloquear ajuste até identificar fundamento legal, competência, valor, documento e controle futuro.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL + CONTÁBIL + SUPERVISOR",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-18",
+      "TITULO": "Divergência entre receita fiscal e contábil",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "Totais fictícios de NFs divergem do razão por cancelamentos, adiantamentos ou corte ainda não analisados.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre divergência entre receita fiscal e contábil, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-03",
+        "FISC-07",
+        "FISC-25"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "MOC 7.0 Anexo I; reconhecimento contábil conforme NBC TG aplicável",
+        "NBC TG 1001, itens 23.1–23.8; NBC TG 1002, itens 23.1–23.7; CONT-06/19",
+        "ITG 2000 (R1), itens 5–8; IN RFB 2.004/2021 (ECF); controle interno identificado como procedimento"
+      ],
+      "FONTES": [
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "NFE-MOC-ANEXO-I",
+          "TITULO": "MOC 7.0 Anexo I — leiaute e regras NF-e/NFC-e",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?AspxAutoDetectCookieSupport=1&conteudo=J+I+v4eN00E%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "SPED-ECF",
+          "TITULO": "Escrituração Contábil Fiscal",
+          "URL": "https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf",
+          "ORGAO": "SPED / Receita Federal"
+        },
+        {
+          "ID": "RFB-REINF",
+          "TITULO": "EFD-Reinf — perguntas frequentes",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes/sped/efd-reinf/efdr",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Abrir conciliação por documento e competência; divergência não autoriza ajuste de eliminação automática.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL + CONTÁBIL + FINANCEIRO",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-19",
+      "TITULO": "Pagamento de imposto sem provisão identificada",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "Extrato fictício contém pagamento tributário, mas não há saldo correspondente localizado.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre pagamento de imposto sem provisão identificada, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-18",
+        "FISC-25"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "IN RFB 1.700/2017; ECF SPED; CONT-19 e FIN-05/13",
+        "ITG 2000 (R1), itens 5–8; IN RFB 2.004/2021 (ECF); controle interno identificado como procedimento"
+      ],
+      "FONTES": [
+        {
+          "ID": "SPED-ECF",
+          "TITULO": "Escrituração Contábil Fiscal",
+          "URL": "https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf",
+          "ORGAO": "SPED / Receita Federal"
+        },
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017 consolidada",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-REINF",
+          "TITULO": "EFD-Reinf — perguntas frequentes",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes/sped/efd-reinf/efdr",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Localizar guia, tributo, período e obrigação; não criar provisão retroativa ou nova despesa sem fato e decisão.",
+      "DEPARTAMENTO_RESPONSAVEL": "FINANCEIRO + FISCAL + CONTÁBIL",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FISC-CASO-20",
+      "TITULO": "Operação sujeita a regra dependente da competência",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "FATO": "Operação fictícia cruza período de transição da reforma tributária, sem data de fato confirmada.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: sociedade fictícia Ipê apresenta documentação sobre operação sujeita a regra dependente da competência, em competência hipotética; não representa cliente nem operação real.",
+      "FUNDAMENTO_IDS": [
+        "FISC-24",
+        "FISC-05"
+      ],
+      "FUNDAMENTO": "Consulta às fichas FISC relacionadas; cada uma distingue fonte legal de procedimento interno.",
+      "DISPOSITIVOS": [
+        "LC 214/2025 e LC 227/2026; Decreto 12.955/2026 listado pela RFB; efeitos conforme dispositivo e competência",
+        "MOC 7.0 Anexo I e tabelas/legislação próprias; selecionar conforme competência"
+      ],
+      "FONTES": [
+        {
+          "ID": "LC214",
+          "TITULO": "Legislação da Reforma Tributária do Consumo",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/legislacao",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "LC214",
+          "TITULO": "Lei Complementar 214/2025",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "RFB-REFORMA",
+          "TITULO": "Entenda a Reforma Tributária do Consumo",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/entenda-a-reforma",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "NFE-MOC-ANEXO-I",
+          "TITULO": "MOC 7.0 Anexo I — leiaute e regras NF-e/NFC-e",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?AspxAutoDetectCookieSupport=1&conteudo=J+I+v4eN00E%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        }
+      ],
+      "VIGENCIA": "Consulta base em 2026-11-16; competência do caso é hipotética e deve ser definida antes de concluir a regra.",
+      "APLICABILIDADE": "Exemplo didático. Depende de empresa, competência, regime, atividade, produto/serviço, natureza, UF, município, estabelecimento e evidências.",
+      "EVIDENCIA_NECESSARIA": "Documentos fiscais originais e eventos; contrato/pedido/medição/entrega; cadastros pertinentes; apuração/declaração/guia e comprovante quando houver; prova de contexto e norma vigente.",
+      "TRATAMENTO_CONCEITUAL": "Bloquear conclusão até fixar competência e regra vigente; não aplicar parâmetro futuro a período anterior.",
+      "DEPARTAMENTO_RESPONSAVEL": "FISCAL + SUPERVISOR",
+      "RISCOS": "Tratamento fiscal indevido, crédito/retenção incorretos, duplicidade ou distorção contábil por falta de identidade, competência ou fundamento.",
+      "LIMITACOES": "Não calcula tributo, escolhe código, declara crédito, conclui obrigação ou gera contabilização. Fontes locais, exceções e fatos não apresentados ficam pendentes.",
+      "NECESSIDADE_APROVACAO": "SIM — validação do Fiscal e revisão do Contábil/Supervisor conforme competência e responsabilidade; pendência deve permanecer se faltar fonte/evidência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    }
+  ]
+}

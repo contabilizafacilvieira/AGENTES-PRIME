@@ -56,6 +56,7 @@ CLIENTES/*
 # fixtures FICTÍCIAS do plano do Domínio (testes LOCAL)
 !TESTES/LOCAL/fixtures/*.csv
 !TESTES/LOCAL/fixtures/*.xls
+!TESTES/LOCAL/fixtures/plano-dominio-ficticio.xlsx
 # amostra FICTÍCIA do fluxo Financeiro → Contabilidade/Bancos (teste pela interface)
 !TESTES/FINANCEIRO/AMOSTRA-INTERFACE/*.csv
 !TESTES/FINANCEIRO/AMOSTRA-INTERFACE/*.ofx

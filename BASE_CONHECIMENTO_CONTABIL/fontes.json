@@ -1,0 +1,334 @@
+[
+  {
+    "ID": "CFC-MPE",
+    "TITULO": "Normas simplificadas para PMEs",
+    "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "CFC-ESP",
+    "TITULO": "Normas específicas",
+    "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-especificas/",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "CFC-FAQ",
+    "TITULO": "Perguntas frequentes sobre NBC",
+    "URL": "https://cfc.org.br/tecnica/perguntas-frequentes/normas-brasileiras-de-contabilidade/",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "ITG1000",
+    "TITULO": "ITG 1000, itens 1–10",
+    "URL": "https://cfc.org.br/wp-content/uploads/2023/01/ITG-1000.pdf",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "SRE-ITG2000",
+    "TITULO": "Resolução 2014/ITG2000(R1)",
+    "URL": "https://www2.cfc.org.br/sisweb/sre/detalhes_sre.aspx?Codigo=2014/ITG2000(R1)&arquivo=ITG2000(R1).doc",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "SRE-ITG1000",
+    "TITULO": "Resolução 2022/ITG1000",
+    "URL": "https://www2.cfc.org.br/sisweb/sre/detalhes_sre.aspx?Codigo=2022/ITG1000&arquivo=ITG+1000.doc",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "SRE-1001",
+    "TITULO": "Resolução 2021/NBCTG1001",
+    "URL": "https://www2.cfc.org.br/sisweb/sre/detalhes_sre.aspx?Codigo=2021/NBCTG1001&arquivo=NBCTG1001.doc",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "SRE-1002",
+    "TITULO": "Resolução 2021/NBCTG1002",
+    "URL": "https://www2.cfc.org.br/sisweb/sre/detalhes_sre.aspx?Codigo=2021/NBCTG1002&arquivo=NBCTG1002.doc",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "CPC",
+    "TITULO": "Pronunciamentos emitidos",
+    "URL": "https://www.cpc.org.br/CPC/Documentos-Emitidos/Pronunciamentos/",
+    "ORGAO": "CPC"
+  },
+  {
+    "ID": "L6404",
+    "TITULO": "Lei 6.404/1976 compilada",
+    "URL": "https://www.planalto.gov.br/ccivil_03/leis/l6404compilada.htm",
+    "ORGAO": "Presidência da República"
+  },
+  {
+    "ID": "LC123",
+    "TITULO": "Lei Complementar 123/2006",
+    "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp123.htm",
+    "ORGAO": "Presidência da República"
+  },
+  {
+    "ID": "LC214",
+    "TITULO": "Lei Complementar 214/2025",
+    "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm",
+    "ORGAO": "Presidência da República"
+  },
+  {
+    "ID": "RIR",
+    "TITULO": "Decreto 9.580/2018 - RIR",
+    "URL": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/decreto/d9580.htm",
+    "ORGAO": "Presidência da República"
+  },
+  {
+    "ID": "RFB-ECF",
+    "TITULO": "ECF e tributos da pessoa jurídica",
+    "URL": "https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/perguntas-e-respostas/ecf/",
+    "ORGAO": "Receita Federal"
+  },
+  {
+    "ID": "IN1700",
+    "TITULO": "IN RFB 1.700/2017",
+    "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+    "ORGAO": "Receita Federal"
+  },
+  {
+    "ID": "SPED-ECF",
+    "TITULO": "Escrituração Contábil Fiscal",
+    "URL": "https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf",
+    "ORGAO": "SPED / Receita Federal"
+  },
+  {
+    "ID": "SPED",
+    "TITULO": "Portal SPED",
+    "URL": "https://sped.rfb.gov.br/",
+    "ORGAO": "SPED / Receita Federal"
+  },
+  {
+    "ID": "ESOCIAL",
+    "TITULO": "Documentação técnica do eSocial",
+    "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/documentacao-tecnica",
+    "ORGAO": "eSocial / Governo Federal"
+  },
+  {
+    "ID": "MOS",
+    "TITULO": "Manuais eSocial",
+    "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais",
+    "ORGAO": "eSocial / Governo Federal"
+  },
+  {
+    "ID": "CLT",
+    "TITULO": "CLT compilada",
+    "URL": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452compilado.htm",
+    "ORGAO": "Presidência da República"
+  },
+  {
+    "ID": "NFE",
+    "TITULO": "Portal Nacional da NF-e - documentação",
+    "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=ndIjl+iEFdE=",
+    "ORGAO": "ENCAT / Administrações Tributárias"
+  },
+  {
+    "ID": "CFC-ITG2000-TEXTO",
+    "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+    "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "CFC-ITG1000-TEXTO",
+    "TITULO": "ITG 1000/2022, texto oficial integral consultado",
+    "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG%201000.pdf",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "CFC-NBCTG1000-TEXTO",
+    "TITULO": "NBC TG 1000 (R1), texto oficial consultado",
+    "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "CFC-NBCTG1001-TEXTO",
+    "TITULO": "NBC TG 1001, texto oficial consultado",
+    "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "CFC-NBCTG1002-TEXTO",
+    "TITULO": "NBC TG 1002, texto oficial consultado",
+    "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "CFC-NORMAS-COMPLETAS",
+    "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+    "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "CFC-NBC51",
+    "TITULO": "Notícia oficial CFC sobre publicação da NBC TG 51 e DOU",
+    "URL": "https://cfc.org.br/noticias/nbc-tg-51-e-publicada-no-diario-oficial-da-uniao/",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "CFC-RI2025",
+    "TITULO": "Relato Integrado CFC 2025: período obrigatório NBC TG 51",
+    "URL": "https://cfc.org.br/wp-content/uploads/2026/06/RI_2025-3.pdf",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "CFC-OBRIG-ESCRITURACAO",
+    "TITULO": "FAQ CFC sobre obrigatoriedade e alcance da ITG 2000 (R1)",
+    "URL": "https://cfc.org.br/tecnica/perguntas-frequentes/obrigatoriedade-de-escrituracao-contabil/",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "CFC-ESTRUTURA-CONCEITUAL",
+    "TITULO": "NBC TG Estrutura Conceitual, texto oficial CFC consultado",
+    "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTGEC.pdf",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "CFC-NORMAS-SIMPLIFICADAS",
+    "TITULO": "Catálogo CFC das normas simplificadas para PMEs",
+    "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+    "ORGAO": "CFC"
+  },
+  {
+    "ID": "NFE-MOC-7",
+    "TITULO": "Portal NF-e — Manual de Orientação do Contribuinte 7.0 e anexos",
+    "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+    "ORGAO": "Portal Nacional da NF-e / ENCAT",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "NFE-MOC-ANEXO-I",
+    "TITULO": "MOC 7.0 Anexo I — leiaute e regras de validação",
+    "URL": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?AspxAutoDetectCookieSupport=1&conteudo=J+I+v4eN00E%3D",
+    "ORGAO": "Portal Nacional da NF-e / ENCAT",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "NFS-E-FAQ-2026-11",
+    "TITULO": "Perguntas frequentes NFS-e nacional, versão 1.3 de 06/11/2026",
+    "URL": "https://www.gov.br/nfse/pt-br/perguntas-frequentes/perguntas-frequentes-nfs-e-v1-3-20261106.pdf/%40%40download/file",
+    "ORGAO": "Portal Nacional da NFS-e",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "RFB-LEGISLACAO-REFORMA-2026",
+    "TITULO": "Legislação da Reforma Tributária do Consumo — página oficial atualizada em 16/10/2026",
+    "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/legislacao",
+    "ORGAO": "Receita Federal",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "RFB-IN2121-PIS-COFINS",
+    "TITULO": "IN RFB 2.121/2022 — consolidação PIS/Pasep e Cofins",
+    "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/consulta.action?termoBusca=Instru%C3%A7%C3%A3o+Normativa+2.121",
+    "ORGAO": "Receita Federal",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "RFB-EFD-REINF-FAQ",
+    "TITULO": "EFD-Reinf — perguntas frequentes sobre retenções e eventos",
+    "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes/sped/efd-reinf/efdr",
+    "ORGAO": "Receita Federal",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "RFB-DUIMP-TRIBUTOS",
+    "TITULO": "Manual DUIMP — aba Tributos",
+    "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/aduana-e-comercio-exterior/manuais/despacho-de-importacao/sistemas/duimp/elaboracao-da-duimp/aba-tributos",
+    "ORGAO": "Receita Federal",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "ESOCIAL-DOC-2026",
+    "TITULO": "Documentação técnica eSocial consultada em 16/11/2026",
+    "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica",
+    "ORGAO": "eSocial / Governo Federal",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "ESOCIAL-MOS-S13",
+    "TITULO": "MOS eSocial S-1.3 consolidado até NO 12/2026",
+    "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+    "ORGAO": "eSocial / Governo Federal",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "MTE-FGTS-170",
+    "TITULO": "Manual do FGTS Digital v1.70, 12/06/2026",
+    "URL": "https://www.gov.br/trabalho-e-emprego/pt-br/servicos/empregador/fgtsdigital/manual-e-documentacao-tecnica",
+    "ORGAO": "Ministério do Trabalho e Emprego",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "RFB-EFD-REINF-DCTFWEB",
+    "TITULO": "FAQ EFD-Reinf 1.4 — integração à DCTFWeb, atualização 13/04/2026",
+    "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes/sped/efd-reinf/efdr/1-geral/1-4-como-sera-a",
+    "ORGAO": "Receita Federal",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "L8212",
+    "TITULO": "Lei 8.212/1991 compilada",
+    "URL": "https://planalto.gov.br/ccivil_03/leis/l8212compilado.htm",
+    "ORGAO": "Presidência da República",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "L8036",
+    "TITULO": "Lei 8.036/1990 consolidada",
+    "URL": "https://www.planalto.gov.br/ccivil_03/leis/l8036consol.htm",
+    "ORGAO": "Presidência da República",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "L4090",
+    "TITULO": "Lei 4.090/1962 — gratificação natalina",
+    "URL": "https://www.planalto.gov.br/ccivil_03/leis/l4090.htm",
+    "ORGAO": "Presidência da República",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "L4749",
+    "TITULO": "Lei 4.749/1965 — pagamento da gratificação natalina",
+    "URL": "https://www.planalto.gov.br/ccivil_03/leis/l4749.htm",
+    "ORGAO": "Presidência da República",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "RFB-IN2110",
+    "TITULO": "IN RFB 2.110/2022 — contribuições previdenciárias, consolidação consultada",
+    "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=126687",
+    "ORGAO": "Receita Federal",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "RFB-IN2005",
+    "TITULO": "IN RFB 2.005/2021 — DCTFWeb, texto oficial consultado",
+    "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=115131",
+    "ORGAO": "Receita Federal",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "RFB-IRRF",
+    "TITULO": "Orientação oficial RFB sobre IRRF",
+    "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/IRRF",
+    "ORGAO": "Receita Federal",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "RFB-TABELAS-2026",
+    "TITULO": "Tabelas do imposto de renda para 2026",
+    "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/meu-imposto-de-renda/tabelas/2026",
+    "ORGAO": "Receita Federal",
+    "DATA_CONSULTA": "2026-11-16"
+  },
+  {
+    "ID": "RFB-COSIT228",
+    "TITULO": "Solução de Consulta Cosit 228/2023, pró-labore",
+    "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=134391",
+    "ORGAO": "Receita Federal",
+    "DATA_CONSULTA": "2026-11-16"
+  }
+]

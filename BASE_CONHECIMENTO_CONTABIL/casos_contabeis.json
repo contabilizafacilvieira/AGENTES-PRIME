@@ -1,0 +1,546 @@
+{
+  "VERSAO": "1.0.0",
+  "DATA_CONSULTA": "2026-11-16",
+  "CASOS": [
+    {
+      "ID": "CASO-01",
+      "TITULO": "Compra de mercadoria a prazo",
+      "FUNDAMENTO_ID": "CONT-10",
+      "FUNDAMENTO": "Estoque é ativo mantido para venda, em produção ou materiais/insumos; custo contábil é reconhecido no resultado quando vendido/consumido na relação prevista pela norma.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: empresa Arco compra mercadoria por R$ 2.000,00 a prazo; recebe 10 caixas e guarda pedido, documento e comprovante de recebimento.",
+      "TRATAMENTO_CONCEITUAL": "Conferir recebimento/controle, corte e custo elegível. Se aplicável, reconhecer estoque e obrigação a fornecedor; impostos/financiamento exigem análise.",
+      "EVIDENCIA_NECESSARIA": "Contagem/relatório itemizado, notas e recebimentos, ficha de custo, método consistente, corte de entradas/saídas, perdas/obsolescência.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVOS": "NBC TG 1001, itens 13.1–13.10; NBC TG 1002, itens 13.1–13.6; NBC TG 1000 (R1), Seção 13",
+      "LIMITACOES": "NBC TG 16/CPC 16 refere-se ao conjunto completo, não deve ser aplicado automaticamente a micro/pequenas; diferenças TG1000/1001/1002.",
+      "NECESSIDADE_APROVACAO": "Sim. Nenhum caso produz lançamento; decisão depende de documento, cadastro, competência, referencial confirmado e aprovação do Supervisor.",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "CASO-02",
+      "TITULO": "Pagamento de fornecedor já reconhecido",
+      "FUNDAMENTO_ID": "CONT-19",
+      "FUNDAMENTO": "Reconhecer cria/ajusta ativo, passivo, receita ou despesa segundo fato e norma; liquidar cumpre caixa/obrigação e pode baixar saldo reconhecido.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Cedro paga R$ 1.000,00 de título reconhecido no mês anterior; extrato e baixa do fornecedor identificam o mesmo título.",
+      "TRATAMENTO_CONCEITUAL": "Tratar como liquidação do passivo contra caixa, se quitação confirmada; não reconhecer compra/despesa novamente.",
+      "EVIDENCIA_NECESSARIA": "Documento origem, contrato, extrato, razão/saldo prévio, cálculo de juros/desconto e prova de quitação.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-ESTRUTURA-CONCEITUAL",
+          "TITULO": "NBC TG Estrutura Conceitual, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTGEC.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVOS": "Estrutura Conceitual, itens 1.17–1.20; NBC TG 1001, itens 2.11 e 11.18; NBC TG 1002, P10 e Seção 11",
+      "LIMITACOES": "Resumo geral não decide natureza de transação individual e não substitui evidência nem aprovação.",
+      "NECESSIDADE_APROVACAO": "Sim. Nenhum caso produz lançamento; decisão depende de documento, cadastro, competência, referencial confirmado e aprovação do Supervisor.",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "CASO-03",
+      "TITULO": "Venda de mercadoria a prazo",
+      "FUNDAMENTO_ID": "CONT-06",
+      "FUNDAMENTO": "Receita aumenta patrimônio líquido por atividades, excluindo contribuições dos sócios e valores recebidos em nome de terceiros.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Horizonte entrega mercadoria por R$ 1.500,00 a prazo; há pedido, documento fiscal e comprovante de entrega.",
+      "TRATAMENTO_CONCEITUAL": "Avaliar critérios de transferência de riscos/benefícios, preço e custos; reconhecer receita/recebível se cumpridos, além do custo de estoque sob regra aplicável.",
+      "EVIDENCIA_NECESSARIA": "Contrato/pedido, documento fiscal, entrega/aceite, medição, política de devolução, preço e cálculo.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVOS": "NBC TG 1001, itens 23.1–23.8; NBC TG 1002, itens 23.1–23.7; NBC TG 1000 (R1), Seção 23",
+      "LIMITACOES": "NBC TG 47/CPC 47 não se aplica automaticamente aos referenciais simplificados; para completos conferir versão vigente e contrato.",
+      "NECESSIDADE_APROVACAO": "Sim. Nenhum caso produz lançamento; decisão depende de documento, cadastro, competência, referencial confirmado e aprovação do Supervisor.",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "CASO-04",
+      "TITULO": "Recebimento de cliente",
+      "FUNDAMENTO_ID": "CONT-19",
+      "FUNDAMENTO": "Reconhecer cria/ajusta ativo, passivo, receita ou despesa segundo fato e norma; liquidar cumpre caixa/obrigação e pode baixar saldo reconhecido.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Ipê recebe R$ 800,00 relativo a duplicata já reconhecida; o identificador do título coincide com o extrato.",
+      "TRATAMENTO_CONCEITUAL": "Liquidar o recebível contra caixa se quitado; diferença, juros ou retenções devem ser identificados separadamente.",
+      "EVIDENCIA_NECESSARIA": "Documento origem, contrato, extrato, razão/saldo prévio, cálculo de juros/desconto e prova de quitação.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-ESTRUTURA-CONCEITUAL",
+          "TITULO": "NBC TG Estrutura Conceitual, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTGEC.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVOS": "Estrutura Conceitual, itens 1.17–1.20; NBC TG 1001, itens 2.11 e 11.18; NBC TG 1002, P10 e Seção 11",
+      "LIMITACOES": "Resumo geral não decide natureza de transação individual e não substitui evidência nem aprovação.",
+      "NECESSIDADE_APROVACAO": "Sim. Nenhum caso produz lançamento; decisão depende de documento, cadastro, competência, referencial confirmado e aprovação do Supervisor.",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "CASO-05",
+      "TITULO": "Adiantamento a fornecedor",
+      "FUNDAMENTO_ID": "CONT-09",
+      "FUNDAMENTO": "Pagamento ou recebimento antecipado pode representar direito a bens/serviços ou obrigação de entregar/prestar; não é automaticamente despesa ou receita.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Limoeiro transfere R$ 300,00 para fornecedor de embalagens antes da entrega; contrato prevê crédito para entrega futura.",
+      "TRATAMENTO_CONCEITUAL": "Manter direito/adiantamento sujeito à evidência e recuperabilidade; reconhecer estoque/despesa conforme entrega/consumo.",
+      "EVIDENCIA_NECESSARIA": "Contrato, comprovante, cronograma, confirmação de fornecedor/cliente e entrega/aceite subsequente.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-ESTRUTURA-CONCEITUAL",
+          "TITULO": "NBC TG Estrutura Conceitual, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTGEC.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVOS": "Estrutura Conceitual, itens 4.56–4.62; NBC TG 1001, seções 11 e 23; NBC TG 1002, seções 11 e 23; ITG 21 quando moeda estrangeira",
+      "LIMITACOES": "Fichas simplificadas devem ser consultadas; não extrapolar apresentação/terminologia. STATUS mantido PARCIAL para plena análise da diversidade contratual.",
+      "NECESSIDADE_APROVACAO": "Sim. Nenhum caso produz lançamento; decisão depende de documento, cadastro, competência, referencial confirmado e aprovação do Supervisor.",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "CASO-06",
+      "TITULO": "Adiantamento recebido de cliente",
+      "FUNDAMENTO_ID": "CONT-14",
+      "FUNDAMENTO": "Recebimento antes de transferir o bem ou serviço pode representar obrigação de desempenho/entrega, não receita ganha.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Nogueira recebe R$ 600,00 antes de fabricar produto cuja entrega ocorrerá no mês seguinte.",
+      "TRATAMENTO_CONCEITUAL": "Manter caixa e obrigação de entregar enquanto os critérios de receita não forem cumpridos; aplicar seção do referencial.",
+      "EVIDENCIA_NECESSARIA": "Contrato, extrato, entrega/aceite, cronograma de desempenho, direito de restituição e nota fiscal.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVOS": "NBC TG 1001, itens 23.3–23.8; NBC TG 1002, itens 23.3–23.7; NBC TG 1000, Seção 23",
+      "LIMITACOES": "NBC TG 47 não se aplica automaticamente às demonstrações simplificadas; período tributário é análise separada.",
+      "NECESSIDADE_APROVACAO": "Sim. Nenhum caso produz lançamento; decisão depende de documento, cadastro, competência, referencial confirmado e aprovação do Supervisor.",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "CASO-07",
+      "TITULO": "Aquisição de imobilizado",
+      "FUNDAMENTO_ID": "CONT-11",
+      "FUNDAMENTO": "Item tangível para produção/serviço, aluguel ou administração por mais de um período pode ser imobilizado; custo é reconhecido se benefícios prováveis e custo confiável.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Pinhão compra computador de R$ 4.000,00 e recebe o equipamento, mas a instalação/configuração ainda não terminou.",
+      "TRATAMENTO_CONCEITUAL": "Avaliar controle, custo diretamente atribuível, disponibilidade para uso e separar eventual obrigação; não iniciar depreciação antes de estar disponível segundo norma.",
+      "EVIDENCIA_NECESSARIA": "Nota/contrato, identificação/tag, aceite, instalação, termo de disponibilidade, custo direto, vida útil e evidência física.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVOS": "NBC TG 1001, itens 17.2–17.10 e 17.20–17.23; NBC TG 1002, itens 17.2–17.7; NBC TG 1000 (R1), itens 17.4, 17.9–17.14, 17.20",
+      "LIMITACOES": "TG1002 determina linha reta e vida útil fiscal salvo apresentação substancialmente melhor; TG1001 requer método/padrão. CPC 27 não generalizado.",
+      "NECESSIDADE_APROVACAO": "Sim. Nenhum caso produz lançamento; decisão depende de documento, cadastro, competência, referencial confirmado e aprovação do Supervisor.",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "CASO-08",
+      "TITULO": "Início da depreciação",
+      "FUNDAMENTO_ID": "CONT-11",
+      "FUNDAMENTO": "Item tangível para produção/serviço, aluguel ou administração por mais de um período pode ser imobilizado; custo é reconhecido se benefícios prováveis e custo confiável.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: o computador da Pinhão fica no local e disponível para uso em 18/11, embora seja colocado em produção comercial em 02/12.",
+      "TRATAMENTO_CONCEITUAL": "Avaliar início na disponibilidade para uso e método/vida útil conforme referencial, sem aguardar pagamento ou primeiro uso comercial.",
+      "EVIDENCIA_NECESSARIA": "Nota/contrato, identificação/tag, aceite, instalação, termo de disponibilidade, custo direto, vida útil e evidência física.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVOS": "NBC TG 1001, itens 17.2–17.10 e 17.20–17.23; NBC TG 1002, itens 17.2–17.7; NBC TG 1000 (R1), itens 17.4, 17.9–17.14, 17.20",
+      "LIMITACOES": "TG1002 determina linha reta e vida útil fiscal salvo apresentação substancialmente melhor; TG1001 requer método/padrão. CPC 27 não generalizado.",
+      "NECESSIDADE_APROVACAO": "Sim. Nenhum caso produz lançamento; decisão depende de documento, cadastro, competência, referencial confirmado e aprovação do Supervisor.",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "CASO-09",
+      "TITULO": "Despesa antecipada",
+      "FUNDAMENTO_ID": "CONT-13",
+      "FUNDAMENTO": "Pagamento anterior ao consumo de bem/serviço pode gerar direito/ativo que será apropriado ao resultado conforme benefício seja consumido.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Sabiá paga R$ 1.200,00 por seguro com cobertura de dezembro a novembro do ano seguinte.",
+      "TRATAMENTO_CONCEITUAL": "Separar parcela não consumida como direito/ativo e apropriar cobertura conforme período, com contrato e política suportando.",
+      "EVIDENCIA_NECESSARIA": "Contrato, apólice/licença, comprovante, prazo de cobertura, evidência de uso/consumo e saldo de abertura.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-ESTRUTURA-CONCEITUAL",
+          "TITULO": "NBC TG Estrutura Conceitual, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTGEC.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVOS": "Estrutura Conceitual, itens 4.3–4.25 e 5.6–5.25; NBC TG 1001, Seção 11; NBC TG 1002, Seção 11",
+      "LIMITACOES": "A apresentação específica depende da política, materialidade e natureza do direito; completar mensuração de contratos complexos.",
+      "NECESSIDADE_APROVACAO": "Sim. Nenhum caso produz lançamento; decisão depende de documento, cadastro, competência, referencial confirmado e aprovação do Supervisor.",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "CASO-10",
+      "TITULO": "Reconhecimento de empréstimo",
+      "FUNDAMENTO_ID": "CONT-15",
+      "FUNDAMENTO": "Empréstimo recebido cria caixa e obrigação financeira contratual; principal e encargos têm reconhecimento, mensuração e baixa próprios.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: empresa Tucano recebe R$ 12.000,00 de instituição fictícia e tem contrato com principal, juros e 12 parcelas.",
+      "TRATAMENTO_CONCEITUAL": "Reconhecer caixa e passivo financeiro segundo seção aplicável; identificar custo financeiro, vencimentos e taxas.",
+      "EVIDENCIA_NECESSARIA": "Contrato/CCB, demonstrativo do credor, comprovante de crédito, cronograma, taxa efetiva, conciliação e extrato.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVOS": "NBC TG 1001, itens 11.2–11.18; NBC TG 1002, itens 11.2–11.8; NBC TG 1000, Seções 11 e 12",
+      "LIMITACOES": "Detalhes de IFRS 9/CPC 48 e NBC TG 48 aplicam-se conforme referencial; não extrapolar regras simplificadas.",
+      "NECESSIDADE_APROVACAO": "Sim. Nenhum caso produz lançamento; decisão depende de documento, cadastro, competência, referencial confirmado e aprovação do Supervisor.",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "CASO-11",
+      "TITULO": "Pagamento de principal e juros",
+      "FUNDAMENTO_ID": "CONT-15",
+      "FUNDAMENTO": "Empréstimo recebido cria caixa e obrigação financeira contratual; principal e encargos têm reconhecimento, mensuração e baixa próprios.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: parcela mensal de R$ 1.100,00 da Tucano é composta no demonstrativo do credor por R$ 900,00 principal e R$ 200,00 juros.",
+      "TRATAMENTO_CONCEITUAL": "Baixar principal do passivo e reconhecer juros pelo período conforme método/regra; extrato sozinho não demonstra a composição.",
+      "EVIDENCIA_NECESSARIA": "Contrato/CCB, demonstrativo do credor, comprovante de crédito, cronograma, taxa efetiva, conciliação e extrato.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVOS": "NBC TG 1001, itens 11.2–11.18; NBC TG 1002, itens 11.2–11.8; NBC TG 1000, Seções 11 e 12",
+      "LIMITACOES": "Detalhes de IFRS 9/CPC 48 e NBC TG 48 aplicam-se conforme referencial; não extrapolar regras simplificadas.",
+      "NECESSIDADE_APROVACAO": "Sim. Nenhum caso produz lançamento; decisão depende de documento, cadastro, competência, referencial confirmado e aprovação do Supervisor.",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "CASO-12",
+      "TITULO": "Erro de período anterior",
+      "FUNDAMENTO_ID": "CONT-17",
+      "FUNDAMENTO": "Política contábil é princípio/base/regra aplicada; mudança, estimativa e erro são categorias diferentes com consequências próprias.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: em 2026 a empresa Uirapuru encontra nota e recebimento de equipamento ocorrido em 2025, lançado integralmente como despesa; o exercício está encerrado.",
+      "TRATAMENTO_CONCEITUAL": "Preservar lançamento original, identificar erro e referencial, mensurar efeitos e encaminhar retificação/reapresentação à aprovação; ITG 2000 exige motivo, data e origem no histórico retificador.",
+      "EVIDENCIA_NECESSARIA": "Política aprovada e versões; lançamentos originais; evidências disponíveis na época; reconciliação de impacto e aprovação.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVOS": "NBC TG 1001, itens 10.1–10.13; NBC TG 1002, itens 10.1–10.6; NBC TG 1000, Seção 10; ITG 2000, itens 31–36",
+      "LIMITACOES": "Erro histórico sempre requer aprovação do Supervisor; CPC 23/NBC TG 23 não se estende automaticamente a simplificadas.",
+      "NECESSIDADE_APROVACAO": "Sim. Nenhum caso produz lançamento; decisão depende de documento, cadastro, competência, referencial confirmado e aprovação do Supervisor.",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    }
+  ]
+}

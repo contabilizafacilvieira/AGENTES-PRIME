@@ -1,0 +1,1766 @@
+{
+  "VERSAO": "1.0.0-03E",
+  "DATA_CONSULTA": "2026-11-16",
+  "REGISTROS": [
+    {
+      "ID": "FISC-01",
+      "CONCEITO": "Documento fiscal e fato econômico",
+      "OBJETIVO": "Estruturar consulta técnica sobre documento fiscal e fato econômico, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "O documento registra fatos declarados, mas emissão não comprova isoladamente substância, entrega, competência ou natureza contábil.",
+      "FONTES": [
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "NFE-MOC-ANEXO-I",
+          "TITULO": "MOC 7.0 Anexo I — leiaute e regras NF-e/NFC-e",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?AspxAutoDetectCookieSupport=1&conteudo=J+I+v4eN00E%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        }
+      ],
+      "DISPOSITIVO": "MOC NF-e 7.0, visão geral e Anexo I; procedimento Fiscal local, seção Leituras",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "O documento registra fatos declarados, mas emissão não comprova isoladamente substância, entrega, competência ou natureza contábil. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a documento fiscal e fato econômico; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-02",
+      "CONCEITO": "Notas fiscais de entrada",
+      "OBJETIVO": "Estruturar consulta técnica sobre notas fiscais de entrada, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Extrair partes, chave, datas, itens, valores, frete e tributos expressos; natureza da compra, crédito, competência e contabilização exigem análise adicional.",
+      "FONTES": [
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "NFE-MOC-ANEXO-I",
+          "TITULO": "MOC 7.0 Anexo I — leiaute e regras NF-e/NFC-e",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?AspxAutoDetectCookieSupport=1&conteudo=J+I+v4eN00E%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        }
+      ],
+      "DISPOSITIVO": "MOC 7.0 Anexo I; LC 87/1996 conforme operação e UF",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Extrair partes, chave, datas, itens, valores, frete e tributos expressos; natureza da compra, crédito, competência e contabilização exigem análise adicional. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a notas fiscais de entrada; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-01",
+        "CONT-03",
+        "CONT-08",
+        "CONT-10"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-03",
+      "CONCEITO": "Notas fiscais de saída",
+      "OBJETIVO": "Estruturar consulta técnica sobre notas fiscais de saída, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Extrair declaração/eventos relacionados; autorização/emissão não estabelece sozinha reconhecimento de receita nem liquidação.",
+      "FONTES": [
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "NFE-MOC-ANEXO-I",
+          "TITULO": "MOC 7.0 Anexo I — leiaute e regras NF-e/NFC-e",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?AspxAutoDetectCookieSupport=1&conteudo=J+I+v4eN00E%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        }
+      ],
+      "DISPOSITIVO": "MOC 7.0 Anexo I; reconhecimento contábil conforme NBC TG aplicável",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Extrair declaração/eventos relacionados; autorização/emissão não estabelece sozinha reconhecimento de receita nem liquidação. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a notas fiscais de saída; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-06",
+        "CONT-08",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-04",
+        "FIN-06"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-04",
+      "CONCEITO": "Notas fiscais de serviços",
+      "OBJETIVO": "Estruturar consulta técnica sobre notas fiscais de serviços, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Identificar dados e declarações NFS-e; leiaute, regra de emissão e integração dependem de padrão, município e competência.",
+      "FONTES": [
+        {
+          "ID": "NFS-E-FAQ",
+          "TITULO": "FAQ NFS-e nacional v1.3, 06/11/2026",
+          "URL": "https://www.gov.br/nfse/pt-br/perguntas-frequentes/perguntas-frequentes-nfs-e-v1-3-20261106.pdf/%40%40download/file",
+          "ORGAO": "Portal Nacional da NFS-e"
+        },
+        {
+          "ID": "LC116",
+          "TITULO": "Lei Complementar 116/2003",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm",
+          "ORGAO": "Presidência da República"
+        }
+      ],
+      "DISPOSITIVO": "LC 116/2003, arts. 3º–4º e lista anexa; FAQ NFS-e v1.3 de 06/11/2026",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Identificar dados e declarações NFS-e; leiaute, regra de emissão e integração dependem de padrão, município e competência. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a notas fiscais de serviços; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-06",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-05",
+      "CONCEITO": "CFOP, CST, CSOSN e natureza da operação",
+      "OBJETIVO": "Estruturar consulta técnica sobre cfop, cst, csosn e natureza da operação, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Códigos exigem contexto de regime, origem/destino, mercadoria/serviço, operação e tabela vigente; não provam por si tratamento tributário.",
+      "FONTES": [
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "NFE-MOC-ANEXO-I",
+          "TITULO": "MOC 7.0 Anexo I — leiaute e regras NF-e/NFC-e",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?AspxAutoDetectCookieSupport=1&conteudo=J+I+v4eN00E%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        }
+      ],
+      "DISPOSITIVO": "MOC 7.0 Anexo I e tabelas/legislação próprias; selecionar conforme competência",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Códigos exigem contexto de regime, origem/destino, mercadoria/serviço, operação e tabela vigente; não provam por si tratamento tributário. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a cfop, cst, csosn e natureza da operação; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-06",
+      "CONCEITO": "Cancelamentos e devoluções",
+      "OBJETIVO": "Estruturar consulta técnica sobre cancelamentos e devoluções, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Relacionar evento, documento original, substituto/devolução e período; efeitos e estorno dependem da regra, tributo e jurisdição.",
+      "FONTES": [
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        },
+        {
+          "ID": "NFS-E-FAQ",
+          "TITULO": "FAQ NFS-e nacional v1.3, 06/11/2026",
+          "URL": "https://www.gov.br/nfse/pt-br/perguntas-frequentes/perguntas-frequentes-nfs-e-v1-3-20261106.pdf/%40%40download/file",
+          "ORGAO": "Portal Nacional da NFS-e"
+        },
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "LC116",
+          "TITULO": "Lei Complementar 116/2003",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm",
+          "ORGAO": "Presidência da República"
+        }
+      ],
+      "DISPOSITIVO": "MOC 7.0 Anexo I e eventos; LC 87/1996 ou LC 116/2003 conforme operação",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Relacionar evento, documento original, substituto/devolução e período; efeitos e estorno dependem da regra, tributo e jurisdição. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a cancelamentos e devoluções; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-17",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-16"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-07",
+      "CONCEITO": "Receita reconhecida versus emissão fiscal",
+      "OBJETIVO": "Estruturar consulta técnica sobre receita reconhecida versus emissão fiscal, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Separar obrigação documental de execução/transferência e das condições contábeis de reconhecimento no referencial confirmado.",
+      "FONTES": [
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        }
+      ],
+      "DISPOSITIVO": "NBC TG 1001, itens 23.1–23.8; NBC TG 1002, itens 23.1–23.7; CONT-06/19",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Separar obrigação documental de execução/transferência e das condições contábeis de reconhecimento no referencial confirmado. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a receita reconhecida versus emissão fiscal; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-06",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-04",
+        "FIN-06"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-08",
+      "CONCEITO": "Tributos próprios",
+      "OBJETIVO": "Estruturar consulta técnica sobre tributos próprios, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Identificar valores expressos em apuração/guia; incidência, cálculo, crédito e obrigação dependem de regime, fato e regra vigente.",
+      "FONTES": [
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017 consolidada",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "IN2121",
+          "TITULO": "IN RFB 2.121/2022 — PIS/Cofins",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/consulta.action?termoBusca=Instru%C3%A7%C3%A3o+Normativa+2.121",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "LC116",
+          "TITULO": "Lei Complementar 116/2003",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "RIPI-2010",
+          "TITULO": "RIPI/2010 — índice oficial RFB",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/aduana-e-comercio-exterior/manuais/despacho-de-exportacao/legislacao/decretos",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "DISPOSITIVO": "IN RFB 1.700/2017; IN RFB 2.121/2022; LC 87/1996; LC 116/2003; RIPI/2010 no escopo próprio",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Identificar valores expressos em apuração/guia; incidência, cálculo, crédito e obrigação dependem de regime, fato e regra vigente. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a tributos próprios; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-20"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-13"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-09",
+      "CONCEITO": "Tributos retidos",
+      "OBJETIVO": "Estruturar consulta técnica sobre tributos retidos, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Distinguir retenção sofrida/efetuada, valores brutos/líquidos, crédito/compensação e recolhimento; hipótese legal e responsável precisam ser provados.",
+      "FONTES": [
+        {
+          "ID": "L10833",
+          "TITULO": "Lei 10.833/2003 — legislação Planalto",
+          "URL": "https://legislacao.planalto.gov.br/legisla/legislacao.nsf/Viw_Identificacao/lei%2010.833-2003",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "RFB-REINF",
+          "TITULO": "EFD-Reinf — perguntas frequentes",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes/sped/efd-reinf/efdr",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017 consolidada",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-EFD-REINF-FAQ",
+          "TITULO": "EFD-Reinf FAQ — eventos de retenção em pagamentos a PJ",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes/sped/efd-reinf/efdr",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "DISPOSITIVO": "Lei 10.833/2003, arts. 30–36 em hipóteses específicas; SC Cosit 258/2024 limitada ao caso; EFD-Reinf R-4020/R-4080",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Distinguir retenção sofrida/efetuada, valores brutos/líquidos, crédito/compensação e recolhimento; hipótese legal e responsável precisam ser provados. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a tributos retidos; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-05",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-05",
+        "FIN-06"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-10",
+      "CONCEITO": "Tributos recuperáveis",
+      "OBJETIVO": "Estruturar consulta técnica sobre tributos recuperáveis, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Ativo fiscal requer direito legal, operação elegível e documentação; destaque no documento não comprova crédito.",
+      "FONTES": [
+        {
+          "ID": "IN2121",
+          "TITULO": "IN RFB 2.121/2022 — PIS/Cofins",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/consulta.action?termoBusca=Instru%C3%A7%C3%A3o+Normativa+2.121",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        }
+      ],
+      "DISPOSITIVO": "IN RFB 2.121/2022 e LC 87/1996; dispositivo concreto deve corresponder à hipótese",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Ativo fiscal requer direito legal, operação elegível e documentação; destaque no documento não comprova crédito. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a tributos recuperáveis; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-04",
+        "CONT-10"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-11",
+      "CONCEITO": "Tributos não recuperáveis",
+      "OBJETIVO": "Estruturar consulta técnica sobre tributos não recuperáveis, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Parcela sem direito de recuperação pode compor custo/despesa segundo fato e referencial, após confirmação da legislação.",
+      "FONTES": [
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "IN2121",
+          "TITULO": "IN RFB 2.121/2022 — PIS/Cofins",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/consulta.action?termoBusca=Instru%C3%A7%C3%A3o+Normativa+2.121",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RIPI-2010",
+          "TITULO": "RIPI/2010 — índice oficial RFB",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/aduana-e-comercio-exterior/manuais/despacho-de-exportacao/legislacao/decretos",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "DISPOSITIVO": "NBC TG 1001, itens 13.5/13.10 e 17; NBC TG 1002, itens 13.4–13.6; legislação do tributo",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Parcela sem direito de recuperação pode compor custo/despesa segundo fato e referencial, após confirmação da legislação. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a tributos não recuperáveis; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-07",
+        "CONT-10",
+        "CONT-11"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-12",
+      "CONCEITO": "ICMS e ICMS-ST",
+      "OBJETIVO": "Estruturar consulta técnica sobre icms e icms-st, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Tratamento depende de operação, produto/NCM, UF origem/destino, contribuinte, regime, convênio/protocolo e competência.",
+      "FONTES": [
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        }
+      ],
+      "DISPOSITIVO": "LC 87/1996, arts. 2º–3º, 6º–12 e 19–23; legislação estadual e atos CONFAZ a confirmar",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [
+          "contexto solicitado; legislação estadual não estudada nesta etapa"
+        ],
+        "MUNICIPIO": [
+          "contexto solicitado; não aplicável/estudado para regra estadual"
+        ],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": [
+          "contexto solicitado; hipótese concreta não estudada"
+        ]
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Tratamento depende de operação, produto/NCM, UF origem/destino, contribuinte, regime, convênio/protocolo e competência. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a icms e icms-st; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-10"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-13",
+      "CONCEITO": "IPI",
+      "OBJETIVO": "Estruturar consulta técnica sobre ipi, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Hipótese, classificação fiscal, crédito e suspensão dependem de produto, NCM/TIPI, operação e legislação vigente.",
+      "FONTES": [
+        {
+          "ID": "RIPI-2010",
+          "TITULO": "RIPI/2010 — índice oficial RFB",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/aduana-e-comercio-exterior/manuais/despacho-de-exportacao/legislacao/decretos",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "DISPOSITIVO": "Decreto 7.212/2010 (RIPI); TIPI e atos alteradores aplicáveis ao produto/competência",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Hipótese, classificação fiscal, crédito e suspensão dependem de produto, NCM/TIPI, operação e legislação vigente. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a ipi; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-10",
+        "CONT-11"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-14",
+      "CONCEITO": "ISS",
+      "OBJETIVO": "Estruturar consulta técnica sobre iss, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Identificar serviço/lista, prestador/tomador, local, retenção e lei municipal; padrão nacional NFS-e não uniformiza toda regra local.",
+      "FONTES": [
+        {
+          "ID": "LC116",
+          "TITULO": "Lei Complementar 116/2003",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "NFS-E-FAQ",
+          "TITULO": "FAQ NFS-e nacional v1.3, 06/11/2026",
+          "URL": "https://www.gov.br/nfse/pt-br/perguntas-frequentes/perguntas-frequentes-nfs-e-v1-3-20261106.pdf/%40%40download/file",
+          "ORGAO": "Portal Nacional da NFS-e"
+        }
+      ],
+      "DISPOSITIVO": "LC 116/2003, arts. 1º–3º e lista anexa; FAQ NFS-e v1.3 (06/11/2026); lei municipal não determinada",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [
+          "contexto solicitado; regra local não estudada nesta etapa"
+        ],
+        "MUNICIPIO": [
+          "contexto solicitado; legislação municipal não estudada"
+        ],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": [
+          "contexto solicitado; serviço concreto não estudado"
+        ]
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Identificar serviço/lista, prestador/tomador, local, retenção e lei municipal; padrão nacional NFS-e não uniformiza toda regra local. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a iss; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-06"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-15",
+      "CONCEITO": "PIS e COFINS",
+      "OBJETIVO": "Estruturar consulta técnica sobre pis e cofins, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Regime cumulativo/não cumulativo, monofásico, importação, crédito e transição variam por sujeito, receita, produto, operação e competência.",
+      "FONTES": [
+        {
+          "ID": "IN2121",
+          "TITULO": "IN RFB 2.121/2022 — PIS/Cofins",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/consulta.action?termoBusca=Instru%C3%A7%C3%A3o+Normativa+2.121",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "LC123",
+          "TITULO": "Legislação do Simples Nacional",
+          "URL": "https://www8.receita.fazenda.gov.br/SimplesNacional/ConteudoApoio/Legislacao/TelaLegislacao.aspx",
+          "ORGAO": "Receita Federal / CGSN"
+        },
+        {
+          "ID": "LC214",
+          "TITULO": "Legislação da Reforma Tributária do Consumo",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/legislacao",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "DISPOSITIVO": "IN RFB 2.121/2022; Leis 10.637/2002 e 10.833/2003; efeitos LC 214/2025 devem ser temporalizados",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Regime cumulativo/não cumulativo, monofásico, importação, crédito e transição variam por sujeito, receita, produto, operação e competência. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a pis e cofins; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-20"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-16",
+      "CONCEITO": "IRRF, CSRF e INSS retido",
+      "OBJETIVO": "Estruturar consulta técnica sobre irrf, csrf e inss retido, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Identificar pagador, beneficiário, natureza de serviço, regime, evento e hipótese; não inferir retenção pelo valor líquido.",
+      "FONTES": [
+        {
+          "ID": "RFB-COSIT-258-2024",
+          "TITULO": "Solução Cosit 258/2024 (hipótese específica de retenção)",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/anexoOutros.action?idArquivoBinario=75717",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-REINF",
+          "TITULO": "EFD-Reinf — perguntas frequentes",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes/sped/efd-reinf/efdr",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017 consolidada",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "DISPOSITIVO": "Lei 10.833/2003, arts. 30–36; RIR/2018, art. 714 em hipótese; IN RFB 2.110/2022 para previdência",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Identificar pagador, beneficiário, natureza de serviço, regime, evento e hipótese; não inferir retenção pelo valor líquido. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a irrf, csrf e inss retido; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-05",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-05",
+        "FIN-06"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-17",
+      "CONCEITO": "Importações e tributos aduaneiros",
+      "OBJETIVO": "Estruturar consulta técnica sobre importações e tributos aduaneiros, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Relacionar DI/DUIMP, NCM, valor aduaneiro, tributos declarados e desembolsos; custo, crédito e estoque são análises separadas.",
+      "FONTES": [
+        {
+          "ID": "RFB-IMPORT-II",
+          "TITULO": "Imposto de Importação — RFB",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/imposto-importacao",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-DUIMP",
+          "TITULO": "Manual DUIMP — aba Tributos",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/aduana-e-comercio-exterior/manuais/despacho-de-importacao/sistemas/duimp/elaboracao-da-duimp/aba-tributos",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "IN2121",
+          "TITULO": "IN RFB 2.121/2022 — PIS/Cofins",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/consulta.action?termoBusca=Instru%C3%A7%C3%A3o+Normativa+2.121",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RIPI-2010",
+          "TITULO": "RIPI/2010 — índice oficial RFB",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/aduana-e-comercio-exterior/manuais/despacho-de-exportacao/legislacao/decretos",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "LC87",
+          "TITULO": "Lei Complementar 87/1996 compilada",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp87.htm",
+          "ORGAO": "Presidência da República"
+        }
+      ],
+      "DISPOSITIVO": "Manual DUIMP, aba Tributos; II conforme TEC/NCM; legislação individual de cada tributo",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Relacionar DI/DUIMP, NCM, valor aduaneiro, tributos declarados e desembolsos; custo, crédito e estoque são análises separadas. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a importações e tributos aduaneiros; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-10",
+        "CONT-15",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-07",
+        "FIN-10"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-18",
+      "CONCEITO": "Apuração, provisão e pagamento de tributos",
+      "OBJETIVO": "Estruturar consulta técnica sobre apuração, provisão e pagamento de tributos, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Separar apuração/declaração, reconhecimento da obrigação e pagamento/compensação; guia não comprova liquidação. A FAQ EFD-Reinf distingue apuração declaratória, confissão e guia, mas não fundamenta todos os tributos; provisão contábil reutiliza CONT-19 e permanece separada.",
+      "FONTES": [
+        {
+          "ID": "SPED-ECF",
+          "TITULO": "Escrituração Contábil Fiscal",
+          "URL": "https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf",
+          "ORGAO": "SPED / Receita Federal"
+        },
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017 consolidada",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-REINF",
+          "TITULO": "EFD-Reinf — perguntas frequentes",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes/sped/efd-reinf/efdr",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "DISPOSITIVO": "IN RFB 1.700/2017 conforme tributo/regime; EFD-Reinf FAQ itens 1.4–1.5 informa eventos alimentam DCTFWeb, confissão e emissão de DARF; reconhecimento contábil em CONT-19.",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Separar apuração/declaração, reconhecimento da obrigação e pagamento/compensação; guia não comprova liquidação. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos. Verificado apenas o fluxo EFD-Reinf/DCTFWeb; não valida apuração de tributo, reconhecimento da provisão ou quitação de guia.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a apuração, provisão e pagamento de tributos; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-05",
+        "CONT-19",
+        "CONT-20"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-05",
+        "FIN-13"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-19",
+      "CONCEITO": "Obrigações acessórias e SPED",
+      "OBJETIVO": "Estruturar consulta técnica sobre obrigações acessórias e sped, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Tratar escriturações e declarações por população, leiaute, prazo, programa e competência próprios, com versionamento.",
+      "FONTES": [
+        {
+          "ID": "SPED-ECF",
+          "TITULO": "Escrituração Contábil Fiscal",
+          "URL": "https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf",
+          "ORGAO": "SPED / Receita Federal"
+        },
+        {
+          "ID": "RFB-ECF-2025",
+          "TITULO": "Perguntas e respostas pessoa jurídica 2025 — ECF",
+          "URL": "https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/perguntas-e-respostas/ecf/perguntas-e-respostas-da-pessoa-juridica-2025.pdf/%40%40download/file",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-REINF",
+          "TITULO": "EFD-Reinf — perguntas frequentes",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes/sped/efd-reinf/efdr",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        }
+      ],
+      "DISPOSITIVO": "IN RFB 2.004/2021 para ECF; documentação oficial SPED/ECF e EFD-Reinf com leiautes versionados; a página consultada associa ECF à base de IRPJ/CSLL e e-Lalur/e-Lacs.",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Tratar escriturações e declarações por população, leiaute, prazo, programa e competência próprios, com versionamento. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a obrigações acessórias e sped; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-01",
+        "CONT-18",
+        "CONT-20"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-20",
+      "CONCEITO": "Simples Nacional, Lucro Presumido e Lucro Real",
+      "OBJETIVO": "Estruturar consulta técnica sobre simples nacional, lucro presumido e lucro real, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Regimes fiscais têm critérios e efeitos distintos; cadastro e elegibilidade precisam ser confirmados. Regime não escolhe referencial contábil.",
+      "FONTES": [
+        {
+          "ID": "LC123",
+          "TITULO": "Legislação do Simples Nacional",
+          "URL": "https://www8.receita.fazenda.gov.br/SimplesNacional/ConteudoApoio/Legislacao/TelaLegislacao.aspx",
+          "ORGAO": "Receita Federal / CGSN"
+        },
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017 consolidada",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-IRPJ",
+          "TITULO": "IRPJ — orientação Receita Federal",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/IRPJ",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "DISPOSITIVO": "LC 123/2006; IN RFB 1.700/2017; RIR/2018",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Regimes fiscais têm critérios e efeitos distintos; cadastro e elegibilidade precisam ser confirmados. Regime não escolhe referencial contábil. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a simples nacional, lucro presumido e lucro real; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-18",
+        "CONT-20"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-21",
+      "CONCEITO": "IRPJ",
+      "OBJETIVO": "Estruturar consulta técnica sobre irpj, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Distinguir resultado contábil, base fiscal, ajustes, compensações, imposto provisionado, apurado e pago.",
+      "FONTES": [
+        {
+          "ID": "RFB-IRPJ",
+          "TITULO": "IRPJ — orientação Receita Federal",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/IRPJ",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017 consolidada",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-ECF-2025",
+          "TITULO": "Perguntas e respostas pessoa jurídica 2025 — ECF",
+          "URL": "https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/perguntas-e-respostas/ecf/perguntas-e-respostas-da-pessoa-juridica-2025.pdf/%40%40download/file",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "DISPOSITIVO": "IN RFB 1.700/2017, arts. 27–29 segundo regime; RIR/2018; confirmar redação pela competência",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Distinguir resultado contábil, base fiscal, ajustes, compensações, imposto provisionado, apurado e pago. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a irpj; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-20"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-22",
+      "CONCEITO": "CSLL",
+      "OBJETIVO": "Estruturar consulta técnica sobre csll, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Apurar obrigação e base conforme regime e regra própria; conciliar resultado, ajustes, retenções, pagamentos e diferenças temporárias aplicáveis.",
+      "FONTES": [
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017 consolidada",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-ECF-2025",
+          "TITULO": "Perguntas e respostas pessoa jurídica 2025 — ECF",
+          "URL": "https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/perguntas-e-respostas/ecf/perguntas-e-respostas-da-pessoa-juridica-2025.pdf/%40%40download/file",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "DISPOSITIVO": "IN RFB 1.700/2017, arts. 27–30 conforme versão consolidada; confirmar atos posteriores",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Apurar obrigação e base conforme regime e regra própria; conciliar resultado, ajustes, retenções, pagamentos e diferenças temporárias aplicáveis. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a csll; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-20"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-23",
+      "CONCEITO": "ECF, e-Lalur e e-Lacs",
+      "OBJETIVO": "Estruturar consulta técnica sobre ecf, e-lalur e e-lacs, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Exigir rastreabilidade de ajustes fiscais e controles A/B; toda adição/exclusão requer fonte legal e evidência próprias.",
+      "FONTES": [
+        {
+          "ID": "SPED-ECF",
+          "TITULO": "Escrituração Contábil Fiscal",
+          "URL": "https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf",
+          "ORGAO": "SPED / Receita Federal"
+        },
+        {
+          "ID": "RFB-ECF-2025",
+          "TITULO": "Perguntas e respostas pessoa jurídica 2025 — ECF",
+          "URL": "https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/perguntas-e-respostas/ecf/perguntas-e-respostas-da-pessoa-juridica-2025.pdf/%40%40download/file",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017 consolidada",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "DISPOSITIVO": "IN RFB 2.004/2021; IN RFB 1.700/2017; manual e Q&A ECF RFB 2025, blocos aplicáveis ao leiaute",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Exigir rastreabilidade de ajustes fiscais e controles A/B; toda adição/exclusão requer fonte legal e evidência próprias. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a ecf, e-lalur e e-lacs; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-01",
+        "CONT-17",
+        "CONT-18",
+        "CONT-20"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-24",
+      "CONCEITO": "Reforma tributária, IBS, CBS e Imposto Seletivo",
+      "OBJETIVO": "Estruturar consulta técnica sobre reforma tributária, ibs, cbs e imposto seletivo, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Temporalizar regras promulgadas, transição e regulamentação por competência; não transportar regra futura para período anterior.",
+      "FONTES": [
+        {
+          "ID": "LC214",
+          "TITULO": "Legislação da Reforma Tributária do Consumo",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/legislacao",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "LC214",
+          "TITULO": "Lei Complementar 214/2025",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm",
+          "ORGAO": "Presidência da República"
+        },
+        {
+          "ID": "RFB-REFORMA",
+          "TITULO": "Entenda a Reforma Tributária do Consumo",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-tributaria-do-consumo/entenda-a-reforma",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "DISPOSITIVO": "LC 214/2025 e LC 227/2026; Decreto 12.955/2026 listado pela RFB; efeitos conforme dispositivo e competência",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Temporalizar regras promulgadas, transição e regulamentação por competência; não transportar regra futura para período anterior. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a reforma tributária, ibs, cbs e imposto seletivo; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-20"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    },
+    {
+      "ID": "FISC-25",
+      "CONCEITO": "Conciliação fiscal e contábil",
+      "OBJETIVO": "Estruturar consulta técnica sobre conciliação fiscal e contábil, identificando fatos, fontes, evidências e lacunas sem calcular ou contabilizar automaticamente.",
+      "FUNDAMENTO": "Cruzar documentos, apuração/declaração, razão, retenções, créditos, guias e pagamentos; diferenças explicadas como pendências, sem ajustes inventados. Documentação SPED e reconciliação de obrigações precisam ser selecionadas por empresa e declaração; fonte consultada não demonstra requisito universal de conciliação.",
+      "FONTES": [
+        {
+          "ID": "SPED-ECF",
+          "TITULO": "Escrituração Contábil Fiscal",
+          "URL": "https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf",
+          "ORGAO": "SPED / Receita Federal"
+        },
+        {
+          "ID": "RFB-REINF",
+          "TITULO": "EFD-Reinf — perguntas frequentes",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes/sped/efd-reinf/efdr",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "NFE-MOC-7",
+          "TITULO": "Portal NF-e — MOC 7.0 e anexos",
+          "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?AspxAutoDetectCookieSupport=1&tipoConteudo=ndIjl+iEFdE%3D",
+          "ORGAO": "Portal Nacional da NF-e"
+        }
+      ],
+      "DISPOSITIVO": "ITG 2000 (R1), itens 5–8; controle interno identificado como procedimento; escopo específico da conciliação fiscal requer fontes por obrigação e jurisdição.",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta em 16/11/2026; confirmar versão consolidada e efeitos por competência, inclusive alterações posteriores."
+      },
+      "APLICABILIDADE": "Escopo geral limitado ao dispositivo indicado; aplicação exige empresa/estabelecimento, competência, regime, atividade, produto/serviço, natureza da operação, jurisdição e evidências.",
+      "CONTEXTO_CONSULTA": {
+        "EMPRESA_ID": [],
+        "COMPETENCIA": [],
+        "REGIME_TRIBUTARIO": [
+          "Simples Nacional",
+          "Lucro Presumido",
+          "Lucro Real",
+          "não inferido"
+        ],
+        "UF": [],
+        "MUNICIPIO": [],
+        "ATIVIDADE": [],
+        "TIPO_OPERACAO": []
+      },
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "EVIDENCIAS_NECESSARIAS": "Documento original e evento/protocolo quando aplicável; identificação das partes/estabelecimento; contrato, pedido, entrega ou medição; competência; apuração/declaração/guia e comprovante financeiro quando pertinentes; fonte vigente.",
+      "TRATAMENTO_CONCEITUAL": "Cruzar documentos, apuração/declaração, razão, retenções, créditos, guias e pagamentos; diferenças explicadas como pendências, sem ajustes inventados. Distinguir emissão documental, reconhecimento fiscal-contábil e pagamento/liquidação; encaminhar ao departamento competente e confrontar legislação e evidência antes de proposta.",
+      "EXCECOES": "Regimes especiais, benefícios, decisões administrativas/judiciais, exceções locais e transição exigem validação contextual fora desta ficha.",
+      "RISCOS": "Aplicar código, crédito, retenção, local, taxa, prazo ou obrigação sem confirmar hipótese/contexto pode gerar passivo, crédito indevido, declaração incorreta ou distorção contábil.",
+      "ERROS_COMUNS": "Tratar destaque como crédito; emissão como receita/despesa automaticamente reconhecida; guia como pagamento; regime tributário como referencial contábil; regra de empresa como geral.",
+      "LIMITACOES": "Nenhuma incidência, alíquota, obrigação, crédito, prazo ou retenção foi determinada para empresa. Legislação estadual/municipal e especificidades de produto, serviço, atividade e competência permanecem condicionais. Parser/adapters não validam autenticidade perante autoridade nem calculam tributos. O método de cruzamento é procedimento interno e não foi confirmado como obrigação normativa geral.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa fictícia Ipê apresenta documento relacionado a conciliação fiscal e contábil; o Fiscal registra os campos expressos e solicita contexto/evidência ausente, sem calcular tributo ou criar lançamento.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "REFERENCIAL": "Não determina referencial contábil; reutiliza CONT quando pertinente e requer referencial confirmado.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-01",
+        "CONT-18",
+        "CONT-19",
+        "CONT-20"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/FISCAL/PROCEDIMENTO.md — conferência documental local, saída FISCAL_LOCAL_V1; procedimento interno, não fonte normativa.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Consulta à fonte oficial relacionada; título e dispositivo/seção anotados nesta ficha. Aplicabilidade empresarial não determinada."
+      }
+    }
+  ]
+}

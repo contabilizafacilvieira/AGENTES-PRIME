@@ -1,0 +1,1480 @@
+{
+  "VERSAO": "1.0.0-03D",
+  "DATA_CONSULTA": "2026-11-16",
+  "REGISTROS": [
+    {
+      "ID": "FIN-01",
+      "CONCEITO": "Extratos bancários",
+      "OBJETIVO": "Identificar movimentos efetivos, saldos, datas, sinais e titularidade da conta no período.",
+      "FUNDAMENTO": "ITG 2000 (R1), itens 5–8; CONT-01, CONT-18, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "ITG 2000 (R1), itens 5–8; CONT-01, CONT-18, CONT-19",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Extrato completo, dados de conta, período, saldo inicial/final e evidência de origem.",
+      "TRATAMENTO_CONCEITUAL": "Saldo inicial + créditos − débitos = saldo final conforme convenção do extrato; importar movimento não identifica por si a natureza contábil.",
+      "EXCECOES": "Extrato parcial, indisponibilidade, saldo disponível versus contábil, conta conjunta ou produto específico requerem análise.",
+      "RISCOS": "Duplicidade, corte e saldo incorreto contaminam a conciliação.",
+      "ERROS_COMUNS": "Desconsiderar sinal, saldo ou cobertura temporal; usar posição financeira como substituta do extrato.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "Somente registros de movimentos e saldos. Regras e leitores documentados em PROCEDIMENTO.md; contrato bancário e documentos da entidade ainda definem produto.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Uma conta fictícia Beta apresenta 3 créditos e 2 débitos; o extrato comprova movimentos e não classifica cada crédito como receita.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "DOCUMENTO FONTE",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-01",
+        "CONT-18",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-02",
+      "CONCEITO": "Conciliação bancária",
+      "OBJETIVO": "Relacionar movimentos do extrato com fontes auxiliares/documentos e explicar diferenças.",
+      "FUNDAMENTO": "ITG 2000 (R1), itens 5–8; CONT-01, CONT-18, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "ITG 2000 (R1), itens 5–8; CONT-01, CONT-18, CONT-19",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Extrato, auxiliares, identificadores, documentos, saldo inicial/final e trilha de associação.",
+      "TRATAMENTO_CONCEITUAL": "Conferir saldo inicial, movimentos e saldo final; manter itens em aberto, diferenças, estornos e evidências rastreáveis. Associação banco↔auxiliar não certifica contabilização nem suficiência documental.",
+      "EXCECOES": "Diferenças temporais, cheques, tarifas, transferências em trânsito ou conta com produto integrado exigem evidência e análise contextual.",
+      "RISCOS": "Associação falsa ou diferença não explicada oculta erro/fraude.",
+      "ERROS_COMUNS": "Tratar igualdade aritmética como conciliação contábil/documental completa.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "PROCEDIMENTO INTERNO: procedimento e motor Financeiro v1.5; estados e critérios existentes são documentados como internos, sem alteração nesta etapa.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Dois movimentos fictícios somam o saldo esperado; uma diferença documental permanece pendente apesar da igualdade matemática.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "PROCEDIMENTO_INTERNO",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-01",
+        "CONT-18",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-03",
+      "CONCEITO": "Contas a pagar",
+      "OBJETIVO": "Acompanhar obrigação identificada, vencimento, contraparte, valor e liquidação.",
+      "FUNDAMENTO": "CONT-03, CONT-05, CONT-08, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CONT-03, CONT-05, CONT-08, CONT-19",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Documento/contrato, recebimento/aceite, título, vencimento, contraparte e extrato/comprovante de quitação.",
+      "TRATAMENTO_CONCEITUAL": "O Financeiro identifica título e pagamento; Contabilidade decide reconhecimento e classificação. Se obrigação já registrada, pagamento baixa passivo conforme liquidação, sem nova despesa.",
+      "EXCECOES": "Disputa, retenção, desconto, devolução, financiamento, cessão e obrigação sem documento exigem revisão.",
+      "RISCOS": "Duplicação, passivo omitido, contraparte errada ou baixa indevida.",
+      "ERROS_COMUNS": "Registrar título interno como fato reconhecido ou repetir despesa no pagamento.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "Título/posição é controle interno, não confirmação de terceiro nem registro contábil por si.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa fictícia recebe material com fatura e paga após 15 dias; baixa fornecedor apenas após confirmar título e quitação.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-05",
+        "CONT-08",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-04",
+      "CONCEITO": "Contas a receber",
+      "OBJETIVO": "Acompanhar direito de cobrança, cliente, vencimento, valor e recebimento.",
+      "FUNDAMENTO": "CONT-03, CONT-06, CONT-08, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CONT-03, CONT-06, CONT-08, CONT-19",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Documento de origem, entrega/prestação, cliente, título, baixa, comprovante/extrato e referência inequívoca.",
+      "TRATAMENTO_CONCEITUAL": "Separar reconhecimento da receita/direito do recebimento bancário; identificar diferenças, abatimentos, taxas e recebimentos sem identificação.",
+      "EXCECOES": "Adiantamento, caução, empréstimo, aporte, factoring, contestação ou recebimento por intermediador podem não ser receita/cliente simples.",
+      "RISCOS": "Receita duplicada, recebível indevidamente baixado ou crédito sem origem.",
+      "ERROS_COMUNS": "Classificar qualquer crédito como receita ou reconhecer receita só pelo extrato.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "Financeiro identifica quitação e evidência; Fiscal valida documento e Contabilidade reconhece/classifica.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Cliente fictício paga título de venda já reconhecida; entrada liquida recebível, após associação do documento.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-06",
+        "CONT-08",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-05",
+      "CONCEITO": "Liquidação de fornecedores",
+      "OBJETIVO": "Determinar se saída bancária liquida obrigação registrada, parcial, agrupada ou não identificada.",
+      "FUNDAMENTO": "CONT-08, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CONT-08, CONT-19",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Título/conta a pagar, documento de origem, favorecido, valor, data, comprovante e extrato.",
+      "TRATAMENTO_CONCEITUAL": "Se fornecedor provisionado e pagamento corresponder ao saldo, conceitualmente baixa-se obrigação contra banco; diferenças não autorizam nova despesa automática.",
+      "EXCECOES": "Pagamento parcial, lote, retenção, juros, desconto, adiantamento ou fornecedor distinto mudam composição.",
+      "RISCOS": "Despesa duplicada, passivo residual incorreto, pagamento indevido.",
+      "ERROS_COMUNS": "Lançar débito bancário de novo em despesa.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "Ausência de provisão identificada gera candidato e pendência; não se inventa obrigação anterior.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Fictícia Limoeiro paga R$ 800 do título de R$ 800 já registrado; pagamento liquida, não cria custo adicional.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-08",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-06",
+      "CONCEITO": "Liquidação de clientes",
+      "OBJETIVO": "Determinar se entrada bancária quita crédito de cliente já reconhecido.",
+      "FUNDAMENTO": "CONT-08, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CONT-08, CONT-19",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Extrato, comprovante, identificação do pagador, contas a receber e documento referenciado.",
+      "TRATAMENTO_CONCEITUAL": "Conferir cliente, documento, valor, parcelas e data; só liquidar o recebível confirmado. Crédito sem identidade fica sem associação até evidência.",
+      "EXCECOES": "Recebimento antecipado, terceiro pagador, compensação, desconto, devolução ou intermediador pede investigação.",
+      "RISCOS": "Baixa falsa de cliente e receita duplicada.",
+      "ERROS_COMUNS": "Tratar crédito sem nome claro como receita de cliente conhecido.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "Reconhecer receita é escopo Contábil/Fiscal segundo operação; Financeiro documenta liquidação.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa fictícia Cedro recebe R$ 1.200 do cliente associado a fatura aberta; entrada liquida o recebível após validação.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-08",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-07",
+      "CONCEITO": "Adiantamentos a fornecedores",
+      "OBJETIVO": "Controlar valor entregue antes de recebimento de bem/serviço ou extinção do direito.",
+      "FUNDAMENTO": "CONT-09, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CONT-09, CONT-19",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Contrato/pedido, solicitação, comprovante/extrato, condição de entrega, confirmação do fornecedor e documento futuro.",
+      "TRATAMENTO_CONCEITUAL": "Identificar contrato, pedido, fornecedor, condição, aplicação/restituição; manter direito até entrega, execução, restituição ou outro evento que o liquide.",
+      "EXCECOES": "Depósito caução, sinal reembolsável, adiantamento de ativo/estoque/serviço, moeda estrangeira e perda esperada variam.",
+      "RISCOS": "Ativo e resultado em período/natureza incorretos; saldo sem recuperação.",
+      "ERROS_COMUNS": "Classificar como despesa ou estoque antes de conhecer o que será entregue.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "Adiantamentos automáticos foram removidos por governança; indicação não substitui documento, aprovação ou regra específica.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Fictícia Ipê transfere R$ 500 para pedido de equipamento a entregar no mês seguinte; candidato a direito, sujeito a confirmação do contrato.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-09",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-08",
+      "CONCEITO": "Adiantamentos de clientes",
+      "OBJETIVO": "Controlar recebimento antes da entrega/prestação ou obrigação satisfeita.",
+      "FUNDAMENTO": "CONT-09, CONT-14, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CONT-09, CONT-14, CONT-19",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Contrato/pedido, identificação do pagador, comprovante, extrato, condição e evidência posterior de entrega.",
+      "TRATAMENTO_CONCEITUAL": "Associar cliente e contrato; preservar obrigação até satisfação do compromisso ou restituição, conforme referencial aplicável.",
+      "EXCECOES": "Sinal reembolsável, caução, contrato com múltiplas obrigações ou entrega parcial precisam de análise.",
+      "RISCOS": "Receita antecipada, passivo e competência incorretos.",
+      "ERROS_COMUNS": "Reconhecer toda entrada como receita na data do crédito bancário.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "Financeiro identifica e documenta recebimento; Contábil avalia obrigação/desempenho e reconhecimento.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Cliente fictício Nuvem paga R$ 300 antes de receber serviço; valor fica candidato a obrigação contratual até análise da execução.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-09",
+        "CONT-14",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-09",
+      "CONCEITO": "Transferências entre contas próprias",
+      "OBJETIVO": "Identificar par débito/crédito de titularidade comum sem gerar receita ou despesa apenas pela transferência.",
+      "FUNDAMENTO": "CONT-01, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CONT-01, CONT-19",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Extratos das duas contas, cadastro/titular, comprovante/identificador e data/valor de ambas as pernas.",
+      "TRATAMENTO_CONCEITUAL": "Confirmar titularidade, contas origem/destino, valor, datas, identificador e ambas as pernas; tratar diferença/tarifa à parte.",
+      "EXCECOES": "Contas de empresas diferentes, contas de terceiros, sweep, aplicações ou conta garantida não são automaticamente transferência própria simples.",
+      "RISCOS": "Duplicidade de caixa, resultado falso ou ocultação de transferência indevida.",
+      "ERROS_COMUNS": "Classificar crédito como receita e débito como despesa, ou presumir própria conta só pelo nome.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "Associação de transferência segue regras internas e exige evidência das duas pontas.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Conta fictícia Alfa transfere R$ 2.000 para sua conta Beta; as duas pontas são analisadas juntas, taxa separada.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-01",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-10",
+      "CONCEITO": "Aplicações e resgates financeiros",
+      "OBJETIVO": "Identificar conversão de caixa em aplicação, resgate, vencimento, liquidez, encargos e retorno.",
+      "FUNDAMENTO": "CONT-15, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CONT-15, CONT-19; CPC 48, itens 1.1 e 2.1 somente para referencial completo aplicável; CFC indica aprovação correspondente NBC TG 48.",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Extrato detalhado, nota/comprovante da aplicação, contrato/prospecto, posição, resgate, informe de rendimento e tributos.",
+      "TRATAMENTO_CONCEITUAL": "Obter produto/contrato, principal, liquidez, risco, datas, rendimento bruto/impostos e saldo; conciliar aplicação e resgate sem chamar ambos de despesa/receita total.",
+      "EXCECOES": "Fundos, CDB, poupança, compromissadas, derivativos e restrições têm tratamentos diversos; instituições financeiras seguem regulação própria.",
+      "RISCOS": "Ativo, resultado, caixa restrito e tributos incorretos.",
+      "ERROS_COMUNS": "Registrar aplicação como despesa ou resgate integral como receita.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "NBCs simplificadas e completas diferem; NBC TG 48 só se referencial e escopo a tornarem aplicável. BCB regula prestadores/produtos, não a classificação de todo cliente.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Fictícia Arco aplica R$ 1.000 e resgata principal e retorno no mês; identificar os componentes com extrato do produto.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-15",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-11",
+      "CONCEITO": "Rendimentos de aplicações",
+      "OBJETIVO": "Mensurar retorno contratual/efetivo e período a que pertence; distinguir principal e retenções.",
+      "FUNDAMENTO": "CONT-03, CONT-15",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CONT-03, CONT-15; CPC 48, itens 1.1 e 2.1 somente para referencial completo aplicável; CFC indica aprovação correspondente NBC TG 48.",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Extrato do investimento, informe/demonstrativo do administrador, contrato, memória de cálculo e retenções.",
+      "TRATAMENTO_CONCEITUAL": "Conferir competência, principal, taxa, extrato detalhado, rendimento bruto, IR/IOF e montante líquido; não inferir rendimento pelo crédito líquido sozinho.",
+      "EXCECOES": "Cotas a valor justo, indexação, juros compostos, perdas, resgate antecipado e tributação variam.",
+      "RISCOS": "Resultado/tributos reconhecidos em valor ou período errado.",
+      "ERROS_COMUNS": "Chamar todo resgate de rendimento ou adotar taxa presumida.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "Procedimento não define taxa; usar contrato/produto e norma aplicável.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Aplicação fictícia gera crédito líquido de R$ 18,40; demonstrativo separa rendimento bruto de tributo retido.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-15"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-12",
+      "CONCEITO": "Tarifas bancárias",
+      "OBJETIVO": "Identificar tarifa debitada, serviço, contrato, conta e eventual estorno.",
+      "FUNDAMENTO": "CONT-03, CONT-07, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CONT-03, CONT-07, CONT-19",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Extrato, demonstrativo tarifário, contrato/tabela, fatura e confirmação de estorno.",
+      "TRATAMENTO_CONCEITUAL": "Conferir tabela/contrato e descrição, documento fiscal quando aplicável, período e estorno; separar tarifa de principal/juros ou serviço terceiro.",
+      "EXCECOES": "Pacote mensal, tarifa de adquirência, IOF, juros, tarifa estornada e cobrança contestada têm naturezas próprias.",
+      "RISCOS": "Despesa indevida e cobrança duplicada/período errado.",
+      "ERROS_COMUNS": "Classificar todo débito genérico como tarifa.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "Exigência documental concreta varia pelo serviço, contrato e legislação aplicável.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Banco fictício cobra R$ 24 mensais conforme pacote da conta; documento e período são consultados antes de propor despesa.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-07",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-13",
+      "CONCEITO": "Juros e multas",
+      "OBJETIVO": "Distinguir encargo financeiro, multa, componente de liquidação ou rendimento; apurar a origem e o período.",
+      "FUNDAMENTO": "CONT-03, CONT-07, CONT-15, CONT-20",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CONT-03, CONT-07, CONT-15, CONT-20",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Contrato/guia, memória de cálculo, documento de cobrança, saldo anterior, período e comprovante.",
+      "TRATAMENTO_CONCEITUAL": "Separar principal, juros, multa, atualização e retenções, relacionando a dívida/ativo e competência; verificar capitalização e critério do contrato/norma.",
+      "EXCECOES": "Mora tributária, trabalhista, financeira, contratual, ativo qualificável e valor controverso exigem referência específica.",
+      "RISCOS": "Custo, passivo e dedutibilidade fiscal confundidos; resultado distorcido.",
+      "ERROS_COMUNS": "Somar encargo ao principal sem identificação ou lançar parcela toda como juros.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "Dedutibilidade fiscal é competência Fiscal e não decorre do tratamento contábil.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Fornecedor fictício cobra R$ 15 de mora em título atrasado; natureza e base são confirmadas com memória de cálculo.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-07",
+        "CONT-15",
+        "CONT-20"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-14",
+      "CONCEITO": "Empréstimos e financiamentos",
+      "OBJETIVO": "Controlar captação, obrigação, taxas, cronograma, garantias e liquidação.",
+      "FUNDAMENTO": "CONT-15, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CONT-15, CONT-19; CPC 48, itens 1.1 e 2.1 somente para referencial completo aplicável; CFC indica aprovação correspondente NBC TG 48.",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Contrato/CCB, cronograma, extrato de crédito, demonstrativo do credor, garantias e confirmação de saldo.",
+      "TRATAMENTO_CONCEITUAL": "Conferir contrato, desembolso líquido, principal, taxas/custos, cronograma, vencimentos, covenants e saldo do credor.",
+      "EXCECOES": "Leasing, mútuo com parte relacionada, conversível, moeda estrangeira, renegociação e financiamento de ativo podem exigir normas adicionais.",
+      "RISCOS": "Passivo omitido, juros incompletos e classificação circulante/não circulante errada.",
+      "ERROS_COMUNS": "Tratar captação como receita ou manter principal sem conciliação.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "Normas completas (ex.: instrumentos financeiros) não se aplicam automaticamente a entidade sob referencial simplificado.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Instituição fictícia Horizonte credita R$ 20.000; contrato cria candidato a passivo, não receita.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-15",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-15",
+      "CONCEITO": "Separação de principal e juros",
+      "OBJETIVO": "Separar amortização do saldo devedor, encargos do período, taxas e outros itens na parcela.",
+      "FUNDAMENTO": "CONT-03, CONT-15, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CONT-03, CONT-15, CONT-19; CPC 48, itens 1.1 e 2.1 somente para referencial completo aplicável; CFC indica aprovação correspondente NBC TG 48.",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Cronograma atualizado, demonstrativo da parcela, contrato, extrato, memória de cálculo e histórico de saldo.",
+      "TRATAMENTO_CONCEITUAL": "Conciliar cada parcela ao cronograma/demonstrativo do credor e reconhecer componentes por competência, segundo norma e método aplicável.",
+      "EXCECOES": "Taxa efetiva, carência, custo de transação, capitalização, liquidação antecipada e renegociação alteram cálculo.",
+      "RISCOS": "Saldo do empréstimo e despesa ficam superavaliados.",
+      "ERROS_COMUNS": "Debitar despesa financeira pelo valor integral pago.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "Sem composição documental, manter diferença pendente; não estimar principal/juros por nome ou proporção fixa.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Parcela fictícia de R$ 1.050 contém R$ 900 principal e R$ 150 juros conforme demonstrativo; verificar apropriação temporal.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-15",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-16",
+      "CONCEITO": "Estornos e devoluções",
+      "OBJETIVO": "Relacionar reversão bancária a movimento original e determinar se anula pagamento, devolve valor ou cria novo fato.",
+      "FUNDAMENTO": "CONT-17, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CONT-17, CONT-19",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "IDs dos dois movimentos, comprovantes, comunicação bancária, documento original, nota de devolução/chargeback e razão da reversão.",
+      "TRATAMENTO_CONCEITUAL": "Guardar vínculos entre original e reverso, sinais, datas, IDs e documentos; avaliar se reversão cancela obrigação, repõe saldo ou é restituição distinta.",
+      "EXCECOES": "Estorno parcial, chargeback, devolução comercial, fraude, erro bancário e devolução de adiantamento têm causas distintas.",
+      "RISCOS": "Movimentos duplicados e saldos de fornecedor/cliente errados.",
+      "ERROS_COMUNS": "Ignorar movimento oposto ou registrar reversão como receita/despesa nova.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "A natureza do evento subjacente exige avaliação do departamento responsável.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Pagamento fictício de R$ 400 é devolvido por falha de chave Pix; associar ao original sem tratar crédito como nova venda.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-17",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-17",
+      "CONCEITO": "Pagamentos e recebimentos por Pix, TED, boleto e outros meios",
+      "OBJETIVO": "Usar meio e identificador para comprovar e rastrear liquidação, mantendo independente a natureza econômica.",
+      "FUNDAMENTO": "CONT-08, CONT-09, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "BCB-PIX-RES1-2020",
+          "TITULO": "Resolução BCB nº 1/2020 — Pix, versão vigente consultada",
+          "URL": "https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?numero=1&tipo=Resolu%C3%A7%C3%A3o+BCB",
+          "ORGAO": "Banco Central do Brasil"
+        },
+        {
+          "ID": "BCB-PIX-UX-73",
+          "TITULO": "Requisitos mínimos para experiência do usuário Pix, versão 7.3",
+          "URL": "https://bcb.gov.br/content/estabilidadefinanceira/pix/Regulamento_Pix/IV_RequisitosMinimosparaExperienciadoUsuario.pdf",
+          "ORGAO": "Banco Central do Brasil"
+        },
+        {
+          "ID": "RFB-COMPROVANTES",
+          "TITULO": "Consulta e validação de comprovantes de arrecadação",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/pagamentos-e-parcelamentos/consulta-comprovante-de-pagamento-darf-das-dje-e-dae-acesso-via-portal-e-cac/consulta-comprovante-de-pagamento-darf-das-dje-e-dae-acesso-via-portal-e-cac",
+          "ORGAO": "Receita Federal do Brasil"
+        }
+      ],
+      "DISPOSITIVO": "Resolução BCB nº 1/2020, art. 1º e Regulamento anexo (instituição e disciplina do arranjo Pix); Requisitos mínimos Pix UX v7.3, item 08 (conteúdo mínimo do comprovante); CONT-08/09/19. A página da Receita é orientação de serviço de consulta/validação de comprovantes, sem dispositivo normativo contábil afirmado.",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Extrato, comprovante confirmado, identificador, documento/contrato/guia e correspondência de contraparte.",
+      "TRATAMENTO_CONCEITUAL": "Validar status concluído (não agendamento), ID, valor, pagador/recebedor, data/hora e conta; buscar documento de origem para natureza.",
+      "EXCECOES": "Devolução, pagamento agendado, QR de cobrança, boleto apresentado mas não pago, pagamento de terceiro ou contestação alteram interpretação.",
+      "RISCOS": "Pagamento falso, finalidade incorreta ou dupla baixa.",
+      "ERROS_COMUNS": "Tomar comprovante de agendamento ou descrição livre como liquidação/natureza confirmadas.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "BCB Res. 1/2020 e requisito UX Pix definem sistema e campos do comprovante; não prescrevem contabilização de pagador/recebedor. Outros arranjos têm regras próprias.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Comprovante Pix fictício confirma R$ 125 ao favorecido; sem fatura/contrato, a finalidade permanece não identificada.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "REGULAMENTACAO_FINANCEIRA",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-08",
+        "CONT-09",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-18",
+      "CONCEITO": "Cartões e intermediadores financeiros",
+      "OBJETIVO": "Reconciliar vendas/cobranças brutas, recebíveis, parcelas, taxas, retenções, chargebacks e crédito líquido.",
+      "FUNDAMENTO": "CONT-06, CONT-08, CONT-15, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CONT-06, CONT-08, CONT-15, CONT-19; CPC 48, itens 1.1 e 2.1 somente para referencial completo aplicável; CFC indica aprovação correspondente NBC TG 48.",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Relatório de transações, contrato/tabela, comprovante de liquidação, extrato, nota/documento de venda e chargebacks.",
+      "TRATAMENTO_CONCEITUAL": "Conciliar relatório de vendas, agenda de recebíveis, taxas, antecipação e extrato bancário por lote; identificar bruto, líquido e prazo.",
+      "EXCECOES": "Adquirente, subadquirente, marketplace, antecipação, reserva, contestação, split e venda parcelada têm contratos/fluxos diversos.",
+      "RISCOS": "Receita e recebível subavaliados; taxa/antecipação mal mensurada.",
+      "ERROS_COMUNS": "Reconhecer apenas líquido como receita ou deduzir toda diferença como taxa.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "Classificação depende do contrato, controle sobre venda e norma aplicável; associação por valor não basta.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Intermediador fictício liquida R$ 970 de venda bruta R$ 1.000 após taxa R$ 30; conferir natureza e composição com relatórios.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-06",
+        "CONT-08",
+        "CONT-15",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-19",
+      "CONCEITO": "Operações em moeda estrangeira",
+      "OBJETIVO": "Rastrear câmbio, moeda funcional, data da operação, saldo monetário e liquidação cambial.",
+      "FUNDAMENTO": "CONT-16, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CONT-16, CONT-19",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Contrato/fatura, comprovante de câmbio, extrato em moeda e reais, taxa/fonte, data de liquidação e saldo de contraparte.",
+      "TRATAMENTO_CONCEITUAL": "Identificar moeda e data, taxa adotada segundo política/norma, valor funcional, saldo à data de reporte e diferenças realizadas/não realizadas.",
+      "EXCECOES": "Moeda funcional distinta, adiantamento não monetário, derivativo, importação, hedge e restrições cambiais requerem análise.",
+      "RISCOS": "Passivos/ativos e resultado cambial incorretos; risco fiscal/regulatório.",
+      "ERROS_COMUNS": "Usar taxa do crédito bancário líquido para toda obrigação ou ignorar variação entre reconhecimento e liquidação.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "NBC TG 1000/1001/1002 seção 30 simplificada; ITG 21 e NBC TG 02 conforme aplicabilidade e competência. Operações específicas dependem de contrato e contexto cambial.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa fictícia recebe USD 100; usa taxa documental compatível e identifica diferença cambial na liquidação, sem taxa presumida nesta ficha.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-16",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    },
+    {
+      "ID": "FIN-20",
+      "CONCEITO": "Evidências, duplicidades e rastreabilidade",
+      "OBJETIVO": "Manter cadeia entre fonte bancária, documentos, contraparte, associação, decisão e resultado de análise.",
+      "FUNDAMENTO": "CONT-01, CONT-08, CONT-18, CONT-19",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002",
+          "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000",
+          "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "Catálogo CFC de normas simplificadas",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CONT-01, CONT-08, CONT-18, CONT-19",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026; textos normativos devem ser conferidos na versão consolidada aplicável à competência. Para procedimentos internos, vigora a versão do procedimento referenciado até sua revisão aprovada."
+      },
+      "APLICABILIDADE": "Operações da entidade, conforme referencial contábil confirmado e competência. Aplicação depende de contrato, documentos, natureza, titularidade e fatos; regime tributário não escolhe referencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas, somente quando aplicável e confirmado"
+      ],
+      "EVIDENCIAS_NECESSARIAS": "Arquivo íntegro/original, hash, proveniência, competência, IDs, documento, trilha e evidência de decisão/revisão.",
+      "TRATAMENTO_CONCEITUAL": "Registrar origem, SHA/identificador, conta, competência, movimento, documento, relação, resultado/pendência e revisão; detectar repetição de fonte e fato.",
+      "EXCECOES": "Documentos retificados, mesmo pagamento em arquivo sobreposto, duplicidade legítima, estorno e erro de OCR requerem análise de identidade.",
+      "RISCOS": "Perda de auditoria, duplicidade ou exclusão de fato verdadeiro.",
+      "ERROS_COMUNS": "Usar texto/valor semelhante como prova; remover duplicata sem provar identidade.",
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "Critérios de associação, cardinalidade e tolerâncias do motor são procedimento interno; não norma contábil. O motor v1.5 fica preservado.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Dois pagamentos fictícios iguais para fornecedores diferentes permanecem distintos por contraparte e identificador.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "TIPO_CONHECIMENTO": "PROCEDIMENTO_INTERNO",
+      "LIMITACOES": "Verificado apenas no escopo resumido e nos dispositivos/fonte indicados. Não seleciona conta, referencial ou tratamento de empresa; não gera lançamento. Exige confirmar versão/competência, política aprovada, contratos e evidência. Temas tributários, trabalhistas e setoriais pertencem aos departamentos competentes.",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-01",
+        "CONT-08",
+        "CONT-18",
+        "CONT-19"
+      ],
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta do texto oficial CFC NBC TG 1001, catálogo CFC atual; leitura do regulamento/requisitos Pix BCB e/ou página RFB quando indicados. Reutiliza fundamentos CONT da Etapa 03C, consultáveis pela API."
+      },
+      "CRITERIO_ASSOCIACAO_MOTOR": "Procedimento interno 1.5 preservado; associação financeira somente entre banco e fonte auxiliar, sem determinar natureza contábil. Consultar procedimento relacionado."
+    }
+  ]
+}

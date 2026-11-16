@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "AGENTES_PRIME_BASE_CONHECIMENTO_CONTABIL_V1",
+  "title": "Registro de conhecimento contábil e técnico do AGENTES PRIME",
+  "type": "object",
+  "required": ["ID", "TITULO", "ASSUNTO", "DEPARTAMENTO", "NORMA", "DISPOSITIVO", "FONTE_OFICIAL", "DATA_CONSULTA", "VIGENCIA", "APLICABILIDADE", "RESUMO_TECNICO", "LIMITACOES", "STATUS_VERIFICACAO", "VERSAO", "TIPO_CONHECIMENTO", "ESCOPO", "AUTORIZA_DECISAO_AUTOMATICA"],
+  "properties": {
+    "ID": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9._-]+$"},
+    "TITULO": {"type": "string", "minLength": 1},
+    "ASSUNTO": {"oneOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]},
+    "DEPARTAMENTO": {"oneOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]},
+    "NORMA": {"type": "string"},
+    "DISPOSITIVO": {"oneOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]},
+    "FONTE_OFICIAL": {"type": "array", "items": {"type": "object", "required": ["ID", "TITULO", "URL", "ORGAO"], "properties": {"ID": {"type": "string"}, "TITULO": {"type": "string"}, "URL": {"type": "string", "format": "uri"}, "ORGAO": {"type": "string"}}}},
+    "DATA_CONSULTA": {"type": "string", "format": "date"},
+    "VIGENCIA": {"type": "object", "required": ["INICIO", "FIM", "OBSERVACAO"], "properties": {"INICIO": {"type": ["string", "null"]}, "FIM": {"type": ["string", "null"]}, "OBSERVACAO": {"type": "string"}}},
+    "APLICABILIDADE": {"type": "object", "required": ["REFERENCIAL_CONTABIL", "COMPETENCIA_INICIO", "COMPETENCIA_FIM", "REGIME_TRIBUTARIO", "TIPO_OPERACAO", "UF", "MUNICIPIO", "CONDICOES"], "properties": {"REFERENCIAL_CONTABIL": {"type": "array", "items": {"type": "string"}}, "COMPETENCIA_INICIO": {"type": ["string", "null"]}, "COMPETENCIA_FIM": {"type": ["string", "null"]}, "REGIME_TRIBUTARIO": {"type": "array", "items": {"type": "string"}}, "TIPO_OPERACAO": {"type": "array", "items": {"type": "string"}}, "UF": {"type": "array", "items": {"type": "string"}}, "MUNICIPIO": {"type": "array", "items": {"type": "string"}}, "CONDICOES": {"type": "string"}}},
+    "RESUMO_TECNICO": {"type": "string"},
+    "LIMITACOES": {"type": "array", "items": {"type": "string"}},
+    "STATUS_VERIFICACAO": {"enum": ["VERIFICADO", "PARCIAL", "PENDENTE", "NAO_VERIFICADO"]},
+    "VERSAO": {"type": "string"},
+    "TIPO_CONHECIMENTO": {"enum": ["NORMA_OFICIAL", "INTERPRETACAO_TECNICA", "PROCEDIMENTO_INTERNO", "EXEMPLO_ILUSTRATIVO"]},
+    "ESCOPO": {"type": "object", "required": ["TIPO", "EMPRESA_ID"], "properties": {"TIPO": {"enum": ["GERAL", "EMPRESA"]}, "EMPRESA_ID": {"type": ["string", "null"]}}},
+    "AUTORIZA_DECISAO_AUTOMATICA": {"const": false},
+    "CONFLITO_CHAVE": {"type": ["string", "null"]},
+    "CONFLITO_POSICAO": {"type": ["string", "null"]}
+  },
+  "additionalProperties": true
+}

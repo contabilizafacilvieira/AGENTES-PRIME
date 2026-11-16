@@ -1,0 +1,352 @@
+[
+  {
+    "ID": "REF-CFC",
+    "TITULO": "CFC — NBC e sistema de resoluções",
+    "ASSUNTO": "NBC; resoluções; referenciais",
+    "DEPARTAMENTO": "CONTABILIDADE",
+    "NORMA": "Normas e resoluções do CFC",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "CFC-MPE",
+        "TITULO": "Normas simplificadas para PMEs",
+        "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+        "ORGAO": "CFC"
+      },
+      {
+        "ID": "CFC-ESP",
+        "TITULO": "Normas específicas",
+        "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-especificas/",
+        "ORGAO": "CFC"
+      },
+      {
+        "ID": "CFC-FAQ",
+        "TITULO": "Perguntas frequentes sobre NBC",
+        "URL": "https://cfc.org.br/tecnica/perguntas-frequentes/normas-brasileiras-de-contabilidade/",
+        "ORGAO": "CFC"
+      },
+      {
+        "ID": "SRE-ITG2000",
+        "TITULO": "Resolução 2014/ITG2000(R1)",
+        "URL": "https://www2.cfc.org.br/sisweb/sre/detalhes_sre.aspx?Codigo=2014/ITG2000(R1)&arquivo=ITG2000(R1).doc",
+        "ORGAO": "CFC"
+      },
+      {
+        "ID": "SRE-ITG1000",
+        "TITULO": "Resolução 2022/ITG1000",
+        "URL": "https://www2.cfc.org.br/sisweb/sre/detalhes_sre.aspx?Codigo=2022/ITG1000&arquivo=ITG+1000.doc",
+        "ORGAO": "CFC"
+      },
+      {
+        "ID": "SRE-1001",
+        "TITULO": "Resolução 2021/NBCTG1001",
+        "URL": "https://www2.cfc.org.br/sisweb/sre/detalhes_sre.aspx?Codigo=2021/NBCTG1001&arquivo=NBCTG1001.doc",
+        "ORGAO": "CFC"
+      },
+      {
+        "ID": "SRE-1002",
+        "TITULO": "Resolução 2021/NBCTG1002",
+        "URL": "https://www2.cfc.org.br/sisweb/sre/detalhes_sre.aspx?Codigo=2021/NBCTG1002&arquivo=NBCTG1002.doc",
+        "ORGAO": "CFC"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "Fonte primária para resolução e norma. Conferir alteração, revogação, texto integral e vigência por norma específica.",
+    "LIMITACOES": [],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "NORMA_OFICIAL",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  },
+  {
+    "ID": "REF-CPC",
+    "TITULO": "CPC — documentos emitidos",
+    "ASSUNTO": "pronunciamentos; revisões; interpretações",
+    "DEPARTAMENTO": "CONTABILIDADE",
+    "NORMA": "Pronunciamentos e documentos CPC",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "CPC",
+        "TITULO": "Pronunciamentos emitidos",
+        "URL": "https://www.cpc.org.br/CPC/Documentos-Emitidos/Pronunciamentos/",
+        "ORGAO": "CPC"
+      },
+      {
+        "ID": "CFC-FAQ",
+        "TITULO": "Perguntas frequentes sobre NBC",
+        "URL": "https://cfc.org.br/tecnica/perguntas-frequentes/normas-brasileiras-de-contabilidade/",
+        "ORGAO": "CFC"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "Índice oficial CPC; confirmar formalização como NBC e regulador para força normativa e entidade.",
+    "LIMITACOES": [],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "NORMA_OFICIAL",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  },
+  {
+    "ID": "REF-RFB-SPED",
+    "TITULO": "RFB/SPED — tributação federal e escriturações",
+    "ASSUNTO": "IRPJ; CSLL; ECF; ECD; EFD; manuais",
+    "DEPARTAMENTO": "FISCAL;CONTABILIDADE",
+    "NORMA": "Legislação federal, atos normativos e documentação técnica",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "RFB-ECF",
+        "TITULO": "ECF e tributos da pessoa jurídica",
+        "URL": "https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/perguntas-e-respostas/ecf/",
+        "ORGAO": "Receita Federal"
+      },
+      {
+        "ID": "IN1700",
+        "TITULO": "IN RFB 1.700/2017",
+        "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+        "ORGAO": "Receita Federal"
+      },
+      {
+        "ID": "SPED-ECF",
+        "TITULO": "Escrituração Contábil Fiscal",
+        "URL": "https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf",
+        "ORGAO": "SPED / Receita Federal"
+      },
+      {
+        "ID": "SPED",
+        "TITULO": "Portal SPED",
+        "URL": "https://sped.rfb.gov.br/",
+        "ORGAO": "SPED / Receita Federal"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "Usar texto normativo e versão técnica relativos à competência; FAQ é orientação, não substitui lei/ato.",
+    "LIMITACOES": [],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "NORMA_OFICIAL",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  },
+  {
+    "ID": "REF-ESOCIAL",
+    "TITULO": "eSocial — documentação técnica",
+    "ASSUNTO": "eventos; MOS; XSD; notas técnicas",
+    "DEPARTAMENTO": "DP;FISCAL",
+    "NORMA": "MOS e leiautes por competência",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "ESOCIAL",
+        "TITULO": "Documentação técnica do eSocial",
+        "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/documentacao-tecnica",
+        "ORGAO": "eSocial / Governo Federal"
+      },
+      {
+        "ID": "MOS",
+        "TITULO": "Manuais eSocial",
+        "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais",
+        "ORGAO": "eSocial / Governo Federal"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "Conferir versão efetivamente em produção para evento/data; índice pode mostrar materiais futuros.",
+    "LIMITACOES": [],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "NORMA_OFICIAL",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  },
+  {
+    "ID": "REF-PLANALTO",
+    "TITULO": "Planalto — legislação compilada",
+    "ASSUNTO": "legislação societária; tributária; trabalhista",
+    "DEPARTAMENTO": "TODOS",
+    "NORMA": "Leis, decretos e leis complementares",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "L6404",
+        "TITULO": "Lei 6.404/1976 compilada",
+        "URL": "https://www.planalto.gov.br/ccivil_03/leis/l6404compilada.htm",
+        "ORGAO": "Presidência da República"
+      },
+      {
+        "ID": "LC123",
+        "TITULO": "Lei Complementar 123/2006",
+        "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp123.htm",
+        "ORGAO": "Presidência da República"
+      },
+      {
+        "ID": "LC214",
+        "TITULO": "Lei Complementar 214/2025",
+        "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm",
+        "ORGAO": "Presidência da República"
+      },
+      {
+        "ID": "RIR",
+        "TITULO": "Decreto 9.580/2018 - RIR",
+        "URL": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/decreto/d9580.htm",
+        "ORGAO": "Presidência da República"
+      },
+      {
+        "ID": "CLT",
+        "TITULO": "CLT compilada",
+        "URL": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452compilado.htm",
+        "ORGAO": "Presidência da República"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "Conferir alterações, produção de efeitos, vetos e vigência do dispositivo na competência.",
+    "LIMITACOES": [],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "NORMA_OFICIAL",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  },
+  {
+    "ID": "REF-NFE",
+    "TITULO": "Portal nacional NF-e",
+    "ASSUNTO": "documentos fiscais; MOC; notas técnicas",
+    "DEPARTAMENTO": "FISCAL;DOCUMENTOS",
+    "NORMA": "MOC, anexos e notas técnicas",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "NFE",
+        "TITULO": "Portal Nacional da NF-e - documentação",
+        "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=ndIjl+iEFdE=",
+        "ORGAO": "ENCAT / Administrações Tributárias"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "Portal foi localizado; captura automatizada da página de documentação retornou redirecionamento.",
+    "LIMITACOES": [
+      "Versão do MOC não confirmada nesta consulta; requer conferência manual."
+    ],
+    "STATUS_VERIFICACAO": "PARCIAL",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "NORMA_OFICIAL",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  }
+]

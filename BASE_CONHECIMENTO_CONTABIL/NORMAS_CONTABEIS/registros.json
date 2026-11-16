@@ -1,0 +1,376 @@
+[
+  {
+    "ID": "ITG-2000-R1",
+    "TITULO": "ITG 2000 (R1) — Escrituração Contábil",
+    "ASSUNTO": "escrituração contábil",
+    "DEPARTAMENTO": "CONTABILIDADE",
+    "NORMA": "ITG 2000 (R1)",
+    "DISPOSITIVO": "Resolução CFC 2014/ITG2000(R1)",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "SRE-ITG2000",
+        "TITULO": "Resolução 2014/ITG2000(R1)",
+        "URL": "https://www2.cfc.org.br/sisweb/sre/detalhes_sre.aspx?Codigo=2014/ITG2000(R1)&arquivo=ITG2000(R1).doc",
+        "ORGAO": "CFC"
+      },
+      {
+        "ID": "CFC-ESP",
+        "TITULO": "Normas específicas",
+        "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-especificas/",
+        "ORGAO": "CFC"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": "2014-12-12",
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "O sistema oficial do CFC registra a ITG 2000 (R1) como em vigor, não alterada e não revogada. A ficha confirma identificação e status, não interpreta todos os requisitos do texto.",
+    "LIMITACOES": [
+      "Requisitos por dispositivo ainda não foram catalogados."
+    ],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "NORMA_OFICIAL",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  },
+  {
+    "ID": "ITG-1000",
+    "TITULO": "ITG 1000 — Normas aplicáveis e modelos",
+    "ASSUNTO": "referencial contábil; porte; enquadramento",
+    "DEPARTAMENTO": "CONTABILIDADE",
+    "NORMA": "ITG 1000 itens 1–10",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "ITG1000",
+        "TITULO": "ITG 1000, itens 1–10",
+        "URL": "https://cfc.org.br/wp-content/uploads/2023/01/ITG-1000.pdf",
+        "ORGAO": "CFC"
+      },
+      {
+        "ID": "SRE-ITG1000",
+        "TITULO": "Resolução 2022/ITG1000",
+        "URL": "https://www2.cfc.org.br/sisweb/sre/detalhes_sre.aspx?Codigo=2022/ITG1000&arquivo=ITG+1000.doc",
+        "ORGAO": "CFC"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": "2022-12-26",
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [
+        "NBC TG completas",
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Classificação usa receita bruta do exercício anterior, ativos e obrigação pública de prestação de contas; analisar ressalvas, natureza e regulador e confirmar com Supervisor."
+    },
+    "RESUMO_TECNICO": "A ITG 1000 define porte para fins de NBC e associa, em regra, normas completas a grande porte ou obrigação pública de prestar contas; NBC TG 1000 a médio porte; NBC TG 1001 a pequena empresa; NBC TG 1002 a microentidade. Itens 6–10 incluem ressalvas e adoção de normas superiores.",
+    "LIMITACOES": [
+      "Entidades fechadas e optantes pelo Lucro Real exigem análise das ressalvas do item 10.",
+      "Reavaliar limites se alterada a legislação referenciada."
+    ],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "NORMA_OFICIAL",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  },
+  {
+    "ID": "NBC-TG-1000-R1",
+    "TITULO": "NBC TG 1000 (R1) — Contabilidade para PMEs",
+    "ASSUNTO": "referencial contábil; reconhecimento; mensuração",
+    "DEPARTAMENTO": "CONTABILIDADE",
+    "NORMA": "NBC TG 1000 (R1)",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "CFC-MPE",
+        "TITULO": "Normas simplificadas para PMEs",
+        "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+        "ORGAO": "CFC"
+      },
+      {
+        "ID": "ITG1000",
+        "TITULO": "ITG 1000, itens 1–10",
+        "URL": "https://cfc.org.br/wp-content/uploads/2023/01/ITG-1000.pdf",
+        "ORGAO": "CFC"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [
+        "NBC TG 1000 (R1)"
+      ],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar porte, obrigação pública de prestar contas, regulador e escolha do referencial com Supervisor."
+    },
+    "RESUMO_TECNICO": "O CFC lista a NBC TG 1000 (R1); a ITG 1000 relaciona sua adoção, em regra, às entidades de médio porte, ressalvadas as normas completas.",
+    "LIMITACOES": [
+      "Texto integral e atualizações por seção ainda não mapeados."
+    ],
+    "STATUS_VERIFICACAO": "PARCIAL",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "NORMA_OFICIAL",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  },
+  {
+    "ID": "NBC-TG-1001",
+    "TITULO": "NBC TG 1001 — Contabilidade para Pequenas Empresas",
+    "ASSUNTO": "referencial contábil; pequena empresa",
+    "DEPARTAMENTO": "CONTABILIDADE",
+    "NORMA": "Resolução CFC 2021/NBCTG1001; ITG 1000 itens 5–10",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "SRE-1001",
+        "TITULO": "Resolução 2021/NBCTG1001",
+        "URL": "https://www2.cfc.org.br/sisweb/sre/detalhes_sre.aspx?Codigo=2021/NBCTG1001&arquivo=NBCTG1001.doc",
+        "ORGAO": "CFC"
+      },
+      {
+        "ID": "ITG1000",
+        "TITULO": "ITG 1000, itens 1–10",
+        "URL": "https://cfc.org.br/wp-content/uploads/2023/01/ITG-1000.pdf",
+        "ORGAO": "CFC"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": "2021-12-09",
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [
+        "NBC TG 1001"
+      ],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Aplicar critérios e ressalvas da ITG 1000; confirmação do Supervisor requerida."
+    },
+    "RESUMO_TECNICO": "Cadastro CFC registra a resolução como em vigor, não alterada e não revogada. ITG 1000 associa-a, em regra, à pequena empresa dentro dos critérios de porte contábil.",
+    "LIMITACOES": [
+      "Verificação de status e enquadramento, não de cada requisito técnico."
+    ],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "NORMA_OFICIAL",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  },
+  {
+    "ID": "NBC-TG-1002",
+    "TITULO": "NBC TG 1002 — Contabilidade para Microentidades",
+    "ASSUNTO": "referencial contábil; microentidade",
+    "DEPARTAMENTO": "CONTABILIDADE",
+    "NORMA": "Resolução CFC 2021/NBCTG1002; ITG 1000 itens 5–10",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "SRE-1002",
+        "TITULO": "Resolução 2021/NBCTG1002",
+        "URL": "https://www2.cfc.org.br/sisweb/sre/detalhes_sre.aspx?Codigo=2021/NBCTG1002&arquivo=NBCTG1002.doc",
+        "ORGAO": "CFC"
+      },
+      {
+        "ID": "ITG1000",
+        "TITULO": "ITG 1000, itens 1–10",
+        "URL": "https://cfc.org.br/wp-content/uploads/2023/01/ITG-1000.pdf",
+        "ORGAO": "CFC"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": "2021-12-09",
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [
+        "NBC TG 1002"
+      ],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Classificar por porte contábil e ressalvas da ITG 1000. Simples Nacional, isoladamente, não define este referencial."
+    },
+    "RESUMO_TECNICO": "Cadastro CFC registra a resolução como em vigor, não alterada e não revogada. ITG 1000 associa-a, em regra, à microentidade, sem afastar as ressalvas e opções por norma superior.",
+    "LIMITACOES": [
+      "Conteúdo detalhado e atualizações da NBC não estão mapeados."
+    ],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "NORMA_OFICIAL",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  },
+  {
+    "ID": "CFC-RECEPCAO-CPC",
+    "TITULO": "Pronunciamento CPC e formalização como NBC",
+    "ASSUNTO": "hierarquia normativa; CPC; NBC",
+    "DEPARTAMENTO": "CONTABILIDADE",
+    "NORMA": "FAQ CFC, perguntas sobre força normativa e elaboração das NBC",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "CFC-FAQ",
+        "TITULO": "Perguntas frequentes sobre NBC",
+        "URL": "https://cfc.org.br/tecnica/perguntas-frequentes/normas-brasileiras-de-contabilidade/",
+        "ORGAO": "CFC"
+      },
+      {
+        "ID": "CPC",
+        "TITULO": "Pronunciamentos emitidos",
+        "URL": "https://www.cpc.org.br/CPC/Documentos-Emitidos/Pronunciamentos/",
+        "ORGAO": "CPC"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Localizar a NBC formalizadora e ato do regulador aplicável, na versão vigente para entidade e competência."
+    },
+    "RESUMO_TECNICO": "CFC informa que documentos CPC são recepcionados em NBC e adquirem força normativa quando formalizados pelo CFC; reguladores podem aprová-los para entidades supervisionadas.",
+    "LIMITACOES": [
+      "Documento CPC isolado não prova aplicabilidade de requisito específico."
+    ],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "NORMA_OFICIAL",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  },
+  {
+    "ID": "CPC-00",
+    "TITULO": "Estrutura conceitual — referência e correlação NBC",
+    "ASSUNTO": "ativo; passivo; patrimônio líquido; receita; despesa; reconhecimento; mensuração",
+    "DEPARTAMENTO": "CONTABILIDADE",
+    "NORMA": "CPC 00 e NBC formalizada correspondente a identificar",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "CPC",
+        "TITULO": "Pronunciamentos emitidos",
+        "URL": "https://www.cpc.org.br/CPC/Documentos-Emitidos/Pronunciamentos/",
+        "ORGAO": "CPC"
+      },
+      {
+        "ID": "CFC-FAQ",
+        "TITULO": "Perguntas frequentes sobre NBC",
+        "URL": "https://cfc.org.br/tecnica/perguntas-frequentes/normas-brasileiras-de-contabilidade/",
+        "ORGAO": "CFC"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [
+        "NBC TG completas",
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "CPC publica documentos de Estrutura Conceitual; para base normativa, localizar a NBC recepcionada pertinente ao referencial e à competência.",
+    "LIMITACOES": [
+      "Não enuncia critérios detalhados de reconhecimento ou mensuração."
+    ],
+    "STATUS_VERIFICACAO": "PARCIAL",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  }
+]

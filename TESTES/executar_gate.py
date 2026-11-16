@@ -10,6 +10,7 @@ de cada bateria ficam numa pasta temporária (indicada no final), fora do reposi
 Lista oficial e justificativas (inclusive das baterias LEGADAS, fora do gate): TESTES/GATE-RELEASE.md.
 """
 import hashlib
+import os
 import subprocess
 import sys
 import tempfile
@@ -17,7 +18,8 @@ import time
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[1]
-PY = str(RAIZ / ".venv" / "Scripts" / "python.exe") if (RAIZ / ".venv" / "Scripts" / "python.exe").exists() else sys.executable
+_PY_VENV = RAIZ / ".venv" / (Path("Scripts") / "python.exe" if os.name == "nt" else Path("bin") / "python")
+PY = str(_PY_VENV) if _PY_VENV.exists() else sys.executable
 
 # (área, arquivo) — ordem: unitários rápidos primeiro, navegador e percursos depois
 GATE = [
@@ -28,6 +30,7 @@ GATE = [
     ("GUARDA", "TESTES/T004/testar_guarda.py"),
     ("COORDENADOR", "TESTES/COORD/testar_coordenador.py"),
     ("API LOCAL / SEGURANÇA", "TESTES/API/testar_api.py"),
+    ("SEPARAÇÃO REAL / DEMO / TESTE", "TESTES/API/testar_separacao_ambientes.py"),
     ("REPROCESSAMENTO", "TESTES/API/testar_ciclo_reprocessamento.py"),
     ("REPROCESSAMENTO / TENTATIVA LEGADA", "TESTES/API/testar_reconciliacao_legada.py"),
     ("DOCUMENTO COMPLEMENTAR / PACOTE EFETIVO", "TESTES/API/testar_documento_complementar.py"),
@@ -35,6 +38,10 @@ GATE = [
     ("CHECKPOINT APÓS FINANCEIRO / ROTA SEGURA", "TESTES/API/testar_checkpoint_financeiro.py"),
     ("FECHAMENTO / PRÉVIA E INTERCÂMBIO", "TESTES/API/testar_previa_fechamento.py"),
     ("MULTIEMPRESA / ISOLAMENTO", "TESTES/API/testar_multiempresa.py"),
+    ("BASE DE CONHECIMENTO / CONSULTA", "BASE_CONHECIMENTO_CONTABIL/tests/test_consulta.py"),
+    ("BASE DE CONHECIMENTO / FINANCEIRO 03D", "BASE_CONHECIMENTO_CONTABIL/tests/test_etapa03d_financeiro.py"),
+    ("BASE DE CONHECIMENTO / FISCAL 03E", "BASE_CONHECIMENTO_CONTABIL/tests/test_etapa03e_fiscal.py"),
+    ("BASE DE CONHECIMENTO / DP 03F", "BASE_CONHECIMENTO_CONTABIL/tests/test_etapa03f_dp.py"),
     ("DOCUMENTOS", "TESTES/LOCAL/testar_pdf_local.py"),
     ("DOCUMENTOS", "TESTES/LOCAL/testar_triagem_documentos.py"),
     ("DOCUMENTOS", "TESTES/LOCAL/testar_salvaguardas_documentos.py"),
@@ -127,7 +134,9 @@ def main() -> int:
             cmd = cmd[:3]                              # só as baterias de tela aceitam pasta de capturas
         ini = time.time()
         try:
-            p = subprocess.run(cmd, cwd=RAIZ, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=1800)
+            ambiente_teste = os.environ.copy()
+            ambiente_teste["AGENTES_PRIME_MODO_TESTE"] = "1"
+            p = subprocess.run(cmd, cwd=RAIZ, env=ambiente_teste, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=1800)
             codigo, texto = p.returncode, (p.stdout or "") + "\n--- stderr ---\n" + (p.stderr or "")
         except subprocess.TimeoutExpired as e:
             codigo, texto = "TEMPO_ESGOTADO", str(e.stdout or "")

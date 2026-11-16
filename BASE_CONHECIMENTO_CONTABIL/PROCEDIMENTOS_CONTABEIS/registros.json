@@ -1,0 +1,114 @@
+[
+  {
+    "ID": "PROC-RECONHECIMENTO",
+    "TITULO": "Roteiro de pesquisa para reconhecimento contábil",
+    "ASSUNTO": "escrituração; partidas dobradas; competência; reconhecimento; mensuração; apresentação",
+    "DEPARTAMENTO": "CONTABILIDADE",
+    "NORMA": "NBC específica do fato conforme referencial",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "CPC",
+        "TITULO": "Pronunciamentos emitidos",
+        "URL": "https://www.cpc.org.br/CPC/Documentos-Emitidos/Pronunciamentos/",
+        "ORGAO": "CPC"
+      },
+      {
+        "ID": "CFC-FAQ",
+        "TITULO": "Perguntas frequentes sobre NBC",
+        "URL": "https://cfc.org.br/tecnica/perguntas-frequentes/normas-brasileiras-de-contabilidade/",
+        "ORGAO": "CFC"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "Método: confirmar entidade e referencial, descrever fato, separar evidência de interpretação, localizar NBC específica vigente e então preparar proposta para revisão.",
+    "LIMITACOES": [
+      "Roteiro interno; não é norma nem autorização de lançamento."
+    ],
+    "STATUS_VERIFICACAO": "PARCIAL",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "PROCEDIMENTO_INTERNO",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": [
+      "AGENTES/CONTABILIDADE/BANCOS/PROCEDIMENTO.md",
+      "AGENTS.md"
+    ]
+  },
+  {
+    "ID": "PROC-TEMAS-CONTABEIS",
+    "TITULO": "Índice de temas para aprofundamento por referencial",
+    "ASSUNTO": "estoques; CMV; imobilizado; depreciação; intangível; amortização; impairment; provisões; contingências; instrumentos financeiros; arrendamentos; receitas de contratos; variação cambial; benefícios a empregados; tributos sobre lucro; políticas; estimativas; erros; demonstrações",
+    "DEPARTAMENTO": "CONTABILIDADE",
+    "NORMA": "NBCs específicas conforme referencial e competência",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "CPC",
+        "TITULO": "Pronunciamentos emitidos",
+        "URL": "https://www.cpc.org.br/CPC/Documentos-Emitidos/Pronunciamentos/",
+        "ORGAO": "CPC"
+      },
+      {
+        "ID": "CFC-MPE",
+        "TITULO": "Normas simplificadas para PMEs",
+        "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+        "ORGAO": "CFC"
+      },
+      {
+        "ID": "CFC-ESP",
+        "TITULO": "Normas específicas",
+        "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-especificas/",
+        "ORGAO": "CFC"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "Catálogo temático para mapear cada critério, norma recepcionada, vigência, exemplo fictício e sinal de julgamento profissional.",
+    "LIMITACOES": [
+      "Esta ficha não contém regra detalhada por tema.",
+      "Histórico não é fundamento normativo."
+    ],
+    "STATUS_VERIFICACAO": "PENDENTE",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  }
+]

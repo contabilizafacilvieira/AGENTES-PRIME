@@ -1145,6 +1145,7 @@ body.cr-aberta .gestao { display: none; }
 .amb-faixa { flex: 0 0 auto; padding: 5px 12px; font-weight: 700; letter-spacing: .04em; text-align: center; font-size: 13px; }
 .amb-real { background: #7a1f1f; color: #fff; border-bottom: 2px solid #ff6b6b; }
 .amb-demo { background: #6b4e00; color: #fff; border-bottom: 2px solid var(--destaque); }
+.amb-teste { background: #3e376f; color: #fff; border-bottom: 2px solid #aaa1ff; }
 
 /* ============================================================ prévia do fechamento */
 .ac-painel-fechamento { overflow-x: auto; }

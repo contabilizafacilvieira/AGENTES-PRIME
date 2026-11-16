@@ -1,0 +1,158 @@
+[
+  {
+    "ID": "CI-PROVENIENCIA",
+    "TITULO": "Proveniência e integridade das fontes e documentos",
+    "ASSUNTO": "documentação hábil; integridade; proveniência; duplicidades",
+    "DEPARTAMENTO": "DOCUMENTOS;COORDENADOR;TODOS",
+    "NORMA": "Controles internos e contratos do projeto",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "Registrar origem, empresa, competência, versão e SHA dos documentos/resultados. Alteração de fonte exige revisão conforme contrato; integridade não prova autenticidade jurídica ou suficiência probatória.",
+    "LIMITACOES": [],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "PROCEDIMENTO_INTERNO",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": [
+      "AGENTS.md",
+      "GUIA-FECHAMENTO-PILOTO.md"
+    ]
+  },
+  {
+    "ID": "CI-REVISAO",
+    "TITULO": "Pendências, dependências, materialidade e supervisão",
+    "ASSUNTO": "checklists; dependências; evidências; bloqueios; auditoria",
+    "DEPARTAMENTO": "COORDENADOR;SUPERVISOR;TODOS",
+    "NORMA": "Procedimentos internos por área",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "Coordenador identifica departamentos e normas potencialmente aplicáveis, registra fontes e dependências e encaminha bloqueios. Materialidade depende de política e contexto; nenhum limiar universal é fixado.",
+    "LIMITACOES": [],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "PROCEDIMENTO_INTERNO",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": [
+      "AGENTS.md",
+      "AGENTES/CONCILIACAO/PROCEDIMENTO.md"
+    ]
+  },
+  {
+    "ID": "CI-FINANCEIRO-NATUREZA",
+    "TITULO": "Movimento financeiro isolado não define natureza contábil",
+    "ASSUNTO": "extrato; pagamentos; recebimentos; adiantamentos; transferência; estorno",
+    "DEPARTAMENTO": "FINANCEIRO;CONTABILIDADE;CONCILIACAO",
+    "NORMA": "Procedimentos internos; NBC específica da operação a consultar",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "Separar reconhecimento, provisão, liquidação, adiantamento, transferência e estorno. Pagamento bancário isolado não determina despesa, conta contábil, dedutibilidade ou suporte; localizar fato e documento.",
+    "LIMITACOES": [],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "PROCEDIMENTO_INTERNO",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": [
+      "AGENTS.md",
+      "AGENTES/FINANCEIRO/PROCEDIMENTO.md",
+      "AGENTES/CONTABILIDADE/BANCOS/PROCEDIMENTO.md"
+    ]
+  },
+  {
+    "ID": "CI-CONCILIACAO-SUPORTE",
+    "TITULO": "Conciliação matemática não prova suporte documental",
+    "ASSUNTO": "bancos; saldos; composições; diferenças; pendências; ajustes",
+    "DEPARTAMENTO": "CONCILIACAO",
+    "NORMA": "Procedimento geral de Conciliação do projeto",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "Distinguir saldo contábil, composição, evidência documental, diferença, pendência e ajuste proposto. Conciliação não corrige, não aprova nem escritura; concordância interna não é confirmação independente.",
+    "LIMITACOES": [],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "PROCEDIMENTO_INTERNO",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": [
+      "AGENTES/CONCILIACAO/PROCEDIMENTO.md"
+    ]
+  }
+]

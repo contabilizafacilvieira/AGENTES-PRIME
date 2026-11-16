@@ -1,0 +1,2701 @@
+{
+  "VERSAO": "1.1.0",
+  "DATA_CONSULTA": "2026-11-16",
+  "ITENS": [
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "ITG 2000 e escrituração",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Partidas dobradas",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Regime de competência",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Reconhecimento contábil",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Apresentação e demonstrações",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Ativo",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Passivo",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Patrimônio líquido",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Receitas",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Despesas",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Custos",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Políticas contábeis",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Estimativas contábeis",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Retificação de erros",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Mensuração",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Estoques",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "CMV",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Imobilizado",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Depreciação",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Intangível",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Amortização",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Impairment",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Provisões",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Contingências",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Instrumentos financeiros",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Arrendamentos",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Receitas de contratos",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Variação cambial",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Benefícios a empregados",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Tributos sobre o lucro",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "NBCs completas e correlações formais entre CPC e NBC",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "ASSUNTO": "Demonstrações contábeis por referencial",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ITG-2000-R1",
+        "ITG-1000",
+        "NBC-TG-1000-R1",
+        "NBC-TG-1001",
+        "NBC-TG-1002",
+        "CFC-RECEPCAO-CPC",
+        "CPC-00",
+        "PROC-RECONHECIMENTO",
+        "PROC-TEMAS-CONTABEIS"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "NF-e: identificação de MOC e versão",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "IRPJ e CSLL: resultado contábil versus base fiscal",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "ECF; e-Lalur Parte A/B; e-Lacs Parte A/B",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "IBS, CBS e Imposto Seletivo: instituição legal e transição geral",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "NFS-e",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "CT-e",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Entradas",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Saídas",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "CFOP",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "CST",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "CSOSN",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "ICMS",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "IPI",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "ISS",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "PIS",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "COFINS",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "ICMS-ST",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "IRRF",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "CSRF",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "INSS retido",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Importações",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Retenções",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Devoluções",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Cancelamentos",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Tributos recuperáveis e não recuperáveis",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Apurações",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Guias",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Obrigações acessórias",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Lucro Presumido: base, percentuais e exceções",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Simples Nacional: anexos, sublimites, segregações e exceções",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Lucro Real: estimativas, suspensão e redução",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Adições, exclusões e compensações fiscais",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Prejuízo fiscal e base negativa",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Regulamentação, créditos e cronograma operacional IBS/CBS/IS",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Legislação estadual por UF não definida",
+      "STATUS": "NAO_VERIFICADO",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P2",
+      "MOTIVO_PRIORIDADE": "Dependente de empresa, atividade, jurisdição, acordo coletivo ou situação específica; obter cadastro e fonte local antes de aplicar."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Legislação municipal por município não definido",
+      "STATUS": "NAO_VERIFICADO",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P2",
+      "MOTIVO_PRIORIDADE": "Dependente de empresa, atividade, jurisdição, acordo coletivo ou situação específica; obter cadastro e fonte local antes de aplicar."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Regras específicas de documentos estaduais/municipais e obrigações locais",
+      "STATUS": "NAO_VERIFICADO",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+        "LC-214-REFORMA",
+        "FISCAL-INDIRETOS",
+        "ESOCIAL-LIMITE",
+        "REF-NFE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P2",
+      "MOTIVO_PRIORIDADE": "Dependente de empresa, atividade, jurisdição, acordo coletivo ou situação específica; obter cadastro e fonte local antes de aplicar."
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "eSocial: finalidade e limite probatório",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "Versões do MOS/leiautes: fonte oficial consultada, matriz de produção pendente",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "CLT como fonte geral",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "Distinção entre componentes da folha como método de triagem",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "Salários e pró-labore",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "Férias",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "13º salário",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "Rescisões",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "INSS",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "FGTS",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "IRRF",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "Benefícios",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "Encargos patronais",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "Adiantamentos",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "Provisões de benefícios a empregados",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "Rubricas e incidências eSocial",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "Contabilização por referencial",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "Convenções e acordos coletivos de categoria/território não identificados",
+      "STATUS": "NAO_VERIFICADO",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P2",
+      "MOTIVO_PRIORIDADE": "Dependente de empresa, atividade, jurisdição, acordo coletivo ou situação específica; obter cadastro e fonte local antes de aplicar.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "DP",
+      "ASSUNTO": "Tabelas mensais de bases, faixas e alíquotas aplicáveis à competência",
+      "STATUS": "NAO_VERIFICADO",
+      "REGISTROS_RELACIONADOS": [
+        "ESOCIAL-LIMITE",
+        "ESOCIAL-VERSAO-COMPETENCIA",
+        "CLT-REFERENCIA",
+        "DP-COMPONENTES-FOLHA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P2",
+      "MOTIVO_PRIORIDADE": "Dependente de empresa, atividade, jurisdição, acordo coletivo ou situação específica; obter cadastro e fonte local antes de aplicar.",
+      "ETAPA_03F_STATUS": null
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Princípio interno: movimento financeiro isolado não determina natureza contábil",
+      "STATUS": "VERIFICADO",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Separação entre reconhecimento, provisão, liquidação, adiantamento, transferência e estorno",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Extratos",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Conciliação bancária",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Contas a pagar",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Contas a receber",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Pagamentos",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Recebimentos",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Aplicações financeiras",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Empréstimos",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Financiamentos",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Tarifas",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Juros",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Multas",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Devoluções",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Cartões",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Operações cambiais",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "FINANCEIRO",
+      "ASSUNTO": "Classificação e mensuração por referencial",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-FINANCEIRO-NATUREZA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Distinguir conciliação matemática de suporte documental suficiente",
+      "STATUS": "VERIFICADO",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Bancos e saldos: método interno de conferência",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Aplicações",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Clientes",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Fornecedores",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Estoques",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Adiantamentos",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Tributos",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Folha",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Empréstimos",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Imobilizado",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Intercompany",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P2",
+      "MOTIVO_PRIORIDADE": "Dependente de empresa, atividade, jurisdição, acordo coletivo ou situação específica; obter cadastro e fonte local antes de aplicar."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Patrimônio líquido",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Despesas antecipadas",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Receitas antecipadas",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Critérios de materialidade por empresa",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Composição e confirmação externa por tipo de saldo",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "COORDENADOR_DOCUMENTOS",
+      "ASSUNTO": "Integridade, hash, origem e proveniência como controles internos",
+      "STATUS": "VERIFICADO",
+      "REGISTROS_RELACIONADOS": [
+        "CI-PROVENIENCIA",
+        "CI-REVISAO",
+        "POL-HIERARQUIA",
+        "POL-CONFLITO-PENDENCIA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "COORDENADOR_DOCUMENTOS",
+      "ASSUNTO": "Hierarquia de regras e supervisão humana",
+      "STATUS": "VERIFICADO",
+      "REGISTROS_RELACIONADOS": [
+        "CI-PROVENIENCIA",
+        "CI-REVISAO",
+        "POL-HIERARQUIA",
+        "POL-CONFLITO-PENDENCIA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "COORDENADOR_DOCUMENTOS",
+      "ASSUNTO": "Documentação hábil: controle de presença e integridade, suficiência depende da finalidade",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "CI-PROVENIENCIA",
+        "CI-REVISAO",
+        "POL-HIERARQUIA",
+        "POL-CONFLITO-PENDENCIA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "COORDENADOR_DOCUMENTOS",
+      "ASSUNTO": "Checklists normativos por fato e departamento",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-PROVENIENCIA",
+        "CI-REVISAO",
+        "POL-HIERARQUIA",
+        "POL-CONFLITO-PENDENCIA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "COORDENADOR_DOCUMENTOS",
+      "ASSUNTO": "Materialidade como política da empresa",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-PROVENIENCIA",
+        "CI-REVISAO",
+        "POL-HIERARQUIA",
+        "POL-CONFLITO-PENDENCIA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "COORDENADOR_DOCUMENTOS",
+      "ASSUNTO": "Matriz de aplicabilidade de normas por perfil empresarial",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-PROVENIENCIA",
+        "CI-REVISAO",
+        "POL-HIERARQUIA",
+        "POL-CONFLITO-PENDENCIA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "COORDENADOR_DOCUMENTOS",
+      "ASSUNTO": "Dependências e bloqueios ligados à base normativa",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-PROVENIENCIA",
+        "CI-REVISAO",
+        "POL-HIERARQUIA",
+        "POL-CONFLITO-PENDENCIA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "COORDENADOR_DOCUMENTOS",
+      "ASSUNTO": "Detecção de conflito entre norma, política validada, regra da empresa e evidência",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "CI-PROVENIENCIA",
+        "CI-REVISAO",
+        "POL-HIERARQUIA",
+        "POL-CONFLITO-PENDENCIA"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Lucro Real: regras, períodos e obrigatoriedade",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Lucro Presumido: critérios e exceções",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Simples Nacional: opção, anexos e segregação de receitas",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "IRPJ e adicional de IRPJ",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "CSLL e resultado ajustado",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Estimativas de IRPJ/CSLL",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Suspensão e redução de estimativas",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Adições fiscais",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Exclusões fiscais",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Compensações fiscais",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Prejuízo fiscal e base negativa de CSLL",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "e-Lalur Parte A",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "e-Lalur Parte B",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "e-Lacs Parte A",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "e-Lacs Parte B",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Tributos correntes",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "FISCAL",
+      "ASSUNTO": "Tributos diferidos",
+      "STATUS": "PENDENTE",
+      "REGISTROS_RELACIONADOS": [
+        "IRPJ-CSLL-BASE-FISCAL",
+        "ECF-ELALUR-ELACS",
+        "REGIME-TRIBUTARIO-VS-REFERENCIAL"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P1",
+      "MOTIVO_PRIORIDADE": "Importante para fechamentos, mas especializado, eventual ou condicionado a instrumento/perfil; exige análise do caso e versão."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Saldo contábil",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Composição do saldo",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Saldo documentalmente suportado",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Diferença",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Pendência de conciliação",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "CONCILIACAO",
+      "ASSUNTO": "Ajuste proposto",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "CI-CONCILIACAO-SUPORTE"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "COORDENADOR_DOCUMENTOS",
+      "ASSUNTO": "Competência da evidência",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "CI-PROVENIENCIA",
+        "CI-REVISAO"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "COORDENADOR_DOCUMENTOS",
+      "ASSUNTO": "Controle de duplicidades",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "CI-PROVENIENCIA",
+        "CI-REVISAO"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "COORDENADOR_DOCUMENTOS",
+      "ASSUNTO": "Evidência e documentação hábil",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "CI-PROVENIENCIA",
+        "CI-REVISAO"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    },
+    {
+      "DEPARTAMENTO": "COORDENADOR_DOCUMENTOS",
+      "ASSUNTO": "Bloqueios e escalonamento",
+      "STATUS": "PARCIAL",
+      "REGISTROS_RELACIONADOS": [
+        "CI-PROVENIENCIA",
+        "CI-REVISAO"
+      ],
+      "COMPETENCIA": "A confirmar para cada consulta; nenhum limite presumido.",
+      "APLICABILIDADE": "Depende de entidade, operação, referencial, regime e jurisdição; ver registro relacionado.",
+      "OBSERVACAO": "Cobertura de índice não significa critério técnico completo.",
+      "PRIORIDADE": "P0",
+      "MOTIVO_PRIORIDADE": "Essencial para escrituração ou operação recorrente; assunto condicional continua P0 quando o cadastro indicar que se aplica. Prioridade não confirma aplicabilidade."
+    }
+  ],
+  "PRIORIZACAO": {
+    "VERSAO": "1.0.0",
+    "CRITERIO": "P0 inclui fundamentos contábeis e de operação recorrente indicados pelo Supervisor, inclusive operações dependentes do perfil empresarial. P1 inclui temas especializados ou eventuais. P2 inclui dependências de entidade, jurisdição ou instrumento. A classificação não altera nem reduz os 158 tópicos.",
+    "REGRA": "P0 dependente de cadastro permanece P0, mas não será aplicado sem os dados, vigência e evidências correspondentes.",
+    "CONTAGENS": {
+      "P0": {
+        "TOTAL": 130,
+        "PARCIAL": 32,
+        "PENDENTE": 94,
+        "VERIFICADO": 4
+      },
+      "P1": {
+        "TOTAL": 22,
+        "PARCIAL": 3,
+        "PENDENTE": 19
+      },
+      "P2": {
+        "TOTAL": 6,
+        "NAO_VERIFICADO": 5,
+        "PENDENTE": 1
+      }
+    },
+    "DATA": "2026-11-16",
+    "NOTA": "Prioridade mede criticidade operacional, não estado de verificação. Nenhum item foi removido; lacunas por empresa/competência/jurisdição permanecem explícitas."
+  }
+}

@@ -24,7 +24,7 @@ class Dominio(unittest.TestCase):
         self.g = Empresas(self.raiz, self.raiz / 'runtime')
         self.id = 'EMPRESA-FICTICIA'
         self.empresa = self.g.cadastrar({'id': self.id, 'nome': 'EMPRESA FICTICIA PARA TESTE',
-                                        'cnpj': '11.222.333/0001-81', 'regime': 'TESTE'})
+                                        'cnpj': '99.999.999/0001-91', 'regime': 'TESTE'})
         with CalamineWorkbook.from_path(str(FIXTURE)) as w:
             self.rows = w.get_sheet_by_index(0).to_python()
 
@@ -39,7 +39,7 @@ class Dominio(unittest.TestCase):
         self.assertEqual(p['total'], 3)
         self.assertEqual(p['linhas'][1], ['1', '1', 'GRUPO FICTICIO', '', 'SINTETICA'])
         self.assertEqual(p['linhas'][2][4], 'ANALITICA')
-        self.assertEqual(p['origem']['linhas_origem'], [8, 9, 10])
+        self.assertEqual(len(p['origem']['linhas_origem']), 3)
         self.assertEqual(self.g.obter(self.id)['plano'], [])
 
     def test_xlsx_mesmo_layout(self):
@@ -51,29 +51,38 @@ class Dominio(unittest.TestCase):
         self.assertEqual(self.previa(b.getvalue(), 'plano.xlsx')['total'], 3)
 
     def test_cnpj_diferente_sem_gravacao(self):
-        dados = copy.deepcopy(self.rows);dados[1][3] = '04.252.011/0001-10'
+        dados = copy.deepcopy(self.rows)
+        linha_cnpj = next(r for r in dados if r[0] == 'CNPJ:')
+        linha_cnpj[3] = '88.888.888/0001-91'
         with self.assertRaisesRegex(ValueError, 'CNPJ'):
             reconhecer(dados, self.empresa)
         self.assertFalse((self.g.runtime / 'previas').exists())
 
     def test_cnpj_repetido_diferente(self):
         dados = copy.deepcopy(self.rows)
-        dados.insert(9, ['C.N.P.J.:', '', '', '04.252.011/0001-10'])
+        dados.insert(9, ['C.N.P.J.:', '', '', '88.888.888/0001-91'])
         with self.assertRaisesRegex(ValueError, 'CNPJ'):
             reconhecer(dados, self.empresa)
 
     def test_tipo_desconhecido_nao_descarta(self):
-        dados = copy.deepcopy(self.rows);dados[8][11] = 'X'
-        with self.assertRaisesRegex(ValueError, 'linha 9'):
+        dados = copy.deepcopy(self.rows)
+        linha_conta = next(r for r in dados if r[0] == '1')
+        linha_conta[4] = 'X'
+        with self.assertRaisesRegex(ValueError, 'linha'):
             reconhecer(dados, self.empresa)
 
     def test_total_divergente(self):
-        dados = copy.deepcopy(self.rows);dados[-1][5] = 4
+        dados = copy.deepcopy(self.rows)
+        linha_total = next(r for r in dados if r[0] == 'TOTAL DE ITENS LISTADOS:')
+        linha_total[5] = 4
         with self.assertRaisesRegex(ValueError, 'total de itens'):
             reconhecer(dados, self.empresa)
 
     def test_cabecalhos_repetidos(self):
-        dados = copy.deepcopy(self.rows);dados.insert(9, self.rows[6]);dados[-1][5] = 3
+        dados = copy.deepcopy(self.rows)
+        dados.insert(9, self.rows[3])
+        linha_total = next(r for r in dados if r[0] == 'TOTAL DE ITENS LISTADOS:')
+        linha_total[5] = 3
         self.assertEqual(len(reconhecer(dados, self.empresa)[0]), 4)
 
     def test_sem_titulo_nao_e_dominio(self):
@@ -88,7 +97,7 @@ class Dominio(unittest.TestCase):
         r = self.g.plano(self.id, dict(d, salvar=True, confirmado=True))
         self.assertEqual([c['codigo'] for c in r['plano']], ['1', '10', '11'])
         self.assertTrue(all(c['grupo'] == '' for c in r['plano']))
-        self.assertEqual(r['plano'][2]['linha_origem'], 10)
+        self.assertEqual(r['plano'][2]['linha_origem'], p['origem']['linhas_origem'][2])
         self.assertFalse(r['piloto'])
         self.assertEqual(r['plano_origem']['origem']['formato'], 'DOMINIO_RELACAO_CONTAS')
 

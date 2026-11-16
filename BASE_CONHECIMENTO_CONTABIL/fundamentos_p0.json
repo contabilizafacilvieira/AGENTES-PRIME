@@ -1,0 +1,2600 @@
+{
+  "VERSAO": "1.2.1",
+  "DATA_CONSULTA": "2026-11-16",
+  "REGISTROS": [
+    {
+      "ID": "P0-COMPETENCIA",
+      "TITULO": "Regime de competência",
+      "ASSUNTO": "competência; reconhecimento versus pagamento",
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "NORMA": "ITG 2000 (R1); NBC TG 1001; NBC TG 1002",
+      "DISPOSITIVO": "NBC TG 1001, item 2.11; NBC TG 1002, P10; NBC TG 1000 (R1), item 2.36; ITG 2000 (R1), itens 5–8",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta aos textos oficiais em 16/11/2026. Confirmar atos alteradores e efeitos da competência antes do uso; escopo está limitado aos dispositivos listados."
+      },
+      "APLICABILIDADE": {
+        "REFERENCIAL_CONTABIL": [
+          "NBC TG 1000 (R1)",
+          "NBC TG 1001",
+          "NBC TG 1002"
+        ],
+        "COMPETENCIA_INICIO": null,
+        "COMPETENCIA_FIM": null,
+        "REGIME_TRIBUTARIO": [],
+        "TIPO_OPERACAO": [],
+        "UF": [],
+        "MUNICIPIO": [],
+        "CONDICOES": "Determinar fato gerador contábil, período, direito/obrigação e critério da norma aplicável."
+      },
+      "RESUMO_TECNICO": "Fatos e efeitos são reconhecidos no período em que ocorrem; o recebimento ou pagamento em caixa não escolhe, por si, o período contábil. Fluxo de caixa é apresentado separadamente.",
+      "LIMITACOES": [
+        "Demonstração de fluxos de caixa tem base de caixa; regime de caixa para finalidade tributária não converte a demonstração contábil em regime de caixa.",
+        "Competência errada desloca ativos, passivos e resultado entre períodos.",
+        "Não generalizar estas seções simplificadas para referenciais completos, reguladores setoriais ou outra entidade sem verificar a norma correspondente."
+      ],
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "VERSAO": "1.0.0",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "ESCOPO": {
+        "TIPO": "GERAL",
+        "EMPRESA_ID": null
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "CONCEITO": "competência; reconhecimento versus pagamento",
+      "CONDICOES_RECONHECIMENTO": "Determinar fato gerador contábil, período, direito/obrigação e critério da norma aplicável.",
+      "EVIDENCIA_NECESSARIA": "Documento de origem e evidência interna/externa que identifique fato, data, partes, direito/obrigação, valor e competência; adequar à natureza do fato e à lei aplicável.",
+      "TRATAMENTO_GERAL": "Fatos e efeitos são reconhecidos no período em que ocorrem; o recebimento ou pagamento em caixa não escolhe, por si, o período contábil. Fluxo de caixa é apresentado separadamente.",
+      "EXCECOES": "Demonstração de fluxos de caixa tem base de caixa; regime de caixa para finalidade tributária não converte a demonstração contábil em regime de caixa.",
+      "RISCOS": "Competência errada desloca ativos, passivos e resultado entre períodos.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACAO_REFERENCIAL": "Conteúdo conferido para os dispositivos citados de ITG 2000 (R1), NBC TG 1001 e NBC TG 1002; NBC TG 1000 e normas completas têm diferenças e alterações próprias e não ficam integralmente cobertas por esta ficha.",
+      "EVIDENCIA_CONSULTA": {
+        "FORMA": "Leitura do PDF oficial CFC; dispositivos individualizados no campo DISPOSITIVO.",
+        "DATA": "2026-11-16"
+      }
+    },
+    {
+      "ID": "P0-PARTIDAS-DOBRADAS",
+      "TITULO": "Partidas dobradas e estrutura do lançamento",
+      "ASSUNTO": "partidas dobradas; escrituração",
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "NORMA": "ITG 2000 (R1); NBC TG 1001; NBC TG 1002",
+      "DISPOSITIVO": "ITG 2000 (R1), itens 5–8; NBC TG 1001, item 2.11",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta aos textos oficiais em 16/11/2026. Confirmar atos alteradores e efeitos da competência antes do uso; escopo está limitado aos dispositivos listados."
+      },
+      "APLICABILIDADE": {
+        "REFERENCIAL_CONTABIL": [
+          "NBC TG completas",
+          "NBC TG 1000 (R1)",
+          "NBC TG 1001",
+          "NBC TG 1002"
+        ],
+        "COMPETENCIA_INICIO": null,
+        "COMPETENCIA_FIM": null,
+        "REGIME_TRIBUTARIO": [],
+        "TIPO_OPERACAO": [],
+        "UF": [],
+        "MUNICIPIO": [],
+        "CONDICOES": "Vincular o lançamento ao fato e documento/evidência; identificar contas e valores e manter o vínculo do conjunto de partidas."
+      },
+      "RESUMO_TECNICO": "O registro em forma contábil contém conta devedora e credora, data, histórico, valor e identificador unívoco do lançamento; as partidas devem representar a essência econômica do mesmo fato.",
+      "LIMITACOES": [
+        "A ITG 2000 define elementos mínimos, não plano de contas universal nem regra automática de débito/crédito por descrição bancária.",
+        "Lançamento desequilibrado, duplicado ou sem lastro prejudica integridade e demonstrações.",
+        "Não generalizar estas seções simplificadas para referenciais completos, reguladores setoriais ou outra entidade sem verificar a norma correspondente."
+      ],
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "VERSAO": "1.0.0",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "ESCOPO": {
+        "TIPO": "GERAL",
+        "EMPRESA_ID": null
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "CONCEITO": "partidas dobradas; escrituração",
+      "CONDICOES_RECONHECIMENTO": "Vincular o lançamento ao fato e documento/evidência; identificar contas e valores e manter o vínculo do conjunto de partidas.",
+      "EVIDENCIA_NECESSARIA": "Documento de origem e evidência interna/externa que identifique fato, data, partes, direito/obrigação, valor e competência; adequar à natureza do fato e à lei aplicável.",
+      "TRATAMENTO_GERAL": "O registro em forma contábil contém conta devedora e credora, data, histórico, valor e identificador unívoco do lançamento; as partidas devem representar a essência econômica do mesmo fato.",
+      "EXCECOES": "A ITG 2000 define elementos mínimos, não plano de contas universal nem regra automática de débito/crédito por descrição bancária.",
+      "RISCOS": "Lançamento desequilibrado, duplicado ou sem lastro prejudica integridade e demonstrações.",
+      "REFERENCIAL": [
+        "NBC TG completas",
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACAO_REFERENCIAL": "Conteúdo conferido para os dispositivos citados de ITG 2000 (R1), NBC TG 1001 e NBC TG 1002; NBC TG 1000 e normas completas têm diferenças e alterações próprias e não ficam integralmente cobertas por esta ficha.",
+      "EVIDENCIA_CONSULTA": {
+        "FORMA": "Leitura do PDF oficial CFC; dispositivos individualizados no campo DISPOSITIVO.",
+        "DATA": "2026-11-16"
+      }
+    },
+    {
+      "ID": "P0-DOCUMENTACAO-ESCRITURACAO",
+      "TITULO": "Documentação da escrituração",
+      "ASSUNTO": "documentação; evidência; escrituração",
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "NORMA": "ITG 2000 (R1); NBC TG 1001; NBC TG 1002",
+      "DISPOSITIVO": "ITG 2000 (R1), itens 5(e), 7–8 e 26–28",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta aos textos oficiais em 16/11/2026. Confirmar atos alteradores e efeitos da competência antes do uso; escopo está limitado aos dispositivos listados."
+      },
+      "APLICABILIDADE": {
+        "REFERENCIAL_CONTABIL": [
+          "NBC TG completas",
+          "NBC TG 1000 (R1)",
+          "NBC TG 1001",
+          "NBC TG 1002"
+        ],
+        "COMPETENCIA_INICIO": null,
+        "COMPETENCIA_FIM": null,
+        "REGIME_TRIBUTARIO": [],
+        "TIPO_OPERACAO": [],
+        "UF": [],
+        "MUNICIPIO": [],
+        "CONDICOES": "Preservar origem, integridade, relação com lançamento, data/partes/valor e características essenciais exigidas pela legislação e técnica; avaliar suficiência para o objetivo do documento."
+      },
+      "RESUMO_TECNICO": "A escrituração se apoia em documentos de origem externa ou interna ou, na falta, em elementos que comprovem/evidenciem o fato; documentação contábil compreende os elementos que comprovam os fatos lançados.",
+      "LIMITACOES": [
+        "Documento formalmente presente não comprova sozinho todos os elementos econômicos ou a legalidade da operação; regras especiais podem requerer forma/autenticação.",
+        "Sem proveniência, integridade e suporte suficiente, classificar como pendência e não inferir o fato.",
+        "Não generalizar estas seções simplificadas para referenciais completos, reguladores setoriais ou outra entidade sem verificar a norma correspondente."
+      ],
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "VERSAO": "1.0.0",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "ESCOPO": {
+        "TIPO": "GERAL",
+        "EMPRESA_ID": null
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "CONCEITO": "documentação; evidência; escrituração",
+      "CONDICOES_RECONHECIMENTO": "Preservar origem, integridade, relação com lançamento, data/partes/valor e características essenciais exigidas pela legislação e técnica; avaliar suficiência para o objetivo do documento.",
+      "EVIDENCIA_NECESSARIA": "Documento de origem e evidência interna/externa que identifique fato, data, partes, direito/obrigação, valor e competência; adequar à natureza do fato e à lei aplicável.",
+      "TRATAMENTO_GERAL": "A escrituração se apoia em documentos de origem externa ou interna ou, na falta, em elementos que comprovem/evidenciem o fato; documentação contábil compreende os elementos que comprovam os fatos lançados.",
+      "EXCECOES": "Documento formalmente presente não comprova sozinho todos os elementos econômicos ou a legalidade da operação; regras especiais podem requerer forma/autenticação.",
+      "RISCOS": "Sem proveniência, integridade e suporte suficiente, classificar como pendência e não inferir o fato.",
+      "REFERENCIAL": [
+        "NBC TG completas",
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACAO_REFERENCIAL": "Conteúdo conferido para os dispositivos citados de ITG 2000 (R1), NBC TG 1001 e NBC TG 1002; NBC TG 1000 e normas completas têm diferenças e alterações próprias e não ficam integralmente cobertas por esta ficha.",
+      "EVIDENCIA_CONSULTA": {
+        "FORMA": "Leitura do PDF oficial CFC; dispositivos individualizados no campo DISPOSITIVO.",
+        "DATA": "2026-11-16"
+      }
+    },
+    {
+      "ID": "P0-ATIVO-PASSIVO",
+      "TITULO": "Reconhecimento e classificação de ativo e passivo",
+      "ASSUNTO": "ativo; passivo; reconhecimento",
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "NORMA": "ITG 2000 (R1); NBC TG 1001; NBC TG 1002",
+      "DISPOSITIVO": "NBC TG 1000 (R1), itens 2.15–2.21; NBC TG 1001, itens 2.13–2.16 e 22.1–22.2",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta aos textos oficiais em 16/11/2026. Confirmar atos alteradores e efeitos da competência antes do uso; escopo está limitado aos dispositivos listados."
+      },
+      "APLICABILIDADE": {
+        "REFERENCIAL_CONTABIL": [
+          "NBC TG 1000 (R1)",
+          "NBC TG 1001"
+        ],
+        "COMPETENCIA_INICIO": null,
+        "COMPETENCIA_FIM": null,
+        "REGIME_TRIBUTARIO": [],
+        "TIPO_OPERACAO": [],
+        "UF": [],
+        "MUNICIPIO": [],
+        "CONDICOES": "Analisar existência e controle do recurso ou obrigação na data, evento passado, substância contratual/econômica, mensuração e critério de reconhecimento do referencial."
+      },
+      "RESUMO_TECNICO": "Nos referenciais simplificados estudados, ativo está ligado a recurso controlado decorrente de evento passado com expectativa de benefícios; passivo a obrigação presente originada de evento passado cuja liquidação implique saída de recursos; PL é residual.",
+      "LIMITACOES": [
+        "Probabilidade, incerteza, contratos, instrumentos financeiros e legislação podem exigir seção específica; passivo contingente não é provisão reconhecida automaticamente.",
+        "Classificação só pela forma do documento ou pelo fluxo financeiro pode distorcer o elemento.",
+        "Não generalizar estas seções simplificadas para referenciais completos, reguladores setoriais ou outra entidade sem verificar a norma correspondente."
+      ],
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "VERSAO": "1.0.0",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "ESCOPO": {
+        "TIPO": "GERAL",
+        "EMPRESA_ID": null
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "CONCEITO": "ativo; passivo; reconhecimento",
+      "CONDICOES_RECONHECIMENTO": "Analisar existência e controle do recurso ou obrigação na data, evento passado, substância contratual/econômica, mensuração e critério de reconhecimento do referencial.",
+      "EVIDENCIA_NECESSARIA": "Documento de origem e evidência interna/externa que identifique fato, data, partes, direito/obrigação, valor e competência; adequar à natureza do fato e à lei aplicável.",
+      "TRATAMENTO_GERAL": "Nos referenciais simplificados estudados, ativo está ligado a recurso controlado decorrente de evento passado com expectativa de benefícios; passivo a obrigação presente originada de evento passado cuja liquidação implique saída de recursos; PL é residual.",
+      "EXCECOES": "Probabilidade, incerteza, contratos, instrumentos financeiros e legislação podem exigir seção específica; passivo contingente não é provisão reconhecida automaticamente.",
+      "RISCOS": "Classificação só pela forma do documento ou pelo fluxo financeiro pode distorcer o elemento.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001"
+      ],
+      "LIMITACAO_REFERENCIAL": "Conteúdo conferido para os dispositivos citados de ITG 2000 (R1), NBC TG 1001 e NBC TG 1002; NBC TG 1000 e normas completas têm diferenças e alterações próprias e não ficam integralmente cobertas por esta ficha.",
+      "EVIDENCIA_CONSULTA": {
+        "FORMA": "Leitura do PDF oficial CFC; dispositivos individualizados no campo DISPOSITIVO.",
+        "DATA": "2026-11-16"
+      }
+    },
+    {
+      "ID": "P0-RECEITA",
+      "TITULO": "Reconhecimento de receitas ordinárias",
+      "ASSUNTO": "receita; clientes; contratos",
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "NORMA": "ITG 2000 (R1); NBC TG 1001; NBC TG 1002",
+      "DISPOSITIVO": "NBC TG 1001, itens 23.1–23.11; NBC TG 1002, seção 23; NBC TG 1000 (R1), seção 23",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta aos textos oficiais em 16/11/2026. Confirmar atos alteradores e efeitos da competência antes do uso; escopo está limitado aos dispositivos listados."
+      },
+      "APLICABILIDADE": {
+        "REFERENCIAL_CONTABIL": [
+          "NBC TG 1000 (R1)",
+          "NBC TG 1001",
+          "NBC TG 1002"
+        ],
+        "COMPETENCIA_INICIO": null,
+        "COMPETENCIA_FIM": null,
+        "REGIME_TRIBUTARIO": [],
+        "TIPO_OPERACAO": [],
+        "UF": [],
+        "MUNICIPIO": [],
+        "CONDICOES": "Identificar contrato/evento, obrigação, entrega/execução, transferência relevante, preço, riscos/benefícios, evidências de prestação e custos, conforme a norma adotada."
+      },
+      "RESUMO_TECNICO": "Na NBC TG 1001, venda de produto exige transferência de riscos/benefícios, ausência de envolvimento/controle continuado, valor mensurável, provável entrada e custos mensuráveis; serviço é apropriado quando o serviço/benefício é transferido.",
+      "LIMITACOES": [
+        "NBC TG 1001/1002 têm modelo próprio simplificado; não substituir automaticamente pelos cinco passos do CPC 47/NBC TG 47 sem confirmar referencial e escopo.",
+        "Reconhecer por faturamento, recebimento ou emissão de nota, isoladamente, pode antecipar ou atrasar receita.",
+        "Não generalizar estas seções simplificadas para referenciais completos, reguladores setoriais ou outra entidade sem verificar a norma correspondente."
+      ],
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "VERSAO": "1.0.0",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "ESCOPO": {
+        "TIPO": "GERAL",
+        "EMPRESA_ID": null
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "CONCEITO": "receita; clientes; contratos",
+      "CONDICOES_RECONHECIMENTO": "Identificar contrato/evento, obrigação, entrega/execução, transferência relevante, preço, riscos/benefícios, evidências de prestação e custos, conforme a norma adotada.",
+      "EVIDENCIA_NECESSARIA": "Documento de origem e evidência interna/externa que identifique fato, data, partes, direito/obrigação, valor e competência; adequar à natureza do fato e à lei aplicável.",
+      "TRATAMENTO_GERAL": "Na NBC TG 1001, venda de produto exige transferência de riscos/benefícios, ausência de envolvimento/controle continuado, valor mensurável, provável entrada e custos mensuráveis; serviço é apropriado quando o serviço/benefício é transferido.",
+      "EXCECOES": "NBC TG 1001/1002 têm modelo próprio simplificado; não substituir automaticamente pelos cinco passos do CPC 47/NBC TG 47 sem confirmar referencial e escopo.",
+      "RISCOS": "Reconhecer por faturamento, recebimento ou emissão de nota, isoladamente, pode antecipar ou atrasar receita.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACAO_REFERENCIAL": "Conteúdo conferido para os dispositivos citados de ITG 2000 (R1), NBC TG 1001 e NBC TG 1002; NBC TG 1000 e normas completas têm diferenças e alterações próprias e não ficam integralmente cobertas por esta ficha.",
+      "EVIDENCIA_CONSULTA": {
+        "FORMA": "Leitura do PDF oficial CFC; dispositivos individualizados no campo DISPOSITIVO.",
+        "DATA": "2026-11-16"
+      }
+    },
+    {
+      "ID": "P0-DESPESAS-CUSTOS",
+      "TITULO": "Reconhecimento de despesas e custos",
+      "ASSUNTO": "despesa; custo; competência",
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "NORMA": "ITG 2000 (R1); NBC TG 1001; NBC TG 1002",
+      "DISPOSITIVO": "NBC TG 1001, itens 13.9, 17.10, 21.3 e 28.3; NBC TG 1002, itens 13.6, 17.7, 21.4 e 28.2",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta aos textos oficiais em 16/11/2026. Confirmar atos alteradores e efeitos da competência antes do uso; escopo está limitado aos dispositivos listados."
+      },
+      "APLICABILIDADE": {
+        "REFERENCIAL_CONTABIL": [
+          "NBC TG 1000 (R1)",
+          "NBC TG 1001",
+          "NBC TG 1002"
+        ],
+        "COMPETENCIA_INICIO": null,
+        "COMPETENCIA_FIM": null,
+        "REGIME_TRIBUTARIO": [],
+        "TIPO_OPERACAO": [],
+        "UF": [],
+        "MUNICIPIO": [],
+        "CONDICOES": "Identificar recurso/serviço consumido, período, vínculo com receita/produção/ativo e critério de apropriação."
+      },
+      "RESUMO_TECNICO": "Gastos reconhecidos como custo/despesa seguem o consumo/incorrência e os vínculos definidos na norma; por exemplo, o valor contábil do estoque vendido vira custo quando reconhecida a receita relacionada.",
+      "LIMITACOES": [
+        "Desembolsos podem liquidar passivos, adquirir ativos ou constituir adiantamentos; alguns gastos integram custo de ativo/estoque.",
+        "Registrar toda saída bancária como despesa sobrestima resultado negativo e pode omitir ativos/passivos.",
+        "Não generalizar estas seções simplificadas para referenciais completos, reguladores setoriais ou outra entidade sem verificar a norma correspondente."
+      ],
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "VERSAO": "1.0.0",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "ESCOPO": {
+        "TIPO": "GERAL",
+        "EMPRESA_ID": null
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "CONCEITO": "despesa; custo; competência",
+      "CONDICOES_RECONHECIMENTO": "Identificar recurso/serviço consumido, período, vínculo com receita/produção/ativo e critério de apropriação.",
+      "EVIDENCIA_NECESSARIA": "Documento de origem e evidência interna/externa que identifique fato, data, partes, direito/obrigação, valor e competência; adequar à natureza do fato e à lei aplicável.",
+      "TRATAMENTO_GERAL": "Gastos reconhecidos como custo/despesa seguem o consumo/incorrência e os vínculos definidos na norma; por exemplo, o valor contábil do estoque vendido vira custo quando reconhecida a receita relacionada.",
+      "EXCECOES": "Desembolsos podem liquidar passivos, adquirir ativos ou constituir adiantamentos; alguns gastos integram custo de ativo/estoque.",
+      "RISCOS": "Registrar toda saída bancária como despesa sobrestima resultado negativo e pode omitir ativos/passivos.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACAO_REFERENCIAL": "Conteúdo conferido para os dispositivos citados de ITG 2000 (R1), NBC TG 1001 e NBC TG 1002; NBC TG 1000 e normas completas têm diferenças e alterações próprias e não ficam integralmente cobertas por esta ficha.",
+      "EVIDENCIA_CONSULTA": {
+        "FORMA": "Leitura do PDF oficial CFC; dispositivos individualizados no campo DISPOSITIVO.",
+        "DATA": "2026-11-16"
+      }
+    },
+    {
+      "ID": "P0-CLIENTES-FORNECEDORES",
+      "TITULO": "Clientes e fornecedores: direitos e obrigações",
+      "ASSUNTO": "clientes; fornecedores; contas a receber; contas a pagar",
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "NORMA": "ITG 2000 (R1); NBC TG 1001; NBC TG 1002",
+      "DISPOSITIVO": "NBC TG 1000 (R1), seção 11; NBC TG 1001, seção 11; NBC TG 1002, seção 11; ITG 2000 (R1), itens 5–8",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta aos textos oficiais em 16/11/2026. Confirmar atos alteradores e efeitos da competência antes do uso; escopo está limitado aos dispositivos listados."
+      },
+      "APLICABILIDADE": {
+        "REFERENCIAL_CONTABIL": [
+          "NBC TG 1000 (R1)",
+          "NBC TG 1001",
+          "NBC TG 1002"
+        ],
+        "COMPETENCIA_INICIO": null,
+        "COMPETENCIA_FIM": null,
+        "REGIME_TRIBUTARIO": [],
+        "TIPO_OPERACAO": [],
+        "UF": [],
+        "MUNICIPIO": [],
+        "CONDICOES": "Conferir contrato/pedido, entrega ou serviço, documento hábil, vencimento, contraparte, valor e recebimentos/pagamentos subsequentes."
+      },
+      "RESUMO_TECNICO": "Direitos a receber e obrigações a pagar são reconhecidos e mensurados pelo referencial e termos da transação; pagamento/recebimento subsequente liquida saldo, sem necessariamente gerar nova despesa/receita.",
+      "LIMITACOES": [
+        "Prazos, juros, perdas de crédito, tributos, retenções, cessões e arranjos financeiros podem alterar classificação e mensuração.",
+        "Compensação de saldos sem direito e ausência de composição/evidência distorcem circulante e resultado.",
+        "Não generalizar estas seções simplificadas para referenciais completos, reguladores setoriais ou outra entidade sem verificar a norma correspondente."
+      ],
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "VERSAO": "1.0.0",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "ESCOPO": {
+        "TIPO": "GERAL",
+        "EMPRESA_ID": null
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "CONCEITO": "clientes; fornecedores; contas a receber; contas a pagar",
+      "CONDICOES_RECONHECIMENTO": "Conferir contrato/pedido, entrega ou serviço, documento hábil, vencimento, contraparte, valor e recebimentos/pagamentos subsequentes.",
+      "EVIDENCIA_NECESSARIA": "Documento de origem e evidência interna/externa que identifique fato, data, partes, direito/obrigação, valor e competência; adequar à natureza do fato e à lei aplicável.",
+      "TRATAMENTO_GERAL": "Direitos a receber e obrigações a pagar são reconhecidos e mensurados pelo referencial e termos da transação; pagamento/recebimento subsequente liquida saldo, sem necessariamente gerar nova despesa/receita.",
+      "EXCECOES": "Prazos, juros, perdas de crédito, tributos, retenções, cessões e arranjos financeiros podem alterar classificação e mensuração.",
+      "RISCOS": "Compensação de saldos sem direito e ausência de composição/evidência distorcem circulante e resultado.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACAO_REFERENCIAL": "Conteúdo conferido para os dispositivos citados de ITG 2000 (R1), NBC TG 1001 e NBC TG 1002; NBC TG 1000 e normas completas têm diferenças e alterações próprias e não ficam integralmente cobertas por esta ficha.",
+      "EVIDENCIA_CONSULTA": {
+        "FORMA": "Leitura do PDF oficial CFC; dispositivos individualizados no campo DISPOSITIVO.",
+        "DATA": "2026-11-16"
+      }
+    },
+    {
+      "ID": "P0-ADIANTAMENTOS",
+      "TITULO": "Adiantamentos a fornecedores e de clientes",
+      "ASSUNTO": "adiantamentos; receita antecipada; despesa antecipada",
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "NORMA": "ITG 2000 (R1); NBC TG 1001; NBC TG 1002",
+      "DISPOSITIVO": "NBC TG 1001, seção 23; NBC TG 1002, seção 23; NBC TG 1000 (R1), seção 23; NBC TG 1001, seção 4",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta aos textos oficiais em 16/11/2026. Confirmar atos alteradores e efeitos da competência antes do uso; escopo está limitado aos dispositivos listados."
+      },
+      "APLICABILIDADE": {
+        "REFERENCIAL_CONTABIL": [
+          "NBC TG 1000 (R1)",
+          "NBC TG 1001",
+          "NBC TG 1002"
+        ],
+        "COMPETENCIA_INICIO": null,
+        "COMPETENCIA_FIM": null,
+        "REGIME_TRIBUTARIO": [],
+        "TIPO_OPERACAO": [],
+        "UF": [],
+        "MUNICIPIO": [],
+        "CONDICOES": "Examinar contrato, etapa de entrega/prestação, direito de restituição, obrigação remanescente, competência e evidência de avanço."
+      },
+      "RESUMO_TECNICO": "Pagamento ou recebimento antes da transferência/consumo exige avaliar direito a bem/serviço ou obrigação de entregar/prestar; não é automaticamente despesa ou receita no movimento bancário.",
+      "LIMITACOES": [
+        "A conta e o momento dependem da natureza, termos, referencial e fatos; o texto simplificado não autoriza um padrão universal para todo adiantamento.",
+        "Tratar adiantamento como resultado imediatamente pode antecipar resultado e ocultar obrigação/ativo.",
+        "Não generalizar estas seções simplificadas para referenciais completos, reguladores setoriais ou outra entidade sem verificar a norma correspondente."
+      ],
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "VERSAO": "1.0.0",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "ESCOPO": {
+        "TIPO": "GERAL",
+        "EMPRESA_ID": null
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "CONCEITO": "adiantamentos; receita antecipada; despesa antecipada",
+      "CONDICOES_RECONHECIMENTO": "Examinar contrato, etapa de entrega/prestação, direito de restituição, obrigação remanescente, competência e evidência de avanço.",
+      "EVIDENCIA_NECESSARIA": "Documento de origem e evidência interna/externa que identifique fato, data, partes, direito/obrigação, valor e competência; adequar à natureza do fato e à lei aplicável.",
+      "TRATAMENTO_GERAL": "Pagamento ou recebimento antes da transferência/consumo exige avaliar direito a bem/serviço ou obrigação de entregar/prestar; não é automaticamente despesa ou receita no movimento bancário.",
+      "EXCECOES": "A conta e o momento dependem da natureza, termos, referencial e fatos; o texto simplificado não autoriza um padrão universal para todo adiantamento.",
+      "RISCOS": "Tratar adiantamento como resultado imediatamente pode antecipar resultado e ocultar obrigação/ativo.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACAO_REFERENCIAL": "Conteúdo conferido para os dispositivos citados de ITG 2000 (R1), NBC TG 1001 e NBC TG 1002; NBC TG 1000 e normas completas têm diferenças e alterações próprias e não ficam integralmente cobertas por esta ficha.",
+      "EVIDENCIA_CONSULTA": {
+        "FORMA": "Leitura do PDF oficial CFC; dispositivos individualizados no campo DISPOSITIVO.",
+        "DATA": "2026-11-16"
+      }
+    },
+    {
+      "ID": "P0-PROVISOES-OBRIGACOES",
+      "TITULO": "Provisões e obrigações",
+      "ASSUNTO": "provisão; passivo; contingências",
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "NORMA": "ITG 2000 (R1); NBC TG 1001; NBC TG 1002",
+      "DISPOSITIVO": "NBC TG 1001, itens 21.1–21.12; NBC TG 1002, itens 21.1–21.10; NBC TG 1000 (R1), itens 21.4–21.16",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta aos textos oficiais em 16/11/2026. Confirmar atos alteradores e efeitos da competência antes do uso; escopo está limitado aos dispositivos listados."
+      },
+      "APLICABILIDADE": {
+        "REFERENCIAL_CONTABIL": [
+          "NBC TG 1000 (R1)",
+          "NBC TG 1001",
+          "NBC TG 1002"
+        ],
+        "COMPETENCIA_INICIO": null,
+        "COMPETENCIA_FIM": null,
+        "REGIME_TRIBUTARIO": [],
+        "TIPO_OPERACAO": [],
+        "UF": [],
+        "MUNICIPIO": [],
+        "CONDICOES": "Obter contrato, cálculo, parecer/avaliação quando pertinente, evento gerador, probabilidade, estimativa e evidência contemporânea."
+      },
+      "RESUMO_TECNICO": "Provisão requer obrigação presente por evento passado, saída provável de benefícios e estimativa confiável; é mensurada pela melhor estimativa e revisada na data de balanço.",
+      "LIMITACOES": [
+        "Passivo contingente, ativo contingente, obrigação trabalhista com incerteza não relevante e obrigações fiscais seguem condições e divulgações próprias.",
+        "Provisão indevida ou omitida afeta passivos, despesas e divulgações.",
+        "Não generalizar estas seções simplificadas para referenciais completos, reguladores setoriais ou outra entidade sem verificar a norma correspondente."
+      ],
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "VERSAO": "1.0.0",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "ESCOPO": {
+        "TIPO": "GERAL",
+        "EMPRESA_ID": null
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "CONCEITO": "provisão; passivo; contingências",
+      "CONDICOES_RECONHECIMENTO": "Obter contrato, cálculo, parecer/avaliação quando pertinente, evento gerador, probabilidade, estimativa e evidência contemporânea.",
+      "EVIDENCIA_NECESSARIA": "Documento de origem e evidência interna/externa que identifique fato, data, partes, direito/obrigação, valor e competência; adequar à natureza do fato e à lei aplicável.",
+      "TRATAMENTO_GERAL": "Provisão requer obrigação presente por evento passado, saída provável de benefícios e estimativa confiável; é mensurada pela melhor estimativa e revisada na data de balanço.",
+      "EXCECOES": "Passivo contingente, ativo contingente, obrigação trabalhista com incerteza não relevante e obrigações fiscais seguem condições e divulgações próprias.",
+      "RISCOS": "Provisão indevida ou omitida afeta passivos, despesas e divulgações.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACAO_REFERENCIAL": "Conteúdo conferido para os dispositivos citados de ITG 2000 (R1), NBC TG 1001 e NBC TG 1002; NBC TG 1000 e normas completas têm diferenças e alterações próprias e não ficam integralmente cobertas por esta ficha.",
+      "EVIDENCIA_CONSULTA": {
+        "FORMA": "Leitura do PDF oficial CFC; dispositivos individualizados no campo DISPOSITIVO.",
+        "DATA": "2026-11-16"
+      }
+    },
+    {
+      "ID": "P0-ESTOQUES-CMV",
+      "TITULO": "Estoques e custo quando vendidos (CMV)",
+      "ASSUNTO": "estoques; custo; CMV",
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "NORMA": "ITG 2000 (R1); NBC TG 1001; NBC TG 1002",
+      "DISPOSITIVO": "NBC TG 1001, seção 13, especialmente itens 13.2–13.10; NBC TG 1002, itens 13.1–13.6; NBC TG 1000 (R1), seção 13",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta aos textos oficiais em 16/11/2026. Confirmar atos alteradores e efeitos da competência antes do uso; escopo está limitado aos dispositivos listados."
+      },
+      "APLICABILIDADE": {
+        "REFERENCIAL_CONTABIL": [
+          "NBC TG 1000 (R1)",
+          "NBC TG 1001",
+          "NBC TG 1002"
+        ],
+        "COMPETENCIA_INICIO": null,
+        "COMPETENCIA_FIM": null,
+        "REGIME_TRIBUTARIO": [],
+        "TIPO_OPERACAO": [],
+        "UF": [],
+        "MUNICIPIO": [],
+        "CONDICOES": "Inventário físico/analítico, titularidade, corte de entradas/saídas, composição de aquisição/transformação, tributos recuperáveis, método consistente e avaliação de perdas."
+      },
+      "RESUMO_TECNICO": "Estoques são mensurados conforme custo e redução ao valor recuperável/valor de venda aplicável ao referencial; o valor contábil é reconhecido como despesa/custo no período da receita relacionada.",
+      "LIMITACOES": [
+        "Métodos, custos incluíveis, valor de venda e tratamentos setoriais diferem; bens biológicos/minerais e serviços podem ter exceções.",
+        "Saldo sem contagem/composição, corte ou custos rastreáveis não é suporte suficiente para o estoque/CMV.",
+        "Não generalizar estas seções simplificadas para referenciais completos, reguladores setoriais ou outra entidade sem verificar a norma correspondente."
+      ],
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "VERSAO": "1.0.0",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "ESCOPO": {
+        "TIPO": "GERAL",
+        "EMPRESA_ID": null
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "CONCEITO": "estoques; custo; CMV",
+      "CONDICOES_RECONHECIMENTO": "Inventário físico/analítico, titularidade, corte de entradas/saídas, composição de aquisição/transformação, tributos recuperáveis, método consistente e avaliação de perdas.",
+      "EVIDENCIA_NECESSARIA": "Documento de origem e evidência interna/externa que identifique fato, data, partes, direito/obrigação, valor e competência; adequar à natureza do fato e à lei aplicável.",
+      "TRATAMENTO_GERAL": "Estoques são mensurados conforme custo e redução ao valor recuperável/valor de venda aplicável ao referencial; o valor contábil é reconhecido como despesa/custo no período da receita relacionada.",
+      "EXCECOES": "Métodos, custos incluíveis, valor de venda e tratamentos setoriais diferem; bens biológicos/minerais e serviços podem ter exceções.",
+      "RISCOS": "Saldo sem contagem/composição, corte ou custos rastreáveis não é suporte suficiente para o estoque/CMV.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACAO_REFERENCIAL": "Conteúdo conferido para os dispositivos citados de ITG 2000 (R1), NBC TG 1001 e NBC TG 1002; NBC TG 1000 e normas completas têm diferenças e alterações próprias e não ficam integralmente cobertas por esta ficha.",
+      "EVIDENCIA_CONSULTA": {
+        "FORMA": "Leitura do PDF oficial CFC; dispositivos individualizados no campo DISPOSITIVO.",
+        "DATA": "2026-11-16"
+      }
+    },
+    {
+      "ID": "P0-IMOBILIZADO-DEPRECIACAO",
+      "TITULO": "Imobilizado e depreciação",
+      "ASSUNTO": "imobilizado; depreciação",
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "NORMA": "ITG 2000 (R1); NBC TG 1001; NBC TG 1002",
+      "DISPOSITIVO": "NBC TG 1001, itens 17.1–17.19; NBC TG 1002, itens 17.1–17.11; NBC TG 1000 (R1), seção 17",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta aos textos oficiais em 16/11/2026. Confirmar atos alteradores e efeitos da competência antes do uso; escopo está limitado aos dispositivos listados."
+      },
+      "APLICABILIDADE": {
+        "REFERENCIAL_CONTABIL": [
+          "NBC TG 1000 (R1)",
+          "NBC TG 1001",
+          "NBC TG 1002"
+        ],
+        "COMPETENCIA_INICIO": null,
+        "COMPETENCIA_FIM": null,
+        "REGIME_TRIBUTARIO": [],
+        "TIPO_OPERACAO": [],
+        "UF": [],
+        "MUNICIPIO": [],
+        "CONDICOES": "Comprovar aquisição/controle, custo, data disponível para uso, vida útil, valor residual, método, localização e contagem/condição do bem."
+      },
+      "RESUMO_TECNICO": "Imobilizado reconhecido e mensurado pelo referencial; depreciação sistemática começa quando disponível para uso e representa consumo durante vida útil, salvo condições/exceções aplicáveis.",
+      "LIMITACOES": [
+        "Terrenos, componentes, obras em curso, propriedade para investimento, expediente prático de taxas fiscais e impairment têm critérios próprios conforme o referencial.",
+        "Usar apenas pagamento ou taxa fiscal sem avaliar condição de disponibilidade, vida útil e norma pode distorcer ativo e despesa.",
+        "Não generalizar estas seções simplificadas para referenciais completos, reguladores setoriais ou outra entidade sem verificar a norma correspondente."
+      ],
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "VERSAO": "1.0.0",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "ESCOPO": {
+        "TIPO": "GERAL",
+        "EMPRESA_ID": null
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "CONCEITO": "imobilizado; depreciação",
+      "CONDICOES_RECONHECIMENTO": "Comprovar aquisição/controle, custo, data disponível para uso, vida útil, valor residual, método, localização e contagem/condição do bem.",
+      "EVIDENCIA_NECESSARIA": "Documento de origem e evidência interna/externa que identifique fato, data, partes, direito/obrigação, valor e competência; adequar à natureza do fato e à lei aplicável.",
+      "TRATAMENTO_GERAL": "Imobilizado reconhecido e mensurado pelo referencial; depreciação sistemática começa quando disponível para uso e representa consumo durante vida útil, salvo condições/exceções aplicáveis.",
+      "EXCECOES": "Terrenos, componentes, obras em curso, propriedade para investimento, expediente prático de taxas fiscais e impairment têm critérios próprios conforme o referencial.",
+      "RISCOS": "Usar apenas pagamento ou taxa fiscal sem avaliar condição de disponibilidade, vida útil e norma pode distorcer ativo e despesa.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACAO_REFERENCIAL": "Conteúdo conferido para os dispositivos citados de ITG 2000 (R1), NBC TG 1001 e NBC TG 1002; NBC TG 1000 e normas completas têm diferenças e alterações próprias e não ficam integralmente cobertas por esta ficha.",
+      "EVIDENCIA_CONSULTA": {
+        "FORMA": "Leitura do PDF oficial CFC; dispositivos individualizados no campo DISPOSITIVO.",
+        "DATA": "2026-11-16"
+      }
+    },
+    {
+      "ID": "P0-POLITICAS-CONTABEIS",
+      "TITULO": "Políticas contábeis e mudanças",
+      "ASSUNTO": "políticas contábeis; estimativas",
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "NORMA": "ITG 2000 (R1); NBC TG 1001; NBC TG 1002",
+      "DISPOSITIVO": "NBC TG 1001, seção 10; NBC TG 1000 (R1), seção 10; NBC TG 1002, seção 10",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta aos textos oficiais em 16/11/2026. Confirmar atos alteradores e efeitos da competência antes do uso; escopo está limitado aos dispositivos listados."
+      },
+      "APLICABILIDADE": {
+        "REFERENCIAL_CONTABIL": [
+          "NBC TG 1000 (R1)",
+          "NBC TG 1001",
+          "NBC TG 1002"
+        ],
+        "COMPETENCIA_INICIO": null,
+        "COMPETENCIA_FIM": null,
+        "REGIME_TRIBUTARIO": [],
+        "TIPO_OPERACAO": [],
+        "UF": [],
+        "MUNICIPIO": [],
+        "CONDICOES": "Documentar escolha, base normativa, consistência, efeitos e aprovações requeridas; separar mudança de política de estimativa baseada em nova informação."
+      },
+      "RESUMO_TECNICO": "Política contábil é aplicada consistentemente; mudança ocorre quando exigida pela norma ou quando informação mais relevante e confiável resulta, com tratamento e divulgação indicados no referencial.",
+      "LIMITACOES": [
+        "Normas simplificadas podem ter expedientes práticos; CPC 23/NBC TG 23 tem alterações e correlação que devem ser confirmadas para período aplicável.",
+        "Mudança para obter determinado resultado ou por mera prática histórica ameaça comparabilidade e conformidade.",
+        "Não generalizar estas seções simplificadas para referenciais completos, reguladores setoriais ou outra entidade sem verificar a norma correspondente."
+      ],
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "VERSAO": "1.0.0",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "ESCOPO": {
+        "TIPO": "GERAL",
+        "EMPRESA_ID": null
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "CONCEITO": "políticas contábeis; estimativas",
+      "CONDICOES_RECONHECIMENTO": "Documentar escolha, base normativa, consistência, efeitos e aprovações requeridas; separar mudança de política de estimativa baseada em nova informação.",
+      "EVIDENCIA_NECESSARIA": "Documento de origem e evidência interna/externa que identifique fato, data, partes, direito/obrigação, valor e competência; adequar à natureza do fato e à lei aplicável.",
+      "TRATAMENTO_GERAL": "Política contábil é aplicada consistentemente; mudança ocorre quando exigida pela norma ou quando informação mais relevante e confiável resulta, com tratamento e divulgação indicados no referencial.",
+      "EXCECOES": "Normas simplificadas podem ter expedientes práticos; CPC 23/NBC TG 23 tem alterações e correlação que devem ser confirmadas para período aplicável.",
+      "RISCOS": "Mudança para obter determinado resultado ou por mera prática histórica ameaça comparabilidade e conformidade.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACAO_REFERENCIAL": "Conteúdo conferido para os dispositivos citados de ITG 2000 (R1), NBC TG 1001 e NBC TG 1002; NBC TG 1000 e normas completas têm diferenças e alterações próprias e não ficam integralmente cobertas por esta ficha.",
+      "EVIDENCIA_CONSULTA": {
+        "FORMA": "Leitura do PDF oficial CFC; dispositivos individualizados no campo DISPOSITIVO.",
+        "DATA": "2026-11-16"
+      }
+    },
+    {
+      "ID": "P0-RETIFICACAO-ERROS",
+      "TITULO": "Retificação de erro histórico",
+      "ASSUNTO": "erro contábil; retificação; escrituração",
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "NORMA": "ITG 2000 (R1); NBC TG 1001; NBC TG 1002",
+      "DISPOSITIVO": "ITG 2000 (R1), itens 31–36; NBC TG 1001, itens 10.10–10.13; NBC TG 1000 (R1), itens 10.19–10.23; NBC TG 1002, seção 10",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta aos textos oficiais em 16/11/2026. Confirmar atos alteradores e efeitos da competência antes do uso; escopo está limitado aos dispositivos listados."
+      },
+      "APLICABILIDADE": {
+        "REFERENCIAL_CONTABIL": [
+          "NBC TG 1000 (R1)",
+          "NBC TG 1001",
+          "NBC TG 1002"
+        ],
+        "COMPETENCIA_INICIO": null,
+        "COMPETENCIA_FIM": null,
+        "REGIME_TRIBUTARIO": [],
+        "TIPO_OPERACAO": [],
+        "UF": [],
+        "MUNICIPIO": [],
+        "CONDICOES": "Identificar erro e período, documentos originários, efeito por conta/período e se informações confiáveis estavam disponíveis; obter revisão e autorização para qualquer ajuste."
+      },
+      "RESUMO_TECNICO": "ITG 2000 admite estorno, transferência e complementação; o histórico deve indicar motivo, data e localização do lançamento original. Erro material de períodos anteriores segue tratamento do referencial, podendo exigir reapresentação retrospectiva.",
+      "LIMITACOES": [
+        "Forma de correção e reapresentação depende do referencial, materialidade, exercício já encerrado, ECD/ECF e exigências societárias/fiscais.",
+        "Sobrescrever histórico ou corrigir por lançamento sem cadeia de auditoria destrói rastreabilidade.",
+        "Não generalizar estas seções simplificadas para referenciais completos, reguladores setoriais ou outra entidade sem verificar a norma correspondente."
+      ],
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "VERSAO": "1.0.0",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "ESCOPO": {
+        "TIPO": "GERAL",
+        "EMPRESA_ID": null
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "CONCEITO": "erro contábil; retificação; escrituração",
+      "CONDICOES_RECONHECIMENTO": "Identificar erro e período, documentos originários, efeito por conta/período e se informações confiáveis estavam disponíveis; obter revisão e autorização para qualquer ajuste.",
+      "EVIDENCIA_NECESSARIA": "Documento de origem e evidência interna/externa que identifique fato, data, partes, direito/obrigação, valor e competência; adequar à natureza do fato e à lei aplicável.",
+      "TRATAMENTO_GERAL": "ITG 2000 admite estorno, transferência e complementação; o histórico deve indicar motivo, data e localização do lançamento original. Erro material de períodos anteriores segue tratamento do referencial, podendo exigir reapresentação retrospectiva.",
+      "EXCECOES": "Forma de correção e reapresentação depende do referencial, materialidade, exercício já encerrado, ECD/ECF e exigências societárias/fiscais.",
+      "RISCOS": "Sobrescrever histórico ou corrigir por lançamento sem cadeia de auditoria destrói rastreabilidade.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACAO_REFERENCIAL": "Conteúdo conferido para os dispositivos citados de ITG 2000 (R1), NBC TG 1001 e NBC TG 1002; NBC TG 1000 e normas completas têm diferenças e alterações próprias e não ficam integralmente cobertas por esta ficha.",
+      "EVIDENCIA_CONSULTA": {
+        "FORMA": "Leitura do PDF oficial CFC; dispositivos individualizados no campo DISPOSITIVO.",
+        "DATA": "2026-11-16"
+      }
+    },
+    {
+      "ID": "P0-BALANCETE-DEMONSTRACOES",
+      "TITULO": "Balancete, balanço e demonstrações",
+      "ASSUNTO": "balancete; demonstrações; apresentação",
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "NORMA": "ITG 2000 (R1); NBC TG 1001; NBC TG 1002",
+      "DISPOSITIVO": "ITG 2000 (R1), itens 13–19; NBC TG 1001, itens 3.1–3.7 e 4.1; NBC TG 1002, itens 3.1–3.8; NBC TG 51 para exercícios alcançados desde 2027",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG1000-TEXTO",
+          "TITULO": "ITG 1000/2022, texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG%201000.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBC51",
+          "TITULO": "Notícia oficial CFC sobre publicação da NBC TG 51 e DOU",
+          "URL": "https://cfc.org.br/noticias/nbc-tg-51-e-publicada-no-diario-oficial-da-uniao/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-RI2025",
+          "TITULO": "Relato Integrado CFC 2025: período obrigatório NBC TG 51",
+          "URL": "https://cfc.org.br/wp-content/uploads/2026/06/RI_2025-3.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta aos textos oficiais em 16/11/2026. Confirmar atos alteradores e efeitos da competência antes do uso; escopo está limitado aos dispositivos listados."
+      },
+      "APLICABILIDADE": {
+        "REFERENCIAL_CONTABIL": [
+          "NBC TG 1000 (R1)",
+          "NBC TG 1001",
+          "NBC TG 1002",
+          "NBC TG completas"
+        ],
+        "COMPETENCIA_INICIO": null,
+        "COMPETENCIA_FIM": null,
+        "REGIME_TRIBUTARIO": [],
+        "TIPO_OPERACAO": [],
+        "UF": [],
+        "MUNICIPIO": [],
+        "CONDICOES": "Fechar razão/subrazões, conciliar composição e corte, assegurar lançamentos suportados, comparativos, políticas, assinaturas e divulgações exigidas."
+      },
+      "RESUMO_TECNICO": "Balancete é instrumento de conferência dos saldos; demonstrações apresentam posição, desempenho e fluxos segundo conjunto exigido pelo referencial, materialidade e período.",
+      "LIMITACOES": [
+        "NBC TG 51 está prevista para períodos iniciados a partir de 1º/1/2027; NBC TG 26 e transição precisam ser conferidas por entidade, referencial, órgão regulador e exercício.",
+        "Equilíbrio aritmético do balancete não prova integridade, classificação ou suporte dos saldos.",
+        "Não generalizar estas seções simplificadas para referenciais completos, reguladores setoriais ou outra entidade sem verificar a norma correspondente."
+      ],
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "VERSAO": "1.0.0",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "ESCOPO": {
+        "TIPO": "GERAL",
+        "EMPRESA_ID": null
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "CONCEITO": "balancete; demonstrações; apresentação",
+      "CONDICOES_RECONHECIMENTO": "Fechar razão/subrazões, conciliar composição e corte, assegurar lançamentos suportados, comparativos, políticas, assinaturas e divulgações exigidas.",
+      "EVIDENCIA_NECESSARIA": "Documento de origem e evidência interna/externa que identifique fato, data, partes, direito/obrigação, valor e competência; adequar à natureza do fato e à lei aplicável.",
+      "TRATAMENTO_GERAL": "Balancete é instrumento de conferência dos saldos; demonstrações apresentam posição, desempenho e fluxos segundo conjunto exigido pelo referencial, materialidade e período.",
+      "EXCECOES": "NBC TG 51 está prevista para períodos iniciados a partir de 1º/1/2027; NBC TG 26 e transição precisam ser conferidas por entidade, referencial, órgão regulador e exercício.",
+      "RISCOS": "Equilíbrio aritmético do balancete não prova integridade, classificação ou suporte dos saldos.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas"
+      ],
+      "LIMITACAO_REFERENCIAL": "Conteúdo conferido para os dispositivos citados de ITG 2000 (R1), NBC TG 1001 e NBC TG 1002; NBC TG 1000 e normas completas têm diferenças e alterações próprias e não ficam integralmente cobertas por esta ficha.",
+      "EVIDENCIA_CONSULTA": {
+        "FORMA": "Leitura do PDF oficial CFC; dispositivos individualizados no campo DISPOSITIVO.",
+        "DATA": "2026-11-16"
+      }
+    },
+    {
+      "ID": "P0-PAGAMENTO-NAO-DESPESA",
+      "TITULO": "Pagamento e reconhecimento não são sinônimos",
+      "ASSUNTO": "pagamento; liquidação; despesa; competência",
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "NORMA": "ITG 2000 (R1); NBC TG 1001; NBC TG 1002",
+      "DISPOSITIVO": "NBC TG 1001, item 2.11; NBC TG 1002, P10; NBC TG 1000 (R1), itens 2.36–2.37; ITG 2000 (R1), itens 5–8",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta aos textos oficiais em 16/11/2026. Confirmar atos alteradores e efeitos da competência antes do uso; escopo está limitado aos dispositivos listados."
+      },
+      "APLICABILIDADE": {
+        "REFERENCIAL_CONTABIL": [
+          "NBC TG 1000 (R1)",
+          "NBC TG 1001",
+          "NBC TG 1002"
+        ],
+        "COMPETENCIA_INICIO": null,
+        "COMPETENCIA_FIM": null,
+        "REGIME_TRIBUTARIO": [],
+        "TIPO_OPERACAO": [],
+        "UF": [],
+        "MUNICIPIO": [],
+        "CONDICOES": "Usar extrato para provar o fluxo e documento/contrato/razão para provar a natureza; localizar lançamento original e contraparte."
+      },
+      "RESUMO_TECNICO": "Pagamento pode liquidar passivo reconhecido antes, adquirir ativo, realizar adiantamento, transferir recurso, devolver valor ou reconhecer despesa quando o consumo ocorrer; identificar a substância antes de classificar.",
+      "LIMITACOES": [
+        "Regime fiscal de caixa não altera automaticamente competência das demonstrações.",
+        "Classificar movimento bancário pela descrição é inferência sem suporte suficiente.",
+        "Não generalizar estas seções simplificadas para referenciais completos, reguladores setoriais ou outra entidade sem verificar a norma correspondente."
+      ],
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "VERSAO": "1.0.0",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "ESCOPO": {
+        "TIPO": "GERAL",
+        "EMPRESA_ID": null
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "CONCEITO": "pagamento; liquidação; despesa; competência",
+      "CONDICOES_RECONHECIMENTO": "Usar extrato para provar o fluxo e documento/contrato/razão para provar a natureza; localizar lançamento original e contraparte.",
+      "EVIDENCIA_NECESSARIA": "Documento de origem e evidência interna/externa que identifique fato, data, partes, direito/obrigação, valor e competência; adequar à natureza do fato e à lei aplicável.",
+      "TRATAMENTO_GERAL": "Pagamento pode liquidar passivo reconhecido antes, adquirir ativo, realizar adiantamento, transferir recurso, devolver valor ou reconhecer despesa quando o consumo ocorrer; identificar a substância antes de classificar.",
+      "EXCECOES": "Regime fiscal de caixa não altera automaticamente competência das demonstrações.",
+      "RISCOS": "Classificar movimento bancário pela descrição é inferência sem suporte suficiente.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACAO_REFERENCIAL": "Conteúdo conferido para os dispositivos citados de ITG 2000 (R1), NBC TG 1001 e NBC TG 1002; NBC TG 1000 e normas completas têm diferenças e alterações próprias e não ficam integralmente cobertas por esta ficha.",
+      "EVIDENCIA_CONSULTA": {
+        "FORMA": "Leitura do PDF oficial CFC; dispositivos individualizados no campo DISPOSITIVO.",
+        "DATA": "2026-11-16"
+      }
+    },
+    {
+      "ID": "P0-REFERENCIAL-APLICABILIDADE",
+      "TITULO": "Enquadramento e aplicação por referencial",
+      "ASSUNTO": "referencial contábil; porte; Simples Nacional",
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "NORMA": "ITG 2000 (R1); NBC TG 1001; NBC TG 1002",
+      "DISPOSITIVO": "ITG 1000/2022, itens 1–11; NBC TG 1000 (R1), item 1.3; NBC TG 1001/1002, itens P1–P5",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Consulta aos textos oficiais em 16/11/2026. Confirmar atos alteradores e efeitos da competência antes do uso; escopo está limitado aos dispositivos listados."
+      },
+      "APLICABILIDADE": {
+        "REFERENCIAL_CONTABIL": [
+          "NBC TG completas",
+          "NBC TG 1000 (R1)",
+          "NBC TG 1001",
+          "NBC TG 1002"
+        ],
+        "COMPETENCIA_INICIO": null,
+        "COMPETENCIA_FIM": null,
+        "REGIME_TRIBUTARIO": [],
+        "TIPO_OPERACAO": [],
+        "UF": [],
+        "MUNICIPIO": [],
+        "CONDICOES": "Confirmar receita e ativos conforme critérios e exercício, atividade/natureza, obrigação pública, regulador, forma jurídica, regime e opção por norma superior; Supervisor valida o enquadramento."
+      },
+      "RESUMO_TECNICO": "ITG 1000 relaciona tipo/porte e conjuntos contábeis; porte, regime fiscal, forma jurídica, obrigação pública e regulador são eixos distintos. Para pequena/micro companhia fechada ou tributada pelo Lucro Real, item 10 exige observar Lei 6.404/76 e selecionar norma adequada.",
+      "LIMITACOES": [
+        "O limite do Simples não seleciona automaticamente NBC TG 1002; atualização dos limites legais repercute conforme item 11; entidades reguladas podem ter norma setorial.",
+        "Aplicar referencial por regime ou faturamento isolados gera inadequação da escrituração/demonstrações.",
+        "Não generalizar estas seções simplificadas para referenciais completos, reguladores setoriais ou outra entidade sem verificar a norma correspondente."
+      ],
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "VERSAO": "1.0.0",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "ESCOPO": {
+        "TIPO": "GERAL",
+        "EMPRESA_ID": null
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "CONCEITO": "referencial contábil; porte; Simples Nacional",
+      "CONDICOES_RECONHECIMENTO": "Confirmar receita e ativos conforme critérios e exercício, atividade/natureza, obrigação pública, regulador, forma jurídica, regime e opção por norma superior; Supervisor valida o enquadramento.",
+      "EVIDENCIA_NECESSARIA": "Documento de origem e evidência interna/externa que identifique fato, data, partes, direito/obrigação, valor e competência; adequar à natureza do fato e à lei aplicável.",
+      "TRATAMENTO_GERAL": "ITG 1000 relaciona tipo/porte e conjuntos contábeis; porte, regime fiscal, forma jurídica, obrigação pública e regulador são eixos distintos. Para pequena/micro companhia fechada ou tributada pelo Lucro Real, item 10 exige observar Lei 6.404/76 e selecionar norma adequada.",
+      "EXCECOES": "O limite do Simples não seleciona automaticamente NBC TG 1002; atualização dos limites legais repercute conforme item 11; entidades reguladas podem ter norma setorial.",
+      "RISCOS": "Aplicar referencial por regime ou faturamento isolados gera inadequação da escrituração/demonstrações.",
+      "REFERENCIAL": [
+        "NBC TG completas",
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACAO_REFERENCIAL": "Conteúdo conferido para os dispositivos citados de ITG 2000 (R1), NBC TG 1001 e NBC TG 1002; NBC TG 1000 e normas completas têm diferenças e alterações próprias e não ficam integralmente cobertas por esta ficha.",
+      "EVIDENCIA_CONSULTA": {
+        "FORMA": "Leitura do PDF oficial CFC; dispositivos individualizados no campo DISPOSITIVO.",
+        "DATA": "2026-11-16"
+      }
+    },
+    {
+      "ID": "P0-MENSURACAO",
+      "TITULO": "Mensuração contábil",
+      "ASSUNTO": "mensuração inicial e subsequente",
+      "DEPARTAMENTO": "CONTABILIDADE",
+      "CONCEITO": "Mensurar é atribuir valor monetário a ativo, passivo, receita ou despesa após identificar o elemento e o critério aplicável.",
+      "CONDICOES_RECONHECIMENTO": "Primeiro identificar se há elemento reconhecível; então aplicar a base de mensuração prescrita ou permitida pelo referencial e pela norma específica.",
+      "EVIDENCIA_NECESSARIA": "Documento da transação, memória de cálculo, premissas e estimativas suportadas, dados observáveis e política aprovada, conforme o elemento.",
+      "TRATAMENTO_GERAL": "Os referenciais simplificados estudados incluem custo histórico em diversos elementos; normas específicas podem exigir ou permitir outra base. Não há base única para todos os ativos e passivos.",
+      "EXCECOES": "Estoques, instrumentos financeiros, imobilizado, provisões, combinação de bases e estimativas têm requisitos próprios. Esta ficha não estabelece mensuração para casos concretos.",
+      "RISCOS": "Aplicar custo ou valor justo sem autorização do referencial, estimativas sem suporte e misturar base contábil com base fiscal.",
+      "REFERENCIAL": [
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG 1000 (R1)"
+      ],
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Escopo limitado às seções consultadas dos textos CFC em 2026-11-16; confirmar alterações e competência."
+      },
+      "DISPOSITIVO": "NBC TG 1001, Seção 2 (conceitos gerais) e seções específicas de estoques (13), imobilizado (17) e provisões (21); NBC TG 1002, seções 13, 17 e 21.",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "LIMITACAO_REFERENCIAL": "Não foi estudada integralmente a Estrutura Conceitual, NBC TG 1000 nem o conjunto completo; critérios por classe de item exigem consulta à norma aplicável.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "FORMA": "Leitura das seções oficiais indicadas nos PDFs do CFC.",
+        "DATA": "2026-11-16"
+      }
+    },
+    {
+      "ID": "CONT-01",
+      "TITULO": "Escrituração contábil",
+      "CONCEITO": "Registrar em ordem cronológica fatos patrimoniais com suporte e representação da essência.",
+      "OBJETIVO": "Manter trilha íntegra e útil desde a evidência até o livro e as demonstrações.",
+      "NORMA": "ITG 2000 (R1); ITG 1000/2022; NBC TG 1001/1002",
+      "DISPOSITIVO": "ITG 2000 (R1), itens 2, 5–8, 26–28; ITG 1000, itens 12–15, 23",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG1000-TEXTO",
+          "TITULO": "ITG 1000/2022, texto oficial CFC consultado (DOC)",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG%201000.doc",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Fato identificável; documento externo/interno ou elemento comprobatório; data, contas, histórico, valor, identificador e vinculação.",
+      "CRITERIOS_MENSURACAO": "Valor suportado pelo documento e critério da norma do elemento; não inferir valor do extrato.",
+      "EVIDENCIAS_NECESSARIAS": "Documento fonte, data/partes/objeto/valor, comprovação de entrega ou obrigação, aprovação quando necessária; livro/razão e referência cruzada.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Escriturar por essência econômica; manter Diário/Razão e forma contábil; corrigir por lançamento retificador rastreável.",
+      "EXEMPLO_FICTICIO": "A empresa fictícia Aurora compra material de embalagem e guarda nota, recebimento e vínculo ao lote do razão.",
+      "EXCECOES": "A ITG 2000 permite elementos internos e, na falta de documento, outros elementos que comprovem/evidenciem; requisitos digitais e setoriais podem somar-se.",
+      "ERROS_COMUNS": "Tratar extrato como prova suficiente da natureza; usar histórico genérico; apagar ou sobrescrever original.",
+      "RISCOS": "Registro sem lastro, corte errado, duplicidade e impossibilidade de auditoria.",
+      "LIMITACOES": "ITG 2000 tem alcance geral conforme item 2, observadas outras normas; ITG 1000 define escopos simplificados e modelos.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-DOCUMENTACAO-ESCRITURACAO"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-02",
+      "TITULO": "Partidas dobradas",
+      "CONCEITO": "Representar um mesmo fato em registros integrados devedores e credores, sem confundir igualdade matemática com substância.",
+      "OBJETIVO": "Garantir integridade dos lançamentos e equação patrimonial.",
+      "NORMA": "ITG 2000 (R1); NBC TG 1001/1002",
+      "DISPOSITIVO": "ITG 2000 (R1), item 6(b)–(f); NBC TG 1001, itens 2.9–2.12",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Identificar o evento e contas afetadas; cada lançamento deve ter contas devedora/credora, data, histórico, valor e identificador.",
+      "CRITERIOS_MENSURACAO": "Montante determinado segundo o elemento e mensuração aplicável; soma de débitos e créditos deve fechar, mas não valida classificação.",
+      "EVIDENCIAS_NECESSARIAS": "Documento, memória de cálculo e conciliação do lote/lançamento.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Registrar todas as partidas do fato com vínculo comum e preservar razão analítico.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: compra de mercadoria a prazo por R$ 1.000,00 gera aumento de estoque e fornecedor no mesmo valor antes de tributos ou condições especiais.",
+      "EXCECOES": "A ITG 2000 exige os campos mínimos; não prescreve plano universal nem regra por nome de conta.",
+      "ERROS_COMUNS": "Forçar contrapartida de ajuste sem apurar o fato; considerar lançamento balanceado como correto.",
+      "RISCOS": "Saldos e resultado distorcidos apesar de balanço matematicamente fechado.",
+      "LIMITACOES": "A ficha explica o mecanismo formal, não fornece lançamentos automáticos; apresentação específica varia pelo referencial.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-PARTIDAS-DOBRADAS"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-03",
+      "TITULO": "Regime de competência",
+      "CONCEITO": "Reconhecer fatos quando satisfazem definições e critérios no período em que ocorrem, sem depender de recebimento ou pagamento.",
+      "OBJETIVO": "Atribuir efeitos econômicos ao período correto.",
+      "NORMA": "NBC TG Estrutura Conceitual; NBC TG 1001/1002",
+      "DISPOSITIVO": "Estrutura Conceitual, itens 1.17–1.19; NBC TG 1001, item 2.11; NBC TG 1002, P10",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ESTRUTURA-CONCEITUAL",
+          "TITULO": "NBC TG Estrutura Conceitual, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTGEC.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Determinar fato, data de transferência/consumo/direito/obrigação e condição específica de reconhecimento.",
+      "CRITERIOS_MENSURACAO": "Mensurar valor do direito, obrigação, receita ou despesa pela regra aplicável, separando financiamento e impostos quando requerido.",
+      "EVIDENCIAS_NECESSARIAS": "Contrato, nota, entrega/aceite, folha ou memória de cálculo, data de prestação e evidência subsequente.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Reconhecer receita, custo, ativo/passivo no período do fato; fluxo de caixa é demonstração distinta.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: serviço entregue em novembro por R$ 500,00, recebido em dezembro; receita e recebível pertencem a novembro se os critérios se cumpriram.",
+      "EXCECOES": "Demonstração de fluxos de caixa apresenta fluxos; regras tributárias de regime de caixa não alteram automaticamente competência contábil.",
+      "ERROS_COMUNS": "Reconhecer despesa apenas quando paga ou receita apenas quando recebida.",
+      "RISCOS": "Corte entre períodos incorreto e saldos/resultado incompletos.",
+      "LIMITACOES": "Estrutura Conceitual não se sobrepõe a uma norma; referencial selecionado e regra específica prevalecem.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-COMPETENCIA"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-04",
+      "TITULO": "Reconhecimento de ativos",
+      "CONCEITO": "Ativo é recurso econômico presente controlado como resultado de eventos passados; reconhecê-lo quando útil e representação fidedigna, conforme norma específica.",
+      "OBJETIVO": "Distinguir recurso/direito controlado de mera expectativa ou pagamento.",
+      "NORMA": "NBC TG Estrutura Conceitual; NBC TG 1001/1002",
+      "DISPOSITIVO": "Estrutura Conceitual, itens 4.3–4.25 e 5.6–5.25; NBC TG 1001, itens 2.13 e 2.27; NBC TG 1002, item 2.7",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ESTRUTURA-CONCEITUAL",
+          "TITULO": "NBC TG Estrutura Conceitual, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTGEC.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Direito ou recurso econômico presente, controle, origem passada e critérios específicos do item.",
+      "CRITERIOS_MENSURACAO": "Custo ou outra base prescrita na norma específica; estimativas devem ser suportadas.",
+      "EVIDENCIAS_NECESSARIAS": "Contrato/título, posse/entrega, evidência de controle e benefícios, cálculo e teste de recuperabilidade quando aplicável.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Reconhecer a classe apropriada; divulgar se critério de reconhecimento falha mas informação é relevante e norma exigir.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: equipamento entregue e controlado pela empresa fictícia Horizonte é avaliado como imobilizado se os critérios da Seção 17 forem atendidos.",
+      "EXCECOES": "Direito legal de propriedade não é sempre essencial; custos de pesquisa, ativos contingentes e itens de normas específicas têm tratamento próprio.",
+      "ERROS_COMUNS": "Capitalizar gasto por haver pagamento ou nota fiscal sem recurso controlado/benefícios; exigir título legal em todos os casos.",
+      "RISCOS": "Ativo inexistente, sobreavaliado, de titularidade/controle alheio ou não recuperável.",
+      "LIMITACOES": "Conceito da Estrutura Conceitual orienta, mas critério e exceção da norma da classe devem ser examinados.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-ATIVO-PASSIVO"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-05",
+      "TITULO": "Reconhecimento de passivos",
+      "CONCEITO": "Passivo é obrigação presente de transferir recurso econômico como resultado de eventos passados.",
+      "OBJETIVO": "Reconhecer compromissos já incorridos sem antecipar despesas futuras evitáveis.",
+      "NORMA": "NBC TG Estrutura Conceitual; NBC TG 1001/1002; NBC TG 25 quando aplicável",
+      "DISPOSITIVO": "Estrutura Conceitual, itens 4.26–4.47 e 5.6–5.25; NBC TG 1001, itens 2.14–2.15 e seção 21; NBC TG 1002, itens 2.8 e 21.1–21.7",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ESTRUTURA-CONCEITUAL",
+          "TITULO": "NBC TG Estrutura Conceitual, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTGEC.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Obrigação presente por evento passado e critérios de reconhecimento da classe; para provisão incerta, atender probabilidade e estimativa confiável no simplificado.",
+      "CRITERIOS_MENSURACAO": "Valor contratual/estimado conforme norma, desconto e incerteza quando requerido.",
+      "EVIDENCIAS_NECESSARIAS": "Contrato, aceite/entrega/serviço, lei ou comunicação construtiva, cálculo, confirmação do credor e vencimento.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Reconhecer passivo contra ativo, despesa ou custo conforme origem; liquidar posteriormente contra passivo.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: energia consumida em novembro e faturada em dezembro é avaliada como obrigação de novembro com medição/documentos disponíveis.",
+      "EXCECOES": "Contratos executórios não onerosos podem não gerar passivo; provisões não são reservas genéricas.",
+      "ERROS_COMUNS": "Provisão de orçamento futuro sem evento/obrigação presente; deixar fornecedor recebido sem passivo por falta de pagamento.",
+      "RISCOS": "Passivo omitido, duplicado ou reconhecido em período errado.",
+      "LIMITACOES": "Para completas, CPC 25/NBC TG 25 e correlatas são necessários; seções simplificadas têm critérios próprios.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-ATIVO-PASSIVO"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-06",
+      "TITULO": "Receitas",
+      "CONCEITO": "Receita aumenta patrimônio líquido por atividades, excluindo contribuições dos sócios e valores recebidos em nome de terceiros.",
+      "OBJETIVO": "Reconhecer a contraprestação quando se cumpre o critério do referencial, não quando apenas entra caixa.",
+      "NORMA": "NBC TG 1001, Seção 23; NBC TG 1002, Seção 23; NBC TG 1000, Seção 23; NBC TG 47 apenas para conjunto completo aplicável",
+      "DISPOSITIVO": "NBC TG 1001, itens 23.1–23.8; NBC TG 1002, itens 23.1–23.7; NBC TG 1000 (R1), Seção 23",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Venda: transferência dos riscos/benefícios relevantes e critérios do referencial; serviço: execução/transferência e estimativa confiável segundo seção aplicável.",
+      "CRITERIOS_MENSURACAO": "Contraprestação recebida/a receber, descontos e financiamento conforme referencial; excluir tributos/valores de terceiros quando aplicável.",
+      "EVIDENCIAS_NECESSARIAS": "Contrato/pedido, documento fiscal, entrega/aceite, medição, política de devolução, preço e cálculo.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Reconhecer receita e recebível quando devido; custo relacionado é reconhecido sob sua regra e período.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Casa Pinho entrega 10 cadeiras vendidas a prazo em novembro; receita é avaliada quando transferência e demais critérios estão atendidos, apesar do recebimento em dezembro.",
+      "EXCECOES": "Consignação, instalação significativa, direito de devolução, preço variável, agência, serviço ao longo do tempo e financiamento demandam análise particular.",
+      "ERROS_COMUNS": "Usar faturamento ou recebimento como único marco; reconhecer adiantamento de cliente como receita.",
+      "RISCOS": "Antecipação/atraso e tributos sobre valores que pertencem a terceiro tratados como receita.",
+      "LIMITACOES": "NBC TG 47/CPC 47 não se aplica automaticamente aos referenciais simplificados; para completos conferir versão vigente e contrato.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-RECEITA"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-07",
+      "TITULO": "Custos e despesas",
+      "CONCEITO": "Despesa reduz patrimônio líquido; custo pode permanecer incorporado a ativo enquanto este satisfaz critérios, passando ao resultado quando apropriado.",
+      "OBJETIVO": "Separar aquisição de recurso, custo do ativo, custo de venda e despesa do período.",
+      "NORMA": "NBC TG Estrutura Conceitual; NBC TG 1001 Seções 2, 13, 17 e 23; NBC TG 1002 Seções 2, 13, 17 e 23",
+      "DISPOSITIVO": "Estrutura Conceitual, itens 4.68–4.72; NBC TG 1001, itens 2.18–2.19 e 13.5, 13.10; NBC TG 1002, itens 2.11 e 13.4–13.6",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ESTRUTURA-CONCEITUAL",
+          "TITULO": "NBC TG Estrutura Conceitual, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTGEC.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Determinar se gasto origina ativo reconhecível, compõe custo segundo seção específica ou é consumido/incorrido no período.",
+      "CRITERIOS_MENSURACAO": "Composição de custo segundo classe, sem itens excluídos; tributo recuperável e custo financeiro tratados conforme aplicável.",
+      "EVIDENCIAS_NECESSARIAS": "Nota/contrato, recebimento/uso, composição do custo, centro de custo, período e documentação de produção.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Capitalizar somente itens permitidos; reconhecer consumo como despesa/custo quando consumido/vendido.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: frete de aquisição de mercadoria é avaliado junto ao custo de estoque quando diretamente atribuível; anúncio de venda consumido é despesa comercial.",
+      "EXCECOES": "Custos de empréstimos, folha capitalizável, perdas e setores podem ter regras específicas.",
+      "ERROS_COMUNS": "Classificar tudo que é pago como despesa; manter custo de mercadoria vendida no estoque após venda.",
+      "RISCOS": "Lucro bruto e ativos distorcidos; custos inelegíveis capitalizados.",
+      "LIMITACOES": "Núcleo verificado em Estrutura Conceitual e nas seções citadas de TG1001/TG1002: gasto reconhecível como ativo não é despesa até consumo/baixa; custo vendido/ocioso/desperdício têm regras específicas. Custos industriais, empréstimos e referenciais completos permanecem fora do escopo confirmado.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-DESPESAS-CUSTOS"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-08",
+      "TITULO": "Fornecedores e clientes",
+      "CONCEITO": "Contas a receber e a pagar refletem direitos contratuais e obrigações financeiras presentes; o reconhecimento decorre do evento, não do caixa.",
+      "OBJETIVO": "Controlar saldo, vencimento, contraparte, condição de liquidação e mensuração.",
+      "NORMA": "NBC TG 1001, Seção 11; NBC TG 1002, Seção 11; NBC TG 1000, Seções 11/12",
+      "DISPOSITIVO": "NBC TG 1001, itens 11.2–11.18; NBC TG 1002, itens 11.1–11.8",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Entrega/serviço que cria direito/obrigação; confirmar se houve financiamento, desconto, risco de crédito ou extinção/transferência.",
+      "CRITERIOS_MENSURACAO": "Mensuração inicial e subsequente conforme seção 11/contrato; custo amortizado/ajustes quando exigidos.",
+      "EVIDENCIAS_NECESSARIAS": "Fatura/contrato, recebimento/entrega, extrato auxiliar do título, confirmação/aging, liquidação/abatimento.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Reconhecer recebível ou fornecedor na origem; recebimento/pagamento baixa o saldo se a obrigação/direito foi extinto.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: fornecedor fictício Bambu entrega matéria-prima em 30/11, fatura em 02/12; corte e obrigação são avaliados pela entrega e contrato.",
+      "EXCECOES": "Retenções, contestação, devolução, factoring, desconto de duplicatas e moeda estrangeira podem alterar apresentação/baixa.",
+      "ERROS_COMUNS": "Registrar pagamento como origem do passivo; duplicar obrigação no recebimento da fatura após provisão.",
+      "RISCOS": "Dupla contabilização, saldo sem composição ou baixa sem extinção.",
+      "LIMITACOES": "Núcleo de contas a receber/pagar verificado na Seção 11 das NBC TG 1001 e 1002: reconhecimento como parte das disposições contratuais, mensuração, apropriação financeira e baixa quando extinto/recebido conforme a classe. Cessão, risco de crédito e alterações contratuais exigem análise particular.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-CLIENTES-FORNECEDORES"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-09",
+      "TITULO": "Adiantamentos",
+      "CONCEITO": "Pagamento ou recebimento antecipado pode representar direito a bens/serviços ou obrigação de entregar/prestar; não é automaticamente despesa ou receita.",
+      "OBJETIVO": "Manter a classificação patrimonial até consumo, entrega, execução, restituição ou outro evento normativo.",
+      "NORMA": "NBC TG Estrutura Conceitual; NBC TG 1001/1000; NBC TG 1002 quando aplicável",
+      "DISPOSITIVO": "Estrutura Conceitual, itens 4.56–4.62; NBC TG 1001, seções 11 e 23; NBC TG 1002, seções 11 e 23; ITG 21 quando moeda estrangeira",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ESTRUTURA-CONCEITUAL",
+          "TITULO": "NBC TG Estrutura Conceitual, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTGEC.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Contrato estabelece direito a restituição/entrega/serviço ou obrigação de desempenho; avaliar evento já ocorrido e norma do contrato.",
+      "CRITERIOS_MENSURACAO": "Saldo pelo valor reconhecido, eventuais perdas, financiamento, câmbio e baixas conforme seção aplicável.",
+      "EVIDENCIAS_NECESSARIAS": "Contrato, comprovante, cronograma, confirmação de fornecedor/cliente e entrega/aceite subsequente.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Manter ativo de adiantamento a fornecedor ou passivo/receita diferida conforme fatos; liquidar contra item correspondente quando critérios se cumprem.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: empresa Limoeiro paga R$ 300,00 para reservar matéria-prima ainda não entregue; considerar direito/adiantamento, sujeito ao contrato.",
+      "EXCECOES": "Adiantamento em moeda estrangeira (ITG 21/ICPC 21) possui regra específica de data de câmbio; contratos sob CPC 47 podem requerer termos próprios.",
+      "ERROS_COMUNS": "Reconhecer despesa/receita pela movimentação bancária sem análise de entrega/desempenho.",
+      "RISCOS": "Despesas/receitas antecipadas erradas, obrigação de restituição omitida ou valor cambial incorreto.",
+      "LIMITACOES": "Núcleo verificado como ativo/passivo de direito/obrigação decorrente de contrato, com mensuração/baixa pelas seções financeiras 11 e reconhecimento de receita pelas seções 23. Adiantamentos em moeda estrangeira têm regra própria; conta depende de contrato e momento de transferência.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-ADIANTAMENTOS"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-10",
+      "TITULO": "Estoques e CMV",
+      "CONCEITO": "Estoque é ativo mantido para venda, em produção ou materiais/insumos; custo contábil é reconhecido no resultado quando vendido/consumido na relação prevista pela norma.",
+      "OBJETIVO": "Mensurar saldo e custo de venda com quantidade, titularidade, corte e composição suportados.",
+      "NORMA": "NBC TG 1001 Seção 13; NBC TG 1002 Seção 13; NBC TG 1000 Seção 13; NBC TG 16 somente para entidades sujeitas a completas",
+      "DISPOSITIVO": "NBC TG 1001, itens 13.1–13.10; NBC TG 1002, itens 13.1–13.6; NBC TG 1000 (R1), Seção 13",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Bem controlado para venda/produção/consumo; identificar inventário, corte, mercadoria em terceiros/trânsito e vínculo entre venda e baixa.",
+      "CRITERIOS_MENSURACAO": "TG1001 menor entre custo e preço de venda estimado menos custos para completar/vender; TG1002 custo segundo sua regra e método PEPS ou média ponderada; comparar texto aplicável.",
+      "EVIDENCIAS_NECESSARIAS": "Contagem/relatório itemizado, notas e recebimentos, ficha de custo, método consistente, corte de entradas/saídas, perdas/obsolescência.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Reconhecer aquisição elegível no estoque; reconhecer custo relacionado quando reconhecida receita/consumo; perdas quando a regra exigir.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a loja Jatobá adquire 20 caixas a prazo; no recebimento valida quantidade e custo; ao vender 5 caixas, reconhece custo correspondente conforme método aplicável.",
+      "EXCECOES": "Produção, serviços em curso, corretor/commodity, biológicos, tributos recuperáveis, perdas, VNR e capacidade normal têm regras distintas.",
+      "ERROS_COMUNS": "Levar compra direto a despesa sem avaliar estoque; manter vendido em saldo; presumir inventário físico matematicamente conciliado como suporte.",
+      "RISCOS": "Estoque/CMV e resultado incorretos, inclusive risco de fraude, corte ou obsolescência.",
+      "LIMITACOES": "NBC TG 16/CPC 16 refere-se ao conjunto completo, não deve ser aplicado automaticamente a micro/pequenas; diferenças TG1000/1001/1002.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-ESTOQUES-CMV"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-11",
+      "TITULO": "Imobilizado e depreciação",
+      "CONCEITO": "Item tangível para produção/serviço, aluguel ou administração por mais de um período pode ser imobilizado; custo é reconhecido se benefícios prováveis e custo confiável.",
+      "OBJETIVO": "Capitalizar aquisição elegível e apropriar valor depreciável durante vida útil, a partir da disponibilidade para uso.",
+      "NORMA": "NBC TG 1001 Seção 17; NBC TG 1002 Seção 17; NBC TG 1000 Seção 17; NBC TG 27 apenas para completas aplicáveis",
+      "DISPOSITIVO": "NBC TG 1001, itens 17.2–17.10 e 17.20–17.23; NBC TG 1002, itens 17.2–17.7; NBC TG 1000 (R1), itens 17.4, 17.9–17.14, 17.20",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Uso por mais de período; benefícios prováveis e custo mensurável; ativo no local/condição para uso para iniciar depreciação.",
+      "CRITERIOS_MENSURACAO": "Custo inicial elegível; subsequente conforme referencial, menos depreciação e eventual impairment; vida útil, residual, método apoiados.",
+      "EVIDENCIAS_NECESSARIAS": "Nota/contrato, identificação/tag, aceite, instalação, termo de disponibilidade, custo direto, vida útil e evidência física.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Reconhecer ativo; depreciar desde disponibilidade, mesmo que pagamento/uso comercial comece depois; alocar despesa ou custo de outro ativo quando exigido.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: máquina comprada pela Figueira em 01/11, instalada e disponível em 20/11; analisar custo elegível e início da depreciação em 20/11, não pela data do PIX.",
+      "EXCECOES": "Terrenos normalmente não depreciados; bens biológicos/minerais, componente, construção, reavaliação fiscal, peças e impairment têm tratamento próprio.",
+      "ERROS_COMUNS": "Esperar pagamento para capitalizar/depreciar; usar taxa fiscal como vida útil universal; depreciar equipamento ainda não disponível.",
+      "RISCOS": "Ativo, custo do período e tributos diferidos podem ser distorcidos.",
+      "LIMITACOES": "TG1002 determina linha reta e vida útil fiscal salvo apresentação substancialmente melhor; TG1001 requer método/padrão. CPC 27 não generalizado.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-IMOBILIZADO-DEPRECIACAO"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-12",
+      "TITULO": "Provisões e contingências",
+      "CONCEITO": "Provisão é passivo de prazo/valor incerto; reconhecer sob critérios de obrigação presente por evento passado, saída provável e estimativa confiável, conforme referencial.",
+      "OBJETIVO": "Representar obrigações presentes e distinguir passivos contingentes e mera intenção de gasto futuro.",
+      "NORMA": "NBC TG 1001 Seção 21; NBC TG 1002 Seção 21; NBC TG 1000 Seção 21; NBC TG 25 para completas",
+      "DISPOSITIVO": "NBC TG 1001, itens 21.2–21.12; NBC TG 1002, itens 21.2–21.7; NBC TG 1000 (R1), itens 21.4–21.16",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Obrigação presente de evento passado; probabilidade e mensuração; avaliar incerteza de existência, saída e valor.",
+      "CRITERIOS_MENSURACAO": "Melhor estimativa ou regra do referencial, considerando riscos e evidências; revisar em cada balanço.",
+      "EVIDENCIAS_NECESSARIAS": "Parecer jurídico/contrato/lei, evento, status processual, memória da estimativa e aprovação técnica.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Reconhecer passivo contra despesa ou custo de ativo; contingente não reconhecido pode requerer divulgação conforme seção.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: ação trabalhista contra empresa Cedro, de valor e chance incertos; advogado fornece avaliação datada e cenários para julgamento contábil.",
+      "EXCECOES": "Depreciação, impairment e perda de crédito não são provisões de passivo; obrigação futura evitável não é provisão; norma completa pode exigir divulgação diferente.",
+      "ERROS_COMUNS": "Provisionar intenção de manutenção futura; omitir passivo porque valor final não é exato.",
+      "RISCOS": "Sub ou superavaliação de obrigações e resultado, risco jurídico e de divulgação.",
+      "LIMITACOES": "Especialmente em processos judiciais/tributários, exige fatos, parecer profissional e referencial; CPC 25/NBC 25 não é automático para simplificadas.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-PROVISOES-OBRIGACOES"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-13",
+      "TITULO": "Despesas antecipadas",
+      "CONCEITO": "Pagamento anterior ao consumo de bem/serviço pode gerar direito/ativo que será apropriado ao resultado conforme benefício seja consumido.",
+      "OBJETIVO": "Separar liquidação financeira antecipada do reconhecimento de despesa.",
+      "NORMA": "NBC TG Estrutura Conceitual; NBC TG 1001 Seções 2/11; NBC TG 1002 Seções 2/11",
+      "DISPOSITIVO": "Estrutura Conceitual, itens 4.3–4.25 e 5.6–5.25; NBC TG 1001, Seção 11; NBC TG 1002, Seção 11",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ESTRUTURA-CONCEITUAL",
+          "TITULO": "NBC TG Estrutura Conceitual, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTGEC.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Direito presente por serviço/benefício futuro controlado e mensurável; não há consumo integral no período.",
+      "CRITERIOS_MENSURACAO": "Valor não consumido, sujeito a perdas e aos instrumentos financeiros/contrato quando aplicáveis.",
+      "EVIDENCIAS_NECESSARIAS": "Contrato, apólice/licença, comprovante, prazo de cobertura, evidência de uso/consumo e saldo de abertura.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Reconhecer ativo de benefício pré-pago e apropriar sistematicamente ao resultado durante o período recebido.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: seguro anual da empresa Nogueira pago em outubro cobre novembro a outubro; o trecho não consumido permanece como ativo conforme política e referencial.",
+      "EXCECOES": "Classificação pode ser recebível financeiro/adiantamento em contrato; benefício sem controle ou cancelável pode alterar análise.",
+      "ERROS_COMUNS": "Debitar despesa integral na data do pagamento sem verificar período de cobertura; manter ativo após benefício acabar.",
+      "RISCOS": "Despesas e ativo circulante incorretos.",
+      "LIMITACOES": "Núcleo verificado pela definição/reconhecimento de ativo na Estrutura Conceitual e Seções 2 e 11 dos referenciais simplificados: o pagamento por serviço ainda não consumido pode representar direito controlado e é baixado conforme recebimento/consumo. Apresentação depende da natureza do direito e da política aplicável.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-ADIANTAMENTOS"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-14",
+      "TITULO": "Receitas antecipadas",
+      "CONCEITO": "Recebimento antes de transferir o bem ou serviço pode representar obrigação de desempenho/entrega, não receita ganha.",
+      "OBJETIVO": "Distinguir entrada de caixa e cumprimento do contrato.",
+      "NORMA": "NBC TG 1001 Seção 23; NBC TG 1002 Seção 23; NBC TG 1000 Seção 23",
+      "DISPOSITIVO": "NBC TG 1001, itens 23.3–23.8; NBC TG 1002, itens 23.3–23.7; NBC TG 1000, Seção 23",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Há recebimento e obrigação ainda não satisfeita, ou critérios de reconhecimento da receita ainda não atendidos.",
+      "CRITERIOS_MENSURACAO": "Valor recebido/alocável ao desempenho; avaliar financiamento, devolução, desconto e contraprestação variável.",
+      "EVIDENCIAS_NECESSARIAS": "Contrato, extrato, entrega/aceite, cronograma de desempenho, direito de restituição e nota fiscal.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Manter passivo/adiantamento de cliente até satisfazer critérios; reconhecer receita conforme o bem/serviço for reconhecido.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: cliente da empresa Sibipiruna antecipa R$ 800,00 por produto a entregar em janeiro; considerar obrigação em dezembro até entrega/critério de reconhecimento.",
+      "EXCECOES": "Receitas de juros, aluguel, contratos de longo prazo, agência, consignação e cláusula de cancelamento têm tratamento próprio.",
+      "ERROS_COMUNS": "Reconhecer pela data do Pix ou da emissão de invoice sem verificar transferência.",
+      "RISCOS": "Receita, passivo e tributos apresentados fora da competência.",
+      "LIMITACOES": "NBC TG 47 não se aplica automaticamente às demonstrações simplificadas; período tributário é análise separada.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-ADIANTAMENTOS"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-15",
+      "TITULO": "Empréstimos e financiamentos",
+      "CONCEITO": "Empréstimo recebido cria caixa e obrigação financeira contratual; principal e encargos têm reconhecimento, mensuração e baixa próprios.",
+      "OBJETIVO": "Separar saldo principal, custo financeiro, parcela circulante/não circulante e liquidação.",
+      "NORMA": "NBC TG 1001 Seção 11; NBC TG 1002 Seção 11; NBC TG 1000 Seções 11/12",
+      "DISPOSITIVO": "NBC TG 1001, itens 11.2–11.18; NBC TG 1002, itens 11.2–11.8; NBC TG 1000, Seções 11 e 12",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Contrato efetivo e obrigação especificada; identificar desembolso, tarifa, carência, taxa, garantias, vencimentos e cláusulas.",
+      "CRITERIOS_MENSURACAO": "Mensuração inicial e subsequente pelo critério da norma; reconhecer juros ao longo do tempo; valor presente se requisito aplicar.",
+      "EVIDENCIAS_NECESSARIAS": "Contrato/CCB, demonstrativo do credor, comprovante de crédito, cronograma, taxa efetiva, conciliação e extrato.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Reconhecer entrada contra passivo financeiro; apropriar juros conforme período; pagamento separa amortização de principal e juros.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: instituição fictícia Vale Azul deposita R$ 12.000,00; contrato discrimina 12 prestações e juros; não tratar todo pagamento mensal como despesa.",
+      "EXCECOES": "Custos de empréstimos para ativo qualificável, renegociação, covenant, parte relacionada, moeda estrangeira ou instrumento patrimonial requerem outras normas.",
+      "ERROS_COMUNS": "Lançar depósito como receita; contabilizar parcela total como juros; não separar curto/longo prazo.",
+      "RISCOS": "Passivo, juros e fluxo de caixa classificados incorretamente.",
+      "LIMITACOES": "Núcleo verificado nas seções de ativos/passivos financeiros das NBC TG 1001 e 1002: contrato cria passivo quando a entidade se torna parte das disposições; reconhecer caixa e obrigação, apropriar encargos por competência e separar principal/juros conforme demonstrativo e regra. Custos de empréstimos de ativo qualificável e instrumentos complexos permanecem especializados.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-PAGAMENTO-NAO-DESPESA"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-16",
+      "TITULO": "Variação cambial",
+      "CONCEITO": "Transação denominada ou liquidável em moeda estrangeira é convertida na moeda funcional conforme regra do referencial; saldo monetário pode ser atualizado na data de reporte.",
+      "OBJETIVO": "Mensurar direitos/obrigações em moeda funcional e reconhecer efeitos cambiais no local devido.",
+      "NORMA": "NBC TG 1002 Seção 30; NBC TG 1000 Seção 30; NBC TG 1001 Seção 30; NBC TG 02/CPC 02 para completas",
+      "DISPOSITIVO": "NBC TG 1002, itens 30.1–30.2; NBC TG 1001, Seção 30; NBC TG 1000, Seção 30; NBC TG 02 (R3), com revisões vigentes por competência",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Identificar moeda da operação e funcional, item monetário ou não monetário, adiantamento e datas de reconhecimento/relato.",
+      "CRITERIOS_MENSURACAO": "Taxa à vista da data da transação e taxa da data do balanço para saldos abrangidos; variação no resultado/categoria requerida.",
+      "EVIDENCIAS_NECESSARIAS": "Fatura/contrato em moeda, comprovante, fonte e data da taxa, saldo de fechamento, natureza monetária e reconciliação.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Registrar inicial e reavaliar saldos conforme referencial; adiantamentos podem fixar data conforme ITG 21/ICPC 21.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: empresa Curió compra software a prazo em USD; registrar valor convertido na data definida e revisar saldo monetário no fechamento.",
+      "EXCECOES": "Investimento líquido no exterior, conversão de demonstrações, hedge, moeda funcional e adiantamentos têm exceções; Revisão NBC 31 e alterações por data precisam ser verificadas.",
+      "ERROS_COMUNS": "Usar taxa de pagamento para registro inicial sem base normativa; reavaliar item não monetário como se fosse dívida.",
+      "RISCOS": "Diferença cambial em período/resultado errado; exposição financeira omitida.",
+      "LIMITACOES": "Núcleo de transações monetárias em moeda estrangeira verificado nas Seções 30 das NBC TG 1001/1002: moeda funcional, taxa à vista na data da operação, atualização de itens monetários na data de balanço e reconhecimento do efeito no resultado. ITG 21/ICPC 21, conversão de demonstrações e hedge exigem consulta específica.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-MENSURACAO"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-17",
+      "TITULO": "Políticas e erros contábeis",
+      "CONCEITO": "Política contábil é princípio/base/regra aplicada; mudança, estimativa e erro são categorias diferentes com consequências próprias.",
+      "OBJETIVO": "Assegurar consistência, mudança justificada, correção rastreável e comparabilidade.",
+      "NORMA": "NBC TG 1001 Seção 10; NBC TG 1002 Seção 10; NBC TG 1000 Seção 10; ITG 2000 (R1)",
+      "DISPOSITIVO": "NBC TG 1001, itens 10.1–10.13; NBC TG 1002, itens 10.1–10.6; NBC TG 1000, Seção 10; ITG 2000, itens 31–36",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Identificar se é mudança exigida/voluntária de política, nova estimativa por nova informação ou erro de omissão/mau uso de informação disponível.",
+      "CRITERIOS_MENSURACAO": "Aplicar prospectiva para estimativa; política/erro conforme retrospectiva ou tratamento permitido e limitações da norma.",
+      "EVIDENCIAS_NECESSARIAS": "Política aprovada e versões; lançamentos originais; evidências disponíveis na época; reconciliação de impacto e aprovação.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Corrigir erro anterior segundo referencial, preservando trilha original; retificar escrituração por estorno, transferência ou complementação com histórico de motivo/data/origem.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: a empresa Canário detecta em 2026 uma compra de 2025 classificada em despesa apesar de documento mostrar equipamento; preservar origem, calcular efeito e encaminhar para decisão de correção apropriada.",
+      "EXCECOES": "Impraticabilidade, materialidade, legislação societária/digital, erro fiscal, mudança de estimativa e transição podem alterar tratamento.",
+      "ERROS_COMUNS": "Reescrever período encerrado sem trilha; chamar erro de estimativa para evitar correção; mudança oportunista para alterar lucro.",
+      "RISCOS": "Demonstrações comparativas, tributos e histórico tornam-se não confiáveis.",
+      "LIMITACOES": "Erro histórico sempre requer aprovação do Supervisor; CPC 23/NBC TG 23 não se estende automaticamente a simplificadas.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-POLITICAS-CONTABEIS"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-18",
+      "TITULO": "Balancete e demonstrações",
+      "CONCEITO": "Balancete é instrumento auxiliar de saldos/movimentos; demonstrações apresentam posição, desempenho, fluxos e explicações segundo conjunto e referencial aplicável.",
+      "OBJETIVO": "Validar completude, classificação, corte, saldos e apresentação antes da emissão.",
+      "NORMA": "ITG 1000; NBC TG 1001 Seções 3–8; NBC TG 1002 Seções 3–6; NBC TG 51 para apresentação quando período aplicável",
+      "DISPOSITIVO": "ITG 1000, itens 16–23; NBC TG 1001, itens 3.1–3.6 e Seções 4–8; NBC TG 1002, itens 3.1–3.7 e Seções 4–6; NBC TG 51 e vigência",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ITG1000-TEXTO",
+          "TITULO": "ITG 1000/2022, texto oficial CFC consultado (DOC)",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG%201000.doc",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Balancete fechado por período e entidade; conciliações, ajustes de competência e classificações; requisitos do conjunto escolhido.",
+      "CRITERIOS_MENSURACAO": "Saldos com critérios das contas; classificação circulante/não circulante e mensuração; materialidade e comparativos.",
+      "EVIDENCIAS_NECESSARIAS": "Balancete, razão, composição dos saldos, conciliações, documentos, políticas, notas e avaliação da continuidade.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Reconciliar e ajustar antes de preparar o conjunto; emitir somente após validação, assinatura e divulgação exigidas.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: empresa Ipê entrega balancete com débitos=créditos, mas saldo de cliente sem composição; igualdade não basta para suportar a demonstração.",
+      "EXCECOES": "TG 1002 tem conjunto próprio simplificado e não obriga notas (embora incentive); TG51 passa a ser obrigatória para períodos iniciados em 2027, sujeita a eventual adoção antecipada e norma aplicável.",
+      "ERROS_COMUNS": "Tratar balancete como demonstração final; afirmar conformidade sem cumprir norma; adotar CPC 26 após substituição sem mapear período.",
+      "RISCOS": "Apresentação enganosa, omissão e declaração de conformidade indevida.",
+      "LIMITACOES": "Núcleo de demonstrações e apresentação verificado nas Seções 3–8 da NBC TG 1001, Seções 3–6 da TG1002 e itens 16–23 da ITG 1000. A ficha não afirma estudo integral do conjunto completo. Para períodos anuais iniciados desde 2027, considerar NBC TG 51 conforme transição oficial; confirmar adoção antecipada/regulador. TG26 foi revogada pela TG51 no cadastro CFC.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-BALANCETE-DEMONSTRACOES"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-19",
+      "TITULO": "Reconhecimento versus liquidação",
+      "CONCEITO": "Reconhecer cria/ajusta ativo, passivo, receita ou despesa segundo fato e norma; liquidar cumpre caixa/obrigação e pode baixar saldo reconhecido.",
+      "OBJETIVO": "Evitar que movimento financeiro determine sozinho natureza ou período.",
+      "NORMA": "NBC TG Estrutura Conceitual; NBC TG 1001/1002; ITG 2000 (R1)",
+      "DISPOSITIVO": "Estrutura Conceitual, itens 1.17–1.20; NBC TG 1001, itens 2.11 e 11.18; NBC TG 1002, P10 e Seção 11",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-ESTRUTURA-CONCEITUAL",
+          "TITULO": "NBC TG Estrutura Conceitual, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTGEC.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Classificar origem econômica, evento de reconhecimento, direito/obrigação existente e se o pagamento extingue ou apenas transfere recursos.",
+      "CRITERIOS_MENSURACAO": "Baixa pelo saldo extinto, com diferença/juros/encargos conforme contrato e norma.",
+      "EVIDENCIAS_NECESSARIAS": "Documento origem, contrato, extrato, razão/saldo prévio, cálculo de juros/desconto e prova de quitação.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Separar aquisição/incorrência de pagamento; liquidar contra o saldo correspondente, não duplicar despesa ou receita.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: empresa Pica-pau paga fornecedor já reconhecido por R$ 1.000,00; liquidação baixa fornecedor e caixa, sem nova compra no dia do pagamento.",
+      "EXCECOES": "Liquidação parcial, novação, desconto, estorno, transferência própria, tarifas e empréstimos têm naturezas diferentes.",
+      "ERROS_COMUNS": "Debitar despesa de novo ao pagar obrigação já registrada; chamar transferência própria de receita/despesa.",
+      "RISCOS": "Distorção do resultado, passivo e conciliação bancária.",
+      "LIMITACOES": "Resumo geral não decide natureza de transação individual e não substitui evidência nem aprovação.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-PAGAMENTO-NAO-DESPESA"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    },
+    {
+      "ID": "CONT-20",
+      "TITULO": "Tributos sobre o lucro",
+      "CONCEITO": "Tributo sobre o lucro envolve despesa/passivo corrente e, quando aplicável, ativo/passivo diferido de diferenças temporárias segundo norma e legislação fiscal.",
+      "OBJETIVO": "Separar resultado contábil, base fiscal, tributo apurado, provisionado e pago.",
+      "NORMA": "NBC TG 1001 Seção 29; NBC TG 1000 Seção 29; NBC TG 1002 Seção 29; NBC TG 32/CPC 32 para completas",
+      "DISPOSITIVO": "NBC TG 1001, Seção 29, itens 29.1–29.13; NBC TG 1002, itens 29.1–29.3; NBC TG 1000 (R1), Seção 29; NBC TG 32",
+      "FONTE_OFICIAL": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial CFC consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DATA_CONSULTA": "2026-11-16",
+      "VIGENCIA": {
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Norma em vigor conforme catálogo/SRE CFC consultado nesta data, quando indicado. Aplicar alterações e data de efeito por competência; esta ficha documenta apenas os dispositivos citados."
+      },
+      "REFERENCIAL_APLICAVEL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Identificar regime e entidade tributável, competência, lucro tributável e diferenças temporárias; reconhecer diferido só segundo critérios de recuperação/probabilidade.",
+      "CRITERIOS_MENSURACAO": "Corrente conforme apuração legal; diferido conforme taxa/recuperabilidade e norma aplicável. Não usar resultado contábil diretamente como base sem ajustes.",
+      "EVIDENCIAS_NECESSARIAS": "Demonstrações, balancete, memória fiscal, e-Lalur/e-Lacs/ECF quando aplicável, diferenças temporárias, pagamentos e evidência de recuperação.",
+      "TRATAMENTO_CONTABIL_CONCEITUAL": "Reconhecer tributo do período como despesa/passivo; separar posterior pagamento; analisar diferido se referencial e hipótese exigirem.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: empresa Andorinha registra lucro contábil e realiza adição fiscal fictícia documentada; base fiscal difere e o tributo devido ainda não equivale ao caixa pago.",
+      "EXCECOES": "Em TG1002, 29.1 trata IRPJ/CSLL Simples e remete a Seção 29 da TG1001 para Lucro Real/Presumido; tratamento diferido e transição tributária exigem contexto.",
+      "ERROS_COMUNS": "Usar lucro contábil como base; reconhecer guia paga como despesa do mês sem competência; calcular alíquota genérica.",
+      "RISCOS": "Tributo corrente/diferido, patrimônio e obrigações incorretos, penalidade fiscal.",
+      "LIMITACOES": "Núcleo de tributos correntes/diferidos e diferença entre lucro contábil e base tributável verificado na Seção 29 das TG1001/TG1000 e itens 29.1–29.3 da TG1002. Alíquotas, apuração fiscal, alterações e diferenças temporárias dependem de regime/competência; CPC 32/NBC TG32 e ITG22 só conforme referencial completo aplicável.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "MAPEAMENTO_FICHAS_ANTERIORES": [
+        "P0-REFERENCIAL-APLICABILIDADE"
+      ],
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "AUTORIZA_DECISAO_AUTOMATICA": false,
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura direta de texto(s) oficial(is) CFC, dispositivo(s) identificados; versões e limites de aplicabilidade constam nesta ficha."
+      },
+      "VERSAO": "1.0.0-03C"
+    }
+  ],
+  "FUNDAMENTOS_ETAPA": "03C"
+}

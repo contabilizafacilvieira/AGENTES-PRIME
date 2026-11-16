@@ -1,0 +1,458 @@
+{
+  "VERSAO": "1.0.0",
+  "DATA_CONSULTA": "2026-11-16",
+  "RESPOSTAS": [
+    {
+      "ID": "Q01",
+      "PERGUNTA": "Pagamento bancário é sempre despesa?",
+      "FUNDAMENTO": "Não. Pagamento é fluxo de caixa/liquidação; sua classificação decorre do fato econômico e do momento do reconhecimento. Pode quitar passivo, adquirir ativo, antecipar pagamento, transferir recursos ou representar despesa.",
+      "DISPOSITIVOS": [
+        "ITG 2000 (R1), itens 5–8 e 26–28",
+        "NBC TG 1001, item 2.11",
+        "NBC TG 1002, P10"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002; conferir outra norma aplicável"
+      ],
+      "LIMITACOES": "A classificação final depende da natureza, contrato, competência e referencial; extrato comprova fluxo, não necessariamente sua causa.",
+      "EVIDENCIA_NECESSARIA": [
+        "Extrato bancário",
+        "Documento/contrato que originou a obrigação ou aquisição",
+        "Razão e saldo anterior, quando houver"
+      ],
+      "NECESSIDADE_REVISAO": "Sim se origem, competência, conta ou documento não estiverem claros.",
+      "STATUS": "VERIFICADO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "Q02",
+      "PERGUNTA": "Quando reconhecer receita?",
+      "FUNDAMENTO": "No referencial da pequena empresa, venda de produto requer transferência significativa de riscos e benefícios e os demais critérios de mensuração, provável entrada e mensuração de custos; serviços, quando transferidos ao cliente. A norma aplicável precisa ser escolhida antes.",
+      "DISPOSITIVOS": [
+        "NBC TG 1001, itens 23.1–23.11",
+        "NBC TG 1002, seção 23",
+        "NBC TG 1000 (R1), seção 23",
+        "CPC 47/NBC TG 47, somente se aplicável"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo CFC de normas completas e correlações CPC/NBC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACOES": "Não aplicar automaticamente CPC 47/NBC TG 47 a microentidade/pequena empresa; existem seções simplificadas próprias e exceções setoriais.",
+      "EVIDENCIA_NECESSARIA": [
+        "Contrato/pedido",
+        "Nota/documento de saída, quando exigido",
+        "Prova de entrega/aceite ou medição dos serviços",
+        "Cálculo do preço e custos pertinentes"
+      ],
+      "NECESSIDADE_REVISAO": "Sim para contrato complexo, receita ao longo do tempo, devolução, variável, financiamento ou corte duvidoso.",
+      "STATUS": "PARCIAL",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "Q03",
+      "PERGUNTA": "Qual a diferença entre adiantamento de cliente e receita reconhecida?",
+      "FUNDAMENTO": "Receber caixa antes de cumprir a entrega/prestação pode manter obrigação perante o cliente; o caixa recebido, isoladamente, não prova receita. Receita segue os critérios do referencial e evidência da transferência/execução.",
+      "DISPOSITIVOS": [
+        "NBC TG 1001, itens 23.3–23.5",
+        "NBC TG 1002, seção 23",
+        "NBC TG 1000 (R1), seção 23",
+        "NBC TG 1001, seção 4"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACOES": "Conta e momento dependem do contrato, direito de restituição, estágio de execução e referencial; confirmar norma integral e tributação separadamente.",
+      "EVIDENCIA_NECESSARIA": [
+        "Contrato e termos de pagamento",
+        "Comprovante do recebimento",
+        "Entrega/aceite/medição",
+        "Saldo da obrigação ainda não satisfeita"
+      ],
+      "NECESSIDADE_REVISAO": "Sim se recebimento foi antecipado, serviço parcial, contrato cancelável ou saldo não conciliado.",
+      "STATUS": "PARCIAL",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "Q04",
+      "PERGUNTA": "Quando reconhecer estoque?",
+      "FUNDAMENTO": "Quando a entidade controla/possui economicamente bens mantidos para venda, em produção ou materiais/insumos que atendam à definição e à seção de estoques. O saldo requer composição, custo e corte comprováveis; custo do estoque vendido é reconhecido quando a receita relacionada é reconhecida.",
+      "DISPOSITIVOS": [
+        "NBC TG 1001, seção 13, itens 13.2–13.10",
+        "NBC TG 1002, itens 13.1–13.6",
+        "NBC TG 1000 (R1), seção 13"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACOES": "Método de custo, perdas, tributos recuperáveis, serviços em curso e estoques especiais dependem de referencial e fatos.",
+      "EVIDENCIA_NECESSARIA": [
+        "Inventário físico/analítico e corte",
+        "Notas/documentos de aquisição e produção",
+        "Cálculo do custo e avaliação de perdas",
+        "Prova de titularidade/controle, inclusive mercadoria em trânsito/terceiros"
+      ],
+      "NECESSIDADE_REVISAO": "Sim se houver diferença de contagem, consignação, obsolescência, produção ou propriedade incerta.",
+      "STATUS": "PARCIAL",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "Q05",
+      "PERGUNTA": "Quando iniciar depreciação?",
+      "FUNDAMENTO": "Nas NBC TG 1001 e 1002, quando o imobilizado está disponível para uso, não apenas na data do pagamento. Depreciação aloca o valor depreciável durante vida útil segundo o método previsto no referencial.",
+      "DISPOSITIVOS": [
+        "NBC TG 1001, itens 17.7–17.10",
+        "NBC TG 1002, itens 17.5–17.7",
+        "NBC TG 1000 (R1), seção 17"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACOES": "Terreno, componente, obra, ativo ocioso, expediente fiscal e perda por recuperabilidade têm regras próprias. O texto de NBC TG 1002 remete à vida útil fiscal com ressalva de apresentação.",
+      "EVIDENCIA_NECESSARIA": [
+        "Nota/contrato e identificação do ativo",
+        "Laudo/termo de instalação ou evidência de disponibilidade",
+        "Vida útil, residual, método e localização",
+        "Contagem e condição do ativo"
+      ],
+      "NECESSIDADE_REVISAO": "Sim se data disponível, vida útil, titularidade ou utilização estiverem incertas.",
+      "STATUS": "VERIFICADO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "Q06",
+      "PERGUNTA": "Qual a diferença entre provisão e liquidação?",
+      "FUNDAMENTO": "Provisão é reconhecimento de obrigação presente originada de evento passado quando saída é provável e valor estimável; liquidação é cumprir/pagar a obrigação já reconhecida, baixando o passivo. Pagamento não deve duplicar a despesa anteriormente reconhecida.",
+      "DISPOSITIVOS": [
+        "NBC TG 1001, itens 21.2–21.7",
+        "NBC TG 1002, itens 21.3–21.7",
+        "NBC TG 1000 (R1), itens 21.4–21.16"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACOES": "Obrigações certas com incerteza não relevante, contingências e passivos tributários/trabalhistas têm critérios específicos.",
+      "EVIDENCIA_NECESSARIA": [
+        "Evento passado/obrigação",
+        "Memória de cálculo e estimativa/probabilidade",
+        "Documento de liquidação e vínculo à provisão/conta a pagar"
+      ],
+      "NECESSIDADE_REVISAO": "Sim para estimativa, contingência, obrigação sem cálculo ou diferença entre provisão e pagamento.",
+      "STATUS": "VERIFICADO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "Q07",
+      "PERGUNTA": "Como tratar um erro histórico?",
+      "FUNDAMENTO": "Preservar o lançamento original e a trilha. ITG 2000 permite estorno, transferência ou complementação, registrando motivo, data e origem; erro de período anterior segue a norma de políticas/erros e pode exigir correção retrospectiva/reapresentação conforme referencial e materialidade.",
+      "DISPOSITIVOS": [
+        "ITG 2000 (R1), itens 31–36",
+        "NBC TG 1001, itens 10.10–10.13",
+        "NBC TG 1000 (R1), itens 10.19–10.23",
+        "NBC TG 1002, seção 10"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002; conferir a norma completa se aplicável"
+      ],
+      "LIMITACOES": "Reapresentação, materialidade, escrituração digital autenticada e efeitos fiscais/societários requerem análise própria; não editar histórico ou fechar períodos automaticamente.",
+      "EVIDENCIA_NECESSARIA": [
+        "Lançamento/arquivo original e identificação",
+        "Documento origem",
+        "Cálculo do efeito e período",
+        "Autorização/supervisão e trilha de retificação"
+      ],
+      "NECESSIDADE_REVISAO": "Sempre; correção de erro histórico requer Supervisão.",
+      "STATUS": "VERIFICADO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "Q08",
+      "PERGUNTA": "Por que o regime tributário não define sozinho o referencial contábil?",
+      "FUNDAMENTO": "O enquadramento contábil da ITG 1000 considera tipo/porte e ressalvas; obrigação pública de prestar contas, regulador, forma societária e opção por normas superiores podem mudar o conjunto. Regime tributário é outro eixo; Simples, isoladamente, não seleciona NBC TG 1002.",
+      "DISPOSITIVOS": [
+        "ITG 1000/2022, itens 1–11, especialmente 5–10",
+        "NBC TG 1000 (R1), item 1.3",
+        "NBC TG 1001/1002, prefácio P1–P5"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-ITG1000-TEXTO",
+          "TITULO": "ITG 1000/2022, texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG%201000.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1000-TEXTO",
+          "TITULO": "NBC TG 1000 (R1), texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1001-TEXTO",
+          "TITULO": "NBC TG 1001, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NBCTG1002-TEXTO",
+          "TITULO": "NBC TG 1002, texto oficial consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1002.pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "REFERENCIAL": [
+        "NBC TG completas",
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002"
+      ],
+      "LIMITACOES": "Os limites de receita/ativos e ressalvas legais mudam por normas; a ficha não substitui análise dos atos vigentes e validação do Supervisor.",
+      "EVIDENCIA_NECESSARIA": [
+        "Receita e ativos dos exercícios pertinentes",
+        "Natureza jurídica e atividade",
+        "Regime, obrigação pública e órgão regulador",
+        "Opções/referencial adotado e histórico de transição"
+      ],
+      "NECESSIDADE_REVISAO": "Sim; Supervisor confirma o referencial por empresa e competência.",
+      "STATUS": "VERIFICADO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "Q09",
+      "PERGUNTA": "Como distinguir resultado contábil de base fiscal?",
+      "FUNDAMENTO": "Resultado contábil é elaborado pelo referencial contábil; base fiscal resulta da apuração tributária com ajustes legais e registros da Parte A, controles de valores futuros na Parte B do e-Lalur/e-Lacs quando aplicáveis. Pagamento/provisão não equivale automaticamente a dedutibilidade ou tributo pago.",
+      "DISPOSITIVOS": [
+        "IN RFB 1.700/2017, art. 310 e §§ 2º–3º",
+        "IN RFB 2.004/2021, regras da ECF",
+        "ECF/SPED: registros e validações de Parte A/B"
+      ],
+      "FONTES": [
+        {
+          "ID": "IN1700",
+          "TITULO": "IN RFB 1.700/2017",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-ECF",
+          "TITULO": "ECF e tributos da pessoa jurídica",
+          "URL": "https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/perguntas-e-respostas/ecf/",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "SPED-ECF",
+          "TITULO": "Escrituração Contábil Fiscal",
+          "URL": "https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf",
+          "ORGAO": "SPED / Receita Federal"
+        }
+      ],
+      "REFERENCIAL": [
+        "Norma contábil aplicável à entidade; Lucro Real para e-Lalur/e-Lacs conforme legislação"
+      ],
+      "LIMITACOES": "Não calcula IRPJ/CSLL; regime, período, transição, dedutibilidade, prejuízo e legislação aplicáveis exigem pesquisa específica vigente.",
+      "EVIDENCIA_NECESSARIA": [
+        "Balancete e demonstrações",
+        "Memória de cálculo de cada adição/exclusão/compensação",
+        "e-Lalur/e-Lacs e saldos Parte B",
+        "Regime, períodos e comprovantes fiscais"
+      ],
+      "NECESSIDADE_REVISAO": "Sim, por profissional fiscal antes de apuração/transmissão.",
+      "STATUS": "VERIFICADO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "Q10",
+      "PERGUNTA": "Saldo matematicamente conciliado possui necessariamente suporte documental?",
+      "FUNDAMENTO": "Não. Igualdade aritmética só demonstra que saldos/movimentos fecham sob uma fórmula; não comprova, por si, existência, origem, titularidade, competência ou substância de cada item. ITG 2000 exige suporte documental/evidência dos fatos escriturados.",
+      "DISPOSITIVOS": [
+        "ITG 2000 (R1), itens 5(e), 7–8 e 26–28"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "ITG 2000 (R1), texto oficial integral consultado",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "REFERENCIAL": [
+        "Procedimento interno de controle; requisito documental da ITG 2000 e outras normas/leis aplicáveis"
+      ],
+      "LIMITACOES": "O procedimento de conciliação é controle interno do escritório, não norma autônoma; o tipo de evidência suficiente varia por saldo e finalidade.",
+      "EVIDENCIA_NECESSARIA": [
+        "Extrato/posição do terceiro ou documento fonte",
+        "Composição item a item e corte",
+        "Vínculo entre razão, documento, origem e pessoa/contrato",
+        "Investigação das diferenças/itens em aberto"
+      ],
+      "NECESSIDADE_REVISAO": "Sim quando há diferença, documentação ausente, saldo antigo ou evidência não independente.",
+      "STATUS": "VERIFICADO",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    }
+  ]
+}

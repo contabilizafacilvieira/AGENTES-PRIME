@@ -1,0 +1,133 @@
+[
+  {
+    "ID": "POL-HIERARQUIA",
+    "TITULO": "Hierarquia do conhecimento e governança de regras",
+    "ASSUNTO": "legislação; NBC; política; método; regra da empresa; decisão; evidência",
+    "DEPARTAMENTO": "TODOS",
+    "NORMA": "Governança interna do AGENTES PRIME",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "CFC-FAQ",
+        "TITULO": "Perguntas frequentes sobre NBC",
+        "URL": "https://cfc.org.br/tecnica/perguntas-frequentes/normas-brasileiras-de-contabilidade/",
+        "ORGAO": "CFC"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "Separar legislação aplicável, norma formalizada, política contábil validada, método técnico, regra da empresa, decisão do Supervisor e evidência. Referência/proposta não equivale a aprovação.",
+    "LIMITACOES": [],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "PROCEDIMENTO_INTERNO",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": [
+      "AGENTS.md",
+      "AGENTES/CONTABILIDADE/governanca_regras.py"
+    ]
+  },
+  {
+    "ID": "POL-SEM-AUTOMACAO",
+    "TITULO": "Conhecimento consultivo não autoriza contabilização automática",
+    "ASSUNTO": "decisões críticas; lançamentos; aprovação",
+    "DEPARTAMENTO": "TODOS",
+    "NORMA": "Política interna de segurança e supervisão",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "CFC-FAQ",
+        "TITULO": "Perguntas frequentes sobre NBC",
+        "URL": "https://cfc.org.br/tecnica/perguntas-frequentes/normas-brasileiras-de-contabilidade/",
+        "ORGAO": "CFC"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "Nenhum registro desta base aprova regra empresarial, classificação crítica, apuração, lançamento ou escrituração. Necessários Supervisor, política aprovada e evidência conforme o caso.",
+    "LIMITACOES": [],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "PROCEDIMENTO_INTERNO",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": [
+      "AGENTS.md",
+      "AGENTES/CONTABILIDADE/governanca_regras.py"
+    ]
+  },
+  {
+    "ID": "POL-CONFLITO-PENDENCIA",
+    "TITULO": "Dúvida, conflito ou lacuna normativa gera revisão",
+    "ASSUNTO": "conflito normativo; pendência; competência; aplicabilidade",
+    "DEPARTAMENTO": "TODOS",
+    "NORMA": "Política interna fail-closed",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "Quando fontes discordam, a competência não está identificada ou a aplicabilidade é incerta, registrar pendência e encaminhar para revisão. Não escolher precedência por histórico ou conveniência.",
+    "LIMITACOES": [],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "PROCEDIMENTO_INTERNO",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": [
+      "AGENTS.md",
+      "AGENTES/CONCILIACAO/PROCEDIMENTO.md"
+    ]
+  }
+]

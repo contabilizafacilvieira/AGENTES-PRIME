@@ -1,0 +1,1335 @@
+{
+  "VERSAO": "1.0.0-03F",
+  "DATA_CONSULTA": "2026-11-16",
+  "REGISTROS": [
+    {
+      "ID": "DP-01",
+      "CONCEITO": "Folha de pagamento e competência",
+      "OBJETIVO": "Interpretar folha de pagamento e competência como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "NBC TG 33 (R2); NBC TG 1001 seção 28; NBC TG 1002 seção 28; MOS S-1.3 10.3.3",
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "CFC NORMAS COMPLETAS",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "CFC SIMPLIFICADAS",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "ESOCIAL MOS S13",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVO": "NBC TG 33 (R2), benefícios de curto prazo; seção 28 dos referenciais simplificados; MOS 10.3.3",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Benefício de empregado é reconhecido no período em que o serviço correspondente é prestado, sem confundir competência com data de pagamento; a classificação entre custo/despesa e rubricas depende do fato e do referencial.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "Benefício de empregado é reconhecido no período em que o serviço correspondente é prestado, sem confundir competência com data de pagamento; a classificação entre custo/despesa e rubricas depende do fato e do referencial.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-05",
+        "CONT-07",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": false
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-02",
+      "CONCEITO": "Salário bruto e salário líquido",
+      "OBJETIVO": "Interpretar salário bruto e salário líquido como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "MOS S-1.3; Lei 8.212/1991; Lei 7.713/1988 conforme hipótese",
+      "FONTES": [
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "ESOCIAL MOS S13",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        },
+        {
+          "ID": "L8212",
+          "TITULO": "L8212",
+          "URL": "https://planalto.gov.br/ccivil_03/leis/l8212compilado.htm",
+          "ORGAO": "Planalto"
+        },
+        {
+          "ID": "RFB-IRRF",
+          "TITULO": "RFB IRRF",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/IRRF",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "DISPOSITIVO": "MOS 10.3.3; Lei 8.212/1991 arts. 20 e 22; legislação do IRRF a confirmar por competência",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Líquido corresponde ao bruto menos descontos efetivamente identificados; retenções e outros descontos têm natureza própria e não são todos despesas. Valores e natureza dependem de trabalhador, rubricas, documentos e competência.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "Líquido corresponde ao bruto menos descontos efetivamente identificados; retenções e outros descontos têm natureza própria e não são todos despesas. Valores e natureza dependem de trabalhador, rubricas, documentos e competência.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-05",
+        "CONT-07",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": false
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-03",
+      "CONCEITO": "Salários a pagar",
+      "OBJETIVO": "Interpretar salários a pagar como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "NBC TG 33 (R2); NBC TG 1001/1002 seção 28; CLT art. 459",
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "CFC NORMAS COMPLETAS",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "CFC SIMPLIFICADAS",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CLT",
+          "TITULO": "CLT",
+          "URL": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452compilado.htm",
+          "ORGAO": "Planalto"
+        }
+      ],
+      "DISPOSITIVO": "NBC TG 33 seção de benefícios de curto prazo; CLT art. 459",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Remuneração devida pelo serviço prestado gera obrigação de curto prazo conforme condições aplicáveis; valor líquido pagável não substitui a composição do bruto e retenções.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "Remuneração devida pelo serviço prestado gera obrigação de curto prazo conforme condições aplicáveis; valor líquido pagável não substitui a composição do bruto e retenções.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-05",
+        "CONT-07",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-05",
+        "FIN-06",
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": false
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-04",
+      "CONCEITO": "Pró-labore",
+      "OBJETIVO": "Interpretar pró-labore como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "Lei 8.212/1991 arts. 12 V e 22 III; IN RFB 2.110/2022; Solução Cosit 228/2023",
+      "FONTES": [
+        {
+          "ID": "L8212",
+          "TITULO": "L8212",
+          "URL": "https://planalto.gov.br/ccivil_03/leis/l8212compilado.htm",
+          "ORGAO": "Planalto"
+        },
+        {
+          "ID": "RFB-IN2110",
+          "TITULO": "RFB IN2110",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=126687",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-COSIT228",
+          "TITULO": "RFB COSIT228",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=134391",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "DISPOSITIVO": "Lei 8.212/1991 art. 12 V; IN RFB 2.110/2022; SC Cosit 228/2023",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Remuneração por trabalho de sócio/administrador deve ser distinguida de distribuição de lucros, mútuo e adiantamento; incidências e reconhecimento requerem evidência da causa e enquadramento.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "Remuneração por trabalho de sócio/administrador deve ser distinguida de distribuição de lucros, mútuo e adiantamento; incidências e reconhecimento requerem evidência da causa e enquadramento.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-05",
+        "CONT-07",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": false
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-05",
+      "CONCEITO": "INSS descontado",
+      "OBJETIVO": "Interpretar inss descontado como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "Lei 8.212/1991 arts. 20 e 30; IN RFB 2.110/2022",
+      "FONTES": [
+        {
+          "ID": "L8212",
+          "TITULO": "L8212",
+          "URL": "https://planalto.gov.br/ccivil_03/leis/l8212compilado.htm",
+          "ORGAO": "Planalto"
+        },
+        {
+          "ID": "RFB-IN2110",
+          "TITULO": "RFB IN2110",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=126687",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "DISPOSITIVO": "Lei 8.212/1991 arts. 20 e 30; IN RFB 2.110/2022",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Contribuição descontada do segurado é retenção/obrigação, distinta do encargo patronal. Tabela, teto, categoria, exceções e competência precisam ser confirmados; não incorporar alíquota fixa.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "Contribuição descontada do segurado é retenção/obrigação, distinta do encargo patronal. Tabela, teto, categoria, exceções e competência precisam ser confirmados; não incorporar alíquota fixa.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": false
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-06",
+      "CONCEITO": "Encargos previdenciários patronais",
+      "OBJETIVO": "Interpretar encargos previdenciários patronais como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "Lei 8.212/1991 arts. 22 e seguintes; IN RFB 2.110/2022",
+      "FONTES": [
+        {
+          "ID": "L8212",
+          "TITULO": "L8212",
+          "URL": "https://planalto.gov.br/ccivil_03/leis/l8212compilado.htm",
+          "ORGAO": "Planalto"
+        },
+        {
+          "ID": "RFB-IN2110",
+          "TITULO": "RFB IN2110",
+          "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=126687",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "DISPOSITIVO": "Lei 8.212/1991 art. 22; IN RFB 2.110/2022",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Contribuição da empresa constitui encargo próprio quando incidente, distinto de retenção do empregado. Base, substituição, atividade, regime, terceiros e decisão judicial podem alterar aplicação.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "Contribuição da empresa constitui encargo próprio quando incidente, distinto de retenção do empregado. Base, substituição, atividade, regime, terceiros e decisão judicial podem alterar aplicação.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": false
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-07",
+      "CONCEITO": "FGTS",
+      "OBJETIVO": "Interpretar fgts como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "Lei 8.036/1990 arts. 15 e 18; MOS eSocial; Manual FGTS Digital 1.70",
+      "FONTES": [
+        {
+          "ID": "L8036",
+          "TITULO": "L8036",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/l8036consol.htm",
+          "ORGAO": "Planalto"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "ESOCIAL MOS S13",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        },
+        {
+          "ID": "MTE-FGTS-170",
+          "TITULO": "MTE FGTS 170",
+          "URL": "https://www.gov.br/trabalho-e-emprego/pt-br/servicos/empregador/fgtsdigital/manual-e-documentacao-tecnica",
+          "ORGAO": "Ministério do Trabalho e Emprego"
+        }
+      ],
+      "DISPOSITIVO": "Lei 8.036/1990 arts. 15 e 18; Manual FGTS Digital v1.70, consulta 2026-11-16",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Depósito de FGTS é obrigação própria do empregador conforme vínculo, rubrica, evento e competência; não é retenção do salário. Incidência e valores devem ser confirmados no leiaute e regra aplicáveis.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "Depósito de FGTS é obrigação própria do empregador conforme vínculo, rubrica, evento e competência; não é retenção do salário. Incidência e valores devem ser confirmados no leiaute e regra aplicáveis.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": false
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-08",
+      "CONCEITO": "IRRF sobre rendimentos do trabalho",
+      "OBJETIVO": "Interpretar irrf sobre rendimentos do trabalho como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "Lei 7.713/1988; IN RFB 1.500/2014 e alterações; tabelas RFB 2026",
+      "FONTES": [
+        {
+          "ID": "RFB-IRRF",
+          "TITULO": "RFB IRRF",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/tributos/IRRF",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "RFB-TABELAS-2026",
+          "TITULO": "RFB TABELAS 2026",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/meu-imposto-de-renda/tabelas/2026",
+          "ORGAO": "Receita Federal"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "ESOCIAL MOS S13",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVO": "IN RFB 1.500/2014 e alterações; tabelas mensais RFB para 2026",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "IRRF depende de natureza do rendimento, pagamento/crédito conforme regra, beneficiário, deduções e tabela na vigência; retenção do trabalhador não é encargo patronal.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "IRRF depende de natureza do rendimento, pagamento/crédito conforme regra, beneficiário, deduções e tabela na vigência; retenção do trabalhador não é encargo patronal.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": false
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-09",
+      "CONCEITO": "Benefícios e descontos",
+      "OBJETIVO": "Interpretar benefícios e descontos como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "NBC TG 33 (R2); CLT arts. 457–458 quando aplicáveis; Lei 8.212/1991",
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "CFC NORMAS COMPLETAS",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CLT",
+          "TITULO": "CLT",
+          "URL": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452compilado.htm",
+          "ORGAO": "Planalto"
+        },
+        {
+          "ID": "L8212",
+          "TITULO": "L8212",
+          "URL": "https://planalto.gov.br/ccivil_03/leis/l8212compilado.htm",
+          "ORGAO": "Planalto"
+        }
+      ],
+      "DISPOSITIVO": "NBC TG 33 (R2); CLT arts. 457–458; Lei 8.212/1991",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Benefícios, utilidades e descontos devem ser classificados pela substância, base documental, regra trabalhista/previdenciária e política válida; rubrica não define sozinha dedutibilidade nem incidência.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "Benefícios, utilidades e descontos devem ser classificados pela substância, base documental, regra trabalhista/previdenciária e política válida; rubrica não define sozinha dedutibilidade nem incidência.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-05",
+        "CONT-07",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": false
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-10",
+      "CONCEITO": "Adiantamentos salariais",
+      "OBJETIVO": "Interpretar adiantamentos salariais como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "CLT art. 462; NBC TG 33 (R2); MOS S-1.3",
+      "FONTES": [
+        {
+          "ID": "CLT",
+          "TITULO": "CLT",
+          "URL": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452compilado.htm",
+          "ORGAO": "Planalto"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "CFC NORMAS COMPLETAS",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "ESOCIAL MOS S13",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVO": "CLT art. 462; NBC TG 33 (R2), benefício de curto prazo",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Adiantamento comprovado é liquidação antecipada/ativo a compensar até processamento da folha, não despesa adicional por si só; compensação precisa conciliar pessoa, competência e pagamento.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "Adiantamento comprovado é liquidação antecipada/ativo a compensar até processamento da folha, não despesa adicional por si só; compensação precisa conciliar pessoa, competência e pagamento.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-05",
+        "CONT-07",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-05",
+        "FIN-06",
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": false
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-11",
+      "CONCEITO": "Férias",
+      "OBJETIVO": "Interpretar férias como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "CLT arts. 129–145; Constituição art. 7 XVII; NBC TG 33 (R2)",
+      "FONTES": [
+        {
+          "ID": "CLT",
+          "TITULO": "CLT",
+          "URL": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452compilado.htm",
+          "ORGAO": "Planalto"
+        },
+        {
+          "ID": "CF88",
+          "TITULO": "CF88",
+          "URL": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm",
+          "ORGAO": "Planalto"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "CFC NORMAS COMPLETAS",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "CLT arts. 129–145; Constituição art. 7 XVII; NBC TG 33 (R2)",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Direito, período aquisitivo/concessivo, remuneração, adicional e prazo de pagamento decorrem de lei e fatos do vínculo. A contabilização depende de referencial e obrigação acumulada.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "Direito, período aquisitivo/concessivo, remuneração, adicional e prazo de pagamento decorrem de lei e fatos do vínculo. A contabilização depende de referencial e obrigação acumulada.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-05",
+        "CONT-07",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-05",
+        "FIN-06",
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": false
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-12",
+      "CONCEITO": "Provisão de férias e encargos",
+      "OBJETIVO": "Interpretar provisão de férias e encargos como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "NBC TG 33 (R2); NBC TG 1001/1002 seção 28; CLT",
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "CFC NORMAS COMPLETAS",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "CFC SIMPLIFICADAS",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CLT",
+          "TITULO": "CLT",
+          "URL": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452compilado.htm",
+          "ORGAO": "Planalto"
+        }
+      ],
+      "DISPOSITIVO": "NBC TG 33 (R2), benefício de curto prazo; seção 28 dos referenciais simplificados",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Reconhecer obrigação acumulada por serviço já prestado e estimativa suportada, incluindo encargos apenas quando aplicáveis e mensuráveis. Método e composição da provisão requerem política/referencial e dados da folha.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "Reconhecer obrigação acumulada por serviço já prestado e estimativa suportada, incluindo encargos apenas quando aplicáveis e mensuráveis. Método e composição da provisão requerem política/referencial e dados da folha.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-05",
+        "CONT-07",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-05",
+        "FIN-06",
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": false
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-13",
+      "CONCEITO": "Décimo terceiro salário",
+      "OBJETIVO": "Interpretar décimo terceiro salário como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "Constituição art. 7 VIII; Leis 4.090/1962 e 4.749/1965; MOS S-1.3 10.3.4",
+      "FONTES": [
+        {
+          "ID": "CF88",
+          "TITULO": "CF88",
+          "URL": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm",
+          "ORGAO": "Planalto"
+        },
+        {
+          "ID": "L4090",
+          "TITULO": "L4090",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/l4090.htm",
+          "ORGAO": "Planalto"
+        },
+        {
+          "ID": "L4749",
+          "TITULO": "L4749",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/l4749.htm",
+          "ORGAO": "Planalto"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "ESOCIAL MOS S13",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVO": "Constituição art. 7 VIII; Leis 4.090/1962 e 4.749/1965; MOS 10.3.4",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Gratificação natalina é direito trabalhista com apuração própria; eSocial distingue período anual do mensal e orienta eventos, mas elegibilidade, parcelas, bases e descontos exigem competência e dados do vínculo.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "Gratificação natalina é direito trabalhista com apuração própria; eSocial distingue período anual do mensal e orienta eventos, mas elegibilidade, parcelas, bases e descontos exigem competência e dados do vínculo.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-05",
+        "CONT-07",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-05",
+        "FIN-06",
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": false
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-14",
+      "CONCEITO": "Provisão de décimo terceiro e encargos",
+      "OBJETIVO": "Interpretar provisão de décimo terceiro e encargos como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "NBC TG 33 (R2); NBC TG 1001/1002 seção 28; legislação da gratificação natalina",
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "CFC NORMAS COMPLETAS",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-SIMPLIFICADAS",
+          "TITULO": "CFC SIMPLIFICADAS",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-simplificadas-para-pmes/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "L4090",
+          "TITULO": "L4090",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/l4090.htm",
+          "ORGAO": "Planalto"
+        }
+      ],
+      "DISPOSITIVO": "NBC TG 33 (R2), benefícios de curto prazo; Leis 4.090/1962 e 4.749/1965",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Reconhecimento por serviço prestado da parcela acumulada como benefício de curto prazo; bases/encargos e ajuste de estimativa dependem do trabalhador e da regra vigente.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "Reconhecimento por serviço prestado da parcela acumulada como benefício de curto prazo; bases/encargos e ajuste de estimativa dependem do trabalhador e da regra vigente.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-05",
+        "CONT-07",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-05",
+        "FIN-06",
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": false
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-15",
+      "CONCEITO": "Rescisões trabalhistas",
+      "OBJETIVO": "Interpretar rescisões trabalhistas como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "CLT arts. 477 e seguintes; MOS S-1.3 eventos S-2299/S-2399; Lei 8.036/1990",
+      "FONTES": [
+        {
+          "ID": "CLT",
+          "TITULO": "CLT",
+          "URL": "https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452compilado.htm",
+          "ORGAO": "Planalto"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "ESOCIAL MOS S13",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        },
+        {
+          "ID": "L8036",
+          "TITULO": "L8036",
+          "URL": "https://www.planalto.gov.br/ccivil_03/leis/l8036consol.htm",
+          "ORGAO": "Planalto"
+        }
+      ],
+      "DISPOSITIVO": "CLT art. 477; MOS S-1.3 eventos de desligamento; Lei 8.036/1990",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Rescisão combina rubricas de naturezas distintas, direitos proporcionais, retenções, indenizações e encargos. Não calcular nem classificar sem motivo, vínculo, histórico e demonstrativo detalhado.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "Rescisão combina rubricas de naturezas distintas, direitos proporcionais, retenções, indenizações e encargos. Não calcular nem classificar sem motivo, vínculo, histórico e demonstrativo detalhado.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-05",
+        "CONT-07",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-05",
+        "FIN-06",
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": false
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-16",
+      "CONCEITO": "Pagamentos e liquidação da folha",
+      "OBJETIVO": "Interpretar pagamentos e liquidação da folha como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "MOS S-1.3 itens 10.3.3–10.3.4; NBC TG 33 (R2); FIN-05/06",
+      "FONTES": [
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "ESOCIAL MOS S13",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "CFC NORMAS COMPLETAS",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "MOS 10.3.3 (S-1210 pagamento separado da remuneração); CONT-19; FIN-05/06",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Pagamento liquida obrigação anteriormente reconhecida; não gera novamente custo/despesa. MOS separa remuneração declarada dos pagamentos informados, e o comprovante bancário é evidência financeira, não composição da folha.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "Pagamento liquida obrigação anteriormente reconhecida; não gera novamente custo/despesa. MOS separa remuneração declarada dos pagamentos informados, e o comprovante bancário é evidência financeira, não composição da folha.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "STATUS_APLICABILIDADE": "GERAL_LIMITADA",
+      "TIPO_CONHECIMENTO": "DOCUMENTACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-05",
+        "CONT-07",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-05",
+        "FIN-06",
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": true
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-17",
+      "CONCEITO": "eSocial",
+      "OBJETIVO": "Interpretar esocial como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "Decreto 8.373/2014; MOS S-1.3 consolidado até NO 12/2026 e NT vigentes",
+      "FONTES": [
+        {
+          "ID": "ESOCIAL-DOC-2026",
+          "TITULO": "ESOCIAL DOC 2026",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica",
+          "ORGAO": "eSocial"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "ESOCIAL MOS S13",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVO": "MOS 10.3.3: eventos S-1200/S-1202/S-1207 informam remuneração; evento S-1210 informa pagamento efetivo.",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "eSocial recebe eventos declaratórios de remuneração devida e pagamentos em eventos distintos; retorno/sistema não substitui prova da relação trabalhista nem valida legalidade material. Leiaute deve ser escolhido pela competência.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "eSocial recebe eventos declaratórios de remuneração devida e pagamentos em eventos distintos; retorno/sistema não substitui prova da relação trabalhista nem valida legalidade material. Leiaute deve ser escolhido pela competência.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "STATUS_APLICABILIDADE": "GERAL_LIMITADA",
+      "TIPO_CONHECIMENTO": "DOCUMENTACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": true
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-18",
+      "CONCEITO": "DCTFWeb e documentos de arrecadação",
+      "OBJETIVO": "Interpretar dctfweb e documentos de arrecadação como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "IN RFB 2.005/2021 e alterações; FAQ RFB EFD-Reinf 1.4; eSocial",
+      "FONTES": [
+        {
+          "ID": "RFB-EFD-REINF-DCTFWEB",
+          "TITULO": "FAQ RFB 1.4 sobre DCTFWeb",
+          "URL": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes/sped/efd-reinf/efdr/1-geral/1-4-como-sera-a",
+          "ORGAO": "Receita Federal"
+        }
+      ],
+      "DISPOSITIVO": "IN RFB 2.005/2021; FAQ EFD-Reinf 1.4 atualizado 13/04/2026",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Eventos eSocial/EFD-Reinf alimentam DCTFWeb; declaração/confissão e DARF são etapas distintas do reconhecimento contábil e do pagamento efetivo. Obrigatoriedade e débitos dependem do contribuinte/competência.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "Eventos eSocial/EFD-Reinf alimentam DCTFWeb; declaração/confissão e DARF são etapas distintas do reconhecimento contábil e do pagamento efetivo. Obrigatoriedade e débitos dependem do contribuinte/competência.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "VERIFICADO",
+      "STATUS_APLICABILIDADE": "GERAL_LIMITADA",
+      "TIPO_CONHECIMENTO": "DOCUMENTACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-05",
+        "FIN-06",
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": true
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-19",
+      "CONCEITO": "Conciliação das obrigações trabalhistas",
+      "OBJETIVO": "Interpretar conciliação das obrigações trabalhistas como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "ITG 2000 (R1) itens 5–8; NBC TG 33; CONT-18/19; procedimento interno",
+      "FONTES": [
+        {
+          "ID": "CFC-ITG2000-TEXTO",
+          "TITULO": "CFC ITG2000 TEXTO",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "CFC NORMAS COMPLETAS",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ITG2000",
+          "TITULO": "ITG2000",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "DISPOSITIVO": "ITG 2000 (R1), itens 5–8; procedimento interno de conciliação deve ser rotulado como tal",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "Compor saldo inicial + obrigações reconhecidas − liquidações ± movimentos justificados = saldo final; validação aritmética não substitui documentos, composição individual, competência ou confirmação externa.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "Compor saldo inicial + obrigações reconhecidas − liquidações ± movimentos justificados = saldo final; validação aritmética não substitui documentos, composição individual, competência ou confirmação externa.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-03",
+        "CONT-05",
+        "CONT-07",
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-05",
+        "FIN-06",
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": false
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-20",
+      "CONCEITO": "Aplicabilidade DP e ausência de movimentação",
+      "OBJETIVO": "Interpretar aplicabilidade dp e ausência de movimentação como fato de DP e produzir informação documental estruturada; não calcular folha nem contabilizar automaticamente.",
+      "FUNDAMENTO": "Procedimento interno; eSocial/MOS; STATUS_DP_CONTEXTUAL_V1",
+      "FONTES": [
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "ESOCIAL MOS S13",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        },
+        {
+          "ID": "PROCEDIMENTO-DP",
+          "TITULO": "AGENTES/DP/PROCEDIMENTO.md — rotina local",
+          "URL": "https://github.com/",
+          "ORGAO": "AGENTES PRIME"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "ESOCIAL MOS S13",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVO": "Contrato interno STATUS_DP_CONTEXTUAL_V1; MOS aplicável ao evento/contexto",
+      "VIGENCIA": {
+        "DATA_CONSULTA": "2026-11-16",
+        "INICIO": null,
+        "FIM": null,
+        "OBSERVACAO": "Fontes oficiais consultadas em 16/11/2026. Vigência material, tabela, leiaute e efeitos devem ser conferidos para a competência; materiais com implantação futura não são tratados como vigentes."
+      },
+      "APLICABILIDADE": "Brasil; vínculo, rubrica, tipo de empregador, regime previdenciário/tributário, atividade, competência e evidência definem incidência e obrigação. Referencial contábil precisa ser confirmado separadamente; Simples não seleciona por si NBC TG 1002.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1), se confirmado",
+        "NBC TG 1001, se confirmado",
+        "NBC TG 1002, se confirmado",
+        "NBC TG completas/NBC TG 33 (R2), apenas quando aplicáveis e confirmadas"
+      ],
+      "CONDICOES_RECONHECIMENTO": "NAO_APLICAVEL é estado contextual por empresa/competência que requer confirmação do Supervisor e justificativa; ausência de arquivo não prova inexistência de vínculo ou movimento. Evidência contraditória gera conflito e aguarda revisão.",
+      "CRITERIOS_MENSURACAO": "Usar valores e composição explicitamente apresentados em relatório/documento de folha e regras oficiais vigentes; esta ficha não contém alíquotas, cálculos ou parâmetros universais. Inconsistência gera pendência.",
+      "EVIDENCIAS_NECESSARIAS": "Empresa e competência; relatório íntegro e proveniente; identificação do tipo de relatório; rubricas e bases declaradas; vínculo/categoria/contexto pertinente; documentos/eventos oficiais aplicáveis; totalizadores, guias e comprovantes conforme o fato. Ausência não é zero.",
+      "TRATAMENTO_CONCEITUAL": "NAO_APLICAVEL é estado contextual por empresa/competência que requer confirmação do Supervisor e justificativa; ausência de arquivo não prova inexistência de vínculo ou movimento. Evidência contraditória gera conflito e aguarda revisão.",
+      "EXCECOES": "Categorias especiais, regimes substitutivos, entidades públicas/domésticas, processos judiciais, afastamentos, rubricas indenizatórias, convenções coletivas e alterações legais exigem pesquisa contextual específica.",
+      "RISCOS": "Duplicar custo na liquidação; misturar retenção e encargo patronal; assumir alíquota; aceitar guia como prova de pagamento; inferir ausência de movimento; usar leiaute futuro ou categoria incompatível.",
+      "ERROS_COMUNS": "Lançar apenas líquido; tratar todo provento/desconto como despesa; reconhecer por data de pagamento; presumir incidência pela descrição da rubrica; confundir declaração, confissão e recolhimento.",
+      "LIMITACOES": "Conhecimento consultivo, sem cálculo de folha/rescisão, validação jurídica, determinação de rubrica, alíquota ou obrigação concreta. Aplicação requer perfil da entidade, trabalhador, competência, documentação e revisão do Supervisor.",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa inventada Aurora apresenta relatório de folha de competência 2026-10; os valores e rubricas só podem ser interpretados após conferência da composição e dos documentos, sem presumir taxa real.",
+      "STATUS_VERIFICACAO": "PARCIAL",
+      "STATUS_APLICABILIDADE": "DEPENDENTE_DE_CONTEXTO",
+      "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+      "FUNDAMENTOS_CONTABEIS_RELACIONADOS": [
+        "CONT-19"
+      ],
+      "FUNDAMENTOS_FINANCEIROS_RELACIONADOS": [
+        "FIN-20"
+      ],
+      "PROCEDIMENTO_INTERNO_RELACIONADO": "AGENTES/DP/PROCEDIMENTO.md — layouts aceitos, igualdade exata Decimal, pendências sem aproveitamento parcial; pagamento é fato do Financeiro. Procedimento não é norma legal.",
+      "EVIDENCIA_CONSULTA": {
+        "DATA": "2026-11-16",
+        "FORMA": "Leitura da documentação oficial citada (MOS S-1.3, fontes trabalhistas/previdenciárias oficiais, manual FGTS Digital, FAQ DCTFWeb e catálogo/textos CFC) e cotejo com procedimento DP e fundamentos CONT/FIN já existentes.",
+        "ESCOPO_VERIFICADO": false
+      },
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    }
+  ]
+}

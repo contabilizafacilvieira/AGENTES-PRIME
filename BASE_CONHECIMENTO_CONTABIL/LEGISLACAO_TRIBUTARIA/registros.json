@@ -1,0 +1,301 @@
+[
+  {
+    "ID": "IRPJ-CSLL-BASE-FISCAL",
+    "TITULO": "Resultado contábil e base fiscal de IRPJ/CSLL",
+    "ASSUNTO": "lucro real; resultado contábil; adições; exclusões; compensações",
+    "DEPARTAMENTO": "FISCAL",
+    "NORMA": "RIR/2018 art. 258; Lei 12.973/2014; IN RFB 1.700/2017",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "RIR",
+        "TITULO": "Decreto 9.580/2018 - RIR",
+        "URL": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/decreto/d9580.htm",
+        "ORGAO": "Presidência da República"
+      },
+      {
+        "ID": "RFB-ECF",
+        "TITULO": "ECF e tributos da pessoa jurídica",
+        "URL": "https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/perguntas-e-respostas/ecf/",
+        "ORGAO": "Receita Federal"
+      },
+      {
+        "ID": "IN1700",
+        "TITULO": "IN RFB 1.700/2017",
+        "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+        "ORGAO": "Receita Federal"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [
+        "LUCRO_REAL"
+      ],
+      "TIPO_OPERACAO": [
+        "IRPJ",
+        "CSLL"
+      ],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Apuração separada para IRPJ e CSLL, conforme período e legislação vigente."
+    },
+    "RESUMO_TECNICO": "Lucro real é apurado partindo do lucro contábil e aplicando adições, exclusões e compensações autorizadas/prescritas em lei. Resultado contábil não deve ser tratado como base fiscal sem analisar ajustes.",
+    "LIMITACOES": [
+      "Não calcula valores nem enumera todos os ajustes."
+    ],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "NORMA_OFICIAL",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  },
+  {
+    "ID": "ECF-ELALUR-ELACS",
+    "TITULO": "ECF e controles e-Lalur/e-Lacs",
+    "ASSUNTO": "ECF; LALUR Parte A; LALUR Parte B; LACS; prejuízo fiscal",
+    "DEPARTAMENTO": "FISCAL",
+    "NORMA": "IN RFB 2.004/2021; IN RFB 1.700/2017; leiaute anual ECF",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "SPED-ECF",
+        "TITULO": "Escrituração Contábil Fiscal",
+        "URL": "https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf",
+        "ORGAO": "SPED / Receita Federal"
+      },
+      {
+        "ID": "RFB-ECF",
+        "TITULO": "ECF e tributos da pessoa jurídica",
+        "URL": "https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/perguntas-e-respostas/ecf/",
+        "ORGAO": "Receita Federal"
+      },
+      {
+        "ID": "IN1700",
+        "TITULO": "IN RFB 1.700/2017",
+        "URL": "https://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=81268",
+        "ORGAO": "Receita Federal"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [
+        "LUCRO_REAL"
+      ],
+      "TIPO_OPERACAO": [
+        "ECF",
+        "E-LALUR",
+        "E-LACS"
+      ],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Usar manual/leiaute e tabelas do ano-calendário ou situação especial aplicável."
+    },
+    "RESUMO_TECNICO": "SPED descreve ECF como módulo que subsidia IRPJ/CSLL e suporta o controle das Partes A/B do e-Lalur e e-Lacs. Parte A registra apuração e ajustes do período; Parte B mantém controles com efeito fiscal futuro.",
+    "LIMITACOES": [
+      "Não fornece mapeamento de registros ou parâmetros de cálculo."
+    ],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "NORMA_OFICIAL",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  },
+  {
+    "ID": "REGIME-TRIBUTARIO-VS-REFERENCIAL",
+    "TITULO": "Regime tributário não escolhe automaticamente o referencial contábil",
+    "ASSUNTO": "Simples Nacional; Lucro Presumido; Lucro Real; referencial contábil",
+    "DEPARTAMENTO": "FISCAL;CONTABILIDADE",
+    "NORMA": "LC 123/2006; RIR/2018; ITG 1000",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "LC123",
+        "TITULO": "Lei Complementar 123/2006",
+        "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp123.htm",
+        "ORGAO": "Presidência da República"
+      },
+      {
+        "ID": "RIR",
+        "TITULO": "Decreto 9.580/2018 - RIR",
+        "URL": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/decreto/d9580.htm",
+        "ORGAO": "Presidência da República"
+      },
+      {
+        "ID": "ITG1000",
+        "TITULO": "ITG 1000, itens 1–10",
+        "URL": "https://cfc.org.br/wp-content/uploads/2023/01/ITG-1000.pdf",
+        "ORGAO": "CFC"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar entidade, operação e competência antes de aplicar."
+    },
+    "RESUMO_TECNICO": "Regime tributário e referencial contábil atendem critérios distintos. Porte, natureza, obrigação pública de prestar contas, regulador e opções/ressalvas orientam análise contábil; opção pelo Simples, isoladamente, não determina NBC TG 1002.",
+    "LIMITACOES": [],
+    "STATUS_VERIFICACAO": "VERIFICADO",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "INTERPRETACAO_TECNICA",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  },
+  {
+    "ID": "LC-214-REFORMA",
+    "TITULO": "Reforma dos tributos sobre consumo — IBS, CBS e IS",
+    "ASSUNTO": "IBS; CBS; Imposto Seletivo; transição",
+    "DEPARTAMENTO": "FISCAL",
+    "NORMA": "EC 132/2023; LC 214/2025; regulamentação posterior",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "LC214",
+        "TITULO": "Lei Complementar 214/2025",
+        "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm",
+        "ORGAO": "Presidência da República"
+      },
+      {
+        "ID": "SPED",
+        "TITULO": "Portal SPED",
+        "URL": "https://sped.rfb.gov.br/",
+        "ORGAO": "SPED / Receita Federal"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [
+        "IBS",
+        "CBS",
+        "IS"
+      ],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Confirmar texto compilado, produção de efeitos, regulamentação e leiautes da competência. Não fixar alíquotas universais."
+    },
+    "RESUMO_TECNICO": "LC 214/2025 institui IBS, CBS e Imposto Seletivo. Vigência e aplicação são transitórias e dependem de competência, regulamentação, operação e atos técnicos.",
+    "LIMITACOES": [
+      "Cronograma detalhado, créditos, regimes específicos e leiautes não foram mapeados."
+    ],
+    "STATUS_VERIFICACAO": "PARCIAL",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "NORMA_OFICIAL",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  },
+  {
+    "ID": "FISCAL-INDIRETOS",
+    "TITULO": "Tributos indiretos, documentos e retenções",
+    "ASSUNTO": "NF-e; NFS-e; CT-e; CFOP; CST; CSOSN; ICMS; IPI; ISS; PIS; COFINS; ICMS-ST; IRRF; CSRF; INSS retido; importações; devoluções",
+    "DEPARTAMENTO": "FISCAL",
+    "NORMA": "Legislação federal, estadual e municipal conforme operação",
+    "DISPOSITIVO": "Verificar no texto oficial integral",
+    "FONTE_OFICIAL": [
+      {
+        "ID": "SPED",
+        "TITULO": "Portal SPED",
+        "URL": "https://sped.rfb.gov.br/",
+        "ORGAO": "SPED / Receita Federal"
+      },
+      {
+        "ID": "NFE",
+        "TITULO": "Portal Nacional da NF-e - documentação",
+        "URL": "https://www.nfe.fazenda.gov.br/portal/listaConteudo.aspx?tipoConteudo=ndIjl+iEFdE=",
+        "ORGAO": "ENCAT / Administrações Tributárias"
+      },
+      {
+        "ID": "LC214",
+        "TITULO": "Lei Complementar 214/2025",
+        "URL": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm",
+        "ORGAO": "Presidência da República"
+      }
+    ],
+    "DATA_CONSULTA": "2026-11-16",
+    "VIGENCIA": {
+      "INICIO": null,
+      "FIM": null,
+      "OBSERVACAO": "Consulta em 2026-11-16; confirmar início/cessação de efeitos e atos posteriores para a competência."
+    },
+    "APLICABILIDADE": {
+      "REFERENCIAL_CONTABIL": [],
+      "COMPETENCIA_INICIO": null,
+      "COMPETENCIA_FIM": null,
+      "REGIME_TRIBUTARIO": [],
+      "TIPO_OPERACAO": [
+        "ENTRADA",
+        "SAIDA",
+        "IMPORTACAO",
+        "DEVOLUCAO",
+        "RETENCAO"
+      ],
+      "UF": [],
+      "MUNICIPIO": [],
+      "CONDICOES": "Selecionar jurisdição (UF/município), operação e competência antes de pesquisar a fonte."
+    },
+    "RESUMO_TECNICO": "A apuração depende de regime, atividade, competência, natureza da operação, local, documento e regra de crédito/retenção aplicável.",
+    "LIMITACOES": [
+      "Fontes estaduais e municipais não foram pesquisadas; sem jurisdição não há regra confirmada.",
+      "Não presumir alíquotas, créditos ou natureza tributária."
+    ],
+    "STATUS_VERIFICACAO": "PENDENTE",
+    "VERSAO": "1.0.0",
+    "TIPO_CONHECIMENTO": "NORMA_OFICIAL",
+    "ESCOPO": {
+      "TIPO": "GERAL",
+      "EMPRESA_ID": null
+    },
+    "AUTORIZA_DECISAO_AUTOMATICA": false,
+    "FONTES_INTERNAS": []
+  }
+]

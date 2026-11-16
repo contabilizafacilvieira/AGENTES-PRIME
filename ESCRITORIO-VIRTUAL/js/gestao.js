@@ -87,6 +87,14 @@
   limpar(lixeira?'Lixeira de solicitações':inicio?'Seu trabalho no escritório':'Consultar solicitações',lixeira?'Solicitações excluídas da lista ativa. Documentos, registros e regras continuam preservados. Restaure para retomar o acompanhamento.':inicio?'Veja o que está em andamento e o que precisa da sua atenção.':'Pesquise o histórico sem abrir um novo envio de documentos.');
   const v=versao,d=await api('GET','/solicitacoes'+(lixeira?'/lixeira':''));if(v!==versao)return;
   const alternar=botao(lixeira?'Voltar às solicitações':`Lixeira (${d.na_lixeira})`,()=>consulta(false,!lixeira));alternar.dataset.acao=lixeira?'ativas':'lixeira';corpo.append(alternar);
+  if(inicio&&!lixeira&&d.solicitacoes.length===0){
+   const cadastradas=await api('GET','/empresas');if(v!==versao)return;
+   if(cadastradas.length===0){
+    const vazio=el('section',null,'gestao-vazio');vazio.dataset.escritorioVazio='true';
+    vazio.append(el('h2','Escritório aguardando demanda'),el('p','Nenhuma empresa ou solicitação ativa. Cadastre uma empresa para começar.','gestao-nota'));
+    const cadastrar=primario('Cadastrar empresa',()=>navegar('empresas'));cadastrar.dataset.acao='cadastrar-empresa-inicial';vazio.append(cadastrar);corpo.prepend(vazio);
+   }
+  }
   if(!lixeira&&!inicio&&d.solicitacoes.length){const limparLista=botao('Limpar lista de solicitações',async()=>{
    if(!window.confirm(`Mover as ${d.solicitacoes.length} solicitações ativas para a lixeira? Você poderá restaurá-las. Documentos e regras serão preservados.`))return;
    await api('POST','/solicitacoes/limpar',{confirmado:true});op.atualizar();await consulta(false);
@@ -185,7 +193,9 @@
    if(!todas.length){excluidas.append(el('p','Nenhum cadastro excluído.','gestao-nota'));return;}
    todas.forEach(x=>{const l=el('p',`${x.nome} (${x.id}) · excluído em ${new Date(x.excluida.em).toLocaleDateString('pt-BR')}`);l.append(' ',secundario('Ver histórico',()=>historico(x.id)));excluidas.append(l);});});
   if(dados.length===0)admin.open=true;
-  admin.append(novo,excluidas,blocoAmostra());corpo.append(admin);
+  admin.append(novo,excluidas);
+  if((document.querySelector('meta[name="prime-amostra"]')||{}).content!=='BLOQUEADA')admin.append(blocoAmostra());
+  corpo.append(admin);
  }
  // histórico de solicitações da empresa (consulta com o filtro já aplicado)
  async function historico(id){await consulta(false);const s=corpo.querySelector('.gestao-filtros select');if(s){if(![...s.options].some(o=>o.value===id))opcoes(s,[[id,id]]);s.value=id;s.dispatchEvent(new Event('input'));}}
@@ -584,4 +594,7 @@
 
  async function arquivo(f,limite=20*1024*1024){if(f.size>limite)throw new Error(`Arquivo acima de ${Math.round(limite/1048576)} MB.`);const a=new Uint8Array(await f.arrayBuffer());let s='';for(let i=0;i<a.length;i+=32768)s+=String.fromCharCode(...a.subarray(i,i+32768));return {nome:f.name,conteudo:btoa(s)};}
  sincronizarPainel();
+ const ambienteInicial=(document.querySelector('meta[name="prime-ambiente"]')||{}).content;
+ const amostraInicial=(document.querySelector('meta[name="prime-amostra"]')||{}).content;
+ if(ambienteInicial==='REAL'&&amostraInicial==='BLOQUEADA')navegar('inicio').catch(()=>{});
 })();

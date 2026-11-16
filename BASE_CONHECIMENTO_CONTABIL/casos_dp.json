@@ -1,0 +1,573 @@
+{
+  "VERSAO": "1.0.0-03F",
+  "DATA_CONSULTA": "2026-11-16",
+  "CASOS": [
+    {
+      "ID": "DP-CASO-01",
+      "TITULO": "Folha mensal com bruto e descontos",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Relatório fictício traz bruto R$ 10.000,00, descontos discriminados de R$ 1.500,00 e líquido R$ 8.500,00.",
+      "FATO": "Relatório fictício traz bruto R$ 10.000,00, descontos discriminados de R$ 1.500,00 e líquido R$ 8.500,00.",
+      "DOCUMENTACAO": "Conferir folha analítica, rubricas, período, vínculo e soma; valores são apenas ilustrativos e não taxas.",
+      "FUNDAMENTO_IDS": [
+        "DP-01",
+        "DP-02"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo oficial de normas CFC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "MOS eSocial S-1.3",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVOS": [
+        "Consultar os dispositivos indicados nas fichas fundamentadoras; conforme o caso, confirmar competência e versão aplicáveis."
+      ],
+      "VIGENCIA": "2026-11 é exemplo de competência; norma e leiaute aplicáveis dependem da data do fato.",
+      "APLICABILIDADE": "Caso didático não representa empresa, empregado, alíquota ou obrigação real.",
+      "FUNDAMENTO": "Reutiliza fichas DP e fundamentos CONT/FIN apontados; evidência específica governa a análise.",
+      "TRATAMENTO_CONCEITUAL": "Bruto, retenções, outros descontos e líquido devem ser conciliados separadamente; o bruto e o líquido não são rubricas intercambiáveis.",
+      "DEPARTAMENTO_RESPONSAVEL": "DP identifica fato e documento; Contábil propõe classificação; Financeiro identifica liquidação; Conciliação valida obrigação/saldo.",
+      "RISCOS": "Interpretação sem vínculo/competência; duplicidade; natureza ou incidência presumida; conflito com fonte anterior.",
+      "LIMITACOES": "Exemplo conceitual; não calcula direito, folha, rescisão, encargo, retenção ou lançamento efetivo.",
+      "NECESSIDADE_REVISAO": "SIM — Supervisor deve confirmar referencial, competência, identidade documental, contexto e tratamento antes de qualquer uso operacional.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-CASO-02",
+      "TITULO": "Pagamento de salários provisionados",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Transferência fictícia de salários coincide com obrigação previamente reconhecida na folha.",
+      "FATO": "Transferência fictícia de salários coincide com obrigação previamente reconhecida na folha.",
+      "DOCUMENTACAO": "Relatório da folha, razão/obrigação por competência, comprovante e extrato.",
+      "FUNDAMENTO_IDS": [
+        "DP-03",
+        "DP-16"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo oficial de normas CFC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "MOS eSocial S-1.3",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVOS": [
+        "Consultar os dispositivos indicados nas fichas fundamentadoras; conforme o caso, confirmar competência e versão aplicáveis."
+      ],
+      "VIGENCIA": "2026-11 é exemplo de competência; norma e leiaute aplicáveis dependem da data do fato.",
+      "APLICABILIDADE": "Caso didático não representa empresa, empregado, alíquota ou obrigação real.",
+      "FUNDAMENTO": "Reutiliza fichas DP e fundamentos CONT/FIN apontados; evidência específica governa a análise.",
+      "TRATAMENTO_CONCEITUAL": "Se a obrigação de salários já foi reconhecida com suporte, o pagamento baixa a obrigação contra banco, sem reconhecer novamente custo/despesa; divergência mantém pendência.",
+      "DEPARTAMENTO_RESPONSAVEL": "DP identifica fato e documento; Contábil propõe classificação; Financeiro identifica liquidação; Conciliação valida obrigação/saldo.",
+      "RISCOS": "Interpretação sem vínculo/competência; duplicidade; natureza ou incidência presumida; conflito com fonte anterior.",
+      "LIMITACOES": "Exemplo conceitual; não calcula direito, folha, rescisão, encargo, retenção ou lançamento efetivo.",
+      "NECESSIDADE_REVISAO": "SIM — Supervisor deve confirmar referencial, competência, identidade documental, contexto e tratamento antes de qualquer uso operacional.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-CASO-03",
+      "TITULO": "Adiantamento salarial",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa fictícia pagou antecipadamente valor a trabalhador, identificado no recibo como adiantamento.",
+      "FATO": "Empresa fictícia pagou antecipadamente valor a trabalhador, identificado no recibo como adiantamento.",
+      "DOCUMENTACAO": "Comprovante, recibo, identidade, competência e política/folha posterior.",
+      "FUNDAMENTO_IDS": [
+        "DP-10"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo oficial de normas CFC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "MOS eSocial S-1.3",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVOS": [
+        "Consultar os dispositivos indicados nas fichas fundamentadoras; conforme o caso, confirmar competência e versão aplicáveis."
+      ],
+      "VIGENCIA": "2026-11 é exemplo de competência; norma e leiaute aplicáveis dependem da data do fato.",
+      "APLICABILIDADE": "Caso didático não representa empresa, empregado, alíquota ou obrigação real.",
+      "FUNDAMENTO": "Reutiliza fichas DP e fundamentos CONT/FIN apontados; evidência específica governa a análise.",
+      "TRATAMENTO_CONCEITUAL": "Reconhecimento, obrigação, retenções, encargo e liquidação devem ser distinguidos; pagamento de obrigação existente não duplica despesa. Se fato/documento não está suficientemente identificado, registrar pendência e solicitar revisão.",
+      "DEPARTAMENTO_RESPONSAVEL": "DP identifica fato e documento; Contábil propõe classificação; Financeiro identifica liquidação; Conciliação valida obrigação/saldo.",
+      "RISCOS": "Interpretação sem vínculo/competência; duplicidade; natureza ou incidência presumida; conflito com fonte anterior.",
+      "LIMITACOES": "Exemplo conceitual; não calcula direito, folha, rescisão, encargo, retenção ou lançamento efetivo.",
+      "NECESSIDADE_REVISAO": "SIM — Supervisor deve confirmar referencial, competência, identidade documental, contexto e tratamento antes de qualquer uso operacional.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-CASO-04",
+      "TITULO": "Compensação de adiantamento",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Folha fictícia demonstra abatimento do adiantamento identificado no caso anterior.",
+      "FATO": "Folha fictícia demonstra abatimento do adiantamento identificado no caso anterior.",
+      "DOCUMENTACAO": "Comprovante original e memória de compensação na folha, sem duplicar liquidação.",
+      "FUNDAMENTO_IDS": [
+        "DP-02",
+        "DP-10"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo oficial de normas CFC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "MOS eSocial S-1.3",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVOS": [
+        "Consultar os dispositivos indicados nas fichas fundamentadoras; conforme o caso, confirmar competência e versão aplicáveis."
+      ],
+      "VIGENCIA": "2026-11 é exemplo de competência; norma e leiaute aplicáveis dependem da data do fato.",
+      "APLICABILIDADE": "Caso didático não representa empresa, empregado, alíquota ou obrigação real.",
+      "FUNDAMENTO": "Reutiliza fichas DP e fundamentos CONT/FIN apontados; evidência específica governa a análise.",
+      "TRATAMENTO_CONCEITUAL": "Reconhecimento, obrigação, retenções, encargo e liquidação devem ser distinguidos; pagamento de obrigação existente não duplica despesa. Se fato/documento não está suficientemente identificado, registrar pendência e solicitar revisão.",
+      "DEPARTAMENTO_RESPONSAVEL": "DP identifica fato e documento; Contábil propõe classificação; Financeiro identifica liquidação; Conciliação valida obrigação/saldo.",
+      "RISCOS": "Interpretação sem vínculo/competência; duplicidade; natureza ou incidência presumida; conflito com fonte anterior.",
+      "LIMITACOES": "Exemplo conceitual; não calcula direito, folha, rescisão, encargo, retenção ou lançamento efetivo.",
+      "NECESSIDADE_REVISAO": "SIM — Supervisor deve confirmar referencial, competência, identidade documental, contexto e tratamento antes de qualquer uso operacional.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-CASO-05",
+      "TITULO": "Pró-labore",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Sócia fictícia recebe valor identificado em ata/folha como remuneração por serviços.",
+      "FATO": "Sócia fictícia recebe valor identificado em ata/folha como remuneração por serviços.",
+      "DOCUMENTACAO": "Ata/decisão, evidência de trabalho, folha/recibo, declaração e enquadramento previdenciário.",
+      "FUNDAMENTO_IDS": [
+        "DP-04"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo oficial de normas CFC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "MOS eSocial S-1.3",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVOS": [
+        "Consultar os dispositivos indicados nas fichas fundamentadoras; conforme o caso, confirmar competência e versão aplicáveis."
+      ],
+      "VIGENCIA": "2026-11 é exemplo de competência; norma e leiaute aplicáveis dependem da data do fato.",
+      "APLICABILIDADE": "Caso didático não representa empresa, empregado, alíquota ou obrigação real.",
+      "FUNDAMENTO": "Reutiliza fichas DP e fundamentos CONT/FIN apontados; evidência específica governa a análise.",
+      "TRATAMENTO_CONCEITUAL": "Reconhecimento, obrigação, retenções, encargo e liquidação devem ser distinguidos; pagamento de obrigação existente não duplica despesa. Se fato/documento não está suficientemente identificado, registrar pendência e solicitar revisão.",
+      "DEPARTAMENTO_RESPONSAVEL": "DP identifica fato e documento; Contábil propõe classificação; Financeiro identifica liquidação; Conciliação valida obrigação/saldo.",
+      "RISCOS": "Interpretação sem vínculo/competência; duplicidade; natureza ou incidência presumida; conflito com fonte anterior.",
+      "LIMITACOES": "Exemplo conceitual; não calcula direito, folha, rescisão, encargo, retenção ou lançamento efetivo.",
+      "NECESSIDADE_REVISAO": "SIM — Supervisor deve confirmar referencial, competência, identidade documental, contexto e tratamento antes de qualquer uso operacional.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-CASO-06",
+      "TITULO": "INSS descontado do trabalhador",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Resumo fictício mostra valor retido do trabalhador como INSS.",
+      "FATO": "Resumo fictício mostra valor retido do trabalhador como INSS.",
+      "DOCUMENTACAO": "Folha detalhada, categoria, base e versão da tabela/regra para competência.",
+      "FUNDAMENTO_IDS": [
+        "DP-05"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo oficial de normas CFC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "MOS eSocial S-1.3",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVOS": [
+        "Consultar os dispositivos indicados nas fichas fundamentadoras; conforme o caso, confirmar competência e versão aplicáveis."
+      ],
+      "VIGENCIA": "2026-11 é exemplo de competência; norma e leiaute aplicáveis dependem da data do fato.",
+      "APLICABILIDADE": "Caso didático não representa empresa, empregado, alíquota ou obrigação real.",
+      "FUNDAMENTO": "Reutiliza fichas DP e fundamentos CONT/FIN apontados; evidência específica governa a análise.",
+      "TRATAMENTO_CONCEITUAL": "Reconhecimento, obrigação, retenções, encargo e liquidação devem ser distinguidos; pagamento de obrigação existente não duplica despesa. Se fato/documento não está suficientemente identificado, registrar pendência e solicitar revisão.",
+      "DEPARTAMENTO_RESPONSAVEL": "DP identifica fato e documento; Contábil propõe classificação; Financeiro identifica liquidação; Conciliação valida obrigação/saldo.",
+      "RISCOS": "Interpretação sem vínculo/competência; duplicidade; natureza ou incidência presumida; conflito com fonte anterior.",
+      "LIMITACOES": "Exemplo conceitual; não calcula direito, folha, rescisão, encargo, retenção ou lançamento efetivo.",
+      "NECESSIDADE_REVISAO": "SIM — Supervisor deve confirmar referencial, competência, identidade documental, contexto e tratamento antes de qualquer uso operacional.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-CASO-07",
+      "TITULO": "Encargos patronais",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Relatório fictício discrimina contribuições patronais e suas bases.",
+      "FATO": "Relatório fictício discrimina contribuições patronais e suas bases.",
+      "DOCUMENTACAO": "Relatório de encargos, atividade, regime, rubricas, eSocial e obrigação correspondente.",
+      "FUNDAMENTO_IDS": [
+        "DP-06"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo oficial de normas CFC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "MOS eSocial S-1.3",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVOS": [
+        "Consultar os dispositivos indicados nas fichas fundamentadoras; conforme o caso, confirmar competência e versão aplicáveis."
+      ],
+      "VIGENCIA": "2026-11 é exemplo de competência; norma e leiaute aplicáveis dependem da data do fato.",
+      "APLICABILIDADE": "Caso didático não representa empresa, empregado, alíquota ou obrigação real.",
+      "FUNDAMENTO": "Reutiliza fichas DP e fundamentos CONT/FIN apontados; evidência específica governa a análise.",
+      "TRATAMENTO_CONCEITUAL": "Reconhecimento, obrigação, retenções, encargo e liquidação devem ser distinguidos; pagamento de obrigação existente não duplica despesa. Se fato/documento não está suficientemente identificado, registrar pendência e solicitar revisão.",
+      "DEPARTAMENTO_RESPONSAVEL": "DP identifica fato e documento; Contábil propõe classificação; Financeiro identifica liquidação; Conciliação valida obrigação/saldo.",
+      "RISCOS": "Interpretação sem vínculo/competência; duplicidade; natureza ou incidência presumida; conflito com fonte anterior.",
+      "LIMITACOES": "Exemplo conceitual; não calcula direito, folha, rescisão, encargo, retenção ou lançamento efetivo.",
+      "NECESSIDADE_REVISAO": "SIM — Supervisor deve confirmar referencial, competência, identidade documental, contexto e tratamento antes de qualquer uso operacional.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-CASO-08",
+      "TITULO": "Provisão e pagamento de FGTS",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Folha fictícia alimenta valor de FGTS; guia posterior contém o mesmo débito.",
+      "FATO": "Folha fictícia alimenta valor de FGTS; guia posterior contém o mesmo débito.",
+      "DOCUMENTACAO": "Rubricas/eventos S-5003, competência, guia FGTS Digital e comprovante de recolhimento.",
+      "FUNDAMENTO_IDS": [
+        "DP-07",
+        "DP-16"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo oficial de normas CFC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "MOS eSocial S-1.3",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVOS": [
+        "Consultar os dispositivos indicados nas fichas fundamentadoras; conforme o caso, confirmar competência e versão aplicáveis."
+      ],
+      "VIGENCIA": "2026-11 é exemplo de competência; norma e leiaute aplicáveis dependem da data do fato.",
+      "APLICABILIDADE": "Caso didático não representa empresa, empregado, alíquota ou obrigação real.",
+      "FUNDAMENTO": "Reutiliza fichas DP e fundamentos CONT/FIN apontados; evidência específica governa a análise.",
+      "TRATAMENTO_CONCEITUAL": "Reconhecimento, obrigação, retenções, encargo e liquidação devem ser distinguidos; pagamento de obrigação existente não duplica despesa. Se fato/documento não está suficientemente identificado, registrar pendência e solicitar revisão.",
+      "DEPARTAMENTO_RESPONSAVEL": "DP identifica fato e documento; Contábil propõe classificação; Financeiro identifica liquidação; Conciliação valida obrigação/saldo.",
+      "RISCOS": "Interpretação sem vínculo/competência; duplicidade; natureza ou incidência presumida; conflito com fonte anterior.",
+      "LIMITACOES": "Exemplo conceitual; não calcula direito, folha, rescisão, encargo, retenção ou lançamento efetivo.",
+      "NECESSIDADE_REVISAO": "SIM — Supervisor deve confirmar referencial, competência, identidade documental, contexto e tratamento antes de qualquer uso operacional.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-CASO-09",
+      "TITULO": "Provisão de férias",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Relatório fictício estima férias acumuladas de trabalhadores.",
+      "FATO": "Relatório fictício estima férias acumuladas de trabalhadores.",
+      "DOCUMENTACAO": "Folha, dados de períodos aquisitivo/concessivo, política, método e referencial confirmados.",
+      "FUNDAMENTO_IDS": [
+        "DP-11",
+        "DP-12"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo oficial de normas CFC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "MOS eSocial S-1.3",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVOS": [
+        "Consultar os dispositivos indicados nas fichas fundamentadoras; conforme o caso, confirmar competência e versão aplicáveis."
+      ],
+      "VIGENCIA": "2026-11 é exemplo de competência; norma e leiaute aplicáveis dependem da data do fato.",
+      "APLICABILIDADE": "Caso didático não representa empresa, empregado, alíquota ou obrigação real.",
+      "FUNDAMENTO": "Reutiliza fichas DP e fundamentos CONT/FIN apontados; evidência específica governa a análise.",
+      "TRATAMENTO_CONCEITUAL": "Reconhecimento, obrigação, retenções, encargo e liquidação devem ser distinguidos; pagamento de obrigação existente não duplica despesa. Se fato/documento não está suficientemente identificado, registrar pendência e solicitar revisão.",
+      "DEPARTAMENTO_RESPONSAVEL": "DP identifica fato e documento; Contábil propõe classificação; Financeiro identifica liquidação; Conciliação valida obrigação/saldo.",
+      "RISCOS": "Interpretação sem vínculo/competência; duplicidade; natureza ou incidência presumida; conflito com fonte anterior.",
+      "LIMITACOES": "Exemplo conceitual; não calcula direito, folha, rescisão, encargo, retenção ou lançamento efetivo.",
+      "NECESSIDADE_REVISAO": "SIM — Supervisor deve confirmar referencial, competência, identidade documental, contexto e tratamento antes de qualquer uso operacional.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-CASO-10",
+      "TITULO": "Pagamento de férias provisionadas",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Pagamento fictício de férias liquida obrigação reconhecida anteriormente.",
+      "FATO": "Pagamento fictício de férias liquida obrigação reconhecida anteriormente.",
+      "DOCUMENTACAO": "Aviso/recibo, folha, obrigação anterior e comprovante com conciliação.",
+      "FUNDAMENTO_IDS": [
+        "DP-11",
+        "DP-12",
+        "DP-16"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo oficial de normas CFC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "MOS eSocial S-1.3",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVOS": [
+        "Consultar os dispositivos indicados nas fichas fundamentadoras; conforme o caso, confirmar competência e versão aplicáveis."
+      ],
+      "VIGENCIA": "2026-11 é exemplo de competência; norma e leiaute aplicáveis dependem da data do fato.",
+      "APLICABILIDADE": "Caso didático não representa empresa, empregado, alíquota ou obrigação real.",
+      "FUNDAMENTO": "Reutiliza fichas DP e fundamentos CONT/FIN apontados; evidência específica governa a análise.",
+      "TRATAMENTO_CONCEITUAL": "Reconhecimento, obrigação, retenções, encargo e liquidação devem ser distinguidos; pagamento de obrigação existente não duplica despesa. Se fato/documento não está suficientemente identificado, registrar pendência e solicitar revisão.",
+      "DEPARTAMENTO_RESPONSAVEL": "DP identifica fato e documento; Contábil propõe classificação; Financeiro identifica liquidação; Conciliação valida obrigação/saldo.",
+      "RISCOS": "Interpretação sem vínculo/competência; duplicidade; natureza ou incidência presumida; conflito com fonte anterior.",
+      "LIMITACOES": "Exemplo conceitual; não calcula direito, folha, rescisão, encargo, retenção ou lançamento efetivo.",
+      "NECESSIDADE_REVISAO": "SIM — Supervisor deve confirmar referencial, competência, identidade documental, contexto e tratamento antes de qualquer uso operacional.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-CASO-11",
+      "TITULO": "Provisão de décimo terceiro",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Sistema fictício apresenta parcela mensal estimada do 13º.",
+      "FATO": "Sistema fictício apresenta parcela mensal estimada do 13º.",
+      "DOCUMENTACAO": "Folha, vínculos, memória de cálculo do sistema e competência/período anual pertinentes.",
+      "FUNDAMENTO_IDS": [
+        "DP-13",
+        "DP-14"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo oficial de normas CFC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "MOS eSocial S-1.3",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVOS": [
+        "Consultar os dispositivos indicados nas fichas fundamentadoras; conforme o caso, confirmar competência e versão aplicáveis."
+      ],
+      "VIGENCIA": "2026-11 é exemplo de competência; norma e leiaute aplicáveis dependem da data do fato.",
+      "APLICABILIDADE": "Caso didático não representa empresa, empregado, alíquota ou obrigação real.",
+      "FUNDAMENTO": "Reutiliza fichas DP e fundamentos CONT/FIN apontados; evidência específica governa a análise.",
+      "TRATAMENTO_CONCEITUAL": "Reconhecimento, obrigação, retenções, encargo e liquidação devem ser distinguidos; pagamento de obrigação existente não duplica despesa. Se fato/documento não está suficientemente identificado, registrar pendência e solicitar revisão.",
+      "DEPARTAMENTO_RESPONSAVEL": "DP identifica fato e documento; Contábil propõe classificação; Financeiro identifica liquidação; Conciliação valida obrigação/saldo.",
+      "RISCOS": "Interpretação sem vínculo/competência; duplicidade; natureza ou incidência presumida; conflito com fonte anterior.",
+      "LIMITACOES": "Exemplo conceitual; não calcula direito, folha, rescisão, encargo, retenção ou lançamento efetivo.",
+      "NECESSIDADE_REVISAO": "SIM — Supervisor deve confirmar referencial, competência, identidade documental, contexto e tratamento antes de qualquer uso operacional.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-CASO-12",
+      "TITULO": "Pagamento de décimo terceiro",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Transferência fictícia quita parcela do 13º registrada como obrigação.",
+      "FATO": "Transferência fictícia quita parcela do 13º registrada como obrigação.",
+      "DOCUMENTACAO": "Folha anual, demonstrativo, obrigação anterior, recibo e comprovante.",
+      "FUNDAMENTO_IDS": [
+        "DP-13",
+        "DP-16"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo oficial de normas CFC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "MOS eSocial S-1.3",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVOS": [
+        "Consultar os dispositivos indicados nas fichas fundamentadoras; conforme o caso, confirmar competência e versão aplicáveis."
+      ],
+      "VIGENCIA": "2026-11 é exemplo de competência; norma e leiaute aplicáveis dependem da data do fato.",
+      "APLICABILIDADE": "Caso didático não representa empresa, empregado, alíquota ou obrigação real.",
+      "FUNDAMENTO": "Reutiliza fichas DP e fundamentos CONT/FIN apontados; evidência específica governa a análise.",
+      "TRATAMENTO_CONCEITUAL": "Reconhecimento, obrigação, retenções, encargo e liquidação devem ser distinguidos; pagamento de obrigação existente não duplica despesa. Se fato/documento não está suficientemente identificado, registrar pendência e solicitar revisão.",
+      "DEPARTAMENTO_RESPONSAVEL": "DP identifica fato e documento; Contábil propõe classificação; Financeiro identifica liquidação; Conciliação valida obrigação/saldo.",
+      "RISCOS": "Interpretação sem vínculo/competência; duplicidade; natureza ou incidência presumida; conflito com fonte anterior.",
+      "LIMITACOES": "Exemplo conceitual; não calcula direito, folha, rescisão, encargo, retenção ou lançamento efetivo.",
+      "NECESSIDADE_REVISAO": "SIM — Supervisor deve confirmar referencial, competência, identidade documental, contexto e tratamento antes de qualquer uso operacional.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-CASO-13",
+      "TITULO": "Rescisão trabalhista",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Termo fictício de desligamento contém saldo de salário, férias e parcelas distintas.",
+      "FATO": "Termo fictício de desligamento contém saldo de salário, férias e parcelas distintas.",
+      "DOCUMENTACAO": "Termo/recibo, motivo, vínculo, histórico, eventos e regras vigentes; não recalcular.",
+      "FUNDAMENTO_IDS": [
+        "DP-15"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo oficial de normas CFC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "MOS eSocial S-1.3",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVOS": [
+        "Consultar os dispositivos indicados nas fichas fundamentadoras; conforme o caso, confirmar competência e versão aplicáveis."
+      ],
+      "VIGENCIA": "2026-11 é exemplo de competência; norma e leiaute aplicáveis dependem da data do fato.",
+      "APLICABILIDADE": "Caso didático não representa empresa, empregado, alíquota ou obrigação real.",
+      "FUNDAMENTO": "Reutiliza fichas DP e fundamentos CONT/FIN apontados; evidência específica governa a análise.",
+      "TRATAMENTO_CONCEITUAL": "Reconhecimento, obrigação, retenções, encargo e liquidação devem ser distinguidos; pagamento de obrigação existente não duplica despesa. Se fato/documento não está suficientemente identificado, registrar pendência e solicitar revisão.",
+      "DEPARTAMENTO_RESPONSAVEL": "DP identifica fato e documento; Contábil propõe classificação; Financeiro identifica liquidação; Conciliação valida obrigação/saldo.",
+      "RISCOS": "Interpretação sem vínculo/competência; duplicidade; natureza ou incidência presumida; conflito com fonte anterior.",
+      "LIMITACOES": "Exemplo conceitual; não calcula direito, folha, rescisão, encargo, retenção ou lançamento efetivo.",
+      "NECESSIDADE_REVISAO": "SIM — Supervisor deve confirmar referencial, competência, identidade documental, contexto e tratamento antes de qualquer uso operacional.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-CASO-14",
+      "TITULO": "Pagamento de encargo sem provisão identificada",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Extrato fictício mostra débito de encargo, mas não há provisão identificada.",
+      "FATO": "Extrato fictício mostra débito de encargo, mas não há provisão identificada.",
+      "DOCUMENTACAO": "Extrato, guia, competência e origem; pesquisar razão e departamentos, manter pendência se incerto.",
+      "FUNDAMENTO_IDS": [
+        "DP-06",
+        "DP-16",
+        "DP-18"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo oficial de normas CFC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "MOS eSocial S-1.3",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVOS": [
+        "Consultar os dispositivos indicados nas fichas fundamentadoras; conforme o caso, confirmar competência e versão aplicáveis."
+      ],
+      "VIGENCIA": "2026-11 é exemplo de competência; norma e leiaute aplicáveis dependem da data do fato.",
+      "APLICABILIDADE": "Caso didático não representa empresa, empregado, alíquota ou obrigação real.",
+      "FUNDAMENTO": "Reutiliza fichas DP e fundamentos CONT/FIN apontados; evidência específica governa a análise.",
+      "TRATAMENTO_CONCEITUAL": "Reconhecimento, obrigação, retenções, encargo e liquidação devem ser distinguidos; pagamento de obrigação existente não duplica despesa. Se fato/documento não está suficientemente identificado, registrar pendência e solicitar revisão.",
+      "DEPARTAMENTO_RESPONSAVEL": "DP identifica fato e documento; Contábil propõe classificação; Financeiro identifica liquidação; Conciliação valida obrigação/saldo.",
+      "RISCOS": "Interpretação sem vínculo/competência; duplicidade; natureza ou incidência presumida; conflito com fonte anterior.",
+      "LIMITACOES": "Exemplo conceitual; não calcula direito, folha, rescisão, encargo, retenção ou lançamento efetivo.",
+      "NECESSIDADE_REVISAO": "SIM — Supervisor deve confirmar referencial, competência, identidade documental, contexto e tratamento antes de qualquer uso operacional.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "DP-CASO-15",
+      "TITULO": "DP não aplicável com evidência contraditória posterior",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Supervisor marcou DP fictício como NAO_APLICAVEL; depois chega relatório de folha da mesma competência.",
+      "FATO": "Supervisor marcou DP fictício como NAO_APLICAVEL; depois chega evidência documental de relatório de folha da mesma competência.",
+      "DOCUMENTACAO": "Estado contextual, identidade empresa/competência, documento e proveniência; emitir conflito para decisão supervisora.",
+      "FUNDAMENTO_IDS": [
+        "DP-20",
+        "DP-17"
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NORMAS-COMPLETAS",
+          "TITULO": "Catálogo oficial de normas CFC",
+          "URL": "https://cfc.org.br/tecnica/normas-brasileiras-de-contabilidade/normas-completas/",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "ESOCIAL-MOS-S13",
+          "TITULO": "MOS eSocial S-1.3",
+          "URL": "https://www.gov.br/esocial/pt-br/documentacao-tecnica/manuais/mos-s-1-3-consolidada-ate-a-no-s-1-3-12-2026.pdf/%40%40download/file",
+          "ORGAO": "eSocial"
+        }
+      ],
+      "DISPOSITIVOS": [
+        "Consultar os dispositivos indicados nas fichas fundamentadoras; conforme o caso, confirmar competência e versão aplicáveis."
+      ],
+      "VIGENCIA": "2026-11 é exemplo de competência; norma e leiaute aplicáveis dependem da data do fato.",
+      "APLICABILIDADE": "Caso didático não representa empresa, empregado, alíquota ou obrigação real.",
+      "FUNDAMENTO": "Reutiliza fichas DP e fundamentos CONT/FIN apontados; evidência específica governa a análise.",
+      "TRATAMENTO_CONCEITUAL": "O contrato STATUS_DP_CONTEXTUAL_V1 gera conflito DP_NAO_APLICAVEL_CONTRADITORIO e aguarda decisão do Supervisor; não alterar o estado silenciosamente.",
+      "DEPARTAMENTO_RESPONSAVEL": "DP identifica fato e documento; Contábil propõe classificação; Financeiro identifica liquidação; Conciliação valida obrigação/saldo.",
+      "RISCOS": "Interpretação sem vínculo/competência; duplicidade; natureza ou incidência presumida; conflito com fonte anterior.",
+      "LIMITACOES": "Exemplo conceitual; não calcula direito, folha, rescisão, encargo, retenção ou lançamento efetivo.",
+      "NECESSIDADE_REVISAO": "SIM — Supervisor deve confirmar referencial, competência, identidade documental, contexto e tratamento antes de qualquer uso operacional.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    }
+  ]
+}

@@ -22,7 +22,26 @@ Para rodar só algumas áreas: `... executar_gate.py FISCAL LOCAL`.
 
 A Central de Revisão do Supervisor foi validada por teste manual do fluxo de demonstração, além das baterias automatizadas.
 
-## Baterias ATIVAS (73)
+## Baterias ATIVAS (76)
+
+### Checklist de diagnóstico e estabilização — 16/11/2026
+
+- [x] Python do ambiente do projeto: 3.12.16 (Python do sistema: 3.9.6).
+- [x] `.venv` existente validado contra todas as versões fixadas em `requirements.txt`; `pip check` sem dependências quebradas.
+- [x] Fixture fictícia da Relação de Contas do Domínio adicionada em `TESTES/LOCAL/fixtures/plano-dominio-ficticio.xlsx`; nenhum dado real.
+- [x] Bateria `LOCAL/testar_plano_dominio.py`: 14/14 aprovada.
+- [x] Gate da Etapa 01 (registro histórico): 74/74, 0 falhas; estado operacional intocado.
+- [x] Sem alteração de runtime real, execução de fechamento, avanço de Brasil Protec, commit ou push.
+- [ ] Confirmar correspondência da tag: `v1.8.0-interno` existe, mas aponta para `e009995`, enquanto `master` está em `f084245`.
+
+Gate da Etapa 02: execução integral única em 16/11/2026, 75/75 baterias aprovadas, 0 falhas; estado operacional intocado; `GATE DE RELEASE: APROVADO`.
+
+### Etapa 03 — base normativa e técnica
+
+- `BASE_CONHECIMENTO_CONTABIL/tests/test_consulta.py`: contrato/categorias, fontes, busca por filtros, competência, status de verificação, isolamento de regras por empresa, conflito e bloqueio de decisão automática.
+- `BASE_CONHECIMENTO_CONTABIL/tests/test_etapa03f_dp.py`: 20 fundamentos DP, 15 casos fictícios, consulta e limites, integração conceitual e conflito `NAO_APLICAVEL`.
+- As contagens históricas permanecem por etapa: 75 na Etapa 02, 76 na estrutura 03, 78 na 03E e 79 após a bateria 03F. Não somar execuções distintas.
+- Execução integral da Etapa 03 em 16/11/2026: 76/76 PASS, 0 falhas; estado operacional intocado; `GATE DE RELEASE: APROVADO`.
 
 | Área | Baterias |
 |---|---|
@@ -30,6 +49,8 @@ A Central de Revisão do Supervisor foi validada por teste manual do fluxo de de
 | Extrator, interface do extrator e Guarda | `T004/testar_extrator.py`, `T004/testar_interface.py`, `T004/testar_guarda.py` |
 | Coordenador | `COORD/testar_coordenador.py` |
 | API local / Segurança | `API/testar_api.py` (127.0.0.1, token, Host, origem, upload, limites), `API/testar_central_revisao_api.py` (Central de Revisão: rotas, segurança, estado obsoleto, lote, isolamento por SOL, demonstração isolada, CR-API-01..20) |
+| Separação de ambientes | `API/testar_separacao_ambientes.py` (REAL bloqueia preparação fictícia e oculta a ação na página; DEMONSTRAÇÃO/TESTE mantêm a preparação em isolamento) |
+| Base de conhecimento | `BASE_CONHECIMENTO_CONTABIL/tests/test_consulta.py` (estrutura, referências, consulta, vigência, aplicabilidade, referencial, conflito, isolamento e decisão automática) |
 | Reprocessamento auditado | `API/testar_ciclo_reprocessamento.py` (ciclo de vida da tentativa: PREPARADA → EM_EXECUCAO → CONCLUIDA/BLOQUEADA/FALHOU, vínculo explícito das execuções, idempotência), `API/testar_reconciliacao_legada.py` (reconciliação auditada de tentativa legada por evidência estrutural, LEG-01..15), `API/testar_documento_complementar.py` (documento complementar, manifesto/pacote efetivo imutável da tentativa e percurso integrado fictício até a Central, DOC-COMP-01..30 e INT-01..11), `API/testar_classificacao_snapshot.py` (classificação histórica × vigente no pacote da tentativa; rótulo antigo nunca herdado; ambíguo/erro fail-closed, CLASS-SNAPSHOT-01..10), `API/testar_checkpoint_financeiro.py` (checkpoint após o Financeiro e proteção da retomada de rota sem tentativa ativa, CHECK-FIN-01..20, ROTA-SEG-01..15) |
 | Fechamento completo / multiempresa | `API/testar_previa_fechamento.py` (mini fechamento fictício completo: upload único que só classifica, "Preparar fechamento", Fiscal → DP → Financeiro → checkpoint → Contábil → Conciliação, prévia por departamento, conciliação do balanço book × balancete × razão, impostos, intercâmbio com candidatos, proveniência, adapters/layout novo, fail-closed e ambiente, FECH-01..28), `API/testar_multiempresa.py` (duas empresas fictícias na mesma competência: documento, regra, consulta entre áreas, balancete, decisão, tentativa, pendência e falha nunca cruzam empresas, MULTI-01..15 + MULTI-ISO) |
 | Documentos | `LOCAL/testar_pdf_local.py`, `testar_triagem_documentos.py`, `testar_salvaguardas_documentos.py`, `testar_pacotes_areas.py`, `testar_encaminhamento_automatico.py`, `testar_classificacao_extrato.py` (extrato pelo conteúdo; nome do arquivo não decide) |
@@ -62,3 +83,11 @@ A Central de Revisão do Supervisor foi validada por teste manual do fluxo de de
 | `IMPORTACAO/testar_importacao.py` (+ `fixtures_reconhecimento.py`) | Importação VGROW DESATIVADA por decisão do Supervisor (05/11/2026): rotas 410, Coordenador recusa os comandos. Dependia do cadastro real da empresa. Mantida no repositório como histórico; o script sai com a mensagem "LEGADO". |
 | `API/e2e_navegador.py` (execução direta) | Ponta a ponta com o executor Claude REAL (legado, sem fallback; tem custo). O arquivo continua usado como biblioteca de navegador pelas baterias ativas. |
 | `T004/verificar_t004_6.py` | Verificador manual de transcrições do subagente (homologação T-004.6); não é bateria automática. |
+
+
+### Complementação Etapa 03F — DP
+
+- Teste específico incluído: `BASE_CONHECIMENTO_CONTABIL/tests/test_etapa03f_dp.py` (8 testes).
+- Gate integral passa a conter uma bateria adicional; quantidade e resultado devem ser atualizados após execução final da Etapa 03F.
+
+Execução integral 03F em 16/11/2026: 79/79 PASS, 0 falhas; estado operacional intocado; `.venv` Python 3.12.16; saídas em `/var/folders/97/wxc4t9yj3qvb7s_927z5fvbh0000gn/T/prime-gate-4_mvbp0j`.

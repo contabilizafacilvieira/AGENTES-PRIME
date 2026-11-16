@@ -9,11 +9,15 @@ Isso não reativa o importador geral de razão e não aprova nem escritura lanç
 
 ## Abrir
 
-Na raiz do projeto:
+No workspace definitivo deste computador, inicie o perfil REAL limpo pelo lançador:
 
-```powershell
-.venv/Scripts/python.exe -I API-LOCAL/servidor.py
+```sh
+"$HOME/Library/Application Support/AgentesPrime/launchers/iniciar-agentes-prime-real.command"
 ```
+
+Esse lançador aponta CLIENTES, solicitações, ordem ativa, LIBERADOS e runtime para `Application Support/AgentesPrime/ambientes/REAL/`.
+O runtime REAL anterior permanece preservado, separado. Demonstrações usam seus lançadores próprios e dados fictícios isolados;
+testes usam `TESTES/ambiente_isolado.py`. Não inicie a operação REAL com comandos genéricos que omitam esses caminhos.
 
 Acesse http://127.0.0.1:8765/ e atualize com Ctrl+F5 após uma atualização do programa.
 

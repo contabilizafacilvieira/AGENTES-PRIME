@@ -1,0 +1,636 @@
+{
+  "VERSAO": "1.0.0-03D",
+  "DATA_CONSULTA": "2026-11-16",
+  "CASOS": [
+    {
+      "ID": "FIN-CASO-01",
+      "TITULO": "Pagamento de fornecedor provisionado",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa fictícia Horizonte pagou R$ 820 a fornecedor Cedro por fatura 0042 já reconhecida.",
+      "NATUREZA_PROVAVEL": "Liquidação de obrigação previamente reconhecida, se valor, credor e documento coincidirem.",
+      "EVIDENCIA_NECESSARIA": "Extrato e comprovante; fatura/contrato e conta a pagar anterior; conciliar valor, credor, referência e baixa.",
+      "DEPARTAMENTO_RESPONSAVEL": "FINANCEIRO + CONTABILIDADE",
+      "FUNDAMENTO_IDS": [
+        "FIN-05",
+        "FIN-20"
+      ],
+      "DISPOSITIVOS": [
+        "Fundamentos CONT/FIN indicados; consultar dispositivos e fonte oficial nas fichas; procedimento interno aplicável é identificado em separado."
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001, texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "FUNDAMENTO": "Reutiliza os fundamentos CONT 03C e FIN 03D indicados; fatos bancários isolados não determinam natureza.",
+      "TRATAMENTO_CONCEITUAL": "Se a obrigação existente e a liquidação forem confirmadas, baixa-se fornecedores contra banco; não se registra despesa/custo/ativo novamente.",
+      "RISCOS": "Duplicar despesa/custo ou baixar obrigação de outro credor.",
+      "LIMITACOES": "Associação não comprova documento ou classificação final; divergência exige análise.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas se aplicáveis, confirmadas pelo Supervisor"
+      ],
+      "NECESSIDADE_DECISAO_HUMANA": "SIM — verificar aplicação ao contrato/empresa, identidade da transação, documento e referencial; caso ambíguo, manter pendência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FIN-CASO-02",
+      "TITULO": "Pagamento sem documento identificado",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Conta fictícia recebeu débito de R$ 137 sem documento, referência ou favorecido suficiente.",
+      "NATUREZA_PROVAVEL": "Saída efetiva; natureza desconhecida até identificar origem.",
+      "EVIDENCIA_NECESSARIA": "Extrato integral, comprovante/identificador, favorecido e solicitação; buscar documento e consultar Fiscal, DP ou Contábil conforme origem.",
+      "DEPARTAMENTO_RESPONSAVEL": "FINANCEIRO; origem a apurar com departamento responsável",
+      "FUNDAMENTO_IDS": [
+        "FIN-05",
+        "FIN-20"
+      ],
+      "DISPOSITIVOS": [
+        "Fundamentos CONT/FIN indicados; consultar dispositivos e fonte oficial nas fichas; procedimento interno aplicável é identificado em separado."
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001, texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "FUNDAMENTO": "Reutiliza os fundamentos CONT 03C e FIN 03D indicados; fatos bancários isolados não determinam natureza.",
+      "TRATAMENTO_CONCEITUAL": "Não propor natureza ou obrigação presumida; criar candidato rastreável e pendência para identificação e evidência.",
+      "RISCOS": "Classificação inventada, lançamento duplicado ou ocultação de fraude.",
+      "LIMITACOES": "Sem suporte não se decide; busca deve respeitar competência, empresa e acesso autorizado.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas se aplicáveis, confirmadas pelo Supervisor"
+      ],
+      "NECESSIDADE_DECISAO_HUMANA": "SIM — verificar aplicação ao contrato/empresa, identidade da transação, documento e referencial; caso ambíguo, manter pendência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FIN-CASO-03",
+      "TITULO": "Recebimento de cliente",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Cliente fictício Girassol transferiu R$ 560 com fatura 2026-041 citada.",
+      "NATUREZA_PROVAVEL": "Liquidação de recebível existente, se cliente e título coincidirem.",
+      "EVIDENCIA_NECESSARIA": "Extrato, comprovante/ID pagador, cliente, título aberto e documento da venda/serviço.",
+      "DEPARTAMENTO_RESPONSAVEL": "FINANCEIRO + CONTABILIDADE",
+      "FUNDAMENTO_IDS": [
+        "FIN-06",
+        "FIN-20"
+      ],
+      "DISPOSITIVOS": [
+        "Fundamentos CONT/FIN indicados; consultar dispositivos e fonte oficial nas fichas; procedimento interno aplicável é identificado em separado."
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001, texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "FUNDAMENTO": "Reutiliza os fundamentos CONT 03C e FIN 03D indicados; fatos bancários isolados não determinam natureza.",
+      "TRATAMENTO_CONCEITUAL": "Baixar recebível confirmado contra banco; reconhecimento da receita decorre do fato de venda/prestação, não do crédito bancário.",
+      "RISCOS": "Duplicar receita ou liquidar cliente errado.",
+      "LIMITACOES": "Terceiro pagador ou abatimento exige comprovar vínculo e autoridade.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas se aplicáveis, confirmadas pelo Supervisor"
+      ],
+      "NECESSIDADE_DECISAO_HUMANA": "SIM — verificar aplicação ao contrato/empresa, identidade da transação, documento e referencial; caso ambíguo, manter pendência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FIN-CASO-04",
+      "TITULO": "Crédito bancário sem identificação",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Conta fictícia recebeu R$ 2.300 via transferência sem identificação do pagador ou finalidade.",
+      "NATUREZA_PROVAVEL": "Entrada efetiva; natureza desconhecida (recebível, adiantamento, empréstimo, aporte, transferência, estorno, entre outras).",
+      "EVIDENCIA_NECESSARIA": "Extrato e identificação completa do pagador, documento, contrato, capital ou crédito/estorno; manter item sem natureza se ausentes.",
+      "DEPARTAMENTO_RESPONSAVEL": "FINANCEIRO; origem a apurar com departamento responsável",
+      "FUNDAMENTO_IDS": [
+        "FIN-04",
+        "FIN-20"
+      ],
+      "DISPOSITIVOS": [
+        "Fundamentos CONT/FIN indicados; consultar dispositivos e fonte oficial nas fichas; procedimento interno aplicável é identificado em separado."
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001, texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "FUNDAMENTO": "Reutiliza os fundamentos CONT 03C e FIN 03D indicados; fatos bancários isolados não determinam natureza.",
+      "TRATAMENTO_CONCEITUAL": "Manter crédito sem classificação; buscar evidência independente, consultar departamentos e requerer decisão humana se permanecer ambíguo.",
+      "RISCOS": "Classificar empréstimo/aporte/adiantamento como receita ou transferir entre empresas.",
+      "LIMITACOES": "Pode haver fraude/erro/adiantamento; identidade do crédito é insuficiente.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas se aplicáveis, confirmadas pelo Supervisor"
+      ],
+      "NECESSIDADE_DECISAO_HUMANA": "SIM — verificar aplicação ao contrato/empresa, identidade da transação, documento e referencial; caso ambíguo, manter pendência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FIN-CASO-05",
+      "TITULO": "Adiantamento a fornecedor",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa fictícia Vale pagou sinal de R$ 400 por máquina ainda não entregue.",
+      "NATUREZA_PROVAVEL": "Possível ativo/direito de adiantamento; não assumir despesa.",
+      "EVIDENCIA_NECESSARIA": "Pedido/contrato, aprovação, comprovante, fornecedor e condição de entrega/restituição.",
+      "DEPARTAMENTO_RESPONSAVEL": "FINANCEIRO + área solicitante + CONTABILIDADE",
+      "FUNDAMENTO_IDS": [
+        "FIN-07"
+      ],
+      "DISPOSITIVOS": [
+        "Fundamentos CONT/FIN indicados; consultar dispositivos e fonte oficial nas fichas; procedimento interno aplicável é identificado em separado."
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001, texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "FUNDAMENTO": "Reutiliza os fundamentos CONT 03C e FIN 03D indicados; fatos bancários isolados não determinam natureza.",
+      "TRATAMENTO_CONCEITUAL": "Manter candidato de direito/adiantamento até comprovar objeto e condição; área dona do pedido e Contabilidade avaliam.",
+      "RISCOS": "Ativo irrecuperável ou antecipação registrada como despesa sem base.",
+      "LIMITACOES": "Não ativar regra automática de adiantamento; política específica só por aprovação do Supervisor.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas se aplicáveis, confirmadas pelo Supervisor"
+      ],
+      "NECESSIDADE_DECISAO_HUMANA": "SIM — verificar aplicação ao contrato/empresa, identidade da transação, documento e referencial; caso ambíguo, manter pendência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FIN-CASO-06",
+      "TITULO": "Adiantamento recebido de cliente",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Cliente fictício Rio depositou R$ 900 para serviço futuro conforme pedido.",
+      "NATUREZA_PROVAVEL": "Possível obrigação contratual por adiantamento; não assumir receita.",
+      "EVIDENCIA_NECESSARIA": "Contrato/pedido, identificação do cliente, finalidade, condição de execução/reembolso e evidência da entrega.",
+      "DEPARTAMENTO_RESPONSAVEL": "FINANCEIRO + CONTABILIDADE",
+      "FUNDAMENTO_IDS": [
+        "FIN-08"
+      ],
+      "DISPOSITIVOS": [
+        "Fundamentos CONT/FIN indicados; consultar dispositivos e fonte oficial nas fichas; procedimento interno aplicável é identificado em separado."
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001, texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "FUNDAMENTO": "Reutiliza os fundamentos CONT 03C e FIN 03D indicados; fatos bancários isolados não determinam natureza.",
+      "TRATAMENTO_CONCEITUAL": "Tratar como possível passivo/obrigação até examinar contrato e satisfação; não reconhecer receita automaticamente.",
+      "RISCOS": "Receita prematura e passivo contratual omitido.",
+      "LIMITACOES": "Não presumir desempenho, reembolso ou política sem contrato/documento.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas se aplicáveis, confirmadas pelo Supervisor"
+      ],
+      "NECESSIDADE_DECISAO_HUMANA": "SIM — verificar aplicação ao contrato/empresa, identidade da transação, documento e referencial; caso ambíguo, manter pendência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FIN-CASO-07",
+      "TITULO": "Transferência entre contas próprias",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Duas contas fictícias tituladas pela mesma sociedade mostram débito/crédito de R$ 1.500 no mesmo dia.",
+      "NATUREZA_PROVAVEL": "Transferência de disponibilidades se ambas contas forem da mesma entidade e pernas casarem.",
+      "EVIDENCIA_NECESSARIA": "Cadastro/titular das duas contas, dois extratos, IDs, valor/data e tarifa separada.",
+      "DEPARTAMENTO_RESPONSAVEL": "FINANCEIRO + CONTABILIDADE",
+      "FUNDAMENTO_IDS": [
+        "FIN-09"
+      ],
+      "DISPOSITIVOS": [
+        "Fundamentos CONT/FIN indicados; consultar dispositivos e fonte oficial nas fichas; procedimento interno aplicável é identificado em separado."
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001, texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "FUNDAMENTO": "Reutiliza os fundamentos CONT 03C e FIN 03D indicados; fatos bancários isolados não determinam natureza.",
+      "TRATAMENTO_CONCEITUAL": "Registrar as duas pontas como movimentação entre disponibilidades se titularidade comum e valores/data forem evidenciados; investigar diferença.",
+      "RISCOS": "Duplicar caixa ou mascarar transferência entre entidades diferentes.",
+      "LIMITACOES": "Não considerar mesma marca/nome bancário como titularidade comum; transferências intercompany têm outra análise.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas se aplicáveis, confirmadas pelo Supervisor"
+      ],
+      "NECESSIDADE_DECISAO_HUMANA": "SIM — verificar aplicação ao contrato/empresa, identidade da transação, documento e referencial; caso ambíguo, manter pendência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FIN-CASO-08",
+      "TITULO": "Aplicação financeira",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa fictícia Pinha aplicou R$ 5.000 em CDB com comprovante e extrato do produto.",
+      "NATUREZA_PROVAVEL": "Conversão de disponibilidade em ativo financeiro, conforme produto e referencial.",
+      "EVIDENCIA_NECESSARIA": "Contrato do produto, comprovante da aplicação, conta titular, valor e extrato/posição.",
+      "DEPARTAMENTO_RESPONSAVEL": "FINANCEIRO + CONTABILIDADE",
+      "FUNDAMENTO_IDS": [
+        "FIN-10"
+      ],
+      "DISPOSITIVOS": [
+        "Fundamentos CONT/FIN indicados; consultar dispositivos e fonte oficial nas fichas; procedimento interno aplicável é identificado em separado."
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001, texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "FUNDAMENTO": "Reutiliza os fundamentos CONT 03C e FIN 03D indicados; fatos bancários isolados não determinam natureza.",
+      "TRATAMENTO_CONCEITUAL": "Identificar o instrumento e contabilização pelo referencial; não classificar como despesa sem aplicação da norma do produto.",
+      "RISCOS": "Ativo/resultados incorretos, imposto/risco apresentados erradamente.",
+      "LIMITACOES": "Normas e liquidez variam por tipo; normas completas não se estendem automaticamente a simplificadas.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas se aplicáveis, confirmadas pelo Supervisor"
+      ],
+      "NECESSIDADE_DECISAO_HUMANA": "SIM — verificar aplicação ao contrato/empresa, identidade da transação, documento e referencial; caso ambíguo, manter pendência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FIN-CASO-09",
+      "TITULO": "Resgate com rendimento",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa fictícia Pinha resgatou R$ 5.060, com demonstrativo de R$ 60 de rendimento bruto e retenção.",
+      "NATUREZA_PROVAVEL": "Baixa do ativo resgatado e eventual rendimento separado após demonstrativo.",
+      "EVIDENCIA_NECESSARIA": "Extrato de resgate, posição anterior, informe do produto, rendimento bruto, retenções e contrato.",
+      "DEPARTAMENTO_RESPONSAVEL": "FINANCEIRO + CONTABILIDADE",
+      "FUNDAMENTO_IDS": [
+        "FIN-10",
+        "FIN-11"
+      ],
+      "DISPOSITIVOS": [
+        "Fundamentos CONT/FIN indicados; consultar dispositivos e fonte oficial nas fichas; procedimento interno aplicável é identificado em separado."
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001, texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "FUNDAMENTO": "Reutiliza os fundamentos CONT 03C e FIN 03D indicados; fatos bancários isolados não determinam natureza.",
+      "TRATAMENTO_CONCEITUAL": "Separar principal, rendimento e retenção usando informe e norma; resgate bruto/líquido não é receita integral.",
+      "RISCOS": "Rendimento, tributo e principal líquidos confundidos.",
+      "LIMITACOES": "Não adotar taxa/tributo presumido; regra fiscal depende da competência e produto.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas se aplicáveis, confirmadas pelo Supervisor"
+      ],
+      "NECESSIDADE_DECISAO_HUMANA": "SIM — verificar aplicação ao contrato/empresa, identidade da transação, documento e referencial; caso ambíguo, manter pendência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FIN-CASO-10",
+      "TITULO": "Pagamento de empréstimo com principal e juros",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa fictícia Lago pagou parcela de R$ 1.120 composta por principal 1.000 e juros 120 segundo demonstrativo.",
+      "NATUREZA_PROVAVEL": "Liquidação de passivo; principal reduz obrigação e juros são separados conforme reconhecimento e período.",
+      "EVIDENCIA_NECESSARIA": "Contrato, cronograma e demonstrativo da parcela atualizado, extrato e saldo do empréstimo.",
+      "DEPARTAMENTO_RESPONSAVEL": "FINANCEIRO + CONTABILIDADE",
+      "FUNDAMENTO_IDS": [
+        "FIN-14",
+        "FIN-15"
+      ],
+      "DISPOSITIVOS": [
+        "Fundamentos CONT/FIN indicados; consultar dispositivos e fonte oficial nas fichas; procedimento interno aplicável é identificado em separado."
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001, texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "FUNDAMENTO": "Reutiliza os fundamentos CONT 03C e FIN 03D indicados; fatos bancários isolados não determinam natureza.",
+      "TRATAMENTO_CONCEITUAL": "Conciliar principal e juros com demonstrativo; pagar liquida parte do passivo e reconhece encargos no período conforme norma.",
+      "RISCOS": "Despesa financeira superavaliada e dívida não baixada corretamente.",
+      "LIMITACOES": "Não calcular encargos sem cronograma/demonstrativo e método aplicável.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas se aplicáveis, confirmadas pelo Supervisor"
+      ],
+      "NECESSIDADE_DECISAO_HUMANA": "SIM — verificar aplicação ao contrato/empresa, identidade da transação, documento e referencial; caso ambíguo, manter pendência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FIN-CASO-11",
+      "TITULO": "Estorno de pagamento",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Transferência fictícia de R$ 250 foi devolvida após erro de chave; há ID original e ID do retorno.",
+      "NATUREZA_PROVAVEL": "Reversão/devolução ligada ao movimento original; não assumir receita.",
+      "EVIDENCIA_NECESSARIA": "IDs original/retorno, extratos, comprovantes, motivo e eventual estorno da obrigação/documento original.",
+      "DEPARTAMENTO_RESPONSAVEL": "FINANCEIRO + área do fato original",
+      "FUNDAMENTO_IDS": [
+        "FIN-16"
+      ],
+      "DISPOSITIVOS": [
+        "Fundamentos CONT/FIN indicados; consultar dispositivos e fonte oficial nas fichas; procedimento interno aplicável é identificado em separado."
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001, texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "FUNDAMENTO": "Reutiliza os fundamentos CONT 03C e FIN 03D indicados; fatos bancários isolados não determinam natureza.",
+      "TRATAMENTO_CONCEITUAL": "Vincular retorno ao original e ajustar a liquidação correspondente; distinguir cancelamento, restituição e nova transação.",
+      "RISCOS": "Receita/despesa duplicada ou saldo antigo mantido.",
+      "LIMITACOES": "Estorno pode ser parcial/defasado; não compensar sem vínculo confiável.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas se aplicáveis, confirmadas pelo Supervisor"
+      ],
+      "NECESSIDADE_DECISAO_HUMANA": "SIM — verificar aplicação ao contrato/empresa, identidade da transação, documento e referencial; caso ambíguo, manter pendência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FIN-CASO-12",
+      "TITULO": "Pagamento de tributo",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa fictícia Luar pagou DARF de R$ 700; comprovante do banco e arrecadação são consultáveis.",
+      "NATUREZA_PROVAVEL": "Liquidação de obrigação tributária já reconhecida ou outro ajuste; natureza fiscal a validar.",
+      "EVIDENCIA_NECESSARIA": "Guia correta, período/código, comprovante e confirmação do pagamento; Fiscal confirma obrigação e classificação.",
+      "DEPARTAMENTO_RESPONSAVEL": "FINANCEIRO + FISCAL + CONTABILIDADE",
+      "FUNDAMENTO_IDS": [
+        "FIN-17",
+        "FIN-20"
+      ],
+      "DISPOSITIVOS": [
+        "Fundamentos CONT/FIN indicados; consultar dispositivos e fonte oficial nas fichas; procedimento interno aplicável é identificado em separado."
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001, texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "RFB-COMPROVANTES",
+          "TITULO": "Consulta e validação de comprovantes de arrecadação",
+          "URL": "https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/pagamentos-e-parcelamentos/consulta-comprovante-de-pagamento-darf-das-dje-e-dae-acesso-via-portal-e-cac/consulta-comprovante-de-pagamento-darf-das-dje-e-dae-acesso-via-portal-e-cac",
+          "ORGAO": "Receita Federal do Brasil"
+        }
+      ],
+      "FUNDAMENTO": "Reutiliza os fundamentos CONT 03C e FIN 03D indicados; fatos bancários isolados não determinam natureza.",
+      "TRATAMENTO_CONCEITUAL": "Financeiro prova pagamento; Fiscal confirma natureza, tributo, período e obrigação, Contabilidade verifica baixa/provisão.",
+      "RISCOS": "Pagar/baixar tributo errado, competência errada ou débito duplicado.",
+      "LIMITACOES": "A ficha não determina código, alíquota, dedutibilidade nem reconhecimento fiscal; depende de regime/competência.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas se aplicáveis, confirmadas pelo Supervisor"
+      ],
+      "NECESSIDADE_DECISAO_HUMANA": "SIM — verificar aplicação ao contrato/empresa, identidade da transação, documento e referencial; caso ambíguo, manter pendência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FIN-CASO-13",
+      "TITULO": "Pagamento de folha",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Empresa fictícia Brisa pagou líquido da folha de R$ 4.800 com resumo DP identificado por competência.",
+      "NATUREZA_PROVAVEL": "Liquidação de folha/encargos conforme arquivo/resumo DP e obrigação prévia.",
+      "EVIDENCIA_NECESSARIA": "Resumo DP com competência e líquido, arquivo de pagamento, extrato, recibos/folha e obrigação reconhecida.",
+      "DEPARTAMENTO_RESPONSAVEL": "FINANCEIRO + DP + CONTABILIDADE",
+      "FUNDAMENTO_IDS": [
+        "FIN-17",
+        "FIN-20"
+      ],
+      "DISPOSITIVOS": [
+        "Fundamentos CONT/FIN indicados; consultar dispositivos e fonte oficial nas fichas; procedimento interno aplicável é identificado em separado."
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001, texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "FUNDAMENTO": "Reutiliza os fundamentos CONT 03C e FIN 03D indicados; fatos bancários isolados não determinam natureza.",
+      "TRATAMENTO_CONCEITUAL": "Financeiro prova liquidação; DP confirma composição e obrigação, Contabilidade trata reconhecimento; líquido não equivale a custo total.",
+      "RISCOS": "Duplicar despesa, pagar líquido como custo bruto ou omitir encargo.",
+      "LIMITACOES": "DP é responsável por folha e encargos; Financeiro não recalcula salário ou contribuição.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas se aplicáveis, confirmadas pelo Supervisor"
+      ],
+      "NECESSIDADE_DECISAO_HUMANA": "SIM — verificar aplicação ao contrato/empresa, identidade da transação, documento e referencial; caso ambíguo, manter pendência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FIN-CASO-14",
+      "TITULO": "Recebimento de cartão com desconto de taxa",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Intermediador fictício creditou R$ 1.940 por vendas brutas de R$ 2.000 e taxa indicada de R$ 60.",
+      "NATUREZA_PROVAVEL": "Liquidação de recebíveis brutos, líquida de taxa/retencões identificadas; depende do contrato.",
+      "EVIDENCIA_NECESSARIA": "Relatório do adquirente, vendas/documentos, bruto, taxas, agenda de recebíveis, contrato e extrato líquido.",
+      "DEPARTAMENTO_RESPONSAVEL": "FINANCEIRO + FISCAL/COMERCIAL + CONTABILIDADE",
+      "FUNDAMENTO_IDS": [
+        "FIN-18"
+      ],
+      "DISPOSITIVOS": [
+        "Fundamentos CONT/FIN indicados; consultar dispositivos e fonte oficial nas fichas; procedimento interno aplicável é identificado em separado."
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001, texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "FUNDAMENTO": "Reutiliza os fundamentos CONT 03C e FIN 03D indicados; fatos bancários isolados não determinam natureza.",
+      "TRATAMENTO_CONCEITUAL": "Conciliar bruto e liquidação líquida, reconhecendo taxa/recebível segundo contrato e referencial; consultar Fiscal/Comercial.",
+      "RISCOS": "Subavaliar receita/recebível, classificar taxa ou antecipação indevidamente.",
+      "LIMITACOES": "Taxas, antecipação, split e chargeback variam; contrato é essencial.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas se aplicáveis, confirmadas pelo Supervisor"
+      ],
+      "NECESSIDADE_DECISAO_HUMANA": "SIM — verificar aplicação ao contrato/empresa, identidade da transação, documento e referencial; caso ambíguo, manter pendência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    },
+    {
+      "ID": "FIN-CASO-15",
+      "TITULO": "Dois pagamentos de mesmo valor com favorecidos diferentes",
+      "TIPO_CONHECIMENTO": "EXEMPLO_ILUSTRATIVO",
+      "EXEMPLO_FICTICIO": "Exemplo fictício: Dois débitos fictícios de R$ 300: um favorecido é Fornecedor A, outro Fornecedor B, datas e IDs diferentes.",
+      "NATUREZA_PROVAVEL": "Dois eventos independentes até prova em contrário; não parear só pelo valor.",
+      "EVIDENCIA_NECESSARIA": "Extrato e comprovantes, IDs, datas, favorecidos distintos, títulos e documentos de cada pagamento.",
+      "DEPARTAMENTO_RESPONSAVEL": "FINANCEIRO + CONTABILIDADE",
+      "FUNDAMENTO_IDS": [
+        "FIN-02",
+        "FIN-20"
+      ],
+      "DISPOSITIVOS": [
+        "Fundamentos CONT/FIN indicados; consultar dispositivos e fonte oficial nas fichas; procedimento interno aplicável é identificado em separado."
+      ],
+      "FONTES": [
+        {
+          "ID": "CFC-NBCTG1001",
+          "TITULO": "NBC TG 1001, texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/NBCTG1001.pdf",
+          "ORGAO": "CFC"
+        },
+        {
+          "ID": "CFC-ITG2000-R1",
+          "TITULO": "ITG 2000 (R1), texto oficial CFC",
+          "URL": "https://www1.cfc.org.br/sisweb/SRE/docs/ITG2000(R1).pdf",
+          "ORGAO": "CFC"
+        }
+      ],
+      "FUNDAMENTO": "Reutiliza os fundamentos CONT 03C e FIN 03D indicados; fatos bancários isolados não determinam natureza.",
+      "TRATAMENTO_CONCEITUAL": "Manter associações separadas por beneficiário e evidências individuais; similaridade de valor não autoriza pareamento.",
+      "RISCOS": "Falso positivo, pagamento duplicado ou quitação atribuída à contraparte errada.",
+      "LIMITACOES": "O motor interno não muda nesta etapa; valor idêntico não prova identidade nem natureza, e status de associação é vínculo bancário, não natureza contábil.",
+      "REFERENCIAL": [
+        "NBC TG 1000 (R1)",
+        "NBC TG 1001",
+        "NBC TG 1002",
+        "NBC TG completas se aplicáveis, confirmadas pelo Supervisor"
+      ],
+      "NECESSIDADE_DECISAO_HUMANA": "SIM — verificar aplicação ao contrato/empresa, identidade da transação, documento e referencial; caso ambíguo, manter pendência.",
+      "AUTORIZA_DECISAO_AUTOMATICA": false
+    }
+  ]
+}

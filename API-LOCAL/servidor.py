@@ -61,7 +61,17 @@ import previa_fechamento  # noqa: E402  (PRÉVIA DO FECHAMENTO: consolidação s
 HOST = "127.0.0.1"
 PORTA = int(os.environ.get("AGENTES_PRIME_PORTA", "8765"))
 # Identificação VISÍVEL do ambiente (segurança): só servidores de demonstração declaram DEMONSTRACAO; o padrão é REAL.
-AMBIENTE = "DEMONSTRACAO" if os.environ.get("AGENTES_PRIME_AMBIENTE", "").upper() == "DEMONSTRACAO" else "REAL"
+AMBIENTE = os.environ.get("AGENTES_PRIME_AMBIENTE", "REAL").upper()
+if AMBIENTE not in ("REAL", "DEMONSTRACAO", "TESTE"):
+    AMBIENTE = "REAL"
+
+
+def amostra_ficticia_permitida() -> bool:
+    """A amostra só pode ser preparada na DEMONSTRAÇÃO ou em execução explicitamente marcada como TESTE."""
+    ambiente = os.environ.get("AGENTES_PRIME_AMBIENTE", AMBIENTE).upper()
+    return ambiente in ("DEMONSTRACAO", "TESTE") or os.environ.get("AGENTES_PRIME_MODO_TESTE") == "1"
+
+
 PY = sys.executable
 FERRAMENTA_COORDENADOR = RAIZ / "COORDENADOR-GERAL" / "ferramentas" / "coordenador.py"
 FERRAMENTA_IMPORTACAO = RAIZ / "AGENTES" / "IMPORTACAO" / "ferramentas" / "importacao_vgrow.py"
@@ -1546,6 +1556,9 @@ class Manipulador(BaseHTTPRequestHandler):
 
     def api_amostra(self, metodo, partes):
         """Amostra FICTÍCIA do percurso completo: preparação explícita (nunca na inicialização) e correção do caso B."""
+        if not amostra_ficticia_permitida():
+            self.close_connection = True
+            return self.erro(403, 'A preparação de dados fictícios está bloqueada no ambiente REAL.')
         if metodo == 'GET' and not partes:
             return self.json(200, amostra_ficticia.situacao())
         if metodo != 'POST' or len(partes) != 1 or partes[0] not in ('preparar', 'corrigir-dp-b'):
@@ -1847,6 +1860,10 @@ class Manipulador(BaseHTTPRequestHandler):
             conteudo = conteudo.decode("utf-8").replace("connect-src 'none'", "connect-src 'self'").replace(
                 "<head>", f'<head>\n  <meta name="prime-sessao" content="{self.server.token}">\n  <meta name="prime-ambiente" content="{AMBIENTE}">',
                 1).encode("utf-8")
+            permitir_amostra = "DISPONIVEL" if amostra_ficticia_permitida() else "BLOQUEADA"
+            conteudo = conteudo.replace(
+                b"</head>", f'<meta name="prime-amostra" content="{permitir_amostra}"></head>'.encode("utf-8"), 1
+            )
         self.responder(200, conteudo, tipo)
 
     # ---- API

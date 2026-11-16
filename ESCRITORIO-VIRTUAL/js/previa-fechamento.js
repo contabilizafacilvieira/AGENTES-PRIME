@@ -11,14 +11,16 @@
   // ---------------------------------------------------------------- identificação do ambiente (segurança: P0)
   if (ambiente) {
     const faixa = document.createElement("div");
-    faixa.className = "amb-faixa amb-" + (ambiente === "DEMONSTRACAO" ? "demo" : "real");
+    faixa.className = "amb-faixa amb-" + (ambiente === "DEMONSTRACAO" ? "demo" : ambiente === "TESTE" ? "teste" : "real");
     faixa.setAttribute("role", "status");
     faixa.dataset.ambiente = ambiente;
     faixa.textContent = ambiente === "DEMONSTRACAO"
       ? "DEMONSTRAÇÃO · dados fictícios · nada aqui afeta o ambiente real"
-      : "AMBIENTE REAL · dados reais das empresas · toda ação é auditada";
+      : ambiente === "TESTE"
+        ? "AMBIENTE DE TESTE · dados fictícios isolados · nada aqui afeta o ambiente real"
+        : "AMBIENTE REAL · dados reais das empresas · toda ação é auditada";
     document.body.prepend(faixa);
-    document.title = (ambiente === "DEMONSTRACAO" ? "[DEMONSTRAÇÃO] " : "[REAL] ") + document.title;
+    document.title = (ambiente === "DEMONSTRACAO" ? "[DEMONSTRAÇÃO] " : ambiente === "TESTE" ? "[TESTE] " : "[REAL] ") + document.title;
   }
   if (!meta || !meta.content || !window.EV) return;
   const TOKEN = meta.content;
