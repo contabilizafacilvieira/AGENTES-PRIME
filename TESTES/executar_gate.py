@@ -71,6 +71,7 @@ GATE = [
     ("BASE INICIAL", "TESTES/BASE-INICIAL/testar_base_inicial.py"),
     ("PLANO / HIERARQUIA", "TESTES/BASE-INICIAL/testar_plano_hierarquia.py"),
     ("BASE INICIAL", "TESTES/BASE-INICIAL/testar_percurso_base_inicial.py"),
+    ("PREPARAÇÃO TÉCNICA", "TESTES/PREPARACAO/testar_preparacao_tecnica.py"),
     ("SAÍDAS", "TESTES/AMOSTRA-COMPLETA/testar_saidas_exclusao.py"),
     ("PERCURSO COMPLETO", "TESTES/AMOSTRA-COMPLETA/testar_percurso_completo.py"),
     ("PERCURSO LOCAL", "TESTES/LOCAL/testar_fluxo_local.py"),

@@ -145,26 +145,47 @@ def adapter_balancete(item, extraido, clientes, empresa):
 
 
 SIN_RAZAO = {"data": ("DATA", "DATA LANCTO", "DATA LANCAMENTO"), "conta": ("CONTA", "CLASSIFICACAO", "CODIGO", "CONTA CONTABIL"),
-             "contrapartida": ("CONTRAPARTIDA", "CONTRA PARTIDA", "CONTA CONTRAPARTIDA"),
+             "contrapartida": ("CONTRAPARTIDA", "CONTRA PARTIDA", "CONTA CONTRAPARTIDA", "CTA.C.PART.", "CTA C PART"),
              "historico": ("HISTORICO", "DESCRICAO", "COMPLEMENTO"), "debito": ("DEBITO", "DEBITOS", "VALOR DEBITO"),
              "credito": ("CREDITO", "CREDITOS", "VALOR CREDITO"), "saldo": ("SALDO", "SALDO ATUAL"),
              "documento": ("DOCUMENTO", "DOC", "NF", "NUMERO DOCUMENTO"), "lote": ("LOTE",), "referencia": ("REFERENCIA", "REF")}
 
 
+def _secao_razao(linha):
+    """Reconhece o marcador ``Conta:`` do Razão exportado pelo Domínio."""
+    vals = [str(x or "").strip() for x in linha]
+    if not vals or not vals[0].upper().startswith("CONTA"):
+        return None
+    classificacao = next((x for x in vals[1:] if re.fullmatch(r"\d+(?:\.\d+){2,}", x)), None)
+    if not classificacao:
+        return None
+    codigo = vals[1] if len(vals) > 1 and re.fullmatch(r"\d+(?:\.0+)?", vals[1]) else None
+    pos = vals.index(classificacao)
+    descricao = next((x for x in vals[pos + 1:] if x), None)
+    return {"conta": classificacao, "codigo": codigo, "descricao": descricao}
+
+
 def adapter_razao(item, extraido, clientes, empresa):
-    """Razão em TABELA (CSV ';' ou planilha) com sinônimos de cabeçalho. Razão em PDF: layout novo (sem leitor ainda)."""
+    """Razão tabular, incluindo o layout Domínio com seções ``Conta:``."""
     linhas = linhas_tabulares(extraido) if extraido.get("leitura") in ("EXTRAIDO_PLANILHA", "EXTRAIDO_TEXTO") else []
+    secao_layout = False
     for i, l in enumerate(linhas[:30]):
         k = [book_contabil.chave(x) for x in l]
         mapa = {campo: next(j for j, x in enumerate(k) if x in sins) for campo, sins in SIN_RAZAO.items() if any(x in sins for x in k)}
-        if {"data", "conta", "historico", "debito", "credito"} <= set(mapa):
+        if {"data", "historico", "debito", "credito"} <= set(mapa) and ("conta" in mapa or any(_secao_razao(x) for x in linhas[:30])):
+            secao_layout = "conta" not in mapa
             break
     else:
         return None, "Razão sem cabeçalho tabular reconhecido (data, conta, histórico, débito, crédito)."
     lancamentos, problemas = [], []
+    secao = None
     for n, l in enumerate(linhas[i + 1:], i + 2):
+        marcador = _secao_razao(l)
+        if marcador:
+            secao = marcador
+            continue
         get = lambda c: l[mapa[c]] if c in mapa and mapa[c] < len(l) else None  # noqa: E731
-        conta = str(get("conta") or "").strip()
+        conta = str(get("conta") or (secao or {}).get("conta") or "").strip()
         if not conta:
             continue
         try:
@@ -177,13 +198,15 @@ def adapter_razao(item, extraido, clientes, empresa):
         if not data:
             problemas.append(f"linha {n}: data ausente ou inválida; lançamento não aproveitado")
             continue
-        lancamentos.append({"linha": n, "data": data, "conta": conta, "contrapartida": str(get("contrapartida") or "").strip() or None,
+        lancamentos.append({"linha": n, "data": data, "conta": conta, "conta_principal": conta,
+                            "contrapartida": str(get("contrapartida") or "").strip() or None,
                             "historico": str(get("historico") or "").strip(), "debito": f"{deb:.2f}", "credito": f"{cre:.2f}",
                             "saldo": None if saldo is None else f"{saldo:.2f}", "documento": str(get("documento") or "").strip() or None,
-                            "lote": str(get("lote") or "").strip() or None, "referencia": str(get("referencia") or "").strip() or None})
+                            "lote": str(get("lote") or "").strip() or None, "referencia": str(get("referencia") or "").strip() or None,
+                            "secao": dict(secao) if secao else None})
     if not lancamentos:
         return None, "Nenhum lançamento aproveitável no razão."
-    return {"contrato": "RAZAO_CONTABIL_NORMALIZADO_V1", "adapter": "RAZAO_TABELA_SINONIMOS_V1", "lancamentos": lancamentos,
+    return {"contrato": "RAZAO_CONTABIL_NORMALIZADO_V1", "adapter": "RAZAO_SECOES_CONTA_V1" if secao_layout else "RAZAO_TABELA_SINONIMOS_V1", "lancamentos": lancamentos,
             "problemas": problemas}, None
 
 
